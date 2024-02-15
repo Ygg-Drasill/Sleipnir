@@ -16,7 +16,5 @@ jobs:
       uses: actions/first-interaction@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: "Hail, ${ env.GREETING }! Welcome to the realms of Yggdrasil. Your first issue opens a new leaf on the great tree."
-        pr-message: "Hail, ${ env.GREETING }! Your first pull request adds another branch to the vast canopy of Yggdrasil."
-      env:
-        GREETING: ${{ github.actor }}
+        issue-message: "Hail, ${{ github.actor }}! Welcome to the realms of Yggdrasil. Your first issue opens a new leaf on the great tree."
+        pr-message: "Hail, ${{ github.actor }}! Your first pull request adds another branch to the vast canopy of Yggdrasil."
