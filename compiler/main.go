@@ -1,7 +1,15 @@
 package main
 
-import . "fmt"
+import (
+	"os"
+)
 
 func main() {
-	Println("Hello World!")
+	if len(os.Args) < 2 {
+		println("Incorrect usage: go run main.go main.ygg")
+		os.Exit(1)
+	}
+
+	println(os.Args[1])
+	os.Exit(0)
 }
