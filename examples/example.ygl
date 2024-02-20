@@ -1,0 +1,49 @@
+node Constants {
+	out {
+		int a = 5;
+		int b = 10;
+		int c = 3;
+		int d = 2;
+    }
+}
+
+template Add {
+	in {
+		int a;
+		int b;
+}
+out int;
+	process {
+		out = in:a + in:b;
+    }
+}
+node Add1 : Add //instance of Add node
+node Add2 : Add //instance of Add node
+
+node Multiply {
+	in {
+		int a;
+		int b;
+    }
+    out int
+        process {
+            out = in:a * in:b;
+        }
+}
+
+node Print1 : Print //from standard library
+
+Constants.out.a -> Add1.in.a;
+Constants.out.b -> Add1.in.b;
+Add1.out -> Add2.in.a;
+Constants.out.c -> Add2.in.b;
+Add2.out -> Multiply.in.a;
+Constants.out.d -> Multiply.in.b;
+Multiply.out -> Print1.in;
+
+node AddExample : Add
+Constants.out.a -> Add1.in.a;
+Constants.out.b -> Add1.in.b;
+
+AddExample : Add { Constants.out.a -> in.a; Constants.out.b -> in.b; }
+AddExample:out -> Print
