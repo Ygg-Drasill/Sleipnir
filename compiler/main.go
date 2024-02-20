@@ -6,7 +6,7 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		println("Incorrect usage: go run main.go main.ygg")
+		println("Incorrect usage: go run main.go main.ygl")
 		os.Exit(1)
 	}
 
