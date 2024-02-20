@@ -1,4 +1,4 @@
-node Constants {
+{{{node Constants {
 	out {
 		int a = 5;
 		int b = 10;

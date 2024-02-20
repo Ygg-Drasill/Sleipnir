@@ -1,7 +1,12 @@
 package main
 
-import . "fmt"
+import (
+	. "github.com/Ygg-Drasill/Sleipnir/compiler/lexer"
+	"os"
+)
 
 func main() {
-	Println("Hello World!")
+	var filePath string = os.Args[1]
+	lexer := NewLexerFromFile(filePath)
+	lexer.FindTokens()
 }
