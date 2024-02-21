@@ -9,7 +9,7 @@ type Lexer struct {
 	tokens     chan Token
 }
 
-func NewLexerFromFile(inputPath string) *Lexer {
+func NewLexerFromString(inputPath string) *Lexer {
 	file, err := os.ReadFile(inputPath)
 	if err != nil {
 		panic(err)
@@ -22,10 +22,12 @@ func NewLexerFromFile(inputPath string) *Lexer {
 	}
 }
 
-func (lexer *Lexer) FindTokens() {
+func (lexer *Lexer) FindTokens() []Token {
 	for _, b := range lexer.inputCode {
 		print(string(b))
 	}
+
+	return []Token{}
 }
 
 func (lexer *Lexer) serveToken(token Token) {
