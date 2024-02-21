@@ -14,7 +14,7 @@ const (
 	TokenEOF
 )
 
-func (token Token) String() string {
+func (token *Token) String() string {
 	switch token.tokenType {
 	case TokenError:
 		return token.value
