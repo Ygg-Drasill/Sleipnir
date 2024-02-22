@@ -1,0 +1,20 @@
+name: Missing Test
+about: File a missing test.
+title: '[Missing Test]: '
+labels: ''
+assignees: ''
+projects: ["Ygg-Drasill/Sleipnir"]
+body:
+  - type: input
+    id: test-name
+    attributes:
+      label: Name of the Test
+      describtion: Please suggest a name for the test
+      placeholder: ex. TestSleipnirCompiles
+  - type: textarea
+    id: test-description
+    attributes:
+      label: Test Description
+      description: Describe what has to be tested
+      placeholder: What is in need of testing?
+      value: "A test is missing!"
