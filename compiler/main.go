@@ -7,6 +7,6 @@ import (
 
 func main() {
 	var filePath string = os.Args[1]
-	lexer := NewLexerFromFile(filePath)
+	lexer := NewLexerFromString(filePath)
 	lexer.FindTokens()
 }
