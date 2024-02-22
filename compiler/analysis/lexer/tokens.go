@@ -2,12 +2,12 @@ package lexer
 
 import "fmt"
 
+type TokenType = int
+
 type Token struct {
 	tokenType TokenType
 	value     string
 }
-
-type TokenType = int
 
 const (
 	TokenError TokenType = iota
