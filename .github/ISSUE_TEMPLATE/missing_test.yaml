@@ -1,0 +1,18 @@
+name: Missing Test
+title: '[Missing Test]: '
+description: File a bug report
+projects: ["Ygg-Drasill/Sleipnir"]
+body:
+  - type: input
+    id: test-name
+    attributes:
+      label: Name of the Test
+      description: Please suggest a name for the test
+      placeholder: ex. TestSleipnirCompiles
+  - type: textarea
+    id: test-description
+    attributes:
+      label: Test Description
+      description: Describe what has to be tested
+      placeholder: What is in need of testing?
+      value: "A test is missing!"
