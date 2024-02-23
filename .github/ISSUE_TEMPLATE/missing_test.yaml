@@ -1,5 +1,6 @@
 name: Missing Test
 title: '[Missing Test]: '
+description: File a bug report
 projects: ["Ygg-Drasill/Sleipnir"]
 body:
   - type: input
