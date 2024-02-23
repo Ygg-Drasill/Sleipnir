@@ -3,12 +3,6 @@ title: '[Task]: '
 description: Create a Task
 projects: ["Ygg-Drasill/Sleipnir"]
 body:
-  - type: input
-    id: task-name
-    attributes:
-      label: Name of the Task
-      description: Name of the task
-      placeholder: ex. Finish the compiler
   - type: textarea
     id: task-goal
     attributes:
