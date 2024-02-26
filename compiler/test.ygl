@@ -1,0 +1,7 @@
+users:
+  - id: 001
+    name: "John Doe"
+    role: "Administrator"
+  - id: 002
+    name: "Jane Smith"
+    role: "User"
