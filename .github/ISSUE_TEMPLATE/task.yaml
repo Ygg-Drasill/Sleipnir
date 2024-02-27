@@ -1,0 +1,17 @@
+name: Task
+title: '[Task]: '
+description: Create a Task
+projects: ["Ygg-Drasill/Sleipnir"]
+body:
+  - type: textarea
+    id: task-goal
+    attributes:
+      label: Goal
+      description: What functionality is necessary to satisfy the task?
+      placeholder: ex. Ability to compile .ygl files
+  - type: textarea
+    id: task-description
+    attributes:
+      label: Task Description
+      description: Describe the task
+      placeholder: 1. Define the syntax. 2. Front-end 3. Back-end 4. Run
