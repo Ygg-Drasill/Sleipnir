@@ -7,8 +7,9 @@ import (
 )
 
 func main() {
-	filepath := "test.bay" // Change this to the path of the file you want to validate(eg. "test.ygl / bay.test")
-	valid, err := validateFilepath(filepath)
+	filepath := "test.bay" // Change to the path of the file you want to validate
+
+	valid, err := validateFilepath(filepath, ".ygl") // Specify the expected extension
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -20,16 +21,15 @@ func main() {
 	}
 }
 
-// First we check if the path does exist, if not we return an error.
-func validateFilepath(path string) (bool, error) {
+func validateFilepath(path string, expectedExtension string) (bool, error) {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
-		return false, fmt.Errorf("file does not exist: %s", path)
+		return false, fmt.Errorf("file %s does not exist", path)
 	}
 
-	//Then we check if the file is a ygl file, if not we return an error.
-	if filepath.Ext(path) != ".ygl" {
-		return false, fmt.Errorf("file is not a go file")
+	if filepath.Ext(path) != expectedExtension {
+		return false, fmt.Errorf("file has incorrect extension, expected %s", expectedExtension)
 	}
-	//If the file exists and is a ygl file, we return true and nil.
+
 	return true, nil
+}
 }
