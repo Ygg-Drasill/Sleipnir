@@ -1,0 +1,26 @@
+name: Run Go Tests for Sleipnir 
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.22
+
+    - name: Build
+      run: go build -v ./...
+
+    - name: Test
+      uses: robherley/go-test-action@v0.1.0
+      with:
+        omitPie: true
