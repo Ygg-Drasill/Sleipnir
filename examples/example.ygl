@@ -1,4 +1,4 @@
-{{{node Constants {
+node Constants {
 	out {
 		int a = 5;
 		int b = 10;
@@ -14,7 +14,7 @@ template Add {
 }
 out int;
 	process {
-		out = in:a + in:b;
+		out = in.a + in.b;
     }
 }
 node Add1 : Add //instance of Add node
@@ -27,7 +27,7 @@ node Multiply {
     }
     out int
         process {
-            out = in:a * in:b;
+            out = in.a * in.b;
         }
 }
 
@@ -46,4 +46,4 @@ Constants.out.a -> Add1.in.a;
 Constants.out.b -> Add1.in.b;
 
 AddExample : Add { Constants.out.a -> in.a; Constants.out.b -> in.b; }
-AddExample:out -> Print
+AddExample.out -> Print

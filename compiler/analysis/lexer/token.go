@@ -4,17 +4,29 @@ import "fmt"
 
 type TokenType = int
 
+const (
+	TokenError TokenType = iota
+	TokenEOF
+	TokenIdentifier
+	TokenKeyword
+	TokenOperator
+	TokenPunctuation
+	TokenLiteral
+)
+
 type Token struct {
 	tokenType TokenType
 	value     string
 }
 
-const (
-	TokenError TokenType = iota
-	TokenEOF
-)
+func NewToken(tokenType TokenType, value string) *Token {
+	return &Token{
+		tokenType: tokenType,
+		value:     value,
+	}
+}
 
-func (token *Token) String() string {
+func (token *Token) ToString() string {
 	switch token.tokenType {
 	case TokenError:
 		return token.value
