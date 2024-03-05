@@ -1,4 +1,4 @@
-package unit
+package analysis
 
 import (
 	. "github.com/Ygg-Drasill/Sleipnir/compiler/lexer"
@@ -6,7 +6,7 @@ import (
 )
 
 func TestFindTokens(t *testing.T) {
-	lexer := NewLexerFromString("./testSnippets/testFindTokens.ygl") //Todo: non-existent
+	lexer := NewLexerFromString("../../testData/snippets/testFindTokens.ygl") //Todo: non-existent
 
 	//stupid test
 	gotTokens := lexer.FindTokens()

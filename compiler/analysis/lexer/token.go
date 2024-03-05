@@ -4,6 +4,8 @@ import "fmt"
 
 type TokenType = int
 
+const EOF rune = -1
+
 const (
 	TokenError TokenType = iota
 	TokenEOF

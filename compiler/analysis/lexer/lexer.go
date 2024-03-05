@@ -2,14 +2,17 @@ package lexer
 
 import (
 	"os"
+	"unicode/utf8"
 )
 
 type Lexer struct {
-	inputCode   string
-	inputLength int
-	tokenStart  int
-	cursor      int
-	tokens      chan Token
+	inputCode     string
+	inputLength   int
+	tokenStart    int
+	lastRuneWidth int
+	cursor        int
+	tokens        chan Token
+	tokenList     []Token
 }
 
 func NewLexerFromString(inputPath string) *Lexer {
@@ -24,49 +27,32 @@ func NewLexerFromString(inputPath string) *Lexer {
 		tokenStart:  0,
 		cursor:      0,
 		tokens:      make(chan Token),
+		tokenList:   make([]Token, 0),
 	}
 }
 
-func (lexer *Lexer) FindTokens() []Token {
-	tempTokens := make([]Token, 0)
-	for range lexer.inputCode {
-		if lexer.cursor > lexer.inputLength-1 {
-			break
-		}
-
-		var token *Token
-		lexer.MatchToken(MatchWhitespace)
-		token = lexer.MatchToken(MatchPunctuation)
-		if token != nil {
-			tempTokens = append(tempTokens, *token)
-			continue
-		}
-		token = lexer.MatchToken(MatchArrowOperator)
-		if token != nil {
-			tempTokens = append(tempTokens, *token)
-			continue
-		}
-		token = lexer.MatchToken(MatchOperator)
-		if token != nil {
-			tempTokens = append(tempTokens, *token)
-			continue
-		}
-		lexer.cursor++
-		//run matchers ...
+func (lexer *Lexer) cursorNext() (rune rune) {
+	if lexer.cursor > lexer.inputLength {
+		return -1
 	}
-	return tempTokens
+	rune, lexer.lastRuneWidth = utf8.DecodeRuneInString(lexer.inputCode[lexer.cursor:])
+	lexer.cursor += lexer.lastRuneWidth
+	return rune
 }
 
-func (lexer *Lexer) MatchToken(matcher TokenMatcher) *Token {
-	characterCount, token := matcher(lexer)
-	if characterCount > 0 {
-		//lexer.serveToken(*token) Uncomment when tokens are consumed
-		lexer.cursor += characterCount
-		return token
-	}
-	return nil
+func (lexer *Lexer) cursorBackup() {
+	lexer.cursor -= lexer.lastRuneWidth
 }
 
 func (lexer *Lexer) serveToken(token Token) {
 	lexer.tokens <- token
+}
+
+func (lexer *Lexer) FindTokens() []Token {
+	tempTokens := make([]Token, 0)
+	for matchState := matchNonToken; matchState != nil; {
+		matchState = matchState(lexer)
+	}
+	close(lexer.tokens)
+	return tempTokens
 }
