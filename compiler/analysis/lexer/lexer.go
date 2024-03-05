@@ -44,15 +44,16 @@ func (lexer *Lexer) cursorBackup() {
 	lexer.cursor -= lexer.lastRuneWidth
 }
 
-func (lexer *Lexer) serveToken(token Token) {
-	lexer.tokens <- token
+func (lexer *Lexer) serveToken(tokenType TokenType) {
+	//lexer.tokens <- token
+	lexer.tokenList = append(lexer.tokenList, NewToken(tokenType, lexer.inputCode[lexer.tokenStart:lexer.cursor]))
+	lexer.tokenStart = lexer.cursor
 }
 
 func (lexer *Lexer) FindTokens() []Token {
-	tempTokens := make([]Token, 0)
 	for matchState := matchNonToken; matchState != nil; {
 		matchState = matchState(lexer)
 	}
 	close(lexer.tokens)
-	return tempTokens
+	return lexer.tokenList
 }

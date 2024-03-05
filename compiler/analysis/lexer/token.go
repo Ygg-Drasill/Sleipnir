@@ -19,10 +19,10 @@ const (
 type Token struct {
 	tokenType TokenType
 	value     string
-}
+} //TODO: add column and row -> allow for detailed error messages
 
-func NewToken(tokenType TokenType, value string) *Token {
-	return &Token{
+func NewToken(tokenType TokenType, value string) Token {
+	return Token{
 		tokenType: tokenType,
 		value:     value,
 	}

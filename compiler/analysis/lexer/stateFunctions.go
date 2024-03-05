@@ -6,23 +6,46 @@ type StateFunction func(lexer *Lexer) StateFunction
 
 var nonTokenRunes = " \n\t\r"
 
-var matchPreprocessor StateFunction = func(lexer *Lexer) StateFunction {
+// TODO: instead, glide over alphanumeric word until punctuation or whitespace, then check inputCode[lexer.tokenStart : lexer.cursor] == keyword
+func isKeyword(lexer *Lexer, keyword string) bool {
+	currentRune := lexer.cursorNext()
+	for _, r := range keyword[0:] {
+		if r != currentRune {
+			return false
+		}
+		currentRune = lexer.cursorNext()
+	}
+	return true
+}
+
+func matchPreprocessor(lexer *Lexer) StateFunction {
 	return nil
 }
 
-var matchNonToken StateFunction = func(lexer *Lexer) StateFunction {
+func matchNonToken(lexer *Lexer) StateFunction {
+
 	for {
-		for nextRune := lexer.cursorNext(); nextRune != EOF; {
-			if !strings.ContainsRune(nonTokenRunes, nextRune) {
-				break
-			}
+		currentRune := lexer.cursorNext()
+		if currentRune == EOF {
+			break
 		}
-		//switch state :)
-		break
+		if strings.ContainsRune(nonTokenRunes, currentRune) {
+			continue
+		}
+
+		switch currentRune {
+		case 'n':
+			return matchNodeKeyword
+		}
 	}
 	return nil
 }
 
-var matchNode StateFunction = func(lexer *Lexer) StateFunction {
+func matchNodeKeyword(lexer *Lexer) StateFunction {
+	lexer.cursorBackup()
+	if isKeyword(lexer, "node") {
+		lexer.serveToken(TokenKeyword)
+		return matchNonToken
+	}
 	return nil
 }
