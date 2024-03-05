@@ -49,9 +49,9 @@ func (lexer *Lexer) cursorBackup() {
 }
 
 func (lexer *Lexer) cursorPeek() rune {
-	rune := lexer.cursorNext()
+	nextRune := lexer.cursorNext()
 	lexer.cursorBackup()
-	return rune
+	return nextRune
 }
 
 func (lexer *Lexer) serveToken(tokenType TokenType) {
