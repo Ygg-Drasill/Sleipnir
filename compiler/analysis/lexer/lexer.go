@@ -40,8 +40,18 @@ func (lexer *Lexer) cursorNext() (rune rune) {
 	return rune
 }
 
+func (lexer *Lexer) cursorIgnore() {
+	lexer.tokenStart = lexer.cursor
+}
+
 func (lexer *Lexer) cursorBackup() {
 	lexer.cursor -= lexer.lastRuneWidth
+}
+
+func (lexer *Lexer) cursorPeek() rune {
+	rune := lexer.cursorNext()
+	lexer.cursorBackup()
+	return rune
 }
 
 func (lexer *Lexer) serveToken(token Token) {
