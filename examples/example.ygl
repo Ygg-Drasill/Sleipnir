@@ -12,11 +12,13 @@ template Add {
 		int a;
 		int b;
 }
+
 out int;
 	process {
 		out = in.a + in.b;
     }
 }
+
 node Add1 : Add //instance of Add node
 node Add2 : Add //instance of Add node
 

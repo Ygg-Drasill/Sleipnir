@@ -4,7 +4,7 @@ import "strings"
 
 const alphanumericRunes = "abcdefghijklmnopqrstuvwxyz"
 
-func isLetter(runeToCheck rune) bool {
+func IsLetter(runeToCheck rune) bool {
 	lowercase := strings.ContainsRune(alphanumericRunes, runeToCheck)
 	uppercase := strings.ContainsRune(strings.ToUpper(alphanumericRunes), runeToCheck)
 	return lowercase || uppercase
@@ -12,6 +12,6 @@ func isLetter(runeToCheck rune) bool {
 
 const numbers = "1234567890"
 
-func isNumber(runeToCheck rune) bool {
+func IsNumber(runeToCheck rune) bool {
 	return strings.ContainsRune(numbers, runeToCheck)
 }

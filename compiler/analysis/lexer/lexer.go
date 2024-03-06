@@ -54,6 +54,10 @@ func (lexer *Lexer) cursorPeek() rune {
 	return nextRune
 }
 
+func (lexer *Lexer) cursorJump(length int) {
+	lexer.cursor += length
+}
+
 func (lexer *Lexer) serveToken(tokenType TokenType) {
 	//lexer.tokens <- token
 	lexer.tokenList = append(lexer.tokenList, NewToken(tokenType, lexer.inputCode[lexer.tokenStart:lexer.cursor]))

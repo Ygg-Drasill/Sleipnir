@@ -1,51 +1,88 @@
 package lexer
 
-import "strings"
+import (
+	"github.com/Ygg-Drasill/Sleipnir/compiler/analysis/utils"
+	"strings"
+)
 
 type StateFunction func(lexer *Lexer) StateFunction
 
 var nonTokenRunes = " \n\t\r"
 
-// TODO: instead, glide over alphanumeric word until punctuation or whitespace, then check inputCode[lexer.tokenStart : lexer.cursor] == keyword
-func isKeyword(lexer *Lexer, keyword string) bool {
-	currentRune := lexer.cursorNext()
-	for _, r := range keyword[0:] {
-		if r != currentRune {
-			return false
-		}
-		currentRune = lexer.cursorNext()
-	}
-	return true
-}
-
 func matchPreprocessor(lexer *Lexer) StateFunction {
-	return nil
+	//TODO: do preprocessing
+	return matchNonToken
 }
 
 func matchNonToken(lexer *Lexer) StateFunction {
-
 	for {
 		currentRune := lexer.cursorNext()
 		if currentRune == EOF {
-			break
+			return nil
 		}
 		if strings.ContainsRune(nonTokenRunes, currentRune) {
 			continue
 		}
+		lexer.cursorBackup()
+		lexer.cursorIgnore()
 
-		switch currentRune {
-		case 'n':
-			return matchNodeKeyword
+		if utils.IsLetter(currentRune) {
+			return matchLetters
+		}
+
+		if utils.IsNumber(currentRune) {
+			return matchNumbers
 		}
 	}
-	return nil
 }
 
-func matchNodeKeyword(lexer *Lexer) StateFunction {
-	lexer.cursorBackup()
-	if isKeyword(lexer, "node") {
-		lexer.serveToken(TokenKeyword)
-		return matchNonToken
+func matchLetters(lexer *Lexer) StateFunction {
+	for {
+		currentRune := lexer.cursorNext()
+		if utils.IsNumber(currentRune) {
+			return matchIdentifier
+		}
+		if !utils.IsLetter(currentRune) {
+			lexer.cursorBackup()
+			return matchKeyword
+		}
 	}
-	return nil
+}
+
+func matchNumbers(lexer *Lexer) StateFunction {
+	for {
+		currentRune := lexer.cursorNext()
+		if utils.IsLetter(currentRune) {
+			//TODO: unexpected symbol
+			return nil
+		}
+
+		if !utils.IsNumber(currentRune) {
+			lexer.cursorBackup()
+			lexer.serveToken(TokenLiteral)
+			return matchNonToken
+		}
+	}
+}
+
+func matchIdentifier(lexer *Lexer) StateFunction {
+	for {
+		currentRune := lexer.cursorNext()
+		if !utils.IsLetter(currentRune) && !utils.IsNumber(currentRune) {
+			lexer.cursorBackup()
+			lexer.serveToken(TokenIdentifier)
+		}
+	}
+}
+
+func matchKeyword(lexer *Lexer) StateFunction {
+	for _, keyword := range reservedKeywords {
+		if strings.HasPrefix(lexer.inputCode[lexer.tokenStart:], keyword) {
+
+			lexer.serveToken(TokenKeyword)
+			return matchNonToken
+		}
+	}
+
+	return matchIdentifier
 }

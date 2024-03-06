@@ -19,6 +19,8 @@ const (
 type Token struct {
 	tokenType TokenType
 	value     string
+	row       int
+	col       int
 } //TODO: add column and row -> allow for detailed error messages
 
 func NewToken(tokenType TokenType, value string) Token {
