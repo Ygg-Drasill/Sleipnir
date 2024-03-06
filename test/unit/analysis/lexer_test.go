@@ -1,8 +1,9 @@
 package analysis
 
 import (
-	. "github.com/Ygg-Drasill/Sleipnir/compiler/lexer"
 	"testing"
+
+	. "github.com/Ygg-Drasill/Sleipnir/compiler/analysis/lexer"
 )
 
 func TestFindTokens(t *testing.T) {
