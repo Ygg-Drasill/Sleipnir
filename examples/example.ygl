@@ -19,8 +19,8 @@ template Add {
     }
 }
 
-node Add1 : Add //instance of Add node
-node Add2 : Add //instance of Add node
+node Add1 : Add; //instance of Add node
+node Add2 : Add; //instance of Add node
 
 node Multiply {
 	in {
@@ -28,12 +28,12 @@ node Multiply {
 		int b;
     }
     out int
-        process {
-            out = in.a * in.b;
-        }
+    process {
+        out = in.a * in.b;
+    }
 }
 
-node Print1 : Print //from standard library
+node Print1 : Print; //from standard library
 
 Constants.out.a -> Add1.in.a;
 Constants.out.b -> Add1.in.b;
@@ -48,4 +48,4 @@ Constants.out.a -> Add1.in.a;
 Constants.out.b -> Add1.in.b;
 
 AddExample : Add { Constants.out.a -> in.a; Constants.out.b -> in.b; }
-AddExample.out -> Print
+AddExample.out -> Print;

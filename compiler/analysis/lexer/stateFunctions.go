@@ -12,6 +12,10 @@ const nonTokenRunes string = " \n\t\r"
 
 const connector string = "->"
 
+const commentSingle = "//"
+const commentMultiStart = "/*"
+const commentMultiEnd = "*/"
+
 func matchPreprocessor(lexer *Lexer) StateFunction {
 	//TODO: do preprocessing
 	return matchAny
@@ -57,8 +61,19 @@ func matchNonToken(lexer *Lexer) StateFunction {
 		if strings.ContainsRune(nonTokenRunes, currentRune) {
 			continue
 		}
+
 		lexer.cursorBackup()
 		lexer.cursorIgnore()
+
+		if strings.HasPrefix(lexer.inputCode[lexer.cursor:], commentSingle) {
+			return matchCommentSingle
+		}
+
+		if strings.HasPrefix(lexer.inputCode[lexer.cursor:], commentMultiStart) {
+			lexer.cursorJump(len(commentMultiStart))
+			return matchCommentMulti
+		}
+
 		return matchAny
 	}
 }
@@ -116,5 +131,20 @@ func matchKeyword(lexer *Lexer) StateFunction {
 func matchConnector(lexer *Lexer) StateFunction {
 	lexer.cursorJump(len(connector))
 	lexer.serveToken(TokenConnector)
+	return matchNonToken
+}
+
+func matchCommentSingle(lexer *Lexer) StateFunction {
+	for {
+		currentRune := lexer.cursorNext()
+		if currentRune == '\n' {
+			break
+		}
+	}
+	lexer.cursorIgnore()
+	return matchNonToken
+}
+
+func matchCommentMulti(lexer *Lexer) StateFunction {
 	return matchNonToken
 }
