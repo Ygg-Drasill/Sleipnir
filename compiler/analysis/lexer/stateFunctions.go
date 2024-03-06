@@ -1,6 +1,7 @@
 package lexer
 
 import (
+	"fmt"
 	"github.com/Ygg-Drasill/Sleipnir/compiler/analysis/utils"
 	"strings"
 )
@@ -33,6 +34,23 @@ func matchNonToken(lexer *Lexer) StateFunction {
 		if utils.IsNumber(currentRune) {
 			return matchNumbers
 		}
+
+		//TODO: logical operator
+		if utils.IsOperator(currentRune) {
+			lexer.cursorNext()
+			lexer.serveToken(TokenOperator)
+			return matchNonToken
+		}
+
+		if utils.IsPunctuation(currentRune) {
+			lexer.cursorNext()
+			lexer.serveToken(TokenPunctuation)
+			return matchNonToken
+		}
+
+		//TODO: errorhandler
+		fmt.Printf("Unrecognised token %c\n", currentRune)
+		return nil
 	}
 }
 
@@ -71,6 +89,7 @@ func matchIdentifier(lexer *Lexer) StateFunction {
 		if !utils.IsLetter(currentRune) && !utils.IsNumber(currentRune) {
 			lexer.cursorBackup()
 			lexer.serveToken(TokenIdentifier)
+			return matchNonToken
 		}
 	}
 }
@@ -83,6 +102,5 @@ func matchKeyword(lexer *Lexer) StateFunction {
 			return matchNonToken
 		}
 	}
-
 	return matchIdentifier
 }

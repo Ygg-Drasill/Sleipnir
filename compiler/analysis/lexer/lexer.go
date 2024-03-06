@@ -59,6 +59,7 @@ func (lexer *Lexer) cursorJump(length int) {
 }
 
 func (lexer *Lexer) serveToken(tokenType TokenType) {
+	//TODO: dont serve empty tokens
 	//lexer.tokens <- token
 	lexer.tokenList = append(lexer.tokenList, NewToken(tokenType, lexer.inputCode[lexer.tokenStart:lexer.cursor]))
 	lexer.tokenStart = lexer.cursor

@@ -4,7 +4,7 @@ import "fmt"
 
 type TokenType = int
 
-const EOF rune = -1
+const EOF rune = 65533
 
 const (
 	TokenError TokenType = iota
@@ -19,8 +19,8 @@ const (
 type Token struct {
 	tokenType TokenType
 	value     string
-	row       int
-	col       int
+	//row       int
+	//col       int
 } //TODO: add column and row -> allow for detailed error messages
 
 func NewToken(tokenType TokenType, value string) Token {
