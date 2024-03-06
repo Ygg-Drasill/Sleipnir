@@ -11,11 +11,11 @@ template Add {
 	in {
 		int a;
 		int b;
-}
+    }
 
-out int;
-	process {
-		out = in.a + in.b;
+    out int;
+    process {
+        out = in.a - in.b;
     }
 }
 

@@ -8,11 +8,44 @@ import (
 
 type StateFunction func(lexer *Lexer) StateFunction
 
-var nonTokenRunes = " \n\t\r"
+const nonTokenRunes string = " \n\t\r"
+
+const connector string = "->"
 
 func matchPreprocessor(lexer *Lexer) StateFunction {
 	//TODO: do preprocessing
-	return matchNonToken
+	return matchAny
+}
+
+func matchAny(lexer *Lexer) StateFunction {
+	currentRune := lexer.cursorNext()
+	if utils.IsLetter(currentRune) {
+		return matchLetters
+	}
+
+	if utils.IsNumber(currentRune) {
+		return matchNumbers
+	}
+
+	if strings.HasPrefix(lexer.inputCode[lexer.tokenStart:], connector) {
+		lexer.cursorBackup()
+		return matchConnector
+	}
+
+	//TODO: logical operator
+	if utils.IsOperator(currentRune) {
+		lexer.serveToken(TokenOperator)
+		return matchNonToken
+	}
+
+	if utils.IsPunctuation(currentRune) {
+		lexer.serveToken(TokenPunctuation)
+		return matchNonToken
+	}
+
+	//TODO: errorhandler
+	fmt.Printf("Unrecognised token %c\n", currentRune)
+	return nil
 }
 
 func matchNonToken(lexer *Lexer) StateFunction {
@@ -26,31 +59,7 @@ func matchNonToken(lexer *Lexer) StateFunction {
 		}
 		lexer.cursorBackup()
 		lexer.cursorIgnore()
-
-		if utils.IsLetter(currentRune) {
-			return matchLetters
-		}
-
-		if utils.IsNumber(currentRune) {
-			return matchNumbers
-		}
-
-		//TODO: logical operator
-		if utils.IsOperator(currentRune) {
-			lexer.cursorNext()
-			lexer.serveToken(TokenOperator)
-			return matchNonToken
-		}
-
-		if utils.IsPunctuation(currentRune) {
-			lexer.cursorNext()
-			lexer.serveToken(TokenPunctuation)
-			return matchNonToken
-		}
-
-		//TODO: errorhandler
-		fmt.Printf("Unrecognised token %c\n", currentRune)
-		return nil
+		return matchAny
 	}
 }
 
@@ -97,10 +106,15 @@ func matchIdentifier(lexer *Lexer) StateFunction {
 func matchKeyword(lexer *Lexer) StateFunction {
 	for _, keyword := range reservedKeywords {
 		if strings.HasPrefix(lexer.inputCode[lexer.tokenStart:], keyword) {
-
 			lexer.serveToken(TokenKeyword)
 			return matchNonToken
 		}
 	}
 	return matchIdentifier
+}
+
+func matchConnector(lexer *Lexer) StateFunction {
+	lexer.cursorJump(len(connector))
+	lexer.serveToken(TokenConnector)
+	return matchNonToken
 }

@@ -14,6 +14,7 @@ const (
 	TokenOperator
 	TokenPunctuation
 	TokenLiteral
+	TokenConnector
 )
 
 type Token struct {
