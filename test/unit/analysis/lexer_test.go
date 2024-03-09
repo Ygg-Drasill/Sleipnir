@@ -11,7 +11,16 @@ func TestFindTokens(t *testing.T) {
 
 	//stupid test
 	gotTokens := lexer.FindTokens()
-	wantedTokens := []Token{} //Todo: fill out array
+	wantedTokens := []Token{
+		NewToken(TokenKeyword, "node"),
+		NewToken(TokenIdentifier, "A"),
+		NewToken(TokenPunctuation, "{"),
+		NewToken(TokenPunctuation, "}"),
+		NewToken(TokenKeyword, "node"),
+		NewToken(TokenIdentifier, "B"),
+		NewToken(TokenPunctuation, "{"),
+		NewToken(TokenPunctuation, "}"),
+	}
 
 	for i := range wantedTokens {
 		got := gotTokens[i]
