@@ -1,0 +1,72 @@
+/*Lexical analysis*/
+_uppercase : 'A'-'Z' ;
+_lowercase : 'a'-'z' ;
+_number : '0'-'9' ;
+
+varId : _lowercase { _lowercase | _uppercase } ;
+nodeId : _uppercase { _lowercase | _uppercase } ;
+int64 : '1'-'9'{ _number } ;
+
+compOp      : '=' '=' | '!' '=' | '>' '=' | '<' '=' | '<' | '>' ;
+logicOp     : '&' '&' | '|' '|' ;
+aritemicOp  : '+' | '-' | '*' | '/' | '%' ;
+unaryOp     : '!' | '+' '+' | '-' '-' ;
+assignOp    : '=' | '+' '=' | '-' '=' | '*' '=' | '/' '=' ;
+stmtEnd : ';' ;
+
+/* Production rules */
+Type : "int" | "bool" | "string" ;
+
+
+/* Outer file scope */
+Node : "node" nodeId "{" nodeIn nodeOut nodeProc "}" ;
+
+Conn :  connOut "->" connIn ;
+ConnOut
+    : nodeId ".out." varId
+    | nodeId ".out"
+    ;
+
+ConnIn
+    : nodeId ".in." varId
+    | nodeId ".in"
+    ;
+
+
+/* Node scope */
+NodeIn : "in {" DeclarationLst "}" | "" ;
+
+NodeOut : "out" "{" DeclarationLst "}" | "" ;
+
+NodeProc : "process" "{" StmtLst "}" | "" ;
+
+
+/* Statement productions */
+DeclarationStmt
+    : Type varId stmtEnd
+    | Type varId "=" int64 stmtEnd
+    ;
+
+DeclarationLst
+    : DeclarationStmt DeclarationLst
+    | DeclarationStmt
+	;
+
+Condition
+    : LogicalExpr logicOp Condition
+    | LogicalExpr
+    ;
+
+LogicalExpr : varId compareOp varId ;
+
+AssignStmt : varId assignOp int64 stmtEnd;
+
+ControlStmt: IfStmt | WhileStmt ;
+
+IfStmt: "if" "(" Condition ")" "{" StmtLst "}" ;
+
+WhileStmt : "while" "(" Condition ")" "{" StmtLst "}" ;
+
+Stmt : DeclarationStmt | AssignStmt | ControlStmt ;
+
+StmtLst : Stmt StmtLst | Stmt ;
