@@ -7,21 +7,20 @@ varId : _lowercase { _lowercase | _uppercase } ;
 nodeId : _uppercase { _lowercase | _uppercase } ;
 int64 : '1'-'9'{ _number } ;
 
-compOp      : '=' '=' | '!' '=' | '>' '=' | '<' '=' | '<' | '>' ;
-logicOp     : '&' '&' | '|' '|' ;
-aritemicOp  : '+' | '-' | '*' | '/' | '%' ;
-unaryOp     : '!' | '+' '+' | '-' '-' ;
-assignOp    : '=' | '+' '=' | '-' '=' | '*' '=' | '/' '=' ;
-stmtEnd : ';' ;
+compOp      	: '=' '=' | '!' '=' | '>' '=' | '<' '=' | '<' | '>' ;
+logicOp     	: '&' '&' | '|' '|' ;
+/* aritOp  	: '+' | '-' | '*' | '/' | '%' ; */
+/* unaryOp     	: '!' | '+' '+' | '-' '-' ; */
+assignOp    	: '=' | '+' '=' | '-' '=' | '*' '=' | '/' '=' ;
+stmtEnd 	: ';' ;
 
 /* Production rules */
 Type : "int" | "bool" | "string" ;
 
-
 /* Outer file scope */
-Node : "node" nodeId "{" nodeIn nodeOut nodeProc "}" ;
+Node : "node" nodeId "{" NodeIn NodeOut NodeProc "}" ;
 
-Conn :  connOut "->" connIn ;
+Conn :  ConnOut "->" ConnIn ;
 ConnOut
     : nodeId ".out." varId
     | nodeId ".out"
@@ -32,6 +31,11 @@ ConnIn
     | nodeId ".in"
     ;
 
+NodeLst : Node NodeLst | Node | empty ;
+
+ConnLst : Conn ConnLst | Conn | empty ;
+
+Program : NodeLst ConnLst ;
 
 /* Node scope */
 NodeIn : "in {" DeclarationLst "}" | empty ;
@@ -43,21 +47,21 @@ NodeProc : "process" "{" StmtLst "}" | empty ;
 
 /* Statement productions */
 DeclarationStmt
-    : Type varId stmtEnd
-    | Type varId "=" int64 stmtEnd
-    ;
+    	: Type varId stmtEnd
+    	| Type varId "=" int64 stmtEnd
+    	;
 
 DeclarationLst
-    : DeclarationStmt DeclarationLst
-    | DeclarationStmt
+    	: DeclarationStmt DeclarationLst
+    	| DeclarationStmt
 	;
 
 Condition
-    : LogicalExpr logicOp Condition
-    | LogicalExpr
-    ;
+    	: LogicalExpr logicOp Condition
+    	| LogicalExpr
+    	;
 
-LogicalExpr : varId compareOp varId ;
+LogicalExpr : varId compOp varId ;
 
 AssignStmt : varId assignOp int64 stmtEnd;
 
@@ -70,3 +74,20 @@ WhileStmt : "while" "(" Condition ")" "{" StmtLst "}" ;
 Stmt : DeclarationStmt | AssignStmt | ControlStmt ;
 
 StmtLst : Stmt StmtLst | Stmt ;
+
+
+/* Expressions */
+Factor : int64 | AritExpr ;
+
+AritExpr
+	: AritExpr "+" AritExpr
+	| AritExpr "-" AritExpr
+	| Term
+	;
+
+Term
+	: Term "*" Term
+	| Factor
+	;
+
+
