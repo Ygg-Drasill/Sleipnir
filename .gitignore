@@ -111,3 +111,6 @@ fabric.properties
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+#gocc
+/gocc

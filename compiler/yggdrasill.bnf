@@ -38,7 +38,7 @@ ConnLst : Conn ConnLst | Conn | empty ;
 Program : NodeLst ConnLst ;
 
 /* Node scope */
-NodeIn : "in {" DeclarationLst "}" | empty ;
+NodeIn : "in" "{" DeclarationLst "}" | empty ;
 
 NodeOut : "out" "{" DeclarationLst "}" | empty ;
 

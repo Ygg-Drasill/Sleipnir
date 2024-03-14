@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gocc -no_lexer yggdrasill.bnf
+gocc -no_lexer -o "./gocc" yggdrasill.bnf
