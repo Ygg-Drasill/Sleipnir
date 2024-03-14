@@ -14,6 +14,13 @@ logicOp     	: '&' '&' | '|' '|' ;
 assignOp    	: '=' | '+' '=' | '-' '=' | '*' '=' | '/' '=' ;
 stmtEnd 	: ';' ;
 
+
+<<
+import (
+    "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/util"
+    "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
+)
+>>
 /* Production rules */
 Type : "int" | "bool" | "string" ;
 
@@ -77,11 +84,14 @@ StmtLst : Stmt StmtLst | Stmt ;
 
 
 /* Expressions */
-Factor : int64 | AritExpr ;
+Factor
+    : int64                         <<util.IntValue($0.(*token.Token).Lit), nil>>
+    | AritExpr
+    ;
 
 AritExpr
-	: AritExpr "+" AritExpr
-	| AritExpr "-" AritExpr
+	: AritExpr "+" AritExpr         <<$0.(int64) + $2.(int64), nil>>
+	| AritExpr "-" AritExpr         <<$0.(int64) - $2.(int64), nil>>
 	| Term
 	;
 
