@@ -34,11 +34,11 @@ ConnIn
 
 
 /* Node scope */
-NodeIn : "in {" DeclarationLst "}" | "" ;
+NodeIn : "in {" DeclarationLst "}" | empty ;
 
-NodeOut : "out" "{" DeclarationLst "}" | "" ;
+NodeOut : "out" "{" DeclarationLst "}" | empty ;
 
-NodeProc : "process" "{" StmtLst "}" | "" ;
+NodeProc : "process" "{" StmtLst "}" | empty ;
 
 
 /* Statement productions */
