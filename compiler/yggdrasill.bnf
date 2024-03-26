@@ -1,26 +1,10 @@
-/*Lexical analysis*/
-_uppercase : 'A'-'Z' ;
-_lowercase : 'a'-'z' ;
-_number : '0'-'9' ;
-
-varId : _lowercase { _lowercase | _uppercase } ;
-nodeId : _uppercase { _lowercase | _uppercase } ;
-int64 : '1'-'9'{ _number } ;
-
-compOp      	: '=' '=' | '!' '=' | '>' '=' | '<' '=' | '<' | '>' ;
-logicOp     	: '&' '&' | '|' '|' ;
-/* aritOp  	: '+' | '-' | '*' | '/' | '%' ; */
-/* unaryOp     	: '!' | '+' '+' | '-' '-' ; */
-assignOp    	: '=' | '+' '=' | '-' '=' | '*' '=' | '/' '=' ;
-stmtEnd 	: ';' ;
-
-
 <<
 import (
     "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/util"
     "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
 )
 >>
+
 /* Production rules */
 Type : "int" | "bool" | "string" ;
 
@@ -29,13 +13,13 @@ Node : "node" nodeId "{" NodeIn NodeOut NodeProc "}" ;
 
 Conn :  ConnOut "->" ConnIn ;
 ConnOut
-    : nodeId ".out." varId
-    | nodeId ".out"
+    : nodeId "." out "." varId
+    | nodeId "." out
     ;
 
 ConnIn
-    : nodeId ".in." varId
-    | nodeId ".in"
+    : nodeId "." in "." varId
+    | nodeId "." in
     ;
 
 NodeLst : Node NodeLst | Node | empty ;
