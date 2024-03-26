@@ -6,9 +6,15 @@ import (
 >>
 
 /* Production rules */
-Type : "int" | "bool" | "string" ;
 
 /* Outer file scope */
+DeclarationLst
+	: NodeLst DeclarationLst
+	| ConnLst DeclarationLst
+	| NodeLst
+	| ConnLst
+	;
+
 Node : "node" nodeId "{" NodeIn NodeOut NodeProc "}" ;
 
 Conn :  ConnOut "->" ConnIn ;
@@ -28,14 +34,10 @@ ConnLst : Conn ConnLst | Conn | empty ;
 
 Program : NodeLst ConnLst ;
 
-DeclarationLst
-	: NodeLst DeclarationLst
-	| ConnLst DeclarationLst
-	| NodeLst
-	| ConnLst
-	;
-
 /* Node scope */
+Type : "int" | "bool" | "string" ;
+
+
 NodeIn : "in" "{" DeclarationLst "}" | empty ;
 
 NodeOut : "out" "{" DeclarationLst "}" | empty ;
@@ -76,7 +78,7 @@ StmtLst : Stmt StmtLst | Stmt ;
 
 /* Expressions */
 Factor
-    : int64                         <<util.IntValue($0.(*token.Token).Lit), nil>>
+    : int64                         <<util.IntValue($0.(*token.Token).Lit)>>
     | AritExpr
     ;
 

@@ -6,9 +6,9 @@ const alphanumericRunes = "abcdefghijklmnopqrstuvwxyz"
 
 const numbers = "1234567890"
 
-const operators = "=+-*/%"
+const operators = "&|!=+-*/%<>"
 
-const punctuation = ";:.(){}[]<>"
+const punctuation = ";:.(){}[]"
 
 func IsLetter(runeToCheck rune) bool {
 	lowercase := strings.ContainsRune(alphanumericRunes, runeToCheck)
