@@ -1,0 +1,110 @@
+/*Lexical analysis*/
+_uppercase : 'A'-'Z' ;
+_lowercase : 'a'-'z' ;
+_number : '0'-'9' ;
+
+varId : _lowercase { _lowercase | _uppercase } ;
+nodeId : _uppercase { _lowercase | _uppercase } ;
+int64 : '1'-'9'{ _number } ;
+
+compOp      	: '=' '=' | '!' '=' | '>' '=' | '<' '=' | '<' | '>' ;
+logicOp     	: '&' '&' | '|' '|' ;
+/* aritOp  	: '+' | '-' | '*' | '/' | '%' ; */
+/* unaryOp     	: '!' | '+' '+' | '-' '-' ; */
+assignOp    	: '=' | '+' '=' | '-' '=' | '*' '=' | '/' '=' ;
+stmtEnd 	: ';' ;
+
+
+<<
+import (
+    "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/util"
+    "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
+)
+>>
+/* Production rules */
+Type : "int" | "bool" | "string" ;
+
+/* Outer file scope */
+Node : "node" nodeId "{" NodeIn NodeOut NodeProc "}" ;
+
+Conn :  ConnOut "->" ConnIn ;
+ConnOut
+    : nodeId ".out." varId
+    | nodeId ".out"
+    ;
+
+ConnIn
+    : nodeId ".in." varId
+    | nodeId ".in"
+    ;
+
+NodeLst : Node NodeLst | Node | empty ;
+
+ConnLst : Conn ConnLst | Conn | empty ;
+
+Program : NodeLst ConnLst ;
+
+DeclarationLst
+	: NodeLst DeclarationLst
+	| ConnLst DeclarationLst
+	| NodeLst
+	| ConnLst
+	;
+
+/* Node scope */
+NodeIn : "in" "{" DeclarationLst "}" | empty ;
+
+NodeOut : "out" "{" DeclarationLst "}" | empty ;
+
+NodeProc : "process" "{" StmtLst "}" | empty ;
+
+
+/* Statement productions */
+DeclarationStmt
+    	: Type varId stmtEnd
+    	| Type varId "=" int64 stmtEnd
+    	;
+
+DeclarationLst
+    	: DeclarationStmt DeclarationLst
+    	| DeclarationStmt
+	;
+
+Condition
+    	: LogicalExpr logicOp Condition
+    	| LogicalExpr
+    	;
+
+LogicalExpr : varId compOp varId ;
+
+AssignStmt : varId assignOp int64 stmtEnd;
+
+ControlStmt: IfStmt | WhileStmt ;
+
+IfStmt: "if" "(" Condition ")" "{" StmtLst "}" ;
+
+WhileStmt : "while" "(" Condition ")" "{" StmtLst "}" ;
+
+Stmt : DeclarationStmt | AssignStmt | ControlStmt ;
+
+StmtLst : Stmt StmtLst | Stmt ;
+
+
+/* Expressions */
+Factor
+    : int64                         <<util.IntValue($0.(*token.Token).Lit), nil>>
+    | AritExpr
+    ;
+
+AritExpr
+	: AritExpr "+" AritExpr         <<$0.(int64) + $2.(int64), nil>>
+	| AritExpr "-" AritExpr         <<$0.(int64) - $2.(int64), nil>>
+	| Term
+	;
+
+Term
+	: Term "*" Term
+	| Factor
+	;
+
+
