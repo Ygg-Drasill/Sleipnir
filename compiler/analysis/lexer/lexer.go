@@ -75,7 +75,11 @@ func (lexer *Lexer) serveToken(tokenType TokenType) {
 	if tokenType == TokenConnector ||
 		tokenType == TokenPunctuation ||
 		tokenType == TokenKeyword {
-		tokType = token.TokMap.Type(value)
+		if value == ";" {
+			tokType = token.TokMap.Type("stmtEnd")
+		} else {
+			tokType = token.TokMap.Type(value)
+		}
 	}
 
 	if tokenType == TokenOperator {
