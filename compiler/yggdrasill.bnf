@@ -8,9 +8,10 @@ import (
 /* Production rules */
 
 /* Outer file scope */
-DeclarationLst
-    : NodeLst
-    | ConnLst
+ProgramDeclarationLst
+    : NodeLst ProgramDeclarationLst
+    | ConnLst ProgramDeclarationLst
+    | empty
     ;
 
 Node : "node" nodeId "{" NodeIn NodeOut NodeProc "}" ;

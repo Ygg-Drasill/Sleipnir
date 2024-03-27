@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gocc -no_lexer -o "./compiler/gocc" compiler/yggdrasill.bnf
+gocc -no_lexer -a -v -o "./compiler/gocc" compiler/yggdrasill.bnf

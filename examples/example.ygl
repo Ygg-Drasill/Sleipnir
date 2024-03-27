@@ -27,13 +27,15 @@ node Multiply {
 		int a;
 		int b;
     }
-//    out int
+    out {
+        int c;
+    }
     process {
-        out = in.a * in.b;
+        out.c = in.a * in.b;
     }
 }
 
-node Print1 : Print; //from standard library
+//node Print1 : Print; //from standard library
 
 Constants.out.a -> Add1.in.a;
 Constants.out.b -> Add1.in.b;
