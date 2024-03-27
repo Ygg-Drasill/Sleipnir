@@ -13,6 +13,8 @@ type Lexer struct {
 	tokenStart    int
 	lastRuneWidth int
 	cursor        int
+	cursorCol     int
+	cursorRow     int
 	tokens        chan *token.Token
 	tokenList     []*token.Token
 }
@@ -28,6 +30,8 @@ func NewLexerFromString(inputPath string) *Lexer {
 		inputLength: len(input),
 		tokenStart:  0,
 		cursor:      0,
+		cursorCol:   1,
+		cursorRow:   1,
 		tokens:      make(chan *token.Token),
 		tokenList:   make([]*token.Token, 0),
 	}
@@ -39,6 +43,7 @@ func (lexer *Lexer) cursorNext() (rune rune) {
 	}
 	rune, lexer.lastRuneWidth = utf8.DecodeRuneInString(lexer.inputCode[lexer.cursor:])
 	lexer.cursor += lexer.lastRuneWidth
+	lexer.cursorCol++
 	return rune
 }
 
@@ -48,6 +53,7 @@ func (lexer *Lexer) cursorIgnore() {
 
 func (lexer *Lexer) cursorBackup() {
 	lexer.cursor -= lexer.lastRuneWidth
+	lexer.cursorCol--
 }
 
 func (lexer *Lexer) cursorPeek() rune {
@@ -58,6 +64,14 @@ func (lexer *Lexer) cursorPeek() rune {
 
 func (lexer *Lexer) cursorJump(length int) {
 	lexer.cursor += length
+	lexer.cursorCol += length
+}
+
+func (lexer *Lexer) Position() token.Pos {
+	return token.Pos{
+		Line:   lexer.cursorRow,
+		Column: lexer.cursorCol - (lexer.cursor - lexer.tokenStart),
+	}
 }
 
 func (lexer *Lexer) serveToken(tokenType TokenType) {
@@ -110,7 +124,7 @@ func (lexer *Lexer) serveToken(tokenType TokenType) {
 	lexer.tokenList = append(lexer.tokenList, &token.Token{
 		Type: tokType,
 		Lit:  []byte(value),
-		Pos:  token.Pos{},
+		Pos:  lexer.Position(),
 	})
 	lexer.tokenStart = lexer.cursor
 }

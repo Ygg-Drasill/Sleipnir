@@ -13,8 +13,11 @@ func main() {
 	tokens := lexer.FindTokens()
 	scanner := NewScanner(tokens)
 	p := parser.NewParser()
-	if _, e := p.Parse(scanner); e != nil {
+	if res, e := p.Parse(scanner); e != nil {
 		fmt.Println(e.Error())
+	} else {
+		fmt.Println(res)
 	}
+
 	//fmt.Printf("Tokens found %d, %q\n", len(tokens), tokens)
 }
