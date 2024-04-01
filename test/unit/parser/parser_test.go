@@ -6,9 +6,17 @@ import (
 	"testing"
 )
 
-func TestParseNode(t *testing.T) {>
+func TestParseNode(t *testing.T) {
 	lexer := NewLexerFromString("../../testData/snippets/testFindTokens.ygl")
 	tokens := lexer.FindTokens()
 	p := parser.NewParser()
-	p.Parse(NewScanner(tokens))
+	res, err := p.Parse(NewScanner(tokens))
+
+	if err != nil {
+		t.Errorf("Failed to parse snippet)")
+	}
+
+	if res == nil {
+		t.Errorf("Parser did not ouput result")
+	}
 }
