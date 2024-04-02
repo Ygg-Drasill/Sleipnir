@@ -8,17 +8,13 @@ import (
 )
 
 
-
-// rootCmd represents the base command when called without any subcommands
+//RootCmd is the base command
 var RootCmd = &cobra.Command{
-	Use:   "sleip",
+	Use:   "Sleipnir",
 	Short: "Sleipnir is the preferred compiler by the norse gods",
-	Long: `Sleipnir compiles and runs Ygg-Drasill code. Below are the listed commands:
-	-Compile ()
-	-Run ()`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+	Long: `Sleipnir compiles and runs Ygg-Drasill code. Below are the listed subcommands:
+	-compile ()
+	-run ()`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

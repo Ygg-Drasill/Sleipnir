@@ -10,7 +10,7 @@ import (
 // compileCmd represents the compile command
 var compileCmd = &cobra.Command{
 	Use:   "compile",
-	Short: "A brief description of your command",
+	Short: "compiles Ygg-Drasill code",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
@@ -24,6 +24,8 @@ to quickly create a Cobra application.`,
 
 func init() {
 	RootCmd.AddCommand(compileCmd)
+
+	//Todo: add flags for run.
 
 	// Here you will define your flags and configuration settings.
 
