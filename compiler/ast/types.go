@@ -1,5 +1,7 @@
 package ast
 
+type Attribute interface{}
+
 type (
 	NodeList       []Node
 	ConnectionList []Connection

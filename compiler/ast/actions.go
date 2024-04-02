@@ -2,38 +2,38 @@ package ast
 
 import "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
 
-func NewProgram(nodes, connections interface{}) (Program, error) {
+func NewProgram(nodes, connections Attribute) (Program, error) {
 	return Program{
 		Nodes:       nodes.(NodeList),
 		Connections: connections.(ConnectionList),
 	}, nil
 }
 
-func NewNodeList(node interface{}) (NodeList, error) {
+func NewNodeList(node Attribute) (NodeList, error) {
 	return NodeList{node.(Node)}, nil
 }
 
-func AppendNode(nodeList, node interface{}) (NodeList, error) {
+func AppendNode(nodeList, node Attribute) (NodeList, error) {
 	return append(nodeList.(NodeList), node.(Node)), nil
 }
 
-func NewConnectionList(connection interface{}) (ConnectionList, error) {
+func NewConnectionList(connection Attribute) (ConnectionList, error) {
 	return ConnectionList{connection.(Connection)}, nil
 }
 
-func AppendConnection(connectionList, connection interface{}) (ConnectionList, error) {
+func AppendConnection(connectionList, connection Attribute) (ConnectionList, error) {
 	return append(connectionList.(ConnectionList), connection.(Connection)), nil
 }
 
-func NewNode(node, in, out, process interface{}) (Node, error) {
+func NewNode(node, in, out, process Attribute) (Node, error) {
 	return Node{id: string(node.(*token.Token).Lit)}, nil
 }
 
-func NewConnection(out, in interface{}) (Connection, error) {
+func NewConnection(out, in Attribute) (Connection, error) {
 	return Connection{outId: out.(Junction), inId: in.(Junction)}, nil
 }
 
-func NewJunction(nodeId, varId interface{}) (Junction, error) {
+func NewJunction(nodeId, varId Attribute) (Junction, error) {
 	varIdToken, ok := varId.(*token.Token)
 	var varIdStr string
 
