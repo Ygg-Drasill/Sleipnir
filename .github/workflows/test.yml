@@ -17,6 +17,12 @@ jobs:
       with:
         go-version: 1.22
 
+    - name: Download modules
+      run: go mod download
+  
+    - name: Generate parser
+      run: ./generate.sh
+
     - name: Build
       run: go build -v ./...
 
