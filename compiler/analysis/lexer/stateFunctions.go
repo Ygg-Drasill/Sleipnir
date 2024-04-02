@@ -8,8 +8,8 @@ import (
 
 type StateFunction func(lexer *Lexer) StateFunction
 
-const nonTokenRunes string = " \n\t\r"
-
+const nonTokenRunes string = " \t\r"
+const newLineRunes string = "\n"
 const connector string = "->"
 
 const commentSingle = "//"
@@ -59,6 +59,12 @@ func matchNonToken(lexer *Lexer) StateFunction {
 			return nil
 		}
 		if strings.ContainsRune(nonTokenRunes, currentRune) {
+			continue
+		}
+
+		if strings.ContainsRune(newLineRunes, currentRune) {
+			lexer.cursorRow++
+			lexer.cursorCol = 1
 			continue
 		}
 
@@ -142,6 +148,7 @@ func matchCommentSingle(lexer *Lexer) StateFunction {
 		}
 	}
 	lexer.cursorIgnore()
+	lexer.cursorBackup()
 	return matchNonToken
 }
 

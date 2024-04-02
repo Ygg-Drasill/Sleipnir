@@ -7,33 +7,35 @@ node Constants {
     }
 }
 
-template Add {
-	in {
-		int a;
-		int b;
-    }
+//template Add {
+//	in {
+//		int a;
+//		int b;
+//    }
+//
+//    out int;
+//    process {
+//        out = in.a - in.b;
+//    }
+//}
 
-    out int;
-    process {
-        out = in.a - in.b;
-    }
-}
-
-node Add1 : Add; //instance of Add node
-node Add2 : Add; //instance of Add node
+//node Add1 : Add; //instance of Add node
+// Add2 : Add; //instance of Add node
 
 node Multiply {
 	in {
 		int a;
 		int b;
     }
-    out int
+    out {
+        int c;
+    }
     process {
-        out = in.a * in.b;
+        out.c = in.a * in.b;
     }
 }
 
-node Print1 : Print; //from standard library
+//node Print1 : Print; //from standard library
 
 Constants.out.a -> Add1.in.a;
 Constants.out.b -> Add1.in.b;
