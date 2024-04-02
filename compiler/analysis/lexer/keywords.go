@@ -8,4 +8,5 @@ var reservedKeywords []string = []string{
 	"else",
 	"in",
 	"out",
+	"process",
 }
