@@ -21,7 +21,7 @@ jobs:
       run: go mod download
   
     - name: Generate parser
-      run: ./generate.sh
+      run: chmod +x ./generate.sh && ./generate.sh
 
     - name: Build
       run: go build -v ./...
