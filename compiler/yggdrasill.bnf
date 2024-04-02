@@ -2,6 +2,7 @@
 import (
     "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/util"
     "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
+    "github.com/Ygg-Drasill/Sleipnir/compiler/ast"
 )
 >>
 
@@ -9,26 +10,36 @@ import (
 
 /* Outer file scope */
 ProgramDeclarationLst
-    : NodeLst ProgramDeclarationLst
-    | ConnLst ProgramDeclarationLst
-    | empty
+    : NodeLst ConnLst   << ast.NewProgram($0, $1) >>
     ;
 
-Node : "node" nodeId "{" NodeIn NodeOut NodeProc "}" ;
+Node
+    : "node" nodeId "{" NodeIn NodeOut NodeProc "}"     << ast.NewNode($1, $3, $4, $5) >>
+    ;
 
-Conn :  ConnOut "->" ConnIn ;
+Conn
+    : ConnOut "->" ConnIn stmtEnd       << ast.NewConnection($0, $2) >>
+    ;
+
 ConnOut
-    : nodeId "." out "." varId
-    | nodeId "." out
+    : nodeId "." out "." varId          << ast.NewJunction($0, $4) >>
+    | nodeId "." out                    << ast.NewJunction($0, "") >>
     ;
 
 ConnIn
-    : nodeId "." in "." varId
-    | nodeId "." in
+    : nodeId "." in "." varId           << ast.NewJunction($0, $4) >>
+    | nodeId "." in                     << ast.NewJunction($0, "") >>
     ;
 
-NodeLst : Node | Node NodeLst ;
-ConnLst : Conn | Conn ConnLst ;
+NodeLst
+    : Node          << ast.NewNodeList($0) >>
+    | Node NodeLst  << ast.AppendNode($1, $0) >>
+    ;
+
+ConnLst
+    : Conn          << ast.NewConnectionList($0) >>
+    | Conn ConnLst  << ast.AppendConnection($1, $0) >>
+    ;
 
 /* Node scope */
 Type : "int" | "bool" | "string" ;
@@ -38,7 +49,11 @@ NodeIn : "in" "{" DeclarationLst "}" | empty ;
 
 NodeOut : "out" "{" DeclarationLst "}" | empty ;
 
-NodeProc : "process" "{" StmtLst "}" | empty ;
+NodeProc
+    : "process" "{" StmtLst "}"
+    | "process" "{" "}"
+    | empty
+    ;
 
 
 /* Statement productions */

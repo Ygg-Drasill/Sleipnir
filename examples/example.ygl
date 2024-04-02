@@ -31,7 +31,7 @@ node Multiply {
         int c;
     }
     process {
-        out.c = in.a * in.b;
+        //out.c = in.a * in.b;
     }
 }
 
@@ -45,9 +45,9 @@ Add2.out -> Multiply.in.a;
 Constants.out.d -> Multiply.in.b;
 Multiply.out -> Print1.in;
 
-node AddExample : Add
+//node AddExample : Add
 Constants.out.a -> Add1.in.a;
 Constants.out.b -> Add1.in.b;
 
-AddExample : Add { Constants.out.a -> in.a; Constants.out.b -> in.b; }
-AddExample.out -> Print;
+//AddExample : Add { Constants.out.a -> in.a; Constants.out.b -> in.b; }
+//AddExample.out -> Print;
