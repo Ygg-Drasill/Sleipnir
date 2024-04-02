@@ -1,7 +1,4 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 
-*/
 package cmd
 
 import (
@@ -13,10 +10,10 @@ import (
 
 
 // rootCmd represents the base command when called without any subcommands
-var rootCmd = &cobra.Command{
-	Use:   "Sleipnir",
+var RootCmd = &cobra.Command{
+	Use:   "sleip",
 	Short: "Sleipnir is the preferred compiler by the norse gods",
-	Long: `Sleipnir compiles and runs yggdrasill code. Below are the listed commands:
+	Long: `Sleipnir compiles and runs Ygg-Drasill code. Below are the listed commands:
 	-Compile ()
 	-Run ()`,
 	// Uncomment the following line if your bare application
@@ -27,7 +24,7 @@ var rootCmd = &cobra.Command{
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
-	err := rootCmd.Execute()
+	err := RootCmd.Execute()
 	if err != nil {
 		os.Exit(1)
 	}
@@ -42,7 +39,7 @@ func init() {
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
 
