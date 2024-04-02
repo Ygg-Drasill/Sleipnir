@@ -1,7 +1,9 @@
 package lexer
 
 import (
+	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
 	"os"
+	"unicode"
 	"unicode/utf8"
 )
 
@@ -11,8 +13,10 @@ type Lexer struct {
 	tokenStart    int
 	lastRuneWidth int
 	cursor        int
-	tokens        chan Token
-	tokenList     []Token
+	cursorCol     int
+	cursorRow     int
+	tokens        chan *token.Token
+	tokenList     []*token.Token
 }
 
 func NewLexerFromString(inputPath string) *Lexer {
@@ -26,8 +30,10 @@ func NewLexerFromString(inputPath string) *Lexer {
 		inputLength: len(input),
 		tokenStart:  0,
 		cursor:      0,
-		tokens:      make(chan Token),
-		tokenList:   make([]Token, 0),
+		cursorCol:   1,
+		cursorRow:   1,
+		tokens:      make(chan *token.Token),
+		tokenList:   make([]*token.Token, 0),
 	}
 }
 
@@ -37,6 +43,7 @@ func (lexer *Lexer) cursorNext() (rune rune) {
 	}
 	rune, lexer.lastRuneWidth = utf8.DecodeRuneInString(lexer.inputCode[lexer.cursor:])
 	lexer.cursor += lexer.lastRuneWidth
+	lexer.cursorCol++
 	return rune
 }
 
@@ -46,6 +53,7 @@ func (lexer *Lexer) cursorIgnore() {
 
 func (lexer *Lexer) cursorBackup() {
 	lexer.cursor -= lexer.lastRuneWidth
+	lexer.cursorCol--
 }
 
 func (lexer *Lexer) cursorPeek() rune {
@@ -56,19 +64,76 @@ func (lexer *Lexer) cursorPeek() rune {
 
 func (lexer *Lexer) cursorJump(length int) {
 	lexer.cursor += length
+	lexer.cursorCol += length
+}
+
+func (lexer *Lexer) Position() token.Pos {
+	return token.Pos{
+		Line:   lexer.cursorRow,
+		Column: lexer.cursorCol - (lexer.cursor - lexer.tokenStart),
+	}
 }
 
 func (lexer *Lexer) serveToken(tokenType TokenType) {
+	value := lexer.inputCode[lexer.tokenStart:lexer.cursor]
+	var tokType token.Type
+
+	if tokenType == TokenIdentifier {
+		if unicode.IsUpper(rune(value[0])) {
+			tokType = token.TokMap.Type("nodeId")
+		} else {
+			tokType = token.TokMap.Type("varId")
+		}
+	}
+
+	if tokenType == TokenConnector ||
+		tokenType == TokenPunctuation ||
+		tokenType == TokenKeyword {
+		if value == ";" {
+			tokType = token.TokMap.Type("stmtEnd")
+		} else {
+			tokType = token.TokMap.Type(value)
+		}
+	}
+
+	if tokenType == TokenOperator {
+		if value == "=" {
+			tokType = token.TokMap.Type("assignOp")
+		}
+
+		if value == "==" || value == "!=" ||
+			value == "<" || value == ">" {
+			tokType = token.TokMap.Type("compOp")
+		}
+
+		if value == "&&" || value == "||" {
+			tokType = token.TokMap.Type("logicOp")
+		}
+	}
+
+	if tokenType == TokenLiteral {
+		tokType = token.TokMap.Type("int64")
+	}
+
+	if tokenType == TokenEOF {
+		tokType = token.TokMap.Type("␚")
+	}
+
 	//TODO: dont serve empty tokens
 	//lexer.tokens <- token
-	lexer.tokenList = append(lexer.tokenList, NewToken(tokenType, lexer.inputCode[lexer.tokenStart:lexer.cursor]))
+	lexer.tokenList = append(lexer.tokenList, &token.Token{
+		Type: tokType,
+		Lit:  []byte(value),
+		Pos:  lexer.Position(),
+	})
 	lexer.tokenStart = lexer.cursor
 }
 
-func (lexer *Lexer) FindTokens() []Token {
+func (lexer *Lexer) FindTokens() []*token.Token {
 	for matchState := matchNonToken; matchState != nil; {
 		matchState = matchState(lexer)
 	}
+	lexer.serveToken(TokenEOF)
 	close(lexer.tokens)
 	return lexer.tokenList
 }
