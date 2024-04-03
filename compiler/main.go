@@ -19,5 +19,8 @@ func main() {
 		fmt.Println(res)
 	}
 
+<<<<<<< HEAD
 	//fmt.Printf("Tokens found %d, %q\n", len(tokens), tokens)
+=======
+>>>>>>> main
 }
