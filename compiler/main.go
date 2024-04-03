@@ -17,7 +17,6 @@ func main() {
 		fmt.Println(e.Error())
 	} else {
 		fmt.Println(res)
-		fmt.Println("We did it!!")
 	}
 
 }
