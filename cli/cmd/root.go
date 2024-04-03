@@ -14,7 +14,7 @@ var RootCmd = &cobra.Command{
 	Short: "Sleipnir is the preferred compiler by the norse gods",
 	Long: `Sleipnir compiles and runs Ygg-Drasill code. Below are the listed subcommands:
 	-compile ()
-	-ruuuuuuuuuuuuun ()`,
+	-run ()`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
