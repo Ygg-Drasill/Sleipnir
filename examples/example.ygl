@@ -49,5 +49,5 @@ node AddExample : Add;
 Constants.out.a -> Add1.in.a;
 Constants.out.b -> Add1.in.b;
 
-//AddExample : Add { Constants.out.a -> in.a; Constants.out.b -> in.b; }
-//AddExample.out -> Print;
+AddExample : Add { Constants.out.a -> in.a; Constants.out.b -> in.b; }
+AddExample.out -> Print;
