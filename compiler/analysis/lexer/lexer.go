@@ -97,6 +97,9 @@ func (lexer *Lexer) serveToken(tokenType TokenType) {
 	}
 
 	if tokenType == TokenOperator {
+
+		tokType = token.TokMap.Type(value)
+
 		if value == "=" {
 			tokType = token.TokMap.Type("assignOp")
 		}

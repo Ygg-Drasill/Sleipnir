@@ -17,7 +17,8 @@ func main() {
 		fmt.Println(e.Error())
 	} else {
 		fmt.Println(res)
+		fmt.Println("We did it!!")
 	}
 
-	fmt.Printf("Tokens found %d, %q\n", len(tokens), tokens)
+	//fmt.Printf("Tokens found %d, %q\n", len(tokens), tokens)
 }

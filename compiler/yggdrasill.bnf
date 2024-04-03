@@ -16,7 +16,7 @@ ProgramDeclarationLst
 
 Node : "node" nodeId "{" NodeIn NodeOut NodeProc "}" ;
 
-Conn :  ConnOut "->" ConnIn ;
+Conn :  ConnOut "->" ConnIn stmtEnd;
 ConnOut
     : nodeId "." out "." varId
     | nodeId "." out
@@ -33,12 +33,16 @@ ConnLst : Conn | Conn ConnLst ;
 /* Node scope */
 Type : "int" | "bool" | "string" ;
 
+NodeVar : in "." varId| out "." varId | varId  ;
 
-NodeIn : "in" "{" DeclarationLst "}" | empty ;
 
-NodeOut : "out" "{" DeclarationLst "}" | empty ;
+NodeIn : in "{" DeclarationLst "}" | empty ;
+
+NodeOut : out "{" DeclarationLst "}" | empty ;
 
 NodeProc : "process" "{" StmtLst "}" | empty ;
+
+
 
 
 /* Statement productions */
@@ -57,9 +61,9 @@ Condition
     	| LogicalExpr
     	;
 
-LogicalExpr : varId compOp varId ;
+LogicalExpr : NodeVar compOp NodeVar ;
 
-AssignStmt : varId assignOp int64 stmtEnd;
+AssignStmt : NodeVar assignOp Factor stmtEnd;
 
 ControlStmt: IfStmt | WhileStmt ;
 
@@ -86,5 +90,5 @@ AritExpr
 
 Term
 	: Term "*" Term
-	| Factor
+	| NodeVar
 	;
