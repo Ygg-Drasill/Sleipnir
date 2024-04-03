@@ -20,5 +20,4 @@ func main() {
 		fmt.Println("We did it!!")
 	}
 
-	//fmt.Printf("Tokens found %d, %q\n", len(tokens), tokens)
 }
