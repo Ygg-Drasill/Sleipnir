@@ -45,7 +45,7 @@ Add2.out -> Multiply.in.a;
 Constants.out.d -> Multiply.in.b;
 Multiply.out -> Print1.in;
 
-//node AddExample : Add;
+node AddExample : Add;
 Constants.out.a -> Add1.in.a;
 Constants.out.b -> Add1.in.b;
 
