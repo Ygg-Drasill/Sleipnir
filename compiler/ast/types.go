@@ -7,6 +7,17 @@ type (
 	ConnectionList []Connection
 )
 
+type (
+	StatementList   []Statement
+	Statement       Attribute
+	DeclarationList []Declaration
+)
+
+type Declaration struct {
+	Assignee   Attribute
+	Expression Attribute
+}
+
 type Program struct {
 	Nodes       NodeList
 	Connections ConnectionList

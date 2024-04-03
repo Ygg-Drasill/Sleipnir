@@ -44,7 +44,7 @@ ConnLst
 /* Node scope */
 Type : "int" | "bool" | "string" ;
 
-NodeVar : in "." varId| out "." varId | varId  ;
+NodeVar : in "." varId | out "." varId | varId  ;
 
 
 NodeIn : in "{" DeclarationLst "}" | empty ;
@@ -60,12 +60,12 @@ NodeProc
 /* Statement productions */
 DeclarationStmt
     	: Type varId stmtEnd
-    	| Type AssignStmt
+    	| Type varId Assignment stmtEnd
     	;
 
 DeclarationLst
     	: DeclarationStmt DeclarationLst
-    	| DeclarationStmt
+    	| DeclarationStmt                   << ast.NewDeclarationList() >>
 	    ;
 
 Condition
@@ -73,9 +73,9 @@ Condition
     	| LogicalExpr
     	;
 
-LogicalExpr : NodeVar compOp NodeVar ;
+Assignment : assignOp Expr ;
 
-AssignStmt : NodeVar assignOp Factor stmtEnd;
+AssignStmt : NodeVar Assignment stmtEnd ;
 
 ControlStmt: IfStmt | WhileStmt ;
 
@@ -89,10 +89,12 @@ StmtLst : Stmt StmtLst | Stmt ;
 
 
 /* Expressions */
-Factor
-    : int64                         <<util.IntValue($0.(*token.Token).Lit)>>
-    | AritExpr
+Expr
+    : AritExpr
+    | LogicalExpr
     ;
+
+LogicalExpr : NodeVar compOp NodeVar ;
 
 AritExpr
 	: AritExpr "+" AritExpr
@@ -102,5 +104,11 @@ AritExpr
 
 Term
 	: Term "*" Term
-	| NodeVar
+    | Term "/" Term
+	| Factor                        << util.IntValue($0.(*token.Token).Lit) >>
 	;
+
+Factor
+    : int64
+    | NodeVar
+    ;

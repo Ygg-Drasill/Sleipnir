@@ -47,3 +47,17 @@ func NewJunction(nodeId, varId Attribute) (Junction, error) {
 		varId:  varIdStr,
 	}, nil
 }
+
+func NewDeclaration(varId, expression Attribute) (Declaration, error) {
+	return Declaration{
+		Assignee:   varId.(string),
+		Expression: expression,
+	}, nil
+}
+
+func NewDeclarationList(varId, expression Attribute) (DeclarationList, error) {
+	return DeclarationList{Declaration{
+		Assignee:   varId.(string),
+		Expression: expression,
+	}}, nil
+}
