@@ -95,8 +95,8 @@ Factor
     ;
 
 AritExpr
-	: AritExpr "+" AritExpr         <<$0.(int64) + $2.(int64), nil>>
-	| AritExpr "-" AritExpr         <<$0.(int64) - $2.(int64), nil>>
+	: AritExpr "+" AritExpr
+	| AritExpr "-" AritExpr
 	| Term
 	;
 
