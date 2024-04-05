@@ -1,6 +1,11 @@
 package ast
 
-import "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
+import (
+	"fmt"
+	"strconv"
+
+	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
+)
 
 func NewProgram(nodes, connections Attribute) (Program, error) {
 	return Program{
@@ -26,7 +31,23 @@ func AppendConnection(connectionList, connection Attribute) (ConnectionList, err
 }
 
 func NewNode(node, in, out, process Attribute) (Node, error) {
-	return Node{id: string(node.(*token.Token).Lit)}, nil
+	switch v := node.(type) {
+	case *token.Token:
+		return Node{id: string(v.Lit)}, nil
+	case NodeVar:
+		return Node{id: v.varId, value: v.value}, nil
+	default:
+		return Node{}, fmt.Errorf("unknown type for node: %T", v)
+	}
+}
+
+func NewNodeVar(ioType Attribute, varId Attribute) (NodeVar, error) {
+	ioTypeStr := ""
+	if ioType != nil {
+		ioTypeStr = string(ioType.(*token.Token).Lit)
+	}
+	varIdStr := string(varId.(*token.Token).Lit)
+	return NodeVar{ioType: ioTypeStr, varId: varIdStr}, nil
 }
 
 func NewConnection(out, in Attribute) (Connection, error) {
@@ -56,8 +77,76 @@ func NewDeclaration(varId, expression Attribute) (Declaration, error) {
 }
 
 func NewDeclarationList(varId, expression Attribute) (DeclarationList, error) {
+	varIdStr := string(varId.(*token.Token).Lit)
+	expressionStr := string(expression.(*token.Token).Lit)
 	return DeclarationList{Declaration{
-		Assignee:   varId.(string),
-		Expression: expression,
+		Assignee:   varIdStr,
+		Expression: expressionStr,
 	}}, nil
+}
+
+func ParseInt(b []byte) (int64, error) {
+	s := string(b)
+	return strconv.ParseInt(s, 10, 64)
+}
+
+func toInt64(val Attribute) (int64, error) {
+	switch v := val.(type) {
+	case int64:
+		return v, nil
+	case *token.Token:
+		return strconv.ParseInt(string(v.Lit), 10, 64)
+	case NodeVar:
+		return v.value, nil
+	default:
+		return 0, fmt.Errorf("unexpected type for val: %T", val)
+	}
+}
+
+func Add(val1, val2 Attribute) (Attribute, error) {
+	intVal1, err := toInt64(val1)
+	if err != nil {
+		return nil, err
+	}
+	intVal2, err := toInt64(val2)
+	if err != nil {
+		return nil, err
+	}
+	return intVal1 + intVal2, nil
+}
+
+func Sub(val1, val2 Attribute) (Attribute, error) {
+	intVal1, err := toInt64(val1)
+	if err != nil {
+		return nil, err
+	}
+	intVal2, err := toInt64(val2)
+	if err != nil {
+		return nil, err
+	}
+	return intVal1 - intVal2, nil
+}
+
+func Mul(val1, val2 Attribute) (Attribute, error) {
+	intVal1, err := toInt64(val1)
+	if err != nil {
+		return nil, err
+	}
+	intVal2, err := toInt64(val2)
+	if err != nil {
+		return nil, err
+	}
+	return intVal1 * intVal2, nil
+}
+
+func Div(val1, val2 Attribute) (Attribute, error) {
+	intVal1, err := toInt64(val1)
+	if err != nil {
+		return nil, err
+	}
+	intVal2, err := toInt64(val2)
+	if err != nil {
+		return nil, err
+	}
+	return intVal1 / intVal2, nil
 }

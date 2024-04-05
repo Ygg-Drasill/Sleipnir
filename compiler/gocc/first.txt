@@ -1,0 +1,128 @@
+S': {
+	node
+}
+ProgramDeclarationLst: {
+	node
+}
+Node: {
+	node
+}
+Conn: {
+	nodeId
+}
+ConnOut: {
+	nodeId
+}
+ConnIn: {
+	nodeId
+}
+NodeLst: {
+	node
+}
+ConnLst: {
+	nodeId
+}
+Type: {
+	bool
+	int
+	string
+}
+NodeVar: {
+	in
+	out
+	varId
+}
+NodeIn: {
+	empty
+	in
+}
+NodeOut: {
+	empty
+	out
+}
+NodeProc: {
+	empty
+	process
+}
+DeclarationStmt: {
+	bool
+	int
+	string
+}
+DeclarationLst: {
+	bool
+	int
+	string
+}
+Condition: {
+	in
+	out
+	varId
+}
+Assignment: {
+	assignOp
+}
+AssignStmt: {
+	in
+	out
+	varId
+}
+ControlStmt: {
+	if
+	while
+}
+IfStmt: {
+	if
+}
+WhileStmt: {
+	while
+}
+Stmt: {
+	bool
+	if
+	in
+	int
+	out
+	string
+	varId
+	while
+}
+StmtLst: {
+	bool
+	if
+	in
+	int
+	out
+	string
+	varId
+	while
+}
+Expr: {
+	in
+	int64
+	out
+	varId
+}
+LogicalExpr: {
+	in
+	out
+	varId
+}
+AritExpr: {
+	in
+	int64
+	out
+	varId
+}
+Term: {
+	in
+	int64
+	out
+	varId
+}
+Factor: {
+	in
+	int64
+	out
+	varId
+}

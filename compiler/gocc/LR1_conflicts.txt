@@ -1,0 +1,15 @@
+2 LR-1 conflicts: 
+	S119
+		symbol: +
+			Reduce(45:AritExpr : AritExpr "+" AritExpr	<< ast.Add(X[0], X[2]) >>)
+			Shift(98)
+		symbol: -
+			Reduce(45:AritExpr : AritExpr "+" AritExpr	<< ast.Add(X[0], X[2]) >>)
+			Shift(99)
+	S120
+		symbol: +
+			Shift(98)
+			Reduce(46:AritExpr : AritExpr "-" AritExpr	<< ast.Sub(X[0], X[2]) >>)
+		symbol: -
+			Reduce(46:AritExpr : AritExpr "-" AritExpr	<< ast.Sub(X[0], X[2]) >>)
+			Shift(99)

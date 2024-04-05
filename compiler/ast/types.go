@@ -24,7 +24,14 @@ type Program struct {
 }
 
 type Node struct {
-	id string
+	id    string
+	value int64
+}
+
+type NodeVar struct {
+	ioType string
+	varId  string
+	value  int64
 }
 
 type Connection struct {

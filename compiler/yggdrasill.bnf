@@ -44,7 +44,11 @@ ConnLst
 /* Node scope */
 Type : "int" | "bool" | "string" ;
 
-NodeVar : in "." varId | out "." varId | varId  ;
+NodeVar
+    : in "." varId << ast.NewNodeVar($0, $2) >>
+    | out "." varId << ast.NewNodeVar($0, $2) >>
+    | varId << ast.NewNodeVar("", $0) >>
+    ;
 
 
 NodeIn : in "{" DeclarationLst "}" | empty ;
@@ -65,7 +69,7 @@ DeclarationStmt
 
 DeclarationLst
     	: DeclarationStmt DeclarationLst
-    	| DeclarationStmt                   << ast.NewDeclarationList() >>
+    	| DeclarationStmt                   << ast.NewDeclarationList($0, $0) >>
 	    ;
 
 Condition
@@ -97,18 +101,18 @@ Expr
 LogicalExpr : NodeVar compOp NodeVar ;
 
 AritExpr
-	: AritExpr "+" AritExpr
-	| AritExpr "-" AritExpr
-	| Term
-	;
+    : AritExpr "+" AritExpr << ast.Add($0, $2) >>
+    | AritExpr "-" AritExpr << ast.Sub($0, $2) >>
+    | Term
+    ;
 
 Term
-	: Term "*" Term
-    | Term "/" Term
-	| Factor                        << util.IntValue($0.(*token.Token).Lit) >>
-	;
+    : Term "*" Factor << ast.Mul($0, $2) >>
+    | Term "/" Factor << ast.Div($0, $2) >>
+    | Factor
+    ;
 
 Factor
-    : int64
+    : int64 << util.IntValue($0.(*token.Token).Lit) >>
     | NodeVar
     ;

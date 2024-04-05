@@ -1,10 +1,11 @@
 package lexer
 
 import (
-	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
 	"os"
 	"unicode"
 	"unicode/utf8"
+
+	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
 )
 
 type Lexer struct {
