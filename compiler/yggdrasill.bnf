@@ -32,22 +32,22 @@ ConnIn
     ;
 
 NodeLst
-    : Node          << ast.NewNodeList($0) >>
-    | Node NodeLst  << ast.AppendNode($1, $0) >>
+    : Node          					<< ast.NewNodeList($0) >>
+    | Node NodeLst  					<< ast.AppendNode($1, $0) >>
     ;
 
 ConnLst
-    : Conn          << ast.NewConnectionList($0) >>
-    | Conn ConnLst  << ast.AppendConnection($1, $0) >>
+    : Conn          					<< ast.NewConnectionList($0) >>
+    | Conn ConnLst  					<< ast.AppendConnection($1, $0) >>
     ;
 
 /* Node scope */
 Type : "int" | "bool" | "string" ;
 
 NodeVar
-    : in "." varId << ast.NewNodeVar($0, $2) >>
-    | out "." varId << ast.NewNodeVar($0, $2) >>
-    | varId << ast.NewNodeVar("", $0) >>
+    : in "." varId 						<< ast.NewNodeVar($0, $2) >>
+    | out "." varId 					<< ast.NewNodeVar($0, $2) >>
+    | varId 							<< ast.NewNodeVar("", $0) >>
     ;
 
 
@@ -69,7 +69,7 @@ DeclarationStmt
 
 DeclarationLst
     	: DeclarationStmt DeclarationLst
-    	| DeclarationStmt                   << ast.NewDeclarationList($0, $0) >>
+    	| DeclarationStmt               << ast.NewDeclarationList($0, $0) >>
 	    ;
 
 Condition
@@ -101,18 +101,18 @@ Expr
 LogicalExpr : NodeVar compOp NodeVar ;
 
 AritExpr
-    : AritExpr "+" AritExpr << ast.Add($0, $2) >>
-    | AritExpr "-" AritExpr << ast.Sub($0, $2) >>
+    : AritExpr "+" Term		 		<< ast.Add($0, $2) >>
+    | AritExpr "-" Term		 		<< ast.Sub($0, $2) >>
     | Term
     ;
 
 Term
-    : Term "*" Factor << ast.Mul($0, $2) >>
-    | Term "/" Factor << ast.Div($0, $2) >>
+    : Term "*" Factor 				<< ast.Mul($0, $2) >>
+    | Term "/" Factor 				<< ast.Div($0, $2) >>
     | Factor
     ;
 
 Factor
-    : int64 << util.IntValue($0.(*token.Token).Lit) >>
+    : int64 						<< util.IntValue($0.(*token.Token).Lit) >>
     | NodeVar
     ;
