@@ -113,4 +113,4 @@ fabric.properties
 *.vsix
 
 #gocc
-/gocc
+compiler/gocc
