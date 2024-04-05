@@ -20,5 +20,5 @@ node Bar {
     }
 }
 
-Foo.out.x -> Bar.in.a;
+Food.out.x -> Bar.in.a;
 Foo.out.y -> Bar.in.b;
