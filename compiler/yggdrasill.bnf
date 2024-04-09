@@ -10,11 +10,11 @@ import (
 
 /* Outer file scope */
 ProgramDeclarationLst
-    : NodeLst ConnLst   << ast.NewProgram($0, $1) >>
+    : NodeLst ConnLst   << ast.NewProgram(nil, $1) >>
     ;
 
 Node
-    : "node" nodeId "{" NodeIn NodeOut NodeProc "}"     << ast.NewNode($1, $3, $4, $5) >>
+    : "node" nodeId "{" NodeIn NodeOut NodeProc "}"     << ast.BabushkaPopScopeNode($1, $Context) >>
     ;
 
 Conn
@@ -32,44 +32,46 @@ ConnIn
     ;
 
 NodeLst
-    : Node          					<< ast.NewNodeList($0) >>
-    | Node NodeLst  					<< ast.AppendNode($1, $0) >>
+    : Node          << ast.NewNodeList($0) >>
+    | Node NodeLst  << ast.AppendNode($1, $0) >>
     ;
 
 ConnLst
-    : Conn          					<< ast.NewConnectionList($0) >>
-    | Conn ConnLst  					<< ast.AppendConnection($1, $0) >>
+    : Conn          << ast.NewConnectionList($0) >>
+    | Conn ConnLst  << ast.AppendConnection($1, $0) >>
     ;
 
 /* Node scope */
 Type : "int" | "bool" | "string" ;
 
-NodeVar
-    : in "." varId 						<< ast.NewNodeVar($0, $2) >>
-    | out "." varId 					<< ast.NewNodeVar($0, $2) >>
-    | varId 							<< ast.NewNodeVar("", $0) >>
+NodeVar : in "." varId | out "." varId | varId  ;
+
+
+NodeIn
+    : in "{" DeclarationLst "}" << ast.BabushkaPopScopeIn($Context) >>
+    | empty
     ;
 
-
-NodeIn : in "{" DeclarationLst "}" | empty ;
-
-NodeOut : out "{" DeclarationLst "}" | empty ;
+NodeOut
+    : out "{" DeclarationLst "}" << ast.BabushkaPopScopeOut($Context) >>
+    | empty
+    ;
 
 NodeProc
-    : "process" "{" StmtLst "}"
-    | "process" "{" "}"
+    : "process" "{" StmtLst "}" << ast.BabushkaPopScopeProc($Context) >>
+    | "process" "{" "}"         << ast.BabushkaPopScopeProc($Context) >>
     | empty
     ;
 
 /* Statement productions */
 DeclarationStmt
-    	: Type varId stmtEnd
-    	| Type varId Assignment stmtEnd
+    	: Type varId stmtEnd                << ast.NewDeclarationEmpty($0, $1, $Context) >>
+    	| Type varId Assignment stmtEnd     << ast.NewDeclaration($0, $1, $2, $Context) >>
     	;
 
 DeclarationLst
-    	: DeclarationStmt DeclarationLst
-    	| DeclarationStmt               << ast.NewDeclarationList($0, $0) >>
+    	: DeclarationStmt DeclarationLst    << ast.AppendDeclaration($1, $0) >>
+    	| DeclarationStmt                   << ast.NewDeclarationList($0) >>
 	    ;
 
 Condition
@@ -101,14 +103,14 @@ Expr
 LogicalExpr : NodeVar compOp NodeVar ;
 
 AritExpr
-    : AritExpr "+" Term		 		<< ast.Add($0, $2) >>
-    | AritExpr "-" Term		 		<< ast.Sub($0, $2) >>
+    : AritExpr "+" Term
+    | AritExpr "-" Term
     | Term
     ;
 
 Term
-    : Term "*" Factor 				<< ast.Mul($0, $2) >>
-    | Term "/" Factor 				<< ast.Div($0, $2) >>
+    : Term "*" Factor
+    | Term "/" Factor
     | Factor
     ;
 

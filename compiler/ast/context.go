@@ -6,8 +6,8 @@ type symbolTable map[varKey]*Variable
 
 type ParseContext struct {
 	Nodes        map[nodeKey]*NodeContext
-	CurrentScope symbolTable
 	CurrentNode  *NodeContext
+	CurrentScope symbolTable
 }
 
 type NodeContext struct {
@@ -17,15 +17,20 @@ type NodeContext struct {
 }
 
 type Variable struct {
-	Type  string
-	Value []byte
+	Type string
+}
+
+func newVariable(variableType string) *Variable {
+	return &Variable{
+		Type: variableType,
+	}
 }
 
 func NewParseContext() ParseContext {
 	return ParseContext{
 		Nodes:        make(map[nodeKey]*NodeContext),
-		CurrentScope: nil,
-		CurrentNode:  nil,
+		CurrentScope: make(symbolTable),
+		CurrentNode:  NewNodeContext(),
 	}
 }
 
@@ -37,14 +42,18 @@ func NewNodeContext() *NodeContext {
 	}
 }
 
-func (pc *ParseContext) AddNodeContext(nodeName nodeKey, nodeContext *NodeContext) {
-	pc.Nodes[nodeName] = nodeContext
+func (ctx ParseContext) AddNodeContext(nodeName nodeKey, nodeContext *NodeContext) {
+	ctx.Nodes[nodeName] = nodeContext
 }
 
-func (pc *ParseContext) NewScope() {
-	pc.CurrentScope = make(symbolTable)
+func (ctx ParseContext) NewScope() {
+	ctx.CurrentScope = make(symbolTable)
 }
 
-func (pc *ParseContext) NewNodeScope() {
-	pc.CurrentNode = NewNodeContext()
+func (ctx ParseContext) NewNodeScope() {
+	ctx.CurrentNode = NewNodeContext()
+}
+
+func (table symbolTable) AddVariable(id string) {
+	table[varKey(id)] = newVariable("int")
 }

@@ -7,16 +7,21 @@ type (
 	ConnectionList []Connection
 )
 
+type Statement interface {
+}
+
 type (
 	StatementList   []Statement
-	Statement       Attribute
 	DeclarationList []Declaration
 )
 
 type Declaration struct {
-	Assignee   Attribute
-	Expression Attribute
+	Type       string
+	AssigneeId Attribute
+	Expression Expression
 }
+
+type Expression Attribute
 
 type Program struct {
 	Nodes       NodeList
@@ -24,8 +29,10 @@ type Program struct {
 }
 
 type Node struct {
-	id    string
-	value int64
+	id              string
+	inDeclarations  []StatementList
+	outDeclarations []StatementList
+	procStatements  []StatementList
 }
 
 type NodeVar struct {

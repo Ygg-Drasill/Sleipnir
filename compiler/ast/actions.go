@@ -31,14 +31,12 @@ func AppendConnection(connectionList, connection Attribute) (ConnectionList, err
 }
 
 func NewNode(node, in, out, process Attribute) (Node, error) {
-	switch v := node.(type) {
-	case *token.Token:
-		return Node{id: string(v.Lit)}, nil
-	case NodeVar:
-		return Node{id: v.varId, value: v.value}, nil
-	default:
-		return Node{}, fmt.Errorf("unknown type for node: %T", v)
-	}
+	return Node{
+		id:              string(node.(*token.Token).Lit),
+		inDeclarations:  nil,
+		outDeclarations: nil,
+		procStatements:  nil,
+	}, nil
 }
 
 func NewNodeVar(ioType Attribute, varId Attribute) (NodeVar, error) {
@@ -69,20 +67,39 @@ func NewJunction(nodeId, varId Attribute) (Junction, error) {
 	}, nil
 }
 
-func NewDeclaration(varId, expression Attribute) (Declaration, error) {
+func NewDeclarationEmpty(varType, varId, context Attribute) (Declaration, error) {
+	ctx := context.(ParseContext)
+	varTypeStr := string(varType.(*token.Token).Lit)
+	varIdStr := string(varId.(*token.Token).Lit)
+	ctx.CurrentScope.AddVariable(varIdStr)
+
 	return Declaration{
-		Assignee:   varId.(string),
+		Type:       varTypeStr,
+		AssigneeId: varIdStr,
+		Expression: nil,
+	}, nil
+}
+
+func NewDeclaration(varType, varId, expression, context Attribute) (Declaration, error) {
+	ctx := context.(ParseContext)
+	varIdStr := string(varId.(*token.Token).Lit)
+	varTypeStr := string(varType.(*token.Token).Lit)
+	ctx.CurrentScope.AddVariable(varIdStr)
+
+	return Declaration{
+		Type:       varTypeStr,
+		AssigneeId: varIdStr,
 		Expression: expression,
 	}, nil
 }
 
-func NewDeclarationList(varId, expression Attribute) (DeclarationList, error) {
-	varIdStr := string(varId.(*token.Token).Lit)
-	expressionStr := string(expression.(*token.Token).Lit)
-	return DeclarationList{Declaration{
-		Assignee:   varIdStr,
-		Expression: expressionStr,
-	}}, nil
+func NewDeclarationList(declaration Attribute) (DeclarationList, error) {
+	firstDeclaration := declaration.(Declaration)
+	return DeclarationList{firstDeclaration}, nil
+}
+
+func AppendDeclaration(declarationList, declaration Attribute) (DeclarationList, error) {
+	return append(declarationList.(DeclarationList), declaration.(Declaration)), nil
 }
 
 func ParseInt(b []byte) (int64, error) {
@@ -149,4 +166,33 @@ func Div(val1, val2 Attribute) (Attribute, error) {
 		return nil, err
 	}
 	return intVal1 / intVal2, nil
+}
+
+func BabushkaPopScopeIn(context Attribute) (Attribute, error) {
+	ctx := context.(ParseContext)
+	ctx.CurrentNode.InVariables = ctx.CurrentScope
+	ctx.CurrentScope = make(symbolTable)
+	return nil, nil
+}
+
+func BabushkaPopScopeOut(context Attribute) (Attribute, error) {
+	ctx := context.(ParseContext)
+	ctx.CurrentNode.OutVariables = ctx.CurrentScope
+	ctx.CurrentScope = make(symbolTable)
+	return nil, nil
+}
+
+func BabushkaPopScopeProc(context Attribute) (Attribute, error) {
+	ctx := context.(ParseContext)
+	ctx.CurrentNode.ProcVariables = ctx.CurrentScope
+	ctx.CurrentScope = make(symbolTable)
+	return nil, nil
+}
+
+func BabushkaPopScopeNode(nodeId, context Attribute) (Attribute, error) {
+	ctx := context.(ParseContext)
+	nodeIdStr := string(nodeId.(*token.Token).Lit)
+	ctx.Nodes[nodeKey(nodeIdStr)] = ctx.CurrentNode
+	ctx.CurrentNode = NewNodeContext()
+	return nil, nil
 }
