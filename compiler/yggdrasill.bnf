@@ -3,6 +3,7 @@ import (
     "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/util"
     "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
     "github.com/Ygg-Drasill/Sleipnir/compiler/ast"
+    "github.com/Ygg-Drasill/Sleipnir/compiler/context"
 )
 >>
 
@@ -10,11 +11,11 @@ import (
 
 /* Outer file scope */
 ProgramDeclarationLst
-    : NodeLst ConnLst   << ast.NewProgram(nil, $1) >>
+    : NodeLst ConnLst   << ast.NewProgram($0, $1) >>
     ;
 
 Node
-    : "node" nodeId "{" NodeIn NodeOut NodeProc "}"     << ast.BabushkaPopScopeNode($1, $Context) >>
+    : "node" nodeId "{" NodeIn NodeOut NodeProc "}"     << ast.NewNode($1, $3, $4, $5) >>
     ;
 
 Conn

@@ -167,32 +167,3 @@ func Div(val1, val2 Attribute) (Attribute, error) {
 	}
 	return intVal1 / intVal2, nil
 }
-
-func BabushkaPopScopeIn(context Attribute) (Attribute, error) {
-	ctx := context.(ParseContext)
-	ctx.CurrentNode.InVariables = ctx.CurrentScope
-	ctx.CurrentScope = make(symbolTable)
-	return nil, nil
-}
-
-func BabushkaPopScopeOut(context Attribute) (Attribute, error) {
-	ctx := context.(ParseContext)
-	ctx.CurrentNode.OutVariables = ctx.CurrentScope
-	ctx.CurrentScope = make(symbolTable)
-	return nil, nil
-}
-
-func BabushkaPopScopeProc(context Attribute) (Attribute, error) {
-	ctx := context.(ParseContext)
-	ctx.CurrentNode.ProcVariables = ctx.CurrentScope
-	ctx.CurrentScope = make(symbolTable)
-	return nil, nil
-}
-
-func BabushkaPopScopeNode(nodeId, context Attribute) (Attribute, error) {
-	ctx := context.(ParseContext)
-	nodeIdStr := string(nodeId.(*token.Token).Lit)
-	ctx.Nodes[nodeKey(nodeIdStr)] = ctx.CurrentNode
-	ctx.CurrentNode = NewNodeContext()
-	return nil, nil
-}

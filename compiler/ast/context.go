@@ -57,3 +57,24 @@ func (ctx ParseContext) NewNodeScope() {
 func (table symbolTable) AddVariable(id string) {
 	table[varKey(id)] = newVariable("int")
 }
+
+func (ctx ParseContext) BabushkaPopScopeIn() {
+	ctx.CurrentNode.InVariables = ctx.CurrentScope
+	ctx.CurrentScope = make(symbolTable)
+}
+
+func (ctx ParseContext) BabushkaPopScopeOut() {
+	ctx.CurrentNode.OutVariables = ctx.CurrentScope
+	ctx.CurrentScope = make(symbolTable)
+}
+
+func (ctx ParseContext) BabushkaPopScopeProc() {
+	ctx.CurrentNode.ProcVariables = ctx.CurrentScope
+	ctx.CurrentScope = make(symbolTable)
+}
+
+func (ctx ParseContext) BabushkaPopScopeNode(nodeId string) {
+	ctx.Nodes[nodeKey(nodeId)] = ctx.CurrentNode
+	ctx.CurrentNode = NewNodeContext()
+
+}
