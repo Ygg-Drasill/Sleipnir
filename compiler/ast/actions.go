@@ -7,6 +7,13 @@ import (
 	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
 )
 
+func moveSymbolTable(src symbolTable, dest symbolTable) {
+	for k, v := range src {
+		dest[k] = v
+		delete(src, k)
+	}
+}
+
 func NewProgram(nodes, connections Attribute) (Program, error) {
 	return Program{
 		Nodes:       nodes.(NodeList),

@@ -44,6 +44,14 @@ func newNodeContext() *NodeContext {
 	}
 }
 
+func copyNodeContext(src *NodeContext) *NodeContext {
+	newNode := newNodeContext()
+	moveSymbolTable(src.InVariables, newNode.InVariables)
+	moveSymbolTable(src.OutVariables, newNode.OutVariables)
+	moveSymbolTable(src.ProcVariables, newNode.ProcVariables)
+	return newNode
+}
+
 type ParseContext struct {
 	Nodes        map[nodeKey]*NodeContext
 	CurrentNode  *NodeContext
@@ -63,21 +71,19 @@ func (ctx *ParseContext) NewNodeScope() {
 }
 
 func (ctx *ParseContext) BabushkaPopScopeIn() {
-	ctx.CurrentNode.InVariables = ctx.CurrentScope
-	ctx.NewScope()
+	moveSymbolTable(ctx.CurrentScope, ctx.CurrentNode.InVariables)
 }
 
 func (ctx *ParseContext) BabushkaPopScopeOut() {
-	ctx.CurrentNode.OutVariables = ctx.CurrentScope
-	ctx.NewScope()
+	moveSymbolTable(ctx.CurrentScope, ctx.CurrentNode.OutVariables)
 }
 
 func (ctx *ParseContext) BabushkaPopScopeProc() {
-	ctx.CurrentNode.ProcVariables = ctx.CurrentScope
-	ctx.NewScope()
+	moveSymbolTable(ctx.CurrentScope, ctx.CurrentNode.ProcVariables)
 }
 
 func (ctx *ParseContext) BabushkaPopScopeNode(nodeId string) {
-	ctx.Nodes[nodeKey(nodeId)] = ctx.CurrentNode
+	ctx.Nodes[nodeKey(nodeId)] = copyNodeContext(ctx.CurrentNode)
 	ctx.NewNodeScope()
+
 }
