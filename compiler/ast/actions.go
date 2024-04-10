@@ -30,13 +30,35 @@ func AppendConnection(connectionList, connection Attribute) (ConnectionList, err
 	return append(connectionList.(ConnectionList), connection.(Connection)), nil
 }
 
-func NewNode(node, in, out, process Attribute) (Node, error) {
+func NewNode(context, node, in, out, process Attribute) (Node, error) {
+	nodeId := string(node.(*token.Token).Lit)
+	ctx := context.(ParseContext)
+	ctx.BabushkaPopScopeNode(nodeId)
+
 	return Node{
-		id:              string(node.(*token.Token).Lit),
+		id:              nodeId,
 		inDeclarations:  nil,
 		outDeclarations: nil,
 		procStatements:  nil,
 	}, nil
+}
+
+func NewScopeIn(context Attribute) (Attribute, error) {
+	ctx := context.(ParseContext)
+	ctx.BabushkaPopScopeIn()
+	return nil, nil
+}
+
+func NewScopeOut(context Attribute) (Attribute, error) {
+	ctx := context.(ParseContext)
+	ctx.BabushkaPopScopeOut()
+	return nil, nil
+}
+
+func NewScopeProc(context Attribute) (Attribute, error) {
+	ctx := context.(ParseContext)
+	ctx.BabushkaPopScopeProc()
+	return nil, nil
 }
 
 func NewNodeVar(ioType Attribute, varId Attribute) (NodeVar, error) {
