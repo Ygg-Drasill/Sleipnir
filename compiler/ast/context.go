@@ -4,10 +4,8 @@ type varKey string
 type nodeKey string
 type symbolTable map[varKey]*Variable
 
-type ParseContext struct {
-	Nodes        map[nodeKey]*NodeContext
-	CurrentNode  *NodeContext
-	CurrentScope symbolTable
+func (table symbolTable) AddVariable(id string) {
+	table[varKey(id)] = newVariable("int")
 }
 
 type NodeContext struct {
@@ -42,6 +40,12 @@ func NewNodeContext() *NodeContext {
 	}
 }
 
+type ParseContext struct {
+	Nodes        map[nodeKey]*NodeContext
+	CurrentNode  *NodeContext
+	CurrentScope symbolTable
+}
+
 func (ctx ParseContext) AddNodeContext(nodeName nodeKey, nodeContext *NodeContext) {
 	ctx.Nodes[nodeName] = nodeContext
 }
@@ -54,10 +58,6 @@ func (ctx ParseContext) NewNodeScope() {
 	ctx.CurrentNode = NewNodeContext()
 }
 
-func (table symbolTable) AddVariable(id string) {
-	table[varKey(id)] = newVariable("int")
-}
-
 func (ctx ParseContext) BabushkaPopScopeIn() {
 	ctx.CurrentNode.InVariables = ctx.CurrentScope
 	ctx.CurrentScope = make(symbolTable)
@@ -65,16 +65,15 @@ func (ctx ParseContext) BabushkaPopScopeIn() {
 
 func (ctx ParseContext) BabushkaPopScopeOut() {
 	ctx.CurrentNode.OutVariables = ctx.CurrentScope
-	ctx.CurrentScope = make(symbolTable)
+	ctx.NewScope()
 }
 
 func (ctx ParseContext) BabushkaPopScopeProc() {
 	ctx.CurrentNode.ProcVariables = ctx.CurrentScope
-	ctx.CurrentScope = make(symbolTable)
+	ctx.NewScope()
 }
 
 func (ctx ParseContext) BabushkaPopScopeNode(nodeId string) {
 	ctx.Nodes[nodeKey(nodeId)] = ctx.CurrentNode
-	ctx.CurrentNode = NewNodeContext()
-
+	ctx.NewNodeScope()
 }
