@@ -65,7 +65,7 @@ NodeProc
 
 /* Statement productions */
 DeclarationStmt
-    	: Type varId stmtEnd                << ast.NewDeclarationEmpty($0, $1, $Context) >>
+    	: Type varId stmtEnd                << ast.NewDeclaration($0, $1, nil, $Context) >>
     	| Type varId Assignment stmtEnd     << ast.NewDeclaration($0, $1, $2, $Context) >>
     	;
 
