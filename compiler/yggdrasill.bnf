@@ -44,16 +44,16 @@ ConnLst
 /* Node scope */
 Type : "int" | "bool" | "string" ;
 
-NodeVar : in "." varId | out "." varId | varId  ;
+NodeVar : in "." varId | out "." varId | varId ;
 
 
 NodeIn
-    : in "{" DeclarationLst "}" << ast.NewScopeIn($Context) >>
+    : in "{" DeclarationLst "}" << ast.NewScopeIn($Context, $2) >>
     | empty
     ;
 
 NodeOut
-    : out "{" DeclarationLst "}" << ast.NewScopeOut($Context) >>
+    : out "{" DeclarationLst "}" << ast.NewScopeOut($Context, $2) >>
     | empty
     ;
 
@@ -96,21 +96,23 @@ StmtLst : Stmt StmtLst | Stmt ;
 
 /* Expressions */
 Expr
-    : AritExpr
-    | LogicalExpr
+    : AritExpr              << $0, nil >>
+    | LogicalExpr           << $0, nil >>
     ;
 
-LogicalExpr : NodeVar compOp NodeVar ;
+LogicalExpr
+    : NodeVar compOp NodeVar    << ast.NewExpression($0, $1, $2) >>
+    ;
 
 AritExpr
-    : AritExpr "+" Term
-    | AritExpr "-" Term
+    : AritExpr "+" Term     << ast.NewExpression($0, $1, $2) >>
+    | AritExpr "-" Term     << ast.NewExpression($0, $1, $2) >>
     | Term
     ;
 
 Term
-    : Term "*" Factor
-    | Term "/" Factor
+    : Term "*" Factor       << ast.NewExpression($0, $1, $2) >>
+    | Term "/" Factor       << ast.NewExpression($0, $1, $2) >>
     | Factor
     ;
 

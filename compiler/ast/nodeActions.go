@@ -31,7 +31,7 @@ func NewScopeIn(context, declarationList Attribute) (Attribute, error) {
 	return nil, nil
 }
 
-func NewScopeOut(context Attribute) (Attribute, error) {
+func NewScopeOut(context, declarationList Attribute) (Attribute, error) {
 	ctx := context.(ParseContext)
 	ctx.BabushkaPopScopeOut()
 	return nil, nil

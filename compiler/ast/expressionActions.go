@@ -1,5 +1,13 @@
 package ast
 
+func NewExpression(firstOperand, operator, secondOperand Attribute) (Expression, error) {
+	return Expression{
+		firstOperand:  firstOperand,
+		secondOperand: secondOperand,
+		operator:      operator,
+	}, nil
+}
+
 func Add(val1, val2 Attribute) (Attribute, error) {
 	intVal1, err := toInt64(val1)
 	if err != nil {

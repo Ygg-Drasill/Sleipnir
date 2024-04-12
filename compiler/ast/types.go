@@ -7,8 +7,7 @@ type (
 	ConnectionList []Connection
 )
 
-type Statement interface {
-}
+type Statement Attribute
 
 type (
 	StatementList   []Statement
@@ -18,10 +17,14 @@ type (
 type Declaration struct {
 	Type       string
 	AssigneeId Attribute
-	Expression Expression
+	Expression Attribute
 }
 
-type Expression Attribute
+type Expression struct {
+	firstOperand  Attribute
+	secondOperand Attribute
+	operator      Attribute
+}
 
 type Program struct {
 	Nodes       NodeList
