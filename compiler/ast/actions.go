@@ -32,8 +32,6 @@ func toInt64(val Attribute) (int64, error) {
 		return v, nil
 	case *token.Token:
 		return strconv.ParseInt(string(v.Lit), 10, 64)
-	case NodeVar:
-		return v.value, nil
 	default:
 		return 0, fmt.Errorf("unexpected type for val: %T", val)
 	}

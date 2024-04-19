@@ -16,37 +16,36 @@ type (
 )
 
 type Declaration struct {
-	Type       string
-	AssigneeId Attribute
-	Expression Expression
+	Type       string     `json:"type"`
+	AssigneeId Attribute  `json:"assigneeId"`
+	Expression Expression `json:"expression"`
 }
 
 type Expression Attribute
 
 type Program struct {
-	Nodes       NodeList
-	Connections ConnectionList
+	Nodes       NodeList       `json:"nodes"`
+	Connections ConnectionList `json:"connections"`
 }
 
 type Node struct {
-	id              string
-	inDeclarations  []StatementList
-	outDeclarations []StatementList
-	procStatements  []StatementList
+	Id              string          `json:"id"`
+	InDeclarations  []StatementList `json:"inDeclarations"`
+	OutDeclarations []StatementList `json:"outDeclarations"`
+	ProcStatements  []StatementList `json:"procStatements"`
 }
 
 type NodeVar struct {
-	ioType string
-	varId  string
-	value  int64
+	IoType string `json:"ioType'"`
+	VarId  string `json:"varId"`
 }
 
 type Connection struct {
-	outId Junction
-	inId  Junction
+	OutId Junction `json:"outId"`
+	InId  Junction `json:"inId"`
 }
 
 type Junction struct {
-	nodeId string
-	varId  string
+	NodeId string `json:"nodeId"`
+	VarId  string `json:"VarId"`
 }
