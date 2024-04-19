@@ -15,6 +15,20 @@ func moveSymbolTable(src symbolTable, dest symbolTable) {
 }
 
 func NewProgram(nodes, connections Attribute) (Program, error) {
+	var nodeList NodeList
+	var connectionList ConnectionList
+	var ok bool
+
+	nodeList, ok = nodes.(NodeList)
+	if !ok {
+		return Program {}, fmt.Errorf("unexpected type for nodes: %T", nodes)
+	}
+
+	connectionList, ok = connections.(ConnectionList)
+	if !ok {
+		return Program {}, fmt.Errorf("unexpected type for connections: %T", connections)
+	}
+
 	return Program{
 		Nodes:       nodes.(NodeList),
 		Connections: connections.(ConnectionList),
@@ -23,6 +37,9 @@ func NewProgram(nodes, connections Attribute) (Program, error) {
 
 func ParseInt(b []byte) (int64, error) {
 	s := string(b)
+	if s.isempty() {
+		return s, fmt.Errorf("empty string")
+	}
 	return strconv.ParseInt(s, 10, 64)
 }
 
