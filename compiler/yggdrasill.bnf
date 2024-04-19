@@ -44,11 +44,14 @@ ConnLst
 /* Node scope */
 Type : "int" | "bool" | "string" ;
 
-NodeVar : in "." varId | out "." varId | varId  ;
+NodeVar  : in "." varId     << ast.NewNodeVar($0, $2) >>
+         | out "." varId    << ast.NewNodeVar($0, $2) >>
+         | varId
+         ;
 
 
 NodeIn
-    : in "{" DeclarationLst "}" << ast.NewScopeIn($Context) >>
+    : in "{" DeclarationLst "}" << ast.NewScopeIn($Context, $2) >>
     | empty
     ;
 

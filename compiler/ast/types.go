@@ -38,7 +38,6 @@ type Node struct {
 type NodeVar struct {
 	ioType string
 	varId  string
-	value  int64
 }
 
 type Connection struct {
