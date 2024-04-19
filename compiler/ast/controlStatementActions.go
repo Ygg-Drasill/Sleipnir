@@ -15,9 +15,9 @@ func NewIfStatement(condition, bodyBlock, elseBlock Attribute) (IfStatement, err
 	}
 
 	return IfStatement{
-		condition:      conditionExpression,
-		bodyStatements: bodyStatementList,
-		elseStatements: elseStatementList,
+		Condition:      conditionExpression,
+		BodyStatements: bodyStatementList,
+		ElseStatements: elseStatementList,
 	}, nil
 }
 
@@ -25,7 +25,7 @@ func NewWhileStatement(condition, bodyBlock Attribute) (WhileStatement, error) {
 	conditionExpression := condition.(Expression)
 	statementList := bodyBlock.(StatementList)
 	return WhileStatement{
-		condition:      conditionExpression,
-		bodyStatements: statementList,
+		Condition:      conditionExpression,
+		BodyStatements: statementList,
 	}, nil
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	. "github.com/Ygg-Drasill/Sleipnir/compiler/analysis/lexer"
 	"github.com/Ygg-Drasill/Sleipnir/compiler/ast"
@@ -19,5 +20,9 @@ func main() {
 		fmt.Println(e.Error())
 	} else {
 		fmt.Println(res)
+		bytes, _ := json.MarshalIndent(res, "", "\t")
+		file, _ := os.OpenFile("AST_out.json", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
+		file.Write(bytes)
+		file.Close()
 	}
 }

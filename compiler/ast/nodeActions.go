@@ -39,14 +39,20 @@ func NewScopeIn(context, declarationList Attribute) (Attribute, error) {
 	return nil, nil
 }
 
-func NewScopeOut(context Attribute) (Attribute, error) {
+func NewScopeOut(context, declarationList Attribute) (Attribute, error) {
 	ctx := context.(ParseContext)
 	ctx.BabushkaPopScopeOut()
 	return nil, nil
 }
 
-func NewScopeProc(context Attribute) (Attribute, error) {
+func NewScopeProc(context, statementList Attribute) (StatementList, error) {
+	var processBody StatementList
+
+	if statementList != nil {
+		processBody = statementList.(StatementList)
+	}
+
 	ctx := context.(ParseContext)
 	ctx.BabushkaPopScopeProc()
-	return nil, nil
+	return processBody, nil
 }

@@ -15,15 +15,15 @@ type (
 )
 
 type Declaration struct {
-	Type       string     `json:"type"`
-	AssigneeId Attribute  `json:"assigneeId"`
+	Type       string    `json:"type"`
+	AssigneeId Attribute `json:"assigneeId"`
 	Expression Attribute `json:"expression"`
 }
 
 type Expression struct {
-	FirstOperand  Attribute
-	SecondOperand Attribute
-	Operator      Attribute
+	FirstOperand  Attribute `json:"firstOperand"`
+	SecondOperand Attribute `json:"secondOperand"`
+	Operator      Attribute `json:"operator"`
 }
 
 type Program struct {
@@ -35,7 +35,7 @@ type Node struct {
 	Id              string          `json:"id"`
 	InDeclarations  DeclarationList `json:"inDeclarations"`
 	OutDeclarations DeclarationList `json:"outDeclarations"`
-	ProcStatements  StatementList `json:"procStatements"`
+	ProcStatements  StatementList   `json:"procStatements"`
 }
 
 type NodeVar struct {
@@ -50,16 +50,16 @@ type Connection struct {
 
 type Junction struct {
 	NodeId string `json:"nodeId"`
-	VarId  string `json:"VarId"`
+	VarId  string `json:"varId"`
 }
 
 type IfStatement struct {
-	condition      Expression
-	bodyStatements StatementList
-	elseStatements StatementList
+	Condition      Expression    `json:"condition"`
+	BodyStatements StatementList `json:"bodyStatements"`
+	ElseStatements StatementList `json:"elseStatements"`
 }
 
 type WhileStatement struct {
-	condition      Expression
-	bodyStatements StatementList
+	Condition      Expression    `json:"condition"`
+	BodyStatements StatementList `json:"bodyStatements"`
 }
