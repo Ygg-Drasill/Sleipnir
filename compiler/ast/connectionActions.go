@@ -13,7 +13,7 @@ func AppendConnection(connectionList, connection Attribute) (ConnectionList, err
 }
 
 func NewConnection(out, in Attribute) (Connection, error) {
-	return Connection{outId: out.(Junction), inId: in.(Junction)}, nil
+	return Connection{OutId: out.(Junction), InId: in.(Junction)}, nil
 }
 
 func NewJunction(nodeId, varId Attribute) (Junction, error) {
@@ -26,7 +26,7 @@ func NewJunction(nodeId, varId Attribute) (Junction, error) {
 		varIdStr = ""
 	}
 	return Junction{
-		nodeId: string(nodeId.(*token.Token).Lit),
-		varId:  varIdStr,
+		NodeId: string(nodeId.(*token.Token).Lit),
+		VarId:  varIdStr,
 	}, nil
 }

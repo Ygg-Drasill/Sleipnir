@@ -27,9 +27,9 @@ func NewNode(context, node, in, out, process Attribute) (Node, error) {
 
 	return Node{
 		Id:              nodeId,
-		inDeclarations:  inDeclarations,
-		outDeclarations: outDeclarations,
-		procStatements:  processStatements,
+		InDeclarations:  inDeclarations,
+		OutDeclarations: outDeclarations,
+		ProcStatements:  processStatements,
 	}, nil
 }
 
@@ -39,20 +39,14 @@ func NewScopeIn(context, declarationList Attribute) (Attribute, error) {
 	return nil, nil
 }
 
-func NewScopeOut(context, declarationList Attribute) (Attribute, error) {
+func NewScopeOut(context Attribute) (Attribute, error) {
 	ctx := context.(ParseContext)
 	ctx.BabushkaPopScopeOut()
 	return nil, nil
 }
 
-func NewScopeProc(context, statementList Attribute) (StatementList, error) {
-	var processBody StatementList
-
-	if statementList != nil {
-		processBody = statementList.(StatementList)
-	}
-
+func NewScopeProc(context Attribute) (Attribute, error) {
 	ctx := context.(ParseContext)
 	ctx.BabushkaPopScopeProc()
-	return processBody, nil
+	return nil, nil
 }
