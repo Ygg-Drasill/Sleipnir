@@ -26,7 +26,7 @@ func NewNode(context, node, in, out, process Attribute) (Node, error) {
 	ctx.BabushkaPopScopeNode(nodeId)
 
 	return Node{
-		id:              nodeId,
+		Id:              nodeId,
 		inDeclarations:  inDeclarations,
 		outDeclarations: outDeclarations,
 		procStatements:  processStatements,

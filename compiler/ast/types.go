@@ -32,7 +32,7 @@ type Program struct {
 }
 
 type Node struct {
-	id              string
+	Id              string
 	inDeclarations  DeclarationList
 	outDeclarations DeclarationList
 	procStatements  StatementList
