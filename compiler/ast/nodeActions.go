@@ -18,10 +18,10 @@ func NewNode(context, node, in, out, process Attribute) (Node, error) {
 	ctx.BabushkaPopScopeNode(nodeId)
 
 	return Node{
-		id:              nodeId,
-		inDeclarations:  nil,
-		outDeclarations: nil,
-		procStatements:  nil,
+		Id:              nodeId,
+		InDeclarations:  nil,
+		OutDeclarations: nil,
+		ProcStatements:  nil,
 	}, nil
 }
 
