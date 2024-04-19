@@ -21,9 +21,9 @@ type Declaration struct {
 }
 
 type Expression struct {
-	firstOperand  Attribute
-	secondOperand Attribute
-	operator      Attribute
+	FirstOperand  Attribute
+	SecondOperand Attribute
+	Operator      Attribute
 }
 
 type Program struct {
@@ -33,9 +33,9 @@ type Program struct {
 
 type Node struct {
 	id              string
-	inDeclarations  []StatementList
-	outDeclarations []StatementList
-	procStatements  []StatementList
+	inDeclarations  DeclarationList
+	outDeclarations DeclarationList
+	procStatements  StatementList
 }
 
 type NodeVar struct {
@@ -52,4 +52,15 @@ type Connection struct {
 type Junction struct {
 	nodeId string
 	varId  string
+}
+
+type IfStatement struct {
+	condition      Expression
+	bodyStatements StatementList
+	elseStatements StatementList
+}
+
+type WhileStatement struct {
+	condition      Expression
+	bodyStatements StatementList
 }

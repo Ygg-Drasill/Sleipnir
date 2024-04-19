@@ -34,3 +34,12 @@ func NewDeclarationList(declaration Attribute) (DeclarationList, error) {
 func AppendDeclaration(declarationList, declaration Attribute) (DeclarationList, error) {
 	return append(declarationList.(DeclarationList), declaration.(Declaration)), nil
 }
+
+func NewStatementList(statement Attribute) (StatementList, error) {
+	firstStatement := statement.(Statement)
+	return StatementList{firstStatement}, nil
+}
+
+func AppendStatement(statementList, statement Attribute) (StatementList, error) {
+	return append(statementList.(StatementList), statement.(Statement)), nil
+}
