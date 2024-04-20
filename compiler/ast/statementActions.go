@@ -4,15 +4,6 @@ import (
 	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
 )
 
-func NewNodeVar(ioType Attribute, varId Attribute) (NodeVar, error) {
-	ioTypeStr := ""
-	if ioType != nil {
-		ioTypeStr = string(ioType.(*token.Token).Lit)
-	}
-	varIdStr := string(varId.(*token.Token).Lit)
-	return NodeVar{ioType: ioTypeStr, varId: varIdStr}, nil
-}
-
 func NewDeclaration(varType, varId, expression, context Attribute) (Declaration, error) {
 	ctx := context.(ParseContext)
 	varIdStr := string(varId.(*token.Token).Lit)
@@ -33,4 +24,13 @@ func NewDeclarationList(declaration Attribute) (DeclarationList, error) {
 
 func AppendDeclaration(declarationList, declaration Attribute) (DeclarationList, error) {
 	return append(declarationList.(DeclarationList), declaration.(Declaration)), nil
+}
+
+func NewStatementList(statement Attribute) (StatementList, error) {
+	firstStatement := statement.(Statement)
+	return StatementList{firstStatement}, nil
+}
+
+func AppendStatement(statementList, statement Attribute) (StatementList, error) {
+	return append(statementList.(StatementList), statement.(Statement)), nil
 }

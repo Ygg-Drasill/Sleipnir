@@ -44,7 +44,10 @@ ConnLst
 /* Node scope */
 Type : "int" | "bool" | "string" ;
 
-NodeVar : in "." varId | out "." varId | varId ;
+NodeVar  : in "." varId     << ast.NewNodeVar($0, $2) >>
+         | out "." varId    << ast.NewNodeVar($0, $2) >>
+         | varId
+         ;
 
 
 NodeIn
@@ -58,8 +61,8 @@ NodeOut
     ;
 
 NodeProc
-    : "process" "{" StmtLst "}" << ast.NewScopeProc($Context) >>
-    | "process" "{" "}"         << ast.NewScopeProc($Context) >>
+    : "process" "{" StmtLst "}" << ast.NewScopeProc($Context, $2) >>
+    | "process" "{" "}"         << ast.NewScopeProc($Context, nil) >>
     | empty
     ;
 
@@ -85,13 +88,26 @@ AssignStmt : NodeVar Assignment stmtEnd ;
 
 ControlStmt: IfStmt | WhileStmt ;
 
-IfStmt: "if" "(" Condition ")" "{" StmtLst "}" ;
+IfStmt
+    : "if" "(" Condition ")" "{" StmtLst "}"  << ast.NewIfStatement($2, $5, nil) >>
+    | "if" "(" Condition ")" "{" StmtLst "}" "else" "{" StmtLst "}"  << ast.NewIfStatement($2, $5, $9) >>
+    ;
 
-WhileStmt : "while" "(" Condition ")" "{" StmtLst "}" ;
+WhileStmt
+    : "while" "(" Condition ")" "{" StmtLst "}" << ast.NewWhileStatement($2, $5) >>
+    ;
 
-Stmt : DeclarationStmt | AssignStmt | ControlStmt ;
+Stmt
+    : DeclarationStmt
+    | AssignStmt
+    | ControlStmt
+    ;
 
-StmtLst : Stmt StmtLst | Stmt ;
+StmtLst
+    : Stmt StmtLst  << ast.AppendStatement($1, $0) >>
+    | Stmt          << ast.NewStatementList($0) >>
+    | empty
+    ;
 
 
 /* Expressions */
@@ -107,16 +123,16 @@ LogicalExpr
 AritExpr
     : AritExpr "+" Term     << ast.NewExpression($0, $1, $2) >>
     | AritExpr "-" Term     << ast.NewExpression($0, $1, $2) >>
-    | Term
+    | Term                  << $0, nil >>
     ;
 
 Term
     : Term "*" Factor       << ast.NewExpression($0, $1, $2) >>
     | Term "/" Factor       << ast.NewExpression($0, $1, $2) >>
-    | Factor
+    | Factor                << $0, nil >>
     ;
 
 Factor
-    : int64 						<< util.IntValue($0.(*token.Token).Lit) >>
-    | NodeVar
+    : int64 	<< util.IntValue($0.(*token.Token).Lit) >>
+    | NodeVar   << $0, nil >>
     ;

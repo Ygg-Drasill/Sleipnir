@@ -16,9 +16,11 @@ node Bar {
     }
 
     process {
-        out.c = in.a + in.b;
+        if (in.a > in.b) {
+        } else {
+        }
     }
 }
 
-Food.out.x -> Bar.in.a;
+Foo.out.x -> Bar.in.a;
 Foo.out.y -> Bar.in.b;

@@ -2,9 +2,9 @@ package ast
 
 func NewExpression(firstOperand, operator, secondOperand Attribute) (Expression, error) {
 	return Expression{
-		firstOperand:  firstOperand,
-		secondOperand: secondOperand,
-		operator:      operator,
+		FirstOperand:  firstOperand,
+		SecondOperand: secondOperand,
+		Operator:      operator,
 	}, nil
 }
 
