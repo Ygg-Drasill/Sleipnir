@@ -16,9 +16,7 @@ node Bar {
     }
 
     process {
-        if (in.a > in.b) {
-        } else {
-        }
+        c = in.a + in.b;
     }
 }
 
