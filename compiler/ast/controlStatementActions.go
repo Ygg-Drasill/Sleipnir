@@ -15,7 +15,7 @@ func NewIfStatement(condition, bodyBlock, elseBlock Attribute) (IfStatement, err
 	}
 
 	return IfStatement{
-		Condition:      conditionExpression,
+		Expression:     conditionExpression,
 		BodyStatements: bodyStatementList,
 		ElseStatements: elseStatementList,
 	}, nil

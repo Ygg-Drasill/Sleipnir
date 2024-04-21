@@ -4,8 +4,8 @@ import (
 	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
 )
 
-func NewConnectionList(connection Attribute) (ConnectionList, error) {
-	return ConnectionList{connection.(Connection)}, nil
+func NewConnectionList() (ConnectionList, error) {
+	return ConnectionList{}, nil
 }
 
 func AppendConnection(connectionList, connection Attribute) (ConnectionList, error) {

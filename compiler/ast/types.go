@@ -54,7 +54,7 @@ type Junction struct {
 }
 
 type IfStatement struct {
-	Condition      Expression    `json:"condition"`
+	Expression     Expression    `json:"expression"`
 	BodyStatements StatementList `json:"bodyStatements"`
 	ElseStatements StatementList `json:"elseStatements"`
 }
@@ -62,4 +62,13 @@ type IfStatement struct {
 type WhileStatement struct {
 	Condition      Expression    `json:"condition"`
 	BodyStatements StatementList `json:"bodyStatements"`
+}
+
+type Assignment struct {
+	Expression Expression `json:"expression"`
+}
+
+type AssignmentStatement struct {
+	Identifier string     `json:"identifier"`
+	Assignment Assignment `json:"assignment"`
 }
