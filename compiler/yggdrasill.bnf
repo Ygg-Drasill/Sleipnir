@@ -14,7 +14,7 @@ ProgramDeclarationLst
     ;
 
 Node
-    : "node" nodeId "{" NodeIn NodeOut NodeProc "}"     << ast.NewNode($Context, $1, $3, $4, $5) >>
+    : node nodeId lcurly NodeIn NodeOut NodeProc rcurly     << ast.NewNode($Context, $1, $3, $4, $5) >>
     ;
 
 Conn
@@ -22,13 +22,13 @@ Conn
     ;
 
 ConnOut
-    : nodeId "." out "." varId          << ast.NewJunction($0, $4) >>
-    | nodeId "." out                    << ast.NewJunction($0, "") >>
+    : nodeId period out period varId          << ast.NewJunction($0, $4) >>
+    | nodeId period out                    << ast.NewJunction($0, "") >>
     ;
 
 ConnIn
-    : nodeId "." in "." varId           << ast.NewJunction($0, $4) >>
-    | nodeId "." in                     << ast.NewJunction($0, "") >>
+    : nodeId period in period varId           << ast.NewJunction($0, $4) >>
+    | nodeId period in                     << ast.NewJunction($0, "") >>
     ;
 
 NodeLst
@@ -37,70 +37,90 @@ NodeLst
     ;
 
 ConnLst
-    : Conn          << ast.NewConnectionList($0) >>
-    | Conn ConnLst  << ast.AppendConnection($1, $0) >>
+    : Conn ConnLst  << ast.AppendConnection($1, $0) >>
+    | empty          << ast.NewConnectionList() >>
     ;
 
 /* Node scope */
-Type : "int" | "bool" | "string" ;
+Type : int | bool | string ;
 
-NodeVar  : in "." varId     << ast.NewNodeVar($0, $2) >>
-         | out "." varId    << ast.NewNodeVar($0, $2) >>
-         | varId
-         ;
-
+NodeVar
+    : in period varId     << ast.NewNodeVar($0, $2) >>
+    | out period varId    << ast.NewNodeVar($0, $2) >>
+    | varId
+    ;
 
 NodeIn
-    : in "{" DeclarationLst "}" << ast.NewScopeIn($Context, $2) >>
+    : in lcurly DeclarationLst rcurly << ast.NewScopeIn($Context, $2) >>
     | empty
     ;
 
 NodeOut
-    : out "{" DeclarationLst "}" << ast.NewScopeOut($Context, $2) >>
+    : out lcurly DeclarationLst rcurly << ast.NewScopeOut($Context, $2) >>
     | empty
     ;
 
 NodeProc
-    : "process" "{" StmtLst "}" << ast.NewScopeProc($Context, $2) >>
-    | "process" "{" "}"         << ast.NewScopeProc($Context, nil) >>
+    : process lcurly StmtLst rcurly << ast.NewScopeProc($Context, $2) >>
+    | process lcurly "}"         << ast.NewScopeProc($Context, nil) >>
     | empty
     ;
 
 /* Statement productions */
+Identifier
+    : NodeVar
+    | varId
+    ;
+
+CompareOperator
+    : eq | lt | gt | neq | and | or ;
+
+InfixOperator
+    : plus | minus | mul | div  /*arithmetic*/
+    | CompareOperator /*logic*/
+    ;
+
+
+Expression
+    : Expression InfixOperator Term
+    | Term
+    ;
+
 DeclarationStmt
-    	: Type varId stmtEnd                << ast.NewDeclaration($0, $1, nil, $Context) >>
-    	| Type varId Assignment stmtEnd     << ast.NewDeclaration($0, $1, $2, $Context) >>
-    	;
+    : Type varId stmtEnd                << ast.NewDeclaration($0, $1, nil, $Context) >>
+    | Type varId Assignment stmtEnd     << ast.NewDeclaration($0, $1, $2, $Context) >>
+    ;
 
 DeclarationLst
-    	: DeclarationStmt DeclarationLst    << ast.AppendDeclaration($1, $0) >>
-    	| DeclarationStmt                   << ast.NewDeclarationList($0) >>
-	    ;
+    : DeclarationStmt DeclarationLst    << ast.AppendDeclaration($1, $0) >>
+    | DeclarationStmt                   << ast.NewDeclarationList($0) >>
+    ;
 
-Condition
-    	: LogicalExpr logicOp Condition
-    	| LogicalExpr
-    	;
+Assignment
+    : assign Expr
+    ;
 
-Assignment : assignOp Expr ;
+AssignStmt
+    : Identifier Assignment stmtEnd << $0, nil >>
+    ;
 
-AssignStmt : NodeVar Assignment stmtEnd ;
-
-ControlStmt: IfStmt | WhileStmt ;
+ControlStmt
+    : IfStmt        << $0, nil >>
+    | WhileStmt     << $0, nil >>
+    ;
 
 IfStmt
-    : "if" "(" Condition ")" "{" StmtLst "}"  << ast.NewIfStatement($2, $5, nil) >>
-    | "if" "(" Condition ")" "{" StmtLst "}" "else" "{" StmtLst "}"  << ast.NewIfStatement($2, $5, $9) >>
+    : if lp Expr rp lcurly StmtLst rcurly else lcurly StmtLst rcurly  << ast.NewIfStatement($2, $5, $9) >>
     ;
 
 WhileStmt
-    : "while" "(" Condition ")" "{" StmtLst "}" << ast.NewWhileStatement($2, $5) >>
+    : while lp Expr rp lcurly StmtLst rcurly << ast.NewWhileStatement($2, $5) >>
     ;
 
 Stmt
-    : DeclarationStmt
-    | AssignStmt
-    | ControlStmt
+    : DeclarationStmt   << $0, nil >>
+    | AssignStmt        << $0, nil >>
+    | ControlStmt       << $0, nil >>
     ;
 
 StmtLst
@@ -109,7 +129,6 @@ StmtLst
     | empty
     ;
 
-
 /* Expressions */
 Expr
     : AritExpr              << $0, nil >>
@@ -117,22 +136,23 @@ Expr
     ;
 
 LogicalExpr
-    : NodeVar compOp NodeVar    << ast.NewExpression($0, $1, $2) >>
+    : NodeVar CompareOperator NodeVar    << ast.NewExpression($0, $1, $2) >>
     ;
 
 AritExpr
-    : AritExpr "+" Term     << ast.NewExpression($0, $1, $2) >>
-    | AritExpr "-" Term     << ast.NewExpression($0, $1, $2) >>
+    : AritExpr plus Term    << ast.NewExpression($0, $1, $2) >>
+    | AritExpr minus Term   << ast.NewExpression($0, $1, $2) >>
     | Term                  << $0, nil >>
     ;
 
 Term
-    : Term "*" Factor       << ast.NewExpression($0, $1, $2) >>
-    | Term "/" Factor       << ast.NewExpression($0, $1, $2) >>
+    : Term mul Factor       << ast.NewExpression($0, $1, $2) >>
+    | Term div Factor       << ast.NewExpression($0, $1, $2) >>
     | Factor                << $0, nil >>
     ;
 
 Factor
-    : int64 	<< util.IntValue($0.(*token.Token).Lit) >>
-    | NodeVar   << $0, nil >>
+    : lp Expression rp
+    | int64 	<< util.IntValue($0.(*token.Token).Lit) >>
+    | Identifier   << $0, nil >>
     ;

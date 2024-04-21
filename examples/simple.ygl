@@ -16,8 +16,11 @@ node Bar {
     }
 
     process {
+        int x = 1;
         if (in.a > in.b) {
+            x = x + 1;
         } else {
+            x = x - 1;
         }
     }
 }
