@@ -24,7 +24,9 @@ func gen(node ast.Attribute, b *bytes.Buffer) string {
 	case *ast.Node:
 		return genNode(node, b)
 	case *ast.Connection:
-		return genNodeLst(node, b)
+		return genConn(node, b)
+	case *ast.DeclarationList:
+		return genDecLst(node, b)
 	}
 	return ""
 }
@@ -36,7 +38,13 @@ func genProgram(node *ast.Program, b *bytes.Buffer) string {
 	for _, nodes := range node.Nodes {
 		nodePtr := &nodes
 		gen(nodePtr, b)
-		write(b, ")\n")
+
+		for _, conn := range node.Connections {
+			connPtr := &conn
+			gen(connPtr, b)
+		}
+
+		write(b, "\n)\n")
 	}
 	write(b, ")")
 	return ""
@@ -50,11 +58,42 @@ func genNode(node *ast.Node, b *bytes.Buffer) string {
 		inDecPtr := &inDec
 		gen(inDecPtr, b)
 	}
+	for _, outDec := range node.OutDeclarations {
+		outDecPtr := &outDec
+		gen(outDecPtr, b)
+	}
 	return ""
 }
 
-func genNodeLst(node *ast.Connection, b *bytes.Buffer) string {
-	value := gen(node.InId, b)
-	write(b, "(func $%s", value)
+func genConn(node *ast.Connection, b *bytes.Buffer) string {
+	var inParams, outLocals []string
+
+	// Collect InId connections (parameters)
+	for _, conn := range node.InId.VarId {
+		inParams = append(inParams, conn)
+	}
+
+	// Collect OutId connections (locals)
+	for _, conn := range node.OutId {
+		outLocals = append(outLocals, conn.VarId)
+	}
+
+	// Write parameters for InId
+	for _, param := range inParams {
+		write(b, " (param $%s i64)", param)
+	}
+
+	// Write locals for OutId
+	for _, local := range outLocals {
+		write(b, " (local $%s i64)", local)
+	}
+
+	return ""
+}
+
+func genDecLst(node *ast.DeclarationList, b *bytes.Buffer) string {
+
+	value := node
+	write(b, " (param $%s i64)", value)
 	return ""
 }
