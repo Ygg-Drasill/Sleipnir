@@ -9,7 +9,7 @@ import (
 /* Production rules */
 
 /* Outer file scope */
-ProgramDeclarationLst
+ProgramDeclarationList
     : NodeLst ConnLst   << ast.NewProgram($0, $1) >>
     ;
 
@@ -51,12 +51,12 @@ NodeVar
     ;
 
 NodeIn
-    : in lcurly DeclarationLst rcurly << ast.NewScopeIn($Context, $2) >>
+    : in lcurly DeclarationList rcurly << ast.NewScopeIn($Context, $2) >>
     | empty
     ;
 
 NodeOut
-    : out lcurly DeclarationLst rcurly << ast.NewScopeOut($Context, $2) >>
+    : out lcurly DeclarationList rcurly << ast.NewScopeOut($Context, $2) >>
     | empty
     ;
 
@@ -87,17 +87,17 @@ Expression
     ;
 
 DeclarationStmt
-    : Type varId stmtEnd                << ast.NewDeclaration($0, $1, nil, $Context) >>
-    | Type varId Assignment stmtEnd     << ast.NewDeclaration($0, $1, $2, $Context) >>
+    : Type varId stmtEnd                << ast.NewDeclaration($Context, $0, $1, nil) >>
+    | Type varId Assignment stmtEnd     << ast.NewDeclaration($Context, $0, $1, $2) >>
     ;
 
-DeclarationLst
-    : DeclarationStmt DeclarationLst    << ast.AppendDeclaration($1, $0) >>
-    | DeclarationStmt                   << ast.NewDeclarationList($0) >>
+DeclarationList
+    : DeclarationStmt DeclarationList    << ast.AppendDeclaration($1, $0) >>
+    | empty                              << ast.NewDeclarationList() >>
     ;
 
 Assignment
-    : assign Expr
+    : assign Expr   << $1, nil >>
     ;
 
 AssignStmt
