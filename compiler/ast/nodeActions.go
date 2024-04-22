@@ -17,6 +17,14 @@ func NewNode(context, node, in, out, process Attribute) (Node, error) {
 	var outDeclarations DeclarationList
 	var processStatements StatementList
 
+	if in != nil {
+		inDeclarations = in.(DeclarationList)
+	}
+
+	if out != nil {
+		outDeclarations = out.(DeclarationList)
+	}
+
 	if process != nil {
 		processStatements = process.(StatementList)
 	}
@@ -36,13 +44,13 @@ func NewNode(context, node, in, out, process Attribute) (Node, error) {
 func NewScopeIn(context, declarationList Attribute) (Attribute, error) {
 	ctx := context.(ParseContext)
 	ctx.BabushkaPopScopeIn()
-	return nil, nil
+	return declarationList, nil
 }
 
 func NewScopeOut(context, declarationList Attribute) (Attribute, error) {
 	ctx := context.(ParseContext)
 	ctx.BabushkaPopScopeOut()
-	return nil, nil
+	return declarationList, nil
 }
 
 func NewScopeProc(context, statementList Attribute) (StatementList, error) {
