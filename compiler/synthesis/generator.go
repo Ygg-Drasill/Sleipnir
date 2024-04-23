@@ -36,27 +36,20 @@ func genProgram(node *ast.Program, b *bytes.Buffer) string {
 	for _, nodes := range node.Nodes {
 		nodePtr := &nodes
 		gen(nodePtr, b)
-
-		write(b, "\n)\n")
 	}
 	write(b, ")")
 	return ""
 }
 
 func genNode(node *ast.Node, b *bytes.Buffer) string {
-	value := node.Id
-	write(b, "(func $%s", value)
 
-	for _, inDec := range node.InDeclarations {
-		inAss := inDec.AssigneeId
-
-		write(b, " (param $%s i32)", inAss)
-	}
 	for _, outDec := range node.OutDeclarations {
+		outId := node.Id
 		outAss := outDec.AssigneeId
 
-		write(b, " (local $%s i32)", outAss)
+		write(b, " (global $%s.%s (mut i32) (i32.const 0))\n", outId, outAss)
 	}
+
 	return ""
 }
 
