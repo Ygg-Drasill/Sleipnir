@@ -28,21 +28,16 @@ func main() {
 	fmt.Println(ast)
 	bytes, _ := json.MarshalIndent(ast, "", "\t")
 	file, _ := os.OpenFile("AST_out.json", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
+	file.Write(bytes)
+	file.Close()
 	if prog, ok := ast.(ost.Program); ok {
-		test := synthesis.GenWrapper(&prog)
-		fmt.Printf("%s", test.String())
-		files, err := os.OpenFile("test.wat", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
+		codeGen := synthesis.GenWrapper(&prog)
+		fmt.Printf("%s", codeGen.String())
+		files, err := os.OpenFile("codeGen.wat", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
 		if err != nil {
 			panic(err)
 		}
-		file.Write(bytes)
-		file.Close()
-		files.Write(test.Bytes())
+		files.Write(codeGen.Bytes())
 		files.Close()
-		bytes, _ := json.MarshalIndent(ast, "", "\t")
-		file, _ := os.OpenFile("AST_out.json", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
-		file.Write(bytes)
-		file.Close()
-
 	}
 }

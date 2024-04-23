@@ -66,28 +66,28 @@ func genNode(node *ast.Node, b *bytes.Buffer) string {
 }
 
 func genConn(node *ast.Connection, b *bytes.Buffer) string {
-	var inParams, outLocals []string
+	//var inParams, outLocals []string
 
 	// Collect InId connections (parameters)
-	for _, conn := range node.InId.VarId {
-		inParams = append(inParams, conn)
-	}
-
-	// Collect OutId connections (locals)
-	for _, conn := range node.OutId {
-		outLocals = append(outLocals, conn.VarId)
-	}
-
-	// Write parameters for InId
-	for _, param := range inParams {
-		write(b, " (param $%s i64)", param)
-	}
-
-	// Write locals for OutId
-	for _, local := range outLocals {
-		write(b, " (local $%s i64)", local)
-	}
-
+	//for _, conn := range node.InId.VarId {
+	//	inParams = append(inParams, conn)
+	//}
+	//
+	//// Collect OutId connections (locals)
+	//for _, conn := range node.OutId {
+	//	outLocals = append(outLocals, conn.VarId)
+	//}
+	//
+	//// Write parameters for InId
+	//for _, param := range inParams {
+	//	write(b, " (param $%s i64)", param)
+	//}
+	//
+	//// Write locals for OutId
+	//for _, local := range outLocals {
+	//	write(b, " (local $%s i64)", local)
+	//}
+	//
 	return ""
 }
 
