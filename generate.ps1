@@ -1,5 +1,3 @@
-#!/bin/bash
-
-rm -rf ./compiler/gocc
+Remove-Item ./compiler/gocc -Recurse -Force
 
 gocc -no_lexer -a -v -o "./compiler/gocc" compiler/yggdrasill.bnf

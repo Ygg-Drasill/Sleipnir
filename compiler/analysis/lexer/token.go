@@ -17,6 +17,31 @@ const (
 	TokenConnector
 )
 
+var OperatorMap = map[string]string{
+	"+":  "plus",
+	"-":  "minus",
+	"*":  "mul",
+	"/":  "div",
+	"==": "eq",
+	"<":  "lt",
+	">":  "gt",
+	"!=": "neq",
+	"&&": "and",
+	"||": "or",
+}
+
+var PunctuationMap = map[string]string{
+	"(": "lp",
+	")": "rp",
+	"{": "lcurly",
+	"}": "rcurly",
+	"[": "lsquare",
+	"]": "rsquare",
+	".": "period",
+	",": "comma",
+	";": "stmtEnd",
+}
+
 type Token struct {
 	tokenType TokenType
 	value     string

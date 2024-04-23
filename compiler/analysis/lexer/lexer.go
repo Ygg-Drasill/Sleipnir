@@ -1,10 +1,11 @@
 package lexer
 
 import (
-	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
 	"os"
 	"unicode"
 	"unicode/utf8"
+
+	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
 )
 
 type Lexer struct {
@@ -86,31 +87,20 @@ func (lexer *Lexer) serveToken(tokenType TokenType) {
 		}
 	}
 
+	if tokenType == TokenPunctuation {
+		tokType = token.TokMap.Type(PunctuationMap[value])
+	}
+
 	if tokenType == TokenConnector ||
-		tokenType == TokenPunctuation ||
 		tokenType == TokenKeyword {
-		if value == ";" {
-			tokType = token.TokMap.Type("stmtEnd")
-		} else {
-			tokType = token.TokMap.Type(value)
-		}
+		tokType = token.TokMap.Type(value)
 	}
 
 	if tokenType == TokenOperator {
-
-		tokType = token.TokMap.Type(value)
+		tokType = token.TokMap.Type(OperatorMap[value])
 
 		if value == "=" {
-			tokType = token.TokMap.Type("assignOp")
-		}
-
-		if value == "==" || value == "!=" ||
-			value == "<" || value == ">" {
-			tokType = token.TokMap.Type("compOp")
-		}
-
-		if value == "&&" || value == "||" {
-			tokType = token.TokMap.Type("logicOp")
+			tokType = token.TokMap.Type("assign")
 		}
 	}
 

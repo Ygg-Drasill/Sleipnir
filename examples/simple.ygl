@@ -1,0 +1,29 @@
+node Foo {
+    out {
+        int x = 1;
+        int y = 2;
+    }
+}
+
+node Bar {
+    in {
+        int a;
+        int b;
+    }
+
+    out {
+        int c;
+    }
+
+    process {
+        int x = 1;
+        if (in.a > in.b) {
+            x = x + 1;
+        } else {
+            x = x - 1;
+        }
+    }
+}
+
+Foo.out.x -> Bar.in.a;
+Foo.out.y -> Bar.in.b;
