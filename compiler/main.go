@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	var filePath = os.Args[1]
+	var filePath string = os.Args[1]
 	lexer := NewLexerFromString(filePath)
 	tokens := lexer.FindTokens()
 	scanner := NewScanner(tokens)
