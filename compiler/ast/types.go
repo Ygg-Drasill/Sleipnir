@@ -7,8 +7,7 @@ type (
 	ConnectionList []Connection
 )
 
-type Statement interface {
-}
+type Statement Attribute
 
 type (
 	StatementList   []Statement
@@ -16,12 +15,16 @@ type (
 )
 
 type Declaration struct {
-	Type       string     `json:"type"`
-	AssigneeId Attribute  `json:"assigneeId"`
-	Expression Expression `json:"expression"`
+	Type       string    `json:"type"`
+	AssigneeId Attribute `json:"assigneeId"`
+	Expression Attribute `json:"expression"`
 }
 
-type Expression Attribute
+type Expression struct {
+	FirstOperand  Attribute `json:"firstOperand"`
+	SecondOperand Attribute `json:"secondOperand"`
+	Operator      Attribute `json:"operator"`
+}
 
 type Program struct {
 	Nodes       NodeList       `json:"nodes"`
@@ -30,9 +33,9 @@ type Program struct {
 
 type Node struct {
 	Id              string          `json:"id"`
-	InDeclarations  []StatementList `json:"inDeclarations"`
-	OutDeclarations []StatementList `json:"outDeclarations"`
-	ProcStatements  []StatementList `json:"procStatements"`
+	InDeclarations  DeclarationList `json:"inDeclarations"`
+	OutDeclarations DeclarationList `json:"outDeclarations"`
+	ProcStatements  StatementList   `json:"procStatements"`
 }
 
 type NodeVar struct {
@@ -47,5 +50,25 @@ type Connection struct {
 
 type Junction struct {
 	NodeId string `json:"nodeId"`
-	VarId  string `json:"VarId"`
+	VarId  string `json:"varId"`
+}
+
+type IfStatement struct {
+	Expression     Expression    `json:"expression"`
+	BodyStatements StatementList `json:"bodyStatements"`
+	ElseStatements StatementList `json:"elseStatements"`
+}
+
+type WhileStatement struct {
+	Condition      Expression    `json:"condition"`
+	BodyStatements StatementList `json:"bodyStatements"`
+}
+
+type Assignment struct {
+	Expression Expression `json:"expression"`
+}
+
+type AssignmentStatement struct {
+	Identifier string     `json:"identifier"`
+	Assignment Assignment `json:"assignment"`
 }
