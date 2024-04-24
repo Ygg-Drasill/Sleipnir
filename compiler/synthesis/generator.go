@@ -69,7 +69,7 @@ func (g *Generator) genNode(node *ast.Node) string {
 	}
 
 	for _, conn := range inputs {
-		g.write("todo %s -> %s\n", conn.OutId.NodeId, conn.InId.NodeId)
+		g.write(";; todo %s -> %s\n", conn.OutId.NodeId, conn.InId.NodeId)
 	}
 
 	g.gen(node.ProcStatements)
