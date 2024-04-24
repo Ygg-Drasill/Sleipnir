@@ -68,19 +68,22 @@ func (g *Generator) genNode(node *ast.Node) string {
 		inputs = append(inputs, conn)
 	}
 
-	for _, conn := range inputs {
-		g.write(";; todo %s -> %s\n", conn.OutId.NodeId, conn.InId.NodeId)
-	}
-
 	g.gen(node.ProcStatements)
 
 	connectedNodes := make(map[string]bool)
 	for _, conn := range *g.connections {
-		if conn.OutId.NodeId == node.Id && !connectedNodes[conn.InId.NodeId] {
-			g.write("call $%s\n", conn.InId.NodeId)
+		if conn.InId.NodeId == node.Id && !connectedNodes[conn.InId.NodeId] {
+			g.write("call $%s\n", conn.OutId.NodeId)
 			connectedNodes[conn.InId.NodeId] = true
 		}
 	}
+
+	for _, conn := range inputs {
+		g.write("global.get $%s.%s ;; Connection %s -> %s\n", conn.OutId.NodeId, conn.OutId.VarId, conn.OutId.NodeId, conn.InId.NodeId)
+	}
+
+	// TODO: Make return/drop if node has no connection
+	g.write("return\n")
 	g.write(")\n")
 	return ""
 }
