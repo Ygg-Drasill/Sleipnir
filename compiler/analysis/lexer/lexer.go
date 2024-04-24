@@ -20,7 +20,20 @@ type Lexer struct {
 	tokenList     []*token.Token
 }
 
-func NewLexerFromString(inputPath string) *Lexer {
+func NewLexerFromString(input string) *Lexer {
+	return &Lexer{
+		inputCode:   input,
+		inputLength: len(input),
+		tokenStart:  0,
+		cursor:      0,
+		cursorCol:   1,
+		cursorRow:   1,
+		tokens:      make(chan *token.Token),
+		tokenList:   make([]*token.Token, 0),
+	}
+}
+
+func NewLexerFromFilePath(inputPath string) *Lexer {
 	file, err := os.ReadFile(inputPath)
 	if err != nil {
 		panic(err)

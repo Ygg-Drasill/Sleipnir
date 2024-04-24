@@ -2,7 +2,7 @@ package utils
 
 import "strings"
 
-const alphanumericRunes = "abcdefghijklmnopqrstuvwxyz"
+const alphabeticRunes = "abcdefghijklmnopqrstuvwxyz"
 
 const numbers = "1234567890"
 
@@ -11,8 +11,8 @@ const operators = "&|!=+-*/%<>"
 const punctuation = ";:.(){}[]"
 
 func IsLetter(runeToCheck rune) bool {
-	lowercase := strings.ContainsRune(alphanumericRunes, runeToCheck)
-	uppercase := strings.ContainsRune(strings.ToUpper(alphanumericRunes), runeToCheck)
+	lowercase := strings.ContainsRune(alphabeticRunes, runeToCheck)
+	uppercase := strings.ContainsRune(strings.ToUpper(alphabeticRunes), runeToCheck)
 	return lowercase || uppercase
 }
 
