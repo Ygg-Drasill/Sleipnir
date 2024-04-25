@@ -45,8 +45,9 @@ func (g *Generator) genProgram(node *ast.Program) string {
 			outId := n.Id
 			outAss := outDec.AssigneeId
 
-			g.write("(global $%s.%s (mut i32) (i32.const 0))\n", outId, outAss)
+			g.write("(global $%s_%s (mut i32) (i32.const 0))\n", outId, outAss)
 		}
+		g.write("(global $%s_processed (mut i32) (i32.const 0))\n", n.Id)
 	}
 
 	for _, nodes := range node.Nodes {
@@ -68,17 +69,24 @@ func (g *Generator) genNode(node *ast.Node) string {
 		inputs = append(inputs, conn)
 	}
 
+	connectionsMemo := make(map[string]bool)
 	for _, conn := range inputs {
-		g.write("todo %s -> %s\n", conn.OutId.NodeId, conn.InId.NodeId)
+		if connectionsMemo[conn.InId.NodeId] {
+			break
+		}
+		g.write("global.get $%s_processed\n", conn.OutId.NodeId)
+		g.write("(if (then nop) (else return))\n")
+		connectionsMemo[conn.InId.NodeId] = true
 	}
 
 	g.gen(node.ProcStatements)
 
-	connectedNodes := make(map[string]bool)
+	clear(connectionsMemo)
+	connectionsMemo = make(map[string]bool)
 	for _, conn := range *g.connections {
-		if conn.OutId.NodeId == node.Id && !connectedNodes[conn.InId.NodeId] {
+		if conn.OutId.NodeId == node.Id && !connectionsMemo[conn.InId.NodeId] {
 			g.write("call $%s\n", conn.InId.NodeId)
-			connectedNodes[conn.InId.NodeId] = true
+			connectionsMemo[conn.InId.NodeId] = true
 		}
 	}
 	g.write(")\n")
