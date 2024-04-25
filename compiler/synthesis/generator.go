@@ -83,7 +83,7 @@ func (g *Generator) genNode(node *ast.Node) string {
 	}
 
 	// TODO: Make return/drop if node has no connection
-	g.write("return\n")
+	g.write(";; might need drop/return\n")
 	g.write(")\n")
 	return ""
 }

@@ -8,7 +8,7 @@
     global.get $Foo.x
     global.get $Foo.y
     i32.add
-    drop
+    ;; drop / return
   )
 
   (func $Foo
