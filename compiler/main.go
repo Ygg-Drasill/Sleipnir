@@ -3,10 +3,12 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	. "github.com/Ygg-Drasill/Sleipnir/compiler/analysis/lexer"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/ast"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/parser"
 	"os"
+
+	. "github.com/Ygg-Drasill/Sleipnir/compiler/analysis/lexer"
+	ost "github.com/Ygg-Drasill/Sleipnir/compiler/ast"
+	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/parser"
+	"github.com/Ygg-Drasill/Sleipnir/compiler/synthesis"
 )
 
 func main() {
@@ -15,7 +17,7 @@ func main() {
 	tokens := lexer.FindTokens()
 	scanner := NewScanner(tokens)
 	p := parser.NewParser()
-	p.Context = ast.NewParseContext()
+	p.Context = ost.NewParseContext()
 	var ast interface{}
 	var err error
 	if ast, err = p.Parse(scanner); err != nil {
@@ -28,4 +30,14 @@ func main() {
 	file, _ := os.OpenFile("AST_out.json", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
 	file.Write(bytes)
 	file.Close()
+	if prog, ok := ast.(ost.Program); ok {
+		codeGen := synthesis.GenWrapper(&prog)
+		fmt.Printf("%s", codeGen.String())
+		files, err := os.OpenFile("codeGen.wat", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
+		if err != nil {
+			panic(err)
+		}
+		files.Write(codeGen.Bytes())
+		files.Close()
+	}
 }
