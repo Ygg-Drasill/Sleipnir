@@ -1,18 +1,17 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
 	"fmt"
+	"github.com/Ygg-Drasill/Sleipnir/compiler/compile"
+	"log/slog"
 	"os"
-	"os/exec"
 	"path"
 
 	"github.com/spf13/cobra"
 )
 
 var (
+	versionBool   bool
 	compileString string
 )
 
@@ -21,14 +20,25 @@ var rootCmd = &cobra.Command{
 	Short: "Sleipnir is the preferred compiler by the norse gods",
 	Long:  `Sleipnir is the preferred compiler by the norse gods`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Sleipnir")
+		if versionBool {
+			fmt.Println("Version 0.0.1")
+			return
+		}
 
 		if compileString != "" {
 			compilePath := path.Clean(compileString)
 
-			go exec.Command("go", "run", "compiler/main.go", compilePath)
+			err := compile.Compile(compilePath)
+			if err != nil {
+				slog.Error("\nCompile Error", err)
+			}
 
-			fmt.Println("Compiled ", compilePath)
+			fmt.Println("\nCompiled ", compilePath)
+			return
+		}
+		err := cmd.Help()
+		if err != nil {
+			slog.Error("Error displaying help:", err)
 		}
 	},
 }
@@ -41,7 +51,7 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.Flags().BoolVarP(&versionBool, "version", "v", false, "shows current version")
 
-	rootCmd.Flags().StringVar(&compileString, "hammer-time", "", "")
+	rootCmd.Flags().StringVar(&compileString, "hammer-time", "", "Compile an ygl file to wasm")
 }
