@@ -13,6 +13,7 @@ import (
 var (
 	versionBool   bool
 	compileString string
+	goccBool      bool
 )
 
 var rootCmd = &cobra.Command{
@@ -36,6 +37,12 @@ var rootCmd = &cobra.Command{
 			fmt.Println("\nCompiled ", compilePath)
 			return
 		}
+
+		if goccBool {
+			// TODO: remove old gocc folder and create a new from bnf file
+			fmt.Println("goccBool")
+		}
+
 		err := cmd.Help()
 		if err != nil {
 			slog.Error("Error displaying help:", err)
@@ -54,4 +61,6 @@ func init() {
 	rootCmd.Flags().BoolVarP(&versionBool, "version", "v", false, "shows current version")
 
 	rootCmd.Flags().StringVar(&compileString, "hammer-time", "", "Compile an ygl file to wasm")
+
+	rootCmd.Flags().BoolVarP(&goccBool, "gocc", "g", false, "Create new gocc")
 }
