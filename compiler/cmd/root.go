@@ -5,6 +5,7 @@ import (
 	"github.com/Ygg-Drasill/Sleipnir/compiler/compile"
 	"log/slog"
 	"os"
+	"os/exec"
 	"path"
 
 	"github.com/spf13/cobra"
@@ -39,8 +40,18 @@ var rootCmd = &cobra.Command{
 		}
 
 		if goccBool {
-			// TODO: remove old gocc folder and create a new from bnf file
-			fmt.Println("goccBool")
+			_, err := exec.Command("rm", "-rf", "compiler/gocc").Output()
+			if err != nil {
+				slog.Error("\nError removing gocc folder", err)
+			}
+			fmt.Printf("gocc folder has been removed\n")
+
+			out, err := exec.Command("gocc", "-no_lexer", "-a", "-v", "-o", "compiler/gocc", "compiler/yggdrasill.bnf").Output()
+			if err != nil {
+				slog.Error("\nCompile Error", err)
+			}
+			fmt.Printf("%s", out)
+			return
 		}
 
 		err := cmd.Help()
