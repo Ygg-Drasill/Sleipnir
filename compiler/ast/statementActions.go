@@ -38,3 +38,12 @@ func NewStatementList(statement Attribute) (StatementList, error) {
 func AppendStatement(statementList, statement Attribute) (StatementList, error) {
 	return append(statementList.(StatementList), statement.(Statement)), nil
 }
+
+func NewAssignmentStatement(assignmentStatement Attribute) (AssignmentStatement, error) {
+	firstAssignmentStatement := assignmentStatement.(AssignmentStatement)
+	return AssignmentStatement{firstAssignmentStatement}, nil
+}
+
+func AppendAssignmentStatement(assignmentStatementList, assignmentStatement Attribute) (AssignmentStatement, error) {
+	return append(assignmentStatementList.(assignmentStatementList), assignmentStatement.(AssignmentStatement)), nil
+}

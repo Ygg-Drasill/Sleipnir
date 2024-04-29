@@ -9,9 +9,12 @@ type (
 
 type Statement Attribute
 
+type AssignmentStatement Attribute
+
 type (
-	StatementList   []Statement
-	DeclarationList []Declaration
+	StatementList           []Statement
+	DeclarationList         []Declaration
+	AssignmentStatementList []AssignmentStatement
 )
 
 type Declaration struct {
@@ -66,9 +69,4 @@ type WhileStatement struct {
 
 type Assignment struct {
 	Expression Expression `json:"expression"`
-}
-
-type AssignmentStatement struct {
-	Identifier string     `json:"identifier"`
-	Assignment Assignment `json:"assignment"`
 }
