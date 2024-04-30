@@ -42,7 +42,5 @@ func AppendStatement(statementList, statement Attribute) (StatementList, error) 
 func NewAssignmentStatement(assignment Attribute) (AssignmentStatement, error) {
 	return AssignmentStatement{
 		Expression: assignment.(Expression),
-		Identifier: "",
-		Assignment: assignment.(Assignment),
 	}, nil
 }
