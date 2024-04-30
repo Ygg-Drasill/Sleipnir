@@ -40,11 +40,19 @@ func (g *Generator) genProgram(node *ast.Program) string {
 
 	g.write("(module\n")
 
+	nodeHasRun := make(map[string]bool)
+	for _, n := range node.Nodes {
+		outId := n.Id
+		if !nodeHasRun[outId] {
+			g.write("(global $%s_Has_Run (mut i32) (i32.const 0))\n", outId)
+			nodeHasRun[outId] = true
+		}
+	}
+
 	for _, n := range node.Nodes {
 		for _, outDec := range n.OutDeclarations {
 			outId := n.Id
 			outAss := outDec.AssigneeId
-
 			g.write("(global $%s.%s (mut i32) (i32.const 0))\n", outId, outAss)
 		}
 	}
