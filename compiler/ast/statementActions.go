@@ -3,7 +3,6 @@ package ast
 import (
 	"errors"
 	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
-	"go/ast"
 )
 
 func NewDeclaration(context, varType, varId, expression Attribute) (Declaration, error) {
@@ -42,12 +41,8 @@ func AppendStatement(statementList, statement Attribute) (StatementList, error) 
 
 func NewAssignmentStatement(assignment Attribute) (AssignmentStatement, error) {
 	return AssignmentStatement{
-		Expression: Expression{
-			FirstOperand:  nil,
-			SecondOperand: nil,
-			Operator:      nil,
-		},
+		Expression: assignment.(Expression),
 		Identifier: "",
-		Assignment: ,
+		Assignment: assignment.(Assignment),
 	}, nil
 }
