@@ -73,3 +73,5 @@ type AssignmentStatement struct {
 	Identifier string     `json:"identifier"`
 	Assignment Assignment `json:"assignment"`
 }
+
+//
