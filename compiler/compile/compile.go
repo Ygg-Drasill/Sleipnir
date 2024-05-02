@@ -1,4 +1,4 @@
-package main
+package compile
 
 import (
 	"encoding/json"
@@ -11,8 +11,7 @@ import (
 	"github.com/Ygg-Drasill/Sleipnir/compiler/synthesis"
 )
 
-func main() {
-	var filePath string = os.Args[1]
+func Compile(filePath string) error {
 	lexer := NewLexerFromString(filePath)
 	tokens := lexer.FindTokens()
 	scanner := NewScanner(tokens)
@@ -22,7 +21,7 @@ func main() {
 	var err error
 	if ast, err = p.Parse(scanner); err != nil {
 		fmt.Println(err.Error())
-		return
+		return err
 	}
 
 	fmt.Println(ast)
@@ -35,9 +34,10 @@ func main() {
 		fmt.Printf("%s", codeGen.String())
 		files, err := os.OpenFile("codeGen.wat", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
 		if err != nil {
-			panic(err)
+			return err
 		}
 		files.Write(codeGen.Bytes())
 		files.Close()
 	}
+	return nil
 }
