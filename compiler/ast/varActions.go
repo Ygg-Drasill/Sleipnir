@@ -1,11 +1,22 @@
 package ast
 
-import "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
+import (
+	"errors"
+	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
+)
 
-//NodeVar : in "." VarId | out "." VarId | VarId  ;
+//NodeVar : in "." Id | out "." Id | Id  ;
 
 func NewNodeVar(ioType Attribute, varId Attribute) (NodeVar, error) {
 	varIdStr := string(varId.(*token.Token).Lit)
 	ioTypeStr := string(ioType.(*token.Token).Lit)
-	return NodeVar{IoType: ioTypeStr, VarId: varIdStr}, nil
+	return NodeVar{JunctionType: ioTypeStr, Id: varIdStr}, nil
+}
+
+func NewIdentifier(id Attribute) (*Identifier, error) {
+	idToken, ok := id.(*token.Token)
+	if !ok {
+		return nil, errors.New("identifier expected")
+	}
+	return &Identifier{Id: string(idToken.Lit)}, nil
 }

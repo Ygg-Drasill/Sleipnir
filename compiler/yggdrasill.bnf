@@ -68,8 +68,8 @@ NodeProc
 
 /* Statement productions */
 Identifier
-    : NodeVar
-    | varId
+    : NodeVar   << $0, nil >>
+    | varId     << ast.NewIdentifier($0) >>
     ;
 
 CompareOperator
