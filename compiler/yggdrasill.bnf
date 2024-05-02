@@ -101,7 +101,7 @@ Assignment
     ;
 
 AssignStmt
-    : Identifier Assignment stmtEnd << $0, nil >>
+    : Identifier Assignment stmtEnd << ast.NewAssignmentStatement($0, $1) >>
     ;
 
 ControlStmt
