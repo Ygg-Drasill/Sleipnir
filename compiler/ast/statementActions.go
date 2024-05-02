@@ -38,3 +38,10 @@ func NewStatementList(statement Attribute) (StatementList, error) {
 func AppendStatement(statementList, statement Attribute) (StatementList, error) {
 	return append(statementList.(StatementList), statement.(Statement)), nil
 }
+
+func NewAssignmentStatement(identifier, expression Attribute) (AssignmentStatement, error) {
+	return AssignmentStatement{
+		string(identifier.(*token.Token).Lit),
+		expression.(Expression),
+	}, nil
+}

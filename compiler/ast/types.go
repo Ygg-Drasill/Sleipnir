@@ -64,11 +64,7 @@ type WhileStatement struct {
 	BodyStatements StatementList `json:"bodyStatements"`
 }
 
-type Assignment struct {
-	Expression Expression `json:"expression"`
-}
-
 type AssignmentStatement struct {
-	Identifier string     `json:"identifier"`
-	Assignment Assignment `json:"assignment"`
+	Identifier string    `json:"identifier"`
+	Expression Attribute `json:"expression"`
 }
