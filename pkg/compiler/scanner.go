@@ -1,4 +1,4 @@
-package lexer
+package compiler
 
 import "github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
 

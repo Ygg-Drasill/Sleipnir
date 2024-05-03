@@ -17,9 +17,9 @@ func (g *Generator) write(code string, args ...interface{}) {
 }
 
 // GenWrapper starts the generation process from the root Program node.
-func GenWrapper(p *ast.Program) bytes.Buffer {
-	var b bytes.Buffer
-	generator := &Generator{outBuffer: &b, connections: &p.Connections}
+func GenWrapper(p *ast.Program) *bytes.Buffer {
+	b := new(bytes.Buffer)
+	generator := &Generator{outBuffer: b, connections: &p.Connections}
 	generator.gen(p)
 	return b
 }

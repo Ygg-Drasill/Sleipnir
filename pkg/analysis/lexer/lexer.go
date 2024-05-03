@@ -1,7 +1,6 @@
 package lexer
 
 import (
-	"os"
 	"unicode"
 	"unicode/utf8"
 
@@ -20,12 +19,7 @@ type Lexer struct {
 	tokenList     []*token.Token
 }
 
-func NewLexerFromString(inputPath string) *Lexer {
-	file, err := os.ReadFile(inputPath)
-	if err != nil {
-		panic(err)
-	}
-	input := string(file)
+func NewFromString(input string) *Lexer {
 	return &Lexer{
 		inputCode:   input,
 		inputLength: len(input),
