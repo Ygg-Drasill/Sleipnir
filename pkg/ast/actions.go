@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
 )
 
 func moveSymbolTable(src symbolTable, dest symbolTable) {

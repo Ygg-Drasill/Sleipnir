@@ -39,8 +39,12 @@ type Node struct {
 }
 
 type NodeVar struct {
-	IoType string `json:"ioType'"`
-	VarId  string `json:"varId"`
+	Id           string `json:"varId"`
+	JunctionType string `json:"junctionType'"`
+}
+
+type Identifier struct {
+	Id string `json:"id"`
 }
 
 type Connection struct {

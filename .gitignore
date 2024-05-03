@@ -114,7 +114,10 @@ fabric.properties
 *.vsix
 
 #gocc
-compiler/gocc
+pkg/gocc
 
 #misc
 AST_out.json
+
+# code generated wat file
+codeGen.wat

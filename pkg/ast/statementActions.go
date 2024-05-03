@@ -2,7 +2,7 @@ package ast
 
 import (
 	"errors"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
 )
 
 func NewDeclaration(context, varType, varId, expression Attribute) (Declaration, error) {
@@ -40,8 +40,20 @@ func AppendStatement(statementList, statement Attribute) (StatementList, error) 
 }
 
 func NewAssignmentStatement(identifier, expression Attribute) (AssignmentStatement, error) {
+	idNodeVar, isNodeVar := identifier.(NodeVar)
+	idLocal, isLocal := identifier.(Identifier)
+	var idString string
+
+	if isNodeVar {
+		idString = idNodeVar.Id
+	}
+
+	if isLocal {
+		idString = idLocal.Id
+	}
+
 	return AssignmentStatement{
-		string(identifier.(*token.Token).Lit),
+		idString,
 		expression.(Expression),
 	}, nil
 }

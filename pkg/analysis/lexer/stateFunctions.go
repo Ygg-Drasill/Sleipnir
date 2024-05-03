@@ -2,7 +2,7 @@ package lexer
 
 import (
 	"fmt"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/analysis/utils"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/analysis/utils"
 	"strings"
 )
 
