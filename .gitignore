@@ -114,7 +114,7 @@ fabric.properties
 *.vsix
 
 #gocc
-compiler/gocc
+pkg/gocc
 
 #misc
 AST_out.json

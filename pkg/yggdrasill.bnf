@@ -1,8 +1,8 @@
 <<
 import (
-    "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/util"
-    "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
-    "github.com/Ygg-Drasill/Sleipnir/compiler/ast"
+    "github.com/Ygg-Drasill/Sleipnir/pkg/gocc/util"
+    "github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
+    "github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 )
 >>
 
