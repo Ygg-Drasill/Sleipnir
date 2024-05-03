@@ -16,7 +16,7 @@ node Bar {
     }
 
     process {
-        out.c = in.a + in.b;
+        out.c = in.a + in.b * in.c / in.d + in.f;
     }
 }
 

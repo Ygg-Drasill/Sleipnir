@@ -1,6 +1,7 @@
 package compiler
 
 import (
+	"encoding/json"
 	"log/slog"
 	"os"
 
@@ -23,6 +24,11 @@ func (compiler *Compiler) Compile() {
 	if programNode, ok := syntaxTree.(ast.Program); ok {
 		compiler.outBuffer = synthesis.GenWrapper(&programNode)
 	}
+
+	bytes, _ := json.MarshalIndent(syntaxTree, "", "\t")
+	file, _ := os.OpenFile("AST_out.json", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
+	file.Write(bytes)
+	file.Close()
 }
 
 // WriteOutputToFile writes the stored webassembly to a new file, run this after Compile

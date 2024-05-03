@@ -3,6 +3,7 @@ package synthesis
 import (
 	"bytes"
 	"fmt"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
 
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 )
@@ -122,7 +123,7 @@ func (g *Generator) genAssStmt(node *ast.AssignmentStatement) string {
 
 func (g *Generator) genExpr(node *ast.Expression) string {
 
-	g.write("%s", node.Operator)
+	g.write("%s", string(node.Operator.(*token.Token).Lit))
 
 	return ""
 }
