@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/Ygg-Drasill/Sleipnir/pkg/compile"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/compiler"
 	"log/slog"
 	"os"
 	"os/exec"
@@ -29,13 +29,10 @@ var rootCmd = &cobra.Command{
 
 		if compileString != "" {
 			compilePath := path.Clean(compileString)
-
-			err := compile.Compile(compilePath)
-			if err != nil {
-				slog.Error("\nCompile Error", err)
-			}
-
-			fmt.Println("\nCompiled ", compilePath)
+			c := compiler.NewFromFile(compilePath)
+			c.Compile()
+			c.WriteOutputToFile("o.wat")
+			fmt.Println("Compilation done!", compilePath)
 			return
 		}
 
@@ -48,7 +45,7 @@ var rootCmd = &cobra.Command{
 
 			out, err := exec.Command("gocc", "-no_lexer", "-a", "-v", "-o", "compiler/gocc", "compiler/yggdrasill.bnf").Output()
 			if err != nil {
-				slog.Error("\nCompile Error", err)
+				slog.Error("\nCompileOld Error", err)
 			}
 			fmt.Printf("%s", out)
 			return
@@ -71,7 +68,7 @@ func Execute() {
 func init() {
 	rootCmd.Flags().BoolVarP(&versionBool, "version", "v", false, "shows current version")
 
-	rootCmd.Flags().StringVar(&compileString, "hammer-time", "", "Compile an ygl file to wasm")
+	rootCmd.Flags().StringVar(&compileString, "hammer-time", "", "CompileOld an ygl file to wasm")
 
 	rootCmd.Flags().BoolVarP(&goccBool, "gocc", "g", false, "Create new gocc")
 }
