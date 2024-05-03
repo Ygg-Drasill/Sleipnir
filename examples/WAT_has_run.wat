@@ -24,6 +24,7 @@
     global.set $Foo.x
 
 
+
     i32.const 1
     global.set $Foo_Has_Run
     call $Bar

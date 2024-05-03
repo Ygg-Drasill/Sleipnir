@@ -32,6 +32,12 @@ func (g *Generator) gen(node ast.Attribute) string {
 		return g.genNode(node)
 	case *ast.DeclarationList:
 		return g.genDecLst(node)
+	case *ast.Statement:
+		return g.genStmt(node)
+	case *ast.AssignmentStatement:
+		return g.genAssStmt(node)
+	case *ast.Expression:
+		return g.genExpr(node)
 	}
 	return ""
 }
@@ -44,9 +50,9 @@ func (g *Generator) genProgram(node *ast.Program) string {
 		for _, outDec := range n.OutDeclarations {
 			outId := n.Id
 			outAss := outDec.AssigneeId
-
 			g.write("(global $%s_%s (mut i32) (i32.const 0))\n", outId, outAss)
 		}
+
 		g.write("(global $%s_processed (mut i32) (i32.const 0))\n", n.Id)
 	}
 
@@ -79,7 +85,10 @@ func (g *Generator) genNode(node *ast.Node) string {
 		connectionsMemo[conn.InId.NodeId] = true
 	}
 
-	g.gen(node.ProcStatements)
+	for _, stmt := range node.ProcStatements {
+		stmtPtr := &stmt
+		g.gen(stmtPtr)
+	}
 
 	clear(connectionsMemo)
 	connectionsMemo = make(map[string]bool)
@@ -90,6 +99,31 @@ func (g *Generator) genNode(node *ast.Node) string {
 		}
 	}
 	g.write(")\n")
+	return ""
+}
+
+func (g *Generator) genStmt(node *ast.Statement) string {
+	if assStmt, ok := (*node).(ast.AssignmentStatement); ok {
+		assStmtPtr := &assStmt
+		g.gen(assStmtPtr)
+
+	}
+	return ""
+}
+
+func (g *Generator) genAssStmt(node *ast.AssignmentStatement) string {
+
+	expr := node.Expression.(ast.Expression)
+	exprPtr := &expr
+	g.gen(exprPtr)
+
+	return ""
+}
+
+func (g *Generator) genExpr(node *ast.Expression) string {
+
+	g.write("%s", node.Operator)
+
 	return ""
 }
 
