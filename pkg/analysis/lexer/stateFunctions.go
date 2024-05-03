@@ -2,7 +2,6 @@ package lexer
 
 import (
 	"fmt"
-	"github.com/Ygg-Drasill/Sleipnir/pkg/analysis/utils"
 	"strings"
 )
 
@@ -23,11 +22,11 @@ func matchPreprocessor(lexer *Lexer) StateFunction {
 
 func matchAny(lexer *Lexer) StateFunction {
 	currentRune := lexer.cursorNext()
-	if utils.IsLetter(currentRune) {
+	if isLetter(currentRune) {
 		return matchLetters
 	}
 
-	if utils.IsNumber(currentRune) {
+	if isNumber(currentRune) {
 		return matchNumbers
 	}
 
@@ -37,12 +36,12 @@ func matchAny(lexer *Lexer) StateFunction {
 	}
 
 	//TODO: logical operator
-	if utils.IsOperator(currentRune) {
+	if isOperator(currentRune) {
 		lexer.serveToken(TokenOperator)
 		return matchNonToken
 	}
 
-	if utils.IsPunctuation(currentRune) {
+	if isPunctuation(currentRune) {
 		lexer.serveToken(TokenPunctuation)
 		return matchNonToken
 	}
@@ -87,10 +86,10 @@ func matchNonToken(lexer *Lexer) StateFunction {
 func matchLetters(lexer *Lexer) StateFunction {
 	for {
 		currentRune := lexer.cursorNext()
-		if utils.IsNumber(currentRune) {
+		if isNumber(currentRune) {
 			return matchIdentifier
 		}
-		if !utils.IsLetter(currentRune) {
+		if !isLetter(currentRune) {
 			lexer.cursorBackup()
 			return matchKeyword
 		}
@@ -100,12 +99,12 @@ func matchLetters(lexer *Lexer) StateFunction {
 func matchNumbers(lexer *Lexer) StateFunction {
 	for {
 		currentRune := lexer.cursorNext()
-		if utils.IsLetter(currentRune) {
+		if isLetter(currentRune) {
 			//TODO: unexpected symbol
 			return nil
 		}
 
-		if !utils.IsNumber(currentRune) {
+		if !isNumber(currentRune) {
 			lexer.cursorBackup()
 			lexer.serveToken(TokenLiteral)
 			return matchNonToken
@@ -116,7 +115,7 @@ func matchNumbers(lexer *Lexer) StateFunction {
 func matchIdentifier(lexer *Lexer) StateFunction {
 	for {
 		currentRune := lexer.cursorNext()
-		if !utils.IsLetter(currentRune) && !utils.IsNumber(currentRune) {
+		if !isLetter(currentRune) && !isNumber(currentRune) {
 			lexer.cursorBackup()
 			lexer.serveToken(TokenIdentifier)
 			return matchNonToken
