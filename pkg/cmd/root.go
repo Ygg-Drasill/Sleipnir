@@ -68,7 +68,7 @@ func Execute() {
 func init() {
 	rootCmd.Flags().BoolVarP(&versionBool, "version", "v", false, "shows current version")
 
-	rootCmd.Flags().StringVar(&compileString, "hammer-time", "", "CompileOld an ygl file to wasm")
+	rootCmd.Flags().StringVar(&compileString, "hammer-time", "", "Compile an ygl file to wasm")
 
 	rootCmd.Flags().BoolVarP(&goccBool, "gocc", "g", false, "Create new gocc")
 }
