@@ -1,7 +1,6 @@
 package lexer
 
 import (
-	"os"
 	"unicode"
 	"unicode/utf8"
 
@@ -18,24 +17,6 @@ type Lexer struct {
 	cursorRow     int
 	tokens        chan *token.Token
 	tokenList     []*token.Token
-}
-
-func NewFromFile(inputPath string) *Lexer {
-	file, err := os.ReadFile(inputPath)
-	if err != nil {
-		panic(err)
-	}
-	input := string(file)
-	return &Lexer{
-		inputCode:   input,
-		inputLength: len(input),
-		tokenStart:  0,
-		cursor:      0,
-		cursorCol:   1,
-		cursorRow:   1,
-		tokens:      make(chan *token.Token),
-		tokenList:   make([]*token.Token, 0),
-	}
 }
 
 func NewFromString(input string) *Lexer {
