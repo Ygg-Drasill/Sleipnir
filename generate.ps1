@@ -1,3 +1,3 @@
-Remove-Item ./compiler/gocc -Recurse -Force
+Remove-Item ./pkg/gocc -Recurse -Force
 
-gocc -no_lexer -a -v -o "./compiler/gocc" compiler/yggdrasill.bnf
+gocc -no_lexer -a -v -o "./pkg/gocc" pkg/yggdrasill.bnf
