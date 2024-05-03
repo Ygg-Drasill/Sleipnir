@@ -24,7 +24,7 @@ jobs:
       run: chmod +x ./generate.sh && ./generate.sh
 
     - name: Build
-      run: go build -v ./...
+      run: go build -v ./cmd/sleipnir
 
     - name: Test
       uses: robherley/go-test-action@a612d1675dda7397d3bced585f8a2a3a8545455f # v0.4.1
