@@ -1,5 +1,5 @@
 #!/bin/bash
 
-rm -rf ./compiler/gocc
+rm -rf ./pkg/gocc
 
-gocc -no_lexer -a -v -o "./compiler/gocc" compiler/yggdrasill.bnf
+gocc -no_lexer -a -v -o "./pkg/gocc" pkg/yggdrasill.bnf
