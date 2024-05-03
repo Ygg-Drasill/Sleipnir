@@ -80,8 +80,21 @@ func (g *Generator) genNode(node *ast.Node) string {
 
 	connectedNodes := make(map[string]bool)
 	for _, conn := range *g.connections {
+		if conn.OutId.NodeId == node.Id && !connectedNodes[conn.OutId.NodeId] {
+			g.write("i32.const 1\n")
+			g.write("global.set $%s_Has_Run\n", conn.OutId.NodeId)
+			g.write("call $%s\n", conn.InId.NodeId)
+			connectedNodes[conn.OutId.NodeId] = true
+		}
+	}
+
+	for _, conn := range *g.connections {
 		if conn.InId.NodeId == node.Id && !connectedNodes[conn.InId.NodeId] {
-			g.write("call $%s\n", conn.OutId.NodeId)
+			g.write("global.get $%s_Has_Run\n", conn.OutId.NodeId)
+			g.write("(if\n")
+			g.write("(then\n")
+			g.write("return\n")
+			g.write(")\n)\n")
 			connectedNodes[conn.InId.NodeId] = true
 		}
 	}
