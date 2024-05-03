@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"os"
 
-	. "github.com/Ygg-Drasill/Sleipnir/compiler/analysis/lexer"
-	ost "github.com/Ygg-Drasill/Sleipnir/compiler/ast"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/parser"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/synthesis"
+	. "github.com/Ygg-Drasill/Sleipnir/pkg/analysis/lexer"
+	ost "github.com/Ygg-Drasill/Sleipnir/pkg/ast"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/parser"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/synthesis"
 )
 
 func Compile(filePath string) error {

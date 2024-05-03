@@ -1,7 +1,7 @@
 package ast
 
 import (
-	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
 )
 
 func AppendNode(nodeList, node Attribute) (NodeList, error) {

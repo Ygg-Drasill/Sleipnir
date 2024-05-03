@@ -2,7 +2,7 @@ package ast
 
 import (
 	"errors"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
 )
 
 func NewDeclaration(context, varType, varId, expression Attribute) (Declaration, error) {

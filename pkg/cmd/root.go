@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/compile"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/compile"
 	"log/slog"
 	"os"
 	"os/exec"

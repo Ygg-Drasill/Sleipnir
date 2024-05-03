@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/Ygg-Drasill/Sleipnir/compiler/ast"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 )
 
 type Generator struct {

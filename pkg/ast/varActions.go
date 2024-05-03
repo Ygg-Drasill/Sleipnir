@@ -2,7 +2,7 @@ package ast
 
 import (
 	"errors"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
 )
 
 //NodeVar : in "." Id | out "." Id | Id  ;

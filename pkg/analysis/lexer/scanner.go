@@ -1,6 +1,6 @@
 package lexer
 
-import "github.com/Ygg-Drasill/Sleipnir/compiler/gocc/token"
+import "github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
 
 type Scanner struct {
 	tokens []*token.Token
