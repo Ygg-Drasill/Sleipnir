@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
+	"log/slog"
 
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 )
@@ -122,9 +123,49 @@ func (g *Generator) genAssStmt(node *ast.AssignmentStatement) string {
 }
 
 func (g *Generator) genExpr(node *ast.Expression) string {
+	if exprFirstOp, ok := node.FirstOperand.(ast.Expression); ok {
+		exprFirstOpPtr := &exprFirstOp
+		g.genExpr(exprFirstOpPtr)
+	} else if node.FirstOperand != nil {
+		if attr, ok := node.FirstOperand.(ast.Attribute); ok {
+			g.genFactor(&attr)
+		} else {
+			slog.Error("Expected an attribute")
+		}
+	}
 
-	g.write("%s", string(node.Operator.(*token.Token).Lit))
+	if exprSecondOp, ok := node.SecondOperand.(ast.Expression); ok {
+		exprSecondOpPtr := &exprSecondOp
+		g.genExpr(exprSecondOpPtr)
+	} else if node.SecondOperand != nil {
+		if attr, ok := node.SecondOperand.(ast.Attribute); ok {
+			g.genFactor(&attr)
+		} else {
+			slog.Error("Expected an attribute")
+		}
+	}
 
+	exprOp := string(node.Operator.(*token.Token).Lit)
+
+	if exprOp == "+" {
+		g.write("i32.add\n")
+	} else if exprOp == "-" {
+		g.write("i32.sub\n")
+	} else if exprOp == "*" {
+		g.write("i32.mul\n")
+	} else if exprOp == "/" {
+		g.write("i32.div_u\n")
+	} else {
+		slog.Error("Unknown operator")
+	}
+
+	return ""
+}
+
+func (g *Generator) genFactor(node *ast.Attribute) string {
+	if factor, ok := (*node).(ast.NodeVar); ok {
+		g.write("%s\n", factor.Id)
+	}
 	return ""
 }
 
