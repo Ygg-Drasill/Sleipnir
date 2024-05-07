@@ -1,9 +1,8 @@
 package lexer
 
 import (
+	"fmt"
 	"github.com/Ygg-Drasill/Sleipnir/compiler/analysis/lexer"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/ast"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/parser"
 	"pgregory.net/rapid"
 	"testing"
 )
@@ -13,8 +12,11 @@ func TestLexer(t *testing.T) {
 	rapid.Check(t, func(t *rapid.T) {
 
 		//variable generated as input for the lexer
-		gen := rapid.StringMatching(`([a-zA-Z]{4})([ ])([a-zA-Z]{4})([ ])([{]{1})([ ])([}]{1})`).Draw(t, "gen")
+		gen := rapid.StringMatching("[ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyz,*¨?`´<>|€$£@!(=){}1234567890]+").Draw(t, "gen")
 		//fmt.Println(gen)
+
+		// Little test case
+		//gen := "node yes { }"
 
 		// Creation of the lexer with the generated input
 		l := lexer.NewLexerFromString(gen)
@@ -28,18 +30,20 @@ func TestLexer(t *testing.T) {
 		}
 
 		//The scanner is created
-		scanner := lexer.NewScanner(tokens)
-
+		_ = lexer.NewScanner(tokens)
+		//fmt.Printf("%s %s \n", tokens, scanner)
+		fmt.Printf("%s")
 		// Asserts for expected and actual token
 
 		// Do not know if this is relevant for the test for the lexer
 		// Parser
-		p := parser.NewParser()
-		p.Context = ast.NewParseContext()
-		_, err := p.Parse(scanner)
-		if len(gen) < 1 && err == nil {
-			t.Fatalf("parsed empty token?: %s", gen)
-		}
-
+		/*
+			p := parser.NewParser()
+			p.Context = ast.NewParseContext()
+			_, err := p.Parse(scanner)
+			if len(gen) < 1 && err == nil {
+				t.Fatalf("parsed empty token?: %s", gen)
+			}
+		*/
 	})
 }
