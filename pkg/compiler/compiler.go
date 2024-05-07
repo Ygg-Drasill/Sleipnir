@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
-	"github.com/Ygg-Drasill/Sleipnir/pkg/synthesis"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/generator"
 )
 
 // Compile runs the lexer, parser and code generator
@@ -21,10 +21,14 @@ func (compiler *Compiler) Compile() {
 		return
 	}
 
-	if programNode, ok := syntaxTree.(ast.Program); ok {
-		compiler.outBuffer = synthesis.GenWrapper(&programNode)
+	programNode, ok := syntaxTree.(ast.Program)
+	if !ok {
+		slog.Error("root is not a program")
 	}
 
+	ctx := compiler.parser.Context.(ast.ParseContext)
+	gen := generator.New(&programNode, &ctx)
+	compiler.outBuffer = gen.GenWrapper()
 	bytes, _ := json.MarshalIndent(syntaxTree, "", "\t")
 	file, _ := os.OpenFile("AST_out.json", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
 	file.Write(bytes)
