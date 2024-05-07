@@ -12,33 +12,31 @@ func TestLexer(t *testing.T) {
 
 	rapid.Check(t, func(t *rapid.T) {
 
-		//formatFile, err := os.ReadFile("../data/samples/valid/addition.ygl")
-		//format := string(formatFile)
-		//if err != nil { panic(err)	}
-		//rapid.Check(&t, func(t *rapid.T) {	})
-
 		//variable generated as input for the lexer
-		gen := rapid.StringMatching(`([a-zA-Z]+{4}) ([ ]) ([a-zA-Z]+{4})
-										 ([ ])
-										 ([a-zA-Z]+{1}) ([ ]) ([a-zA-Z]+{1})`).Draw(t, "gen")
+		gen := rapid.StringMatching(`([a-zA-Z]{4})([ ])([a-zA-Z]{4})([ ])([{]{1})([ ])([}]{1})`).Draw(t, "gen")
+		//fmt.Println(gen)
 
 		// Creation of the lexer with the generated input
 		l := lexer.NewLexerFromString(gen)
 		tokens := l.FindTokens()
-		var b = len(tokens)
-		if b < 1 {
-			t.Fatalf("")
+		//fmt.Printf("%s", tokens)
+
+		// Checks if there is any tokens
+		var tokenLen = len(tokens)
+		if tokenLen < 1 {
+			t.Fatalf("No tokens made")
 		}
 
+		//The scanner is created
 		scanner := lexer.NewScanner(tokens)
 
 		// Asserts for expected and actual token
 
+		// Do not know if this is relevant for the test for the lexer
 		// Parser
 		p := parser.NewParser()
 		p.Context = ast.NewParseContext()
 		_, err := p.Parse(scanner)
-
 		if len(gen) < 1 && err == nil {
 			t.Fatalf("parsed empty token?: %s", gen)
 		}
