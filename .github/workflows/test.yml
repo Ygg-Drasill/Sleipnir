@@ -10,10 +10,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+    - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
 
     - name: Set up Go
-      uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5
+      uses: actions/setup-go@cdcb36043654635271a94b9a6d1392de5bb323a7 # v5
       with:
         go-version: 1.22
 
@@ -24,7 +24,7 @@ jobs:
       run: chmod +x ./generate.sh && ./generate.sh
 
     - name: Build
-      run: go build -v ./...
+      run: go build -v ./cmd/sleipnir
 
     - name: Test
       uses: robherley/go-test-action@a612d1675dda7397d3bced585f8a2a3a8545455f # v0.4.1
