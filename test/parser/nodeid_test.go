@@ -2,9 +2,10 @@ package parser
 
 import (
 	"fmt"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/analysis/lexer"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/ast"
-	"github.com/Ygg-Drasill/Sleipnir/compiler/gocc/parser"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/analysis/lexer"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/compiler"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/parser"
 	"os"
 	"pgregory.net/rapid"
 	"strings"
@@ -27,9 +28,9 @@ func TestNodeId(t *testing.T) {
 		sampleNodeIdGen := rapid.SliceOfBytesMatching("[ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyz]+")
 		sampleNodeId := string(sampleNodeIdGen.Draw(t, "Node id"))
 		sample := fmt.Sprintf(format, sampleNodeId)
-		l := lexer.NewLexerFromString(sample)
+		l := lexer.NewFromString(sample)
 		tokens := l.FindTokens()
-		scanner := lexer.NewScanner(tokens)
+		scanner := compiler.NewScanner(tokens)
 		p := parser.NewParser()
 		p.Context = ast.NewParseContext()
 		_, err := p.Parse(scanner)
