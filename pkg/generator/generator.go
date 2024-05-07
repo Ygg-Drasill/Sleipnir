@@ -140,18 +140,22 @@ func (g *Generator) genExpr(node *ast.Expression) string {
 
 	exprOp := string(node.Operator.(*token.Token).Lit)
 
-	if exprOp == "+" {
+	switch exprOp {
+	case "+":
 		g.write("i32.add\n")
-	} else if exprOp == "-" {
+		break
+	case "-":
 		g.write("i32.sub\n")
-	} else if exprOp == "*" {
+		break
+	case "*":
 		g.write("i32.mul\n")
-	} else if exprOp == "/" {
+		break
+	case "/":
 		g.write("i32.div_s\n")
-	} else {
-		slog.Error("Unknown operator")
+		break
+	default:
+		slog.Error("Failed to generate unknown operator")
 	}
-
 	return ""
 }
 
