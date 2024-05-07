@@ -7,10 +7,10 @@ import (
 
 //NodeVar : in "." Id | out "." Id | Id  ;
 
-func NewNodeVar(ioType Attribute, varId Attribute) (NodeVar, error) {
+func NewNodeVar(ioType, varId Attribute) (NodeVar, error) {
 	varIdStr := string(varId.(*token.Token).Lit)
 	ioTypeStr := string(ioType.(*token.Token).Lit)
-	return NodeVar{JunctionType: ioTypeStr, Node: nil, Id: varIdStr}, nil
+	return NodeVar{JunctionType: ioTypeStr, Id: varIdStr}, nil
 }
 
 func NewLocalVar(id Attribute) (*LocalVar, error) {

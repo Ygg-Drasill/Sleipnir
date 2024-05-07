@@ -64,7 +64,7 @@ func (g *Generator) genNode(node *ast.Node) string {
 
 	inputs := make([]ast.Connection, 0)
 	for _, conn := range g.syntaxTree.Connections {
-		if conn.InId.NodeId != node.Id {
+		if conn.InJunction.NodeId != node.Id {
 			continue
 		}
 		inputs = append(inputs, conn)
@@ -72,12 +72,12 @@ func (g *Generator) genNode(node *ast.Node) string {
 
 	connectionsMemo := make(map[string]bool)
 	for _, conn := range inputs {
-		if connectionsMemo[conn.InId.NodeId] {
+		if connectionsMemo[conn.InJunction.NodeId] {
 			break
 		}
-		g.write("global.get $%s_processed\n", conn.OutId.NodeId)
+		g.write("global.get $%s_processed\n", conn.OutJunction.NodeId)
 		g.write("(if (then nop) (else return))\n")
-		connectionsMemo[conn.InId.NodeId] = true
+		connectionsMemo[conn.InJunction.NodeId] = true
 	}
 
 	for _, stmt := range node.ProcStatements {
@@ -88,9 +88,9 @@ func (g *Generator) genNode(node *ast.Node) string {
 	clear(connectionsMemo)
 	connectionsMemo = make(map[string]bool)
 	for _, conn := range g.syntaxTree.Connections {
-		if conn.OutId.NodeId == node.Id && !connectionsMemo[conn.InId.NodeId] {
-			g.write("call $%s\n", conn.InId.NodeId)
-			connectionsMemo[conn.InId.NodeId] = true
+		if conn.OutJunction.NodeId == node.Id && !connectionsMemo[conn.InJunction.NodeId] {
+			g.write("call $%s\n", conn.InJunction.NodeId)
+			connectionsMemo[conn.InJunction.NodeId] = true
 		}
 	}
 	g.write(")\n")
@@ -149,7 +149,7 @@ func (g *Generator) genExprOperand(node *ast.Attribute) {
 }
 
 func (g *Generator) genValue(node *ast.Attribute) string {
-	if identifier, ok := isIdentifier(node); ok {
+	if identifier, ok := g.isIdentifier(node); ok {
 		g.genVarUsage(&identifier)
 	}
 	return ""
@@ -160,13 +160,13 @@ func (g *Generator) genVarUsage(node *Identifier) string {
 	if !ok {
 		slog.Error("Failed to generate identifier")
 	}
-	label := identifier.getLabel(g.currentNode.Id)
+
+	label := identifier.getOperation()
 	g.write("%s\n", label)
 	return ""
 }
 
 func (g *Generator) genDecLst(node *ast.DeclarationList) string {
-
 	value := node
 	g.write(" (param $%s i64)", value)
 	return ""

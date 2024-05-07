@@ -2,10 +2,14 @@ package generator
 
 import "github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 
-func isIdentifier(attr *ast.Attribute) (Identifier, bool) {
+func (g *Generator) isIdentifier(attr *ast.Attribute) (Identifier, bool) {
+
 	if i, ok := (*attr).(ast.NodeVar); ok {
+		sourceJunction := g.outNodeVars[junctionKey(g.currentNode.Id, i.Id)]
 		newIdentifier := NodeIdentifier{
-			i,
+			NodeVar:        i,
+			sourceJunction: sourceJunction,
+			nodeId:         g.currentNode.Id,
 		}
 		return newIdentifier, true
 	}

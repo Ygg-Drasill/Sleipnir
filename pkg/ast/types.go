@@ -41,7 +41,6 @@ type Node struct {
 type NodeVar struct {
 	Id           string `json:"id"`
 	JunctionType string `json:"junctionType'"`
-	Node         *Node
 }
 
 type LocalVar struct {
@@ -49,8 +48,8 @@ type LocalVar struct {
 }
 
 type Connection struct {
-	OutId Junction `json:"outId"`
-	InId  Junction `json:"inId"`
+	OutJunction Junction `json:"outId"`
+	InJunction  Junction `json:"inId"`
 }
 
 type Junction struct {
