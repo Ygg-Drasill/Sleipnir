@@ -11,7 +11,7 @@ type Generator struct {
 	syntaxTree  *ast.Program
 	context     *ast.ParseContext
 	currentNode *ast.Node
-	outNodeVars map[string]ast.Junction
+	outNodeVars map[string]*ast.Junction
 }
 
 func New(tree *ast.Program, ctx *ast.ParseContext) *Generator {
@@ -19,7 +19,7 @@ func New(tree *ast.Program, ctx *ast.ParseContext) *Generator {
 		outBuffer:   new(bytes.Buffer),
 		syntaxTree:  tree,
 		context:     ctx,
-		outNodeVars: make(map[string]ast.Junction),
+		outNodeVars: make(map[string]*ast.Junction),
 	}
 	newGen.memoOutVariables()
 	return newGen
@@ -27,7 +27,7 @@ func New(tree *ast.Program, ctx *ast.ParseContext) *Generator {
 
 func (g *Generator) memoOutVariables() {
 	for _, v := range g.syntaxTree.Connections {
-		g.outNodeVars[junctionToKey(v.InJunction)] = v.OutJunction
+		g.outNodeVars[junctionToKey(v.InJunction)] = &v.OutJunction
 	}
 }
 

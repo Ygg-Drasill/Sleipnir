@@ -16,7 +16,7 @@ type Identifier interface {
 
 type NodeIdentifier struct {
 	ast.NodeVar
-	sourceJunction ast.Junction
+	sourceJunction *ast.Junction
 	nodeId         string
 }
 
