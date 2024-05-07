@@ -3,10 +3,9 @@ package generator
 import (
 	"bytes"
 	"fmt"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
 	"log/slog"
-
-	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 )
 
 func (g *Generator) write(code string, args ...interface{}) {
@@ -60,6 +59,7 @@ func (g *Generator) genProgram(node *ast.Program) string {
 }
 
 func (g *Generator) genNode(node *ast.Node) string {
+	g.currentNode = node
 	g.write("(func $%s\n", node.Id)
 
 	inputs := make([]ast.Connection, 0)
@@ -116,27 +116,8 @@ func (g *Generator) genAssStmt(node *ast.AssignmentStatement) string {
 }
 
 func (g *Generator) genExpr(node *ast.Expression) string {
-	if exprFirstOp, ok := node.FirstOperand.(ast.Expression); ok {
-		exprFirstOpPtr := &exprFirstOp
-		g.genExpr(exprFirstOpPtr)
-	} else if node.FirstOperand != nil {
-		if attr, ok := node.FirstOperand.(ast.Attribute); ok {
-			g.genFactor(&attr)
-		} else {
-			slog.Error("Expected an attribute")
-		}
-	}
-
-	if exprSecondOp, ok := node.SecondOperand.(ast.Expression); ok {
-		exprSecondOpPtr := &exprSecondOp
-		g.genExpr(exprSecondOpPtr)
-	} else if node.SecondOperand != nil {
-		if attr, ok := node.SecondOperand.(ast.Attribute); ok {
-			g.genFactor(&attr)
-		} else {
-			slog.Error("Expected an attribute")
-		}
-	}
+	g.genExprOperand(&node.FirstOperand)
+	g.genExprOperand(&node.SecondOperand)
 
 	exprOp := string(node.Operator.(*token.Token).Lit)
 
@@ -159,10 +140,28 @@ func (g *Generator) genExpr(node *ast.Expression) string {
 	return ""
 }
 
-func (g *Generator) genFactor(node *ast.Attribute) string {
-	if factor, ok := (*node).(ast.NodeVar); ok {
-		g.write("%s\n", factor.Id)
+func (g *Generator) genExprOperand(node *ast.Attribute) {
+	if operand, ok := (*node).(ast.Expression); ok {
+		g.genExpr(&operand)
+	} else {
+		g.genValue(node)
 	}
+}
+
+func (g *Generator) genValue(node *ast.Attribute) string {
+	if identifier, ok := isIdentifier(node); ok {
+		g.genVarUsage(&identifier)
+	}
+	return ""
+}
+
+func (g *Generator) genVarUsage(node *Identifier) string {
+	identifier, ok := (*node).(Identifier)
+	if !ok {
+		slog.Error("Failed to generate identifier")
+	}
+	label := identifier.getLabel(g.currentNode.Id)
+	g.write("%s\n", label)
 	return ""
 }
 

@@ -6,9 +6,10 @@ import (
 )
 
 type Generator struct {
-	outBuffer  *bytes.Buffer
-	syntaxTree *ast.Program
-	context    *ast.ParseContext
+	outBuffer   *bytes.Buffer
+	syntaxTree  *ast.Program
+	context     *ast.ParseContext
+	currentNode *ast.Node
 }
 
 func New(tree *ast.Program, ctx *ast.ParseContext) *Generator {

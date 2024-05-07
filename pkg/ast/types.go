@@ -39,11 +39,12 @@ type Node struct {
 }
 
 type NodeVar struct {
-	Id           string `json:"varId"`
+	Id           string `json:"id"`
 	JunctionType string `json:"junctionType'"`
+	Node         *Node
 }
 
-type Identifier struct {
+type LocalVar struct {
 	Id string `json:"id"`
 }
 

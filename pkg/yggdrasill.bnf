@@ -69,7 +69,7 @@ NodeProc
 /* Statement productions */
 Identifier
     : NodeVar   << $0, nil >>
-    | varId     << ast.NewIdentifier($0) >>
+    | varId     << ast.NewLocalVar($0) >>
     ;
 
 CompareOperator
@@ -152,7 +152,7 @@ Term
     ;
 
 Factor
-    : lp Expression rp
-    | int64 	<< util.IntValue($0.(*token.Token).Lit) >>
-    | Identifier   << $0, nil >>
+    : lp Expression rp      << $1, nil >>
+    | int64 	            << util.IntValue($0.(*token.Token).Lit) >>
+    | Identifier            << $0, nil >>
     ;
