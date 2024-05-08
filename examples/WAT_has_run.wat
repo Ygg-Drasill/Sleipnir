@@ -4,14 +4,25 @@
   (global $Foo.x (mut i32) (i32.const 0))
 
   (func $Bar
+    (local $a i32)
+    (local $b i32)
     global.get $Foo_Has_Run
     (if
       (then
-      	return
+        nop
+      )
+      (else
+        return
       )
     )
-    global.get $Foo.x
-    global.get $Foo.y
+    (global.get $Foo.x)
+    (local.set $a)
+    (global.get $Foo.y)
+    (local.set $b)
+
+    (local.get $a)
+    (local.get $b)
+
     i32.add
     return
   )
@@ -22,6 +33,7 @@
     global.set $Foo.y
     i32.const 2
     global.set $Foo.x
+
 
 
     i32.const 1
