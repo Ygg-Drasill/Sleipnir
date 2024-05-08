@@ -14,25 +14,38 @@ type Identifier interface {
 	setOperation() string
 }
 
-type NodeIdentifier struct {
+type NodeInIdentifier struct {
 	ast.NodeVar
 	sourceJunction *ast.Junction
 	nodeId         string
+}
+
+type NodeOutIdentifier struct {
+	ast.NodeVar
+	nodeId string
 }
 
 type LocalIdentifier struct {
 	ast.LocalVar
 }
 
-func (identifier NodeIdentifier) getOperation() string {
+func (identifier NodeInIdentifier) getOperation() string {
 	return fmt.Sprintf("global.get $%s_%s", identifier.sourceJunction.NodeId, identifier.sourceJunction.VarId)
+}
+
+func (identifier NodeOutIdentifier) getOperation() string {
+	return fmt.Sprintf("global.get $%s_%s", identifier.nodeId, identifier.Id)
 }
 
 func (identifier LocalIdentifier) getOperation() string {
 	return fmt.Sprintf("local.get $%s", identifier.Id)
 }
 
-func (identifier NodeIdentifier) setOperation() string {
+func (identifier NodeInIdentifier) setOperation() string {
+	return fmt.Sprintf("global.set $%s_%s", identifier.nodeId, identifier.Id)
+}
+
+func (identifier NodeOutIdentifier) setOperation() string {
 	return fmt.Sprintf("global.set $%s_%s", identifier.nodeId, identifier.Id)
 }
 

@@ -69,6 +69,6 @@ type WhileStatement struct {
 }
 
 type AssignmentStatement struct {
-	Identifier string    `json:"identifier"`
+	Identifier Attribute `json:"identifier"`
 	Expression Attribute `json:"expression"`
 }

@@ -40,20 +40,8 @@ func AppendStatement(statementList, statement Attribute) (StatementList, error) 
 }
 
 func NewAssignmentStatement(identifier, expression Attribute) (AssignmentStatement, error) {
-	idNodeVar, isNodeVar := identifier.(NodeVar)
-	idLocal, isLocal := identifier.(LocalVar)
-	var idString string
-
-	if isNodeVar {
-		idString = idNodeVar.Id
-	}
-
-	if isLocal {
-		idString = idLocal.Id
-	}
-
 	return AssignmentStatement{
-		idString,
-		expression.(Expression),
+		identifier,
+		expression,
 	}, nil
 }

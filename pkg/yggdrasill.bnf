@@ -33,7 +33,7 @@ ConnIn
 
 NodeLst
     : Node          << ast.NewNodeList($0) >>
-    | Node NodeLst  << ast.AppendNode($1, $0) >>
+    | NodeLst Node  << ast.AppendNode($0, $1) >>
     ;
 
 ConnLst
@@ -47,7 +47,6 @@ Type : int | bool | string ;
 NodeVar
     : in period varId     << ast.NewNodeVar($0, $2) >>
     | out period varId    << ast.NewNodeVar($0, $2) >>
-    | varId
     ;
 
 NodeIn
@@ -62,7 +61,7 @@ NodeOut
 
 NodeProc
     : process lcurly StmtLst rcurly << ast.NewScopeProc($Context, $2) >>
-    | process lcurly "}"         << ast.NewScopeProc($Context, nil) >>
+    | process lcurly rcurly         << ast.NewScopeProc($Context, nil) >>
     | empty
     ;
 
@@ -124,7 +123,7 @@ Stmt
     ;
 
 StmtLst
-    : Stmt StmtLst  << ast.AppendStatement($1, $0) >>
+    : StmtLst Stmt  << ast.AppendStatement($0, $1) >>
     | Stmt          << ast.NewStatementList($0) >>
     | empty
     ;
