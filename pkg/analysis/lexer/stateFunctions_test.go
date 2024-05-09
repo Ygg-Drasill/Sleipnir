@@ -5,25 +5,25 @@ import (
 	"testing"
 )
 
-func TestStateFunction(t *testing.T) {
+func TestStateFunction_matchNumber(t *testing.T) {
 
 	// To perform multi tests
 	rapid.Check(t, func(t *rapid.T) {
 
 		// Test for letters using matchNumbers
-		genLetter := rapid.StringMatching("[ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyz]+").Draw(t, "genLetter")
-		l := NewFromString(genLetter)
-		v := matchNumbers(l)
-		tokenListLength := len(l.tokenList)
-		if v == nil {
-			t.Fatalf("No tokens was made, Tokenlist: %v length: %d ", l.tokenList, tokenListLength)
+		genLetter := rapid.StringMatching("[A-Za-z]+").Draw(t, "genLetter")
+		lLetter := NewFromString(genLetter)
+		matchNumbers(lLetter)
+		if len(lLetter.tokenList) > 0 {
+			t.Fatalf("Tokens were made, Tokenlist: %v ", lLetter.tokenList)
 		}
 
+		// Test for Numbers using matchNumbers
+		genNumber := rapid.StringMatching("[0-9]+").Draw(t, "genNumber")
+		lNumber := NewFromString(genNumber)
+		matchNumbers(lNumber)
+		if len(lNumber.tokenList) == 0 {
+			t.Fatalf("No tokens were made, Tokenlist: %v ", lNumber.tokenList)
+		}
 	})
 }
-
-/*
-	for i, token := range l.tokenList {
-		fmt.Printf("index:%d tokenType:%v tokenvalue:%v \n", i, token.Type, token.IDValue())
-	}
-*/
