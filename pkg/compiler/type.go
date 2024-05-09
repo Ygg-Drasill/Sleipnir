@@ -2,9 +2,9 @@ package compiler
 
 import (
 	"bytes"
-	"github.com/Ygg-Drasill/Sleipnir/pkg/analysis/lexer"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/parser"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/lexer"
 	"github.com/Ygg-Drasill/Sleipnir/utils"
 	"log/slog"
 	"os"

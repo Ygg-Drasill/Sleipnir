@@ -2,10 +2,10 @@ package parser
 
 import (
 	"fmt"
-	"github.com/Ygg-Drasill/Sleipnir/pkg/analysis/lexer"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/compiler"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/parser"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/lexer"
 	"os"
 	"pgregory.net/rapid"
 	"strings"
