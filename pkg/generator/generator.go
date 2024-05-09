@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/generator/standardTemplates"
+	"log"
 )
 
 func (g *Generator) write(code string, args ...interface{}) {
@@ -39,12 +41,24 @@ func (g *Generator) gen(node ast.Attribute) string {
 func (g *Generator) genProgram(node *ast.Program) string {
 
 	g.write("(module\n")
+	g.write("%s\n", imports)
 
 	for _, n := range node.Nodes {
 		for _, outDec := range n.OutDeclarations {
-			outId := n.Id
-			outAss := outDec.AssigneeId
-			g.write("(global $%s_%s (mut i32) (i32.const 0))\n", outId, outAss)
+			nodeId := n.Id
+			varId := outDec.AssigneeId
+			g.write("(global $%s_%s (mut i32) (i32.const 0))\n", nodeId, varId)
+		}
+
+		if len(n.TemplateId) > 0 {
+			template := standardTemplates.StandardTemplates[n.TemplateId]
+			if template == nil {
+				log.Fatalf("template does not exist for %s\n", n.TemplateId)
+			}
+			for _, outId := range template.Outputs {
+				nodeId := n.Id
+				g.write("(global $%s_%s (mut i32) (i32.const 0))\n", nodeId, outId)
+			}
 		}
 
 		g.write("(global $%s_processed (mut i32) (i32.const 0))\n", n.Id)

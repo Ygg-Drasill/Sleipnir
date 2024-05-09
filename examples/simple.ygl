@@ -22,8 +22,12 @@ node Bar {
     }
 }
 
+node Add0 : Add;
+
 node Print0 : Print;
 
 Foo.out.x -> Bar.in.a;
 Foo.out.y -> Bar.in.b;
-Bar.out.c -> Print0.in.text;
+Foo.out.x -> Add0.in.a;
+Bar.out.c -> Add0.in.b;
+Add0.out.result -> Print0.in.text;

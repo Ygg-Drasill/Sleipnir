@@ -33,6 +33,7 @@ type Program struct {
 
 type Node struct {
 	Id              string          `json:"id"`
+	TemplateId      string          `json:"templateId"`
 	InDeclarations  DeclarationList `json:"inDeclarations"`
 	OutDeclarations DeclarationList `json:"outDeclarations"`
 	ProcStatements  StatementList   `json:"procStatements"`
