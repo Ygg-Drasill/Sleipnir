@@ -72,3 +72,12 @@ type AssignmentStatement struct {
 	Identifier Attribute `json:"identifier"`
 	Expression Attribute `json:"expression"`
 }
+
+type Template struct {
+	Node
+}
+
+type TemplateUse struct {
+	TemplateId string `json:"templateId"`
+	NodeId     string `json:"nodeId"`
+}

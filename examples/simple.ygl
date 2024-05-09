@@ -22,5 +22,8 @@ node Bar {
     }
 }
 
+node Print0 : Print;
+
 Foo.out.x -> Bar.in.a;
 Foo.out.y -> Bar.in.b;
+Bar.out.c -> Print0.in.text;

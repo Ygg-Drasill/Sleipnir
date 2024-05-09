@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
-	"reflect"
 )
 
 func (g *Generator) write(code string, args ...interface{}) {
@@ -18,7 +17,6 @@ func (g *Generator) GenWrapper() *bytes.Buffer {
 }
 
 func (g *Generator) gen(node ast.Attribute) string {
-	fmt.Println(reflect.TypeOf(node))
 	switch node := node.(type) {
 	case *ast.Program:
 		return g.genProgram(node)

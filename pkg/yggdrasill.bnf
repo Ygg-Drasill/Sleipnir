@@ -15,6 +15,7 @@ ProgramDeclarationList
 
 Node
     : node nodeId lcurly NodeIn NodeOut NodeProc rcurly     << ast.NewNode($Context, $1, $3, $4, $5) >>
+    | node nodeId colon nodeId stmtEnd                      << ast.UseTemplate($1, $3) >>
     ;
 
 Conn
