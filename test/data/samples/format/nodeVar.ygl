@@ -1,0 +1,13 @@
+node Test {
+    in {
+        int %s = 5;
+    }
+
+    out {
+        int c;
+    }
+
+    process {
+        out.c = in.%s + 10;
+    }
+}
