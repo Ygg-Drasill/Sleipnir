@@ -17,9 +17,9 @@ global.set $%s`,
 		a := varMap[utils.JunctionKey(nodeId, "a")]
 		b := varMap[utils.JunctionKey(nodeId, "b")]
 		return fmt.Sprintf(t.Body,
-			fmt.Sprintf("%s_%s", a.NodeId, a.VarId),
-			fmt.Sprintf("%s_%s", b.NodeId, b.VarId),
-			fmt.Sprintf("%s_%s", nodeId, t.Outputs[0]),
+			mapVarJunctionVariable(a.NodeId, a.VarId),
+			mapVarJunctionVariable(b.NodeId, b.VarId),
+			mapVarJunctionVariable(nodeId, t.Outputs[0]),
 		)
 	},
 }

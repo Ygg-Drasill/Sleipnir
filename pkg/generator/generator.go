@@ -39,11 +39,16 @@ func (g *Generator) gen(node ast.Attribute) string {
 }
 
 func (g *Generator) genProgram(node *ast.Program) string {
+	rootNodes := make([]ast.Node, 0)
 
 	g.write("(module\n")
 	g.write("%s\n", imports)
 
 	for _, n := range node.Nodes {
+		if g.isRoot(&n) {
+			rootNodes = append(rootNodes, n)
+		}
+
 		for _, outDec := range n.OutDeclarations {
 			nodeId := n.Id
 			varId := outDec.AssigneeId
@@ -67,6 +72,8 @@ func (g *Generator) genProgram(node *ast.Program) string {
 	for _, nodes := range node.Nodes {
 		g.gen(&nodes)
 	}
+
+	g.genRoots(rootNodes)
 	g.write(")")
 	return ""
 }
@@ -132,4 +139,12 @@ func (g *Generator) genAssignment(identifier Identifier) string {
 func (g *Generator) genInt(val int64) string {
 	g.write("i32.const %d\n", val)
 	return ""
+}
+
+func (g *Generator) genRoots(rootNodes []ast.Node) {
+	g.write("(func (export \"root\")\n")
+	for _, root := range rootNodes {
+		g.write("call $%s\n", root.Id)
+	}
+	g.write(")\n")
 }

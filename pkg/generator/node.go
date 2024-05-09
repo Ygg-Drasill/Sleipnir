@@ -75,3 +75,13 @@ func (g *Generator) genNodeGlobals(decList *ast.DeclarationList) string {
 
 	return ""
 }
+
+func (g *Generator) isRoot(node *ast.Node) bool {
+	isRoot := true
+	for _, conn := range g.syntaxTree.Connections {
+		if conn.InJunction.NodeId == node.Id {
+			isRoot = false
+		}
+	}
+	return isRoot
+}
