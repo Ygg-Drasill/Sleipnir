@@ -1,14 +1,13 @@
 package utils
 
 import (
-	"github.com/Ygg-Drasill/Sleipnir/utils"
 	"testing"
 )
 
 func TestValidateValidFilePath(t *testing.T) {
 	correctPath := "./example.ygl"
 
-	isValid, err := utils.ValidateYglFilePath(correctPath)
+	isValid, err := ValidateYglFilePath(correctPath)
 	if err != nil {
 		t.Fatalf("\"%s\" threw an error: %s", correctPath, err.Error())
 	}
@@ -20,7 +19,7 @@ func TestValidateValidFilePath(t *testing.T) {
 func TestValidateInvalidFilePath(t *testing.T) {
 	invalidPath := "./example.html"
 
-	isValid, err := utils.ValidateYglFilePath(invalidPath)
+	isValid, err := ValidateYglFilePath(invalidPath)
 	if err == nil {
 		t.Errorf("\"%s\" did not return an error", invalidPath)
 	}
