@@ -53,6 +53,7 @@ func matchAny(lexer *Lexer) StateFunction {
 
 func matchNonToken(lexer *Lexer) StateFunction {
 	for {
+		// Skips input like: " "
 		currentRune := lexer.cursorNext()
 		if currentRune == EOF {
 			return nil
@@ -61,6 +62,7 @@ func matchNonToken(lexer *Lexer) StateFunction {
 			continue
 		}
 
+		//Puts cursor at new line
 		if strings.ContainsRune(newLineRunes, currentRune) {
 			lexer.cursorRow++
 			lexer.cursorCol = 1
@@ -70,10 +72,12 @@ func matchNonToken(lexer *Lexer) StateFunction {
 		lexer.cursorBackup()
 		lexer.cursorIgnore()
 
+		//Tells there is a single line comment
 		if strings.HasPrefix(lexer.inputCode[lexer.cursor:], commentSingle) {
 			return matchCommentSingle
 		}
 
+		//Tells there is a multiline comment
 		if strings.HasPrefix(lexer.inputCode[lexer.cursor:], commentMultiStart) {
 			lexer.cursorJump(len(commentMultiStart))
 			return matchCommentMulti
