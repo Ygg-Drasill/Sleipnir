@@ -33,23 +33,24 @@ type Program struct {
 
 type Node struct {
 	Id              string          `json:"id"`
+	TemplateId      string          `json:"templateId"`
 	InDeclarations  DeclarationList `json:"inDeclarations"`
 	OutDeclarations DeclarationList `json:"outDeclarations"`
 	ProcStatements  StatementList   `json:"procStatements"`
 }
 
 type NodeVar struct {
-	Id           string `json:"varId"`
+	Id           string `json:"id"`
 	JunctionType string `json:"junctionType'"`
 }
 
-type Identifier struct {
+type LocalVar struct {
 	Id string `json:"id"`
 }
 
 type Connection struct {
-	OutId Junction `json:"outId"`
-	InId  Junction `json:"inId"`
+	OutJunction Junction `json:"outId"`
+	InJunction  Junction `json:"inId"`
 }
 
 type Junction struct {
@@ -69,6 +70,15 @@ type WhileStatement struct {
 }
 
 type AssignmentStatement struct {
-	Identifier string    `json:"identifier"`
+	Identifier Attribute `json:"identifier"`
 	Expression Attribute `json:"expression"`
+}
+
+type Template struct {
+	Node
+}
+
+type TemplateUse struct {
+	TemplateId string `json:"templateId"`
+	NodeId     string `json:"nodeId"`
 }

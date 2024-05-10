@@ -39,6 +39,7 @@ var PunctuationMap = map[string]string{
 	"]": "rsquare",
 	".": "period",
 	",": "comma",
+	":": "colon",
 	";": "stmtEnd",
 }
 

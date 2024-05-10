@@ -12,7 +12,7 @@ func NewNodeList(node Attribute) (NodeList, error) {
 	return NodeList{node.(Node)}, nil
 }
 
-func NewNode(context, node, in, out, process Attribute) (Node, error) {
+func NewNode(context, node, in, out, process Attribute, isTemplate bool) (Node, error) {
 	var inDeclarations DeclarationList
 	var outDeclarations DeclarationList
 	var processStatements StatementList

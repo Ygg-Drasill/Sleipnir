@@ -83,6 +83,7 @@ func (ctx *ParseContext) BabushkaPopScopeProc() {
 }
 
 func (ctx *ParseContext) BabushkaPopScopeNode(nodeId string) {
-	ctx.Nodes[nodeKey(nodeId)] = copyNodeContext(ctx.CurrentNode)
+	poppedNode := copyNodeContext(ctx.CurrentNode)
+	ctx.Nodes[nodeKey(nodeId)] = poppedNode
 	ctx.NewNodeScope()
 }
