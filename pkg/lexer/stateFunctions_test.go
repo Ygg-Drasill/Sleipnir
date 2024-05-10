@@ -30,24 +30,23 @@ func TestStateFunction_matchNumber(t *testing.T) {
 
 func TestStateFunction_matchIdentifier(t *testing.T) {
 	rapid.Check(t, func(t *rapid.T) {
-
-		//A-Za-z0-9
-		//Test for
-		genIdentifier := rapid.StringMatching("[a-z]+").Draw(t, "genIdentifier")
+		//Failed characters: _^¨
+		//Test for matchIdentifier
+		genIdentifier := rapid.StringMatching(`[[:alnum:]]+`).Draw(t, "genIdentifier")
 		lIdentifier := NewFromString(genIdentifier)
-
-		fmt.Printf("lIdentifier: %v len: %v \n", lIdentifier.tokenList, len(lIdentifier.tokenList))
+		//fmt.Printf("Generated string: %v \n", genIdentifier)
 		matchIdentifier(lIdentifier)
-
-		if len(lIdentifier.tokenList) == 1 {
+		//fmt.Printf("lIdentifier: %v len: %v \n", lIdentifier.tokenList, len(lIdentifier.tokenList))
+		if len(lIdentifier.tokenList) == 0 {
 			t.Fatalf("TestStateFunction_matchIdentifier: Tokens were made, Tokenlist: %v ", lIdentifier.tokenList)
 		}
 	})
 }
 
+// !DO NOT WORK!
 func TestStateFunction_matchLetters(t *testing.T) {
 	rapid.Check(t, func(t *rapid.T) {
-		genLetters := rapid.StringMatching("node var").Draw(t, "genLetters")
+		genLetters := rapid.StringMatching(`node hey {}`).Draw(t, "genLetters")
 		fmt.Printf("%v \n", genLetters)
 		lLetter := NewFromString(genLetters)
 		matchLetters(lLetter)
@@ -63,6 +62,21 @@ func TestStateFunction_matchLetters(t *testing.T) {
 func TestStateFunction_matchKeyword(t *testing.T) {
 	rapid.Check(t, func(t *rapid.T) {
 
+		//Test for matchKeyword for keywords
+		genKeyword := rapid.SampledFrom(reservedKeywords).Draw(t, "genKeyword")
+		lKeyword := NewFromString(genKeyword)
+		matchKeyword(lKeyword)
+		if len(lKeyword.tokenList) == 0 {
+			t.Fatalf("TestStateFunction_matchIdentifier: No tokens were made, Tokenlist: %v ", lKeyword.tokenList)
+		}
+
+		//Test for matchKeyword for non-keyword
+		genNonKeyword := rapid.StringMatching(`[[:alnum:]]+`).Draw(t, "genNonKeyword")
+		lNonKeyword := NewFromString(genNonKeyword)
+		matchKeyword(lNonKeyword)
+		if len(lNonKeyword.tokenList) > 0 {
+			t.Fatalf("TestStateFunction_matchIdentifier: Tokens were made, Tokenlist: %v ", lNonKeyword.tokenList)
+		}
 	})
 }
 
