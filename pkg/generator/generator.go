@@ -4,7 +4,8 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
-	"reflect"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/generator/standardTemplates"
+	"log"
 )
 
 func (g *Generator) write(code string, args ...interface{}) {
@@ -18,7 +19,6 @@ func (g *Generator) GenWrapper() *bytes.Buffer {
 }
 
 func (g *Generator) gen(node ast.Attribute) string {
-	fmt.Println(reflect.TypeOf(node))
 	switch node := node.(type) {
 	case *ast.Program:
 		return g.genProgram(node)
@@ -39,14 +39,31 @@ func (g *Generator) gen(node ast.Attribute) string {
 }
 
 func (g *Generator) genProgram(node *ast.Program) string {
+	rootNodes := make([]ast.Node, 0)
 
 	g.write("(module\n")
+	g.write("%s\n", imports)
 
 	for _, n := range node.Nodes {
+		if g.isRoot(&n) {
+			rootNodes = append(rootNodes, n)
+		}
+
 		for _, outDec := range n.OutDeclarations {
-			outId := n.Id
-			outAss := outDec.AssigneeId
-			g.write("(global $%s_%s (mut i32) (i32.const 0))\n", outId, outAss)
+			nodeId := n.Id
+			varId := outDec.AssigneeId
+			g.write("(global $%s_%s (mut i32) (i32.const 0))\n", nodeId, varId)
+		}
+
+		if len(n.TemplateId) > 0 {
+			template := standardTemplates.StandardTemplates[n.TemplateId]
+			if template == nil {
+				log.Fatalf("template does not exist for %s\n", n.TemplateId)
+			}
+			for _, outId := range template.Outputs {
+				nodeId := n.Id
+				g.write("(global $%s_%s (mut i32) (i32.const 0))\n", nodeId, outId)
+			}
 		}
 
 		g.write("(global $%s_processed (mut i32) (i32.const 0))\n", n.Id)
@@ -55,6 +72,8 @@ func (g *Generator) genProgram(node *ast.Program) string {
 	for _, nodes := range node.Nodes {
 		g.gen(&nodes)
 	}
+
+	g.genRoots(rootNodes)
 	g.write(")")
 	return ""
 }
@@ -120,4 +139,12 @@ func (g *Generator) genAssignment(identifier Identifier) string {
 func (g *Generator) genInt(val int64) string {
 	g.write("i32.const %d\n", val)
 	return ""
+}
+
+func (g *Generator) genRoots(rootNodes []ast.Node) {
+	g.write("(func (export \"root\")\n")
+	for _, root := range rootNodes {
+		g.write("call $%s\n", root.Id)
+	}
+	g.write(")\n")
 }

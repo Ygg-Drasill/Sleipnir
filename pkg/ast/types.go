@@ -33,6 +33,7 @@ type Program struct {
 
 type Node struct {
 	Id              string          `json:"id"`
+	TemplateId      string          `json:"templateId"`
 	InDeclarations  DeclarationList `json:"inDeclarations"`
 	OutDeclarations DeclarationList `json:"outDeclarations"`
 	ProcStatements  StatementList   `json:"procStatements"`
@@ -71,4 +72,13 @@ type WhileStatement struct {
 type AssignmentStatement struct {
 	Identifier Attribute `json:"identifier"`
 	Expression Attribute `json:"expression"`
+}
+
+type Template struct {
+	Node
+}
+
+type TemplateUse struct {
+	TemplateId string `json:"templateId"`
+	NodeId     string `json:"nodeId"`
 }

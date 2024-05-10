@@ -1,6 +1,9 @@
 package generator
 
-import "github.com/Ygg-Drasill/Sleipnir/pkg/ast"
+import (
+	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/generator/standardTemplates"
+)
 
 func (g *Generator) genNode(node *ast.Node) string {
 	g.currentNode = node
@@ -23,7 +26,14 @@ func (g *Generator) genNode(node *ast.Node) string {
 		}
 		g.write("global.get $%s_processed\n", conn.OutJunction.NodeId)
 		g.write("(if (then nop) (else return))\n")
-		connectionsMemo[conn.InJunction.NodeId] = true
+		connectionsMemo[conn.OutJunction.NodeId] = true
+	}
+
+	if len(node.TemplateId) > 0 {
+		template := standardTemplates.StandardTemplates[node.TemplateId]
+		if template != nil {
+			g.write("%s\n", template.FormatBody(*template, node.Id, g.outNodeVars))
+		}
 	}
 
 	for _, stmt := range node.ProcStatements {
@@ -64,4 +74,14 @@ func (g *Generator) genNodeGlobals(decList *ast.DeclarationList) string {
 	}
 
 	return ""
+}
+
+func (g *Generator) isRoot(node *ast.Node) bool {
+	isRoot := true
+	for _, conn := range g.syntaxTree.Connections {
+		if conn.InJunction.NodeId == node.Id {
+			isRoot = false
+		}
+	}
+	return isRoot
 }
