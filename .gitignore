@@ -120,4 +120,4 @@ pkg/gocc
 AST_out.json
 
 # code generated wat file
-codeGen.wat
+*.wat

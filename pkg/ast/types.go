@@ -39,17 +39,17 @@ type Node struct {
 }
 
 type NodeVar struct {
-	Id           string `json:"varId"`
+	Id           string `json:"id"`
 	JunctionType string `json:"junctionType'"`
 }
 
-type Identifier struct {
+type LocalVar struct {
 	Id string `json:"id"`
 }
 
 type Connection struct {
-	OutId Junction `json:"outId"`
-	InId  Junction `json:"inId"`
+	OutJunction Junction `json:"outId"`
+	InJunction  Junction `json:"inId"`
 }
 
 type Junction struct {
@@ -69,6 +69,6 @@ type WhileStatement struct {
 }
 
 type AssignmentStatement struct {
-	Identifier string    `json:"identifier"`
+	Identifier Attribute `json:"identifier"`
 	Expression Attribute `json:"expression"`
 }
