@@ -18,7 +18,7 @@ const alphabeticRunes = "abcdefghijklmnopqrstuvwxyz"
 
 // TestNodeId is for testing that only valid node ids are accepted
 func TestNodeId(t *testing.T) {
-	formatFile, err := os.ReadFile("../data/samples/format/nodeId.ygl")
+	formatFile, err := os.ReadFile("./samples/format/nodeId.ygl")
 	format := string(formatFile)
 
 	if err != nil {
