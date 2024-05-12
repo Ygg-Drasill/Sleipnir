@@ -1,0 +1,11 @@
+node Foo {
+    out {
+        int x = 1;
+        int y = 2;
+    }
+}
+
+node AddTest : Add;
+
+Foo.out.x -> AddTest.in.a;
+Foo.out.y -> AddTest.in.b;

@@ -6,7 +6,7 @@ import (
 	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/parser"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/lexer"
 	"github.com/Ygg-Drasill/Sleipnir/utils"
-	"log/slog"
+	"log"
 	"os"
 )
 
@@ -24,11 +24,11 @@ func NewFromFile(filePath string) *Compiler {
 
 	sourceIsValid, err = utils.ValidateYglFilePath(filePath)
 	if err != nil {
-		slog.Error("failed to validate source file: %s\n", err.Error())
+		log.Fatalf("failed to validate source file: %s\n", err.Error())
 		return nil
 	}
 	if !sourceIsValid {
-		slog.Error("source file is invalid: %s\n", err.Error())
+		log.Fatalf("source file is invalid: %s\n", err.Error())
 		return nil
 	}
 	source, err = os.ReadFile(filePath)

@@ -3,7 +3,7 @@ package generator
 import (
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/generator/utils"
-	"log/slog"
+	"log"
 )
 
 func (g *Generator) isIdentifier(attr *ast.Attribute) (Identifier, bool) {
@@ -21,7 +21,7 @@ func (g *Generator) isIdentifier(attr *ast.Attribute) (Identifier, bool) {
 			sourceJunction := g.outNodeVars[utils.JunctionKey(g.currentNode.Id, i.Id)]
 
 			if sourceJunction == nil {
-				slog.Error("Reference to undeclared node variable", utils.JunctionKey(g.currentNode.Id, i.Id))
+				log.Fatal("Reference to undeclared node variable", utils.JunctionKey(g.currentNode.Id, i.Id))
 				return nil, false
 			}
 

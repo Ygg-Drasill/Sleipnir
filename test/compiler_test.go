@@ -1,14 +1,14 @@
 package test
 
 import (
-	"fmt"
+	"github.com/Ygg-Drasill/Sleipnir/pkg/compiler"
 	"log"
 	"os"
 	"testing"
 )
 
-func loadSamples(dirPath string) [][]byte {
-	files := make([][]byte, 0)
+func samplesInDir(dirPath string) []os.FileInfo {
+	sampleEntries := make([]os.FileInfo, 0)
 	var entries []os.DirEntry
 	var err error
 	if entries, err = os.ReadDir(dirPath); err != nil {
@@ -19,18 +19,58 @@ func loadSamples(dirPath string) [][]byte {
 		if entry.IsDir() {
 			continue
 		}
-		var file []byte
-		samplePath := fmt.Sprintf("./%s/%s", dirPath, entry.Name())
-		file, err = os.ReadFile(samplePath)
-		files = append(files, file)
+		info, err := entry.Info()
+		if err != nil {
+			log.Fatalln(err.Error())
+		}
+		sampleEntries = append(sampleEntries, info)
 	}
 
-	return files
+	return sampleEntries
 }
 
-func TestCompiler(t *testing.T) {
-	validFiles := loadSamples("./samples/valid")
-	for _, file := range validFiles {
-		
+const validPath = "./samples/valid/"
+const invalidPath = "./samples/invalid/"
+
+func TestCompileValidSourceCode(t *testing.T) {
+	sampleFiles := samplesInDir(validPath)
+	for _, fileInfo := range sampleFiles {
+		t.Run(fileInfo.Name(), func(t *testing.T) {
+			t.Parallel()
+			var err error
+			var file []byte
+			file, err = os.ReadFile(validPath + fileInfo.Name())
+			if err != nil {
+				t.Fatalf("failed to read file: %s\n%s", fileInfo.Name(), err.Error())
+			}
+			sample := string(file)
+			c := compiler.NewFromString(sample)
+			err = c.Compile()
+			if err != nil {
+				t.Fatalf("failed to compile valid source code sample: %s\n%s", fileInfo.Name(), err.Error())
+			}
+		})
+	}
+}
+
+func TestCompileInValidSourceCode(t *testing.T) {
+	sampleDirPath := invalidPath
+	sampleFiles := samplesInDir(sampleDirPath)
+	for _, fileInfo := range sampleFiles {
+		t.Run(fileInfo.Name(), func(t *testing.T) {
+			t.Parallel()
+			var err error
+			var file []byte
+			file, err = os.ReadFile(sampleDirPath + fileInfo.Name())
+			if err != nil {
+				t.Fatalf("failed to read file: %s\n%s", fileInfo.Name(), err.Error())
+			}
+			sample := string(file)
+			c := compiler.NewFromString(sample)
+			err = c.Compile()
+			if err == nil {
+				t.Fatalf("invalid source code was accepted by compiler: %s", fileInfo.Name())
+			}
+		})
 	}
 }
