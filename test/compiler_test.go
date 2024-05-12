@@ -1,6 +1,7 @@
 package test
 
 import (
+	"bytes"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/compiler"
 	"log"
 	"os"
@@ -48,6 +49,15 @@ func TestCompileValidSourceCode(t *testing.T) {
 			err = c.Compile()
 			if err != nil {
 				t.Fatalf("failed to compile valid source code sample: %s\n%s", fileInfo.Name(), err.Error())
+			}
+			output := new(bytes.Buffer)
+			var n int
+			n, err = c.WriteOutputToBuffer(output)
+			if err != nil {
+				t.Fatalf("failed to write sample output: %s\n%s", fileInfo.Name(), err.Error())
+			}
+			if n == 0 {
+				t.Fatalf("no bytes was produced after compilation of valid sample: %s", fileInfo.Name())
 			}
 		})
 	}

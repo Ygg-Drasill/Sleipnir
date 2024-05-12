@@ -1,6 +1,7 @@
 package compiler
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"log"
@@ -46,4 +47,14 @@ func (compiler *Compiler) WriteOutputToFile(outputFilePath string) {
 	if err != nil {
 		log.Fatalf("failed to write webassembly to file: %s", err.Error())
 	}
+}
+
+// WriteOutputToBuffer copies the output webassembly text buffer to another buffer, returns the amount of bytes written
+func (compiler *Compiler) WriteOutputToBuffer(buffer *bytes.Buffer) (int, error) {
+	outputBuffer := new(bytes.Buffer)
+	if compiler.outBuffer == nil {
+		log.Fatalf("failed to write to buffer: buffer is empty")
+	}
+
+	return outputBuffer.Write(compiler.outBuffer.Bytes())
 }
