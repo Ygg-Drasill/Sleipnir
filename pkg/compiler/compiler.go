@@ -1,8 +1,10 @@
 package compiler
 
 import (
+	"bytes"
 	"encoding/json"
-	"log/slog"
+	"errors"
+	"log"
 	"os"
 
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
@@ -10,20 +12,19 @@ import (
 )
 
 // Compile runs the lexer, parser and code generator
-func (compiler *Compiler) Compile() {
+func (compiler *Compiler) Compile() error {
 	var syntaxTree ast.Attribute
 	var err error
 	tokens := compiler.lexer.FindTokens()
 	scanner := NewScanner(tokens)
 
 	if syntaxTree, err = compiler.parser.Parse(scanner); err != nil {
-		slog.Error("failed to parse: %s", err.Error())
-		return
+		return err
 	}
 
 	programNode, ok := syntaxTree.(ast.Program)
 	if !ok {
-		slog.Error("root is not a program")
+		return errors.New("root is not a program")
 	}
 
 	ctx := compiler.parser.Context.(ast.ParseContext)
@@ -33,16 +34,27 @@ func (compiler *Compiler) Compile() {
 	file, _ := os.OpenFile("AST_out.json", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
 	file.Write(bytes)
 	file.Close()
+	return nil
 }
 
 // WriteOutputToFile writes the stored webassembly to a new file, run this after Compile
 func (compiler *Compiler) WriteOutputToFile(outputFilePath string) {
 	if compiler.outBuffer == nil {
-		slog.Error("failed to write to file: buffer is empty")
+		log.Fatal("failed to write to file: buffer is empty")
 	}
 
 	err := os.WriteFile(outputFilePath, compiler.outBuffer.Bytes(), 0644)
 	if err != nil {
-		slog.Error("failed to write webassembly to file: %s", err.Error())
+		log.Fatalf("failed to write webassembly to file: %s", err.Error())
 	}
+}
+
+// WriteOutputToBuffer copies the output webassembly text buffer to another buffer, returns the amount of bytes written
+func (compiler *Compiler) WriteOutputToBuffer(buffer *bytes.Buffer) (int, error) {
+	outputBuffer := new(bytes.Buffer)
+	if compiler.outBuffer == nil {
+		log.Fatalf("failed to write to buffer: buffer is empty")
+	}
+
+	return outputBuffer.Write(compiler.outBuffer.Bytes())
 }
