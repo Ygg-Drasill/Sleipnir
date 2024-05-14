@@ -28,6 +28,8 @@ func (g *Generator) gen(node ast.Attribute) string {
 		return g.genStmt(node)
 	case *ast.AssignmentStatement:
 		return g.genAssStmt(node)
+	case *ast.IfStatement:
+		return g.genIfStatement(node)
 	case *ast.Expression:
 		return g.genExpr(node)
 	case ast.Expression:
