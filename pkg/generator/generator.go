@@ -24,12 +24,10 @@ func (g *Generator) gen(node ast.Attribute) string {
 		return g.genProgram(node)
 	case *ast.Node:
 		return g.genNode(node)
-	case *ast.Statement:
-		return g.genStmt(node)
 	case *ast.AssignmentStatement:
 		return g.genAssStmt(node)
-	case *ast.IfStatement:
-		return g.genIfStatement(node)
+	case *ast.Statement:
+		return g.genStmt(node)
 	case *ast.Expression:
 		return g.genExpr(node)
 	case ast.Expression:
@@ -81,6 +79,9 @@ func (g *Generator) genProgram(node *ast.Program) string {
 }
 
 func (g *Generator) genStmt(node *ast.Statement) string {
+	if ifStatement, ok := (*node).(ast.IfStatement); ok {
+		g.genIfStatement(&ifStatement)
+	}
 	if assStmt, ok := (*node).(ast.AssignmentStatement); ok {
 		g.gen(&assStmt)
 
