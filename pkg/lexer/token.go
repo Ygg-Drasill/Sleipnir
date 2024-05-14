@@ -28,6 +28,7 @@ var OperatorMap = map[string]string{
 	"!=": "neq",
 	"&&": "and",
 	"||": "or",
+	"!":  "not",
 }
 
 var PunctuationMap = map[string]string{

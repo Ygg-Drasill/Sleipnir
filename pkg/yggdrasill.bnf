@@ -111,7 +111,7 @@ ControlStmt
     ;
 
 IfStmt
-    : if lp Expr rp lcurly StmtLst rcurly else lcurly StmtLst rcurly  << ast.NewIfStatement($2, $5, $9) >>
+    : if lp LogicalExpr rp lcurly StmtLst rcurly else lcurly StmtLst rcurly  << ast.NewIfStatement($2, $5, $9) >>
     ;
 
 WhileStmt
@@ -137,7 +137,8 @@ Expr
     ;
 
 LogicalExpr
-    : NodeVar CompareOperator NodeVar    << ast.NewExpression($0, $1, $2) >>
+    : Factor CompareOperator LogicalExpr    << ast.NewExpression($0, $1, $2) >>
+    | Factor
     ;
 
 AritExpr
@@ -156,4 +157,11 @@ Factor
     : lp Expression rp      << $1, nil >>
     | int64 	            << util.IntValue($0.(*token.Token).Lit) >>
     | Identifier            << $0, nil >>
+    ;
+
+LogicFactor
+    : lp LogicalExpr rp     << $1, nil >>
+    | not LogicFactor       << $1, nil >>
+    | Identifier            << $0, nil >>
+    | bool                  << $0, nil >>
     ;

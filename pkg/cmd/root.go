@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/compiler"
+	"log"
 	"log/slog"
 	"os"
 	"path"
@@ -28,7 +29,10 @@ var rootCmd = &cobra.Command{
 		if compileString != "" {
 			compilePath := path.Clean(compileString)
 			c := compiler.NewFromFile(compilePath)
-			c.Compile()
+			if err := c.Compile(); err != nil {
+				log.Fatal(err.Error())
+			}
+
 			c.WriteOutputToFile("o.wat")
 			fmt.Println("Compilation done!", compilePath)
 			return
