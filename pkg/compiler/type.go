@@ -12,9 +12,10 @@ import (
 
 // Compiler is used to transpile .ygl source files to wasm
 type Compiler struct {
-	lexer     *lexer.Lexer
-	parser    *parser.Parser
-	outBuffer *bytes.Buffer
+	lexer      *lexer.Lexer
+	parser     *parser.Parser
+	outBuffer  *bytes.Buffer
+	syntaxTree *ast.Attribute
 }
 
 func NewFromFile(filePath string) *Compiler {

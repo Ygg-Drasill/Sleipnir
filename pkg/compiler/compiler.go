@@ -14,12 +14,11 @@ import (
 
 // Compile runs the lexer, parser and code generator
 func (compiler *Compiler) Compile() error {
-	var syntaxTree ast.Attribute
-	var err error
 	tokens := compiler.lexer.FindTokens()
 	scanner := NewScanner(tokens)
 
-	if syntaxTree, err = compiler.parser.Parse(scanner); err != nil {
+	syntaxTree, err := compiler.getSyntaxTree(scanner)
+	if err != nil {
 		return err
 	}
 
@@ -30,12 +29,18 @@ func (compiler *Compiler) Compile() error {
 
 	ctx := compiler.parser.Context.(ast.ParseContext)
 	gen := generator.New(&programNode, &ctx)
+	compiler.syntaxTree = &syntaxTree
 	compiler.outBuffer = gen.GenWrapper()
-	bytes, _ := json.MarshalIndent(syntaxTree, "", "\t")
-	file, _ := os.OpenFile("AST_out.json", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
-	file.Write(bytes)
-	file.Close()
 	return nil
+}
+
+func (compiler *Compiler) getSyntaxTree(scanner *Scanner) (ast.Attribute, error) {
+	var syntaxTree ast.Attribute
+	var err error
+	if syntaxTree, err = compiler.parser.Parse(scanner); err != nil {
+		return nil, err
+	}
+	return syntaxTree, nil
 }
 
 // writeOutputToFile writes the stored webassembly to a new file, run this after Compile
@@ -46,6 +51,26 @@ func writeOutputToFile(outputFilePath string, data []byte) {
 	err := os.WriteFile(outputFilePath, data, 0644)
 	if err != nil {
 		log.Fatalf("failed to write to file: %s", err.Error())
+	}
+}
+
+func (compiler *Compiler) WriteJsonFile(outputFilePath string) {
+	syntaxTree := compiler.syntaxTree
+	jsonBytes, err := json.MarshalIndent(syntaxTree, "", "\t")
+	if err != nil {
+		log.Fatalf("failed to return converted json with indents: %s", err.Error())
+	}
+	file, err := os.OpenFile(outputFilePath, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
+	if err != nil {
+		log.Fatalf("failed to create file: %s", err.Error())
+	}
+	_, err = file.Write(jsonBytes)
+	if err != nil {
+		log.Fatalf("failed to write json: %s", err.Error())
+	}
+	err = file.Close()
+	if err != nil {
+		log.Fatalf("failed to close file: %s", err.Error())
 	}
 }
 

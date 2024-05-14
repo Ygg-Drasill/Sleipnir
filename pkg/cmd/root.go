@@ -14,6 +14,7 @@ import (
 var (
 	versionBool   bool
 	compileString string
+	debugBool     bool
 )
 
 var rootCmd = &cobra.Command{
@@ -33,8 +34,17 @@ var rootCmd = &cobra.Command{
 			if err != nil {
 				log.Fatal(err)
 			}
-			c.WriteWatFile("o.wat")
+			c.ConvertWat2Wasm("c.wasm")
 			fmt.Println("Compilation done!", compilePath)
+			if debugBool {
+				debugFolder := "debug/"
+				err := os.Mkdir(path.Clean(debugFolder), os.ModePerm)
+				if err != nil {
+					log.Fatal(err)
+				}
+				c.WriteJsonFile(debugFolder + "AST.json")
+				c.WriteWatFile(debugFolder + "o.wat")
+			}
 			return
 		}
 
@@ -55,5 +65,7 @@ func Execute() {
 func init() {
 	rootCmd.Flags().BoolVarP(&versionBool, "version", "v", false, "shows current version")
 
-	rootCmd.Flags().StringVar(&compileString, "hammer-time", "", "Compile an ygl file to wasm")
+	rootCmd.Flags().StringVarP(&compileString, "compile", "c", "", "Compile an ygl file to wasm")
+
+	rootCmd.Flags().BoolVarP(&debugBool, "debug", "d", false, "Has to be run with hammer-time\nEnable debug mode.\nWrite JSON and WAT file.")
 }
