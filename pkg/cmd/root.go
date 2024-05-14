@@ -34,7 +34,7 @@ var rootCmd = &cobra.Command{
 			if err != nil {
 				log.Fatal(err)
 			}
-			c.ConvertWat2Wasm("c.wasm")
+			c.ConvertWat2Wasm("o.wasm")
 			fmt.Println("Compilation done!", compilePath)
 			if debugBool {
 				debugFolder := "debug/"
