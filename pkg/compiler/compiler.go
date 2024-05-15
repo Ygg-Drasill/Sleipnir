@@ -93,8 +93,7 @@ func (compiler *Compiler) ConvertWat2Wasm(outputFilePath string) {
 }
 
 // WriteOutputToBuffer copies the output webassembly text buffer to another buffer, returns the amount of bytes written
-func (compiler *Compiler) WriteOutputToBuffer(buffer *bytes.Buffer) (int, error) {
-	outputBuffer := new(bytes.Buffer)
+func (compiler *Compiler) WriteOutputToBuffer(outputBuffer *bytes.Buffer) (int, error) {
 	if compiler.outBuffer == nil {
 		log.Fatalf("failed to write to buffer: buffer is empty")
 	}
