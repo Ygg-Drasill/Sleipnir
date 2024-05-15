@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"testing"
-	"fmt"
 )
 
 func samplesInDir(dirPath string) []os.FileInfo {
