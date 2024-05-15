@@ -73,7 +73,6 @@ func TestCompileInValidSourceCode(t *testing.T) {
 			var err error
 			var file []byte
 			file, err = os.ReadFile(sampleDirPath + fileInfo.Name())
-			fmt.Println(fileInfo.Name())
 			if err != nil {
 				t.Fatalf("failed to read file: %s\n%s", fileInfo.Name(), err.Error())
 			}
