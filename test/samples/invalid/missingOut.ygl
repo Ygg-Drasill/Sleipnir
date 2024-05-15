@@ -1,0 +1,20 @@
+node Foo {
+    {
+        int bar = 0
+    }
+
+   process {
+        bar = bar + 1
+    }
+}
+
+node Foo2 {
+    out {
+        int bar = 0
+    }
+
+   process {
+        bar = bar + 1
+    }
+}
+Foo.in.x -> Foo2.out.y;
