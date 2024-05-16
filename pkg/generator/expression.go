@@ -3,7 +3,9 @@ package generator
 import (
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
+	"log"
 	"log/slog"
+	"strconv"
 )
 
 func (g *Generator) genExpr(node *ast.Expression) string {
@@ -11,7 +13,10 @@ func (g *Generator) genExpr(node *ast.Expression) string {
 	g.genExprOperand(&node.SecondOperand)
 
 	exprOp := string(node.Operator.(*token.Token).Lit)
-
+	secondOp, err := strconv.Atoi(string(node.Operator.(*token.Token).Lit))
+	if err != nil {
+		log.Fatalf("Error converting secondOp to int: %v", err.Error())
+	}
 	switch exprOp {
 	case "+":
 		g.write("i32.add\n")
@@ -23,6 +28,10 @@ func (g *Generator) genExpr(node *ast.Expression) string {
 		g.write("i32.mul\n")
 		break
 	case "/":
+		// TODO: move to error handling to catch error before code generation
+		if secondOp == 0 {
+			log.Fatalf("Division by zero is not allowed")
+		}
 		g.write("i32.div_s\n")
 		break
 	case "%":
