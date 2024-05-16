@@ -118,3 +118,5 @@ pkg/gocc
 
 #debug
 debug
+o.*
+ast.json

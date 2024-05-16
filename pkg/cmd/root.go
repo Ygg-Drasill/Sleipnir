@@ -42,7 +42,7 @@ var rootCmd = &cobra.Command{
 				if err != nil {
 					log.Fatal(err)
 				}
-				c.WriteJsonFile(debugFolder + "AST.json")
+				c.WriteJsonFile(debugFolder + "ast.json")
 				c.WriteWatFile(debugFolder + "o.wat")
 			}
 			return
