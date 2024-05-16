@@ -4,23 +4,23 @@ import "github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 
 func (g *Generator) genIfStatement(statement *ast.IfStatement) string {
 	g.genExpr(&statement.Expression)
-	g.write("(if")
+	g.write("(if\n")
 
-	g.write("(then")
-	for _, stmt := range statement.ElseStatements {
+	g.write("(then\n")
+	for _, stmt := range statement.BodyStatements {
 		g.genStmt(&stmt)
 	}
-	g.write(")")
+	g.write(")\n")
 
 	if len(statement.ElseStatements) > 0 {
-		g.write("(else")
+		g.write("(else\n")
 		for _, stmt := range statement.ElseStatements {
 			g.genStmt(&stmt)
 		}
-		g.write(")")
+		g.write(")\n")
 	}
 
-	g.write(")")
+	g.write(")\n")
 
 	return ""
 }

@@ -1,0 +1,16 @@
+node Foo {
+    out {
+        int a = 42;
+    }
+    process {
+        if (1 + 2) {
+            out.a = 1;
+        } else {
+            out.a = 0;
+        }
+    }
+}
+
+node Check : Print;
+
+Foo.out.a -> Check.in.text;

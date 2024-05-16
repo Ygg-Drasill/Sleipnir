@@ -112,6 +112,7 @@ ControlStmt
 
 IfStmt
     : if lp LogicalExpr rp lcurly StmtLst rcurly else lcurly StmtLst rcurly  << ast.NewIfStatement($2, $5, $9) >>
+    | if lp LogicalExpr rp lcurly StmtLst rcurly                             << ast.NewIfStatement($2, $5, nil) >>
     ;
 
 WhileStmt
