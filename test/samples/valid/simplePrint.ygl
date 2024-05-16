@@ -6,4 +6,5 @@ node Foo {
 
 node Print0 : Print;
 Foo.out.a -> Print0.in.text;
-,42
+
+expect:42

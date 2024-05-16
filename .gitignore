@@ -118,3 +118,4 @@ pkg/gocc
 
 #debug
 debug
+o.wasm

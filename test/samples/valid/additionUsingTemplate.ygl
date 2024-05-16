@@ -6,6 +6,9 @@ node Foo {
 }
 
 node AddTest : Add;
+node Check : Print;
 
 Foo.out.x -> AddTest.in.a;
 Foo.out.y -> AddTest.in.b;
+AddTest.out.result -> Check.in.text;
+expect:3

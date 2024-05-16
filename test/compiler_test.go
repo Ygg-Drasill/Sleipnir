@@ -33,6 +33,8 @@ func samplesInDir(dirPath string) []os.FileInfo {
 	return sampleEntries
 }
 
+const resultSperator = "expect:"
+
 const validPath = "./samples/valid/"
 const invalidPath = "./samples/invalid/"
 
@@ -47,7 +49,7 @@ func TestCompileValidSourceCode(t *testing.T) {
 			if err != nil {
 				t.Fatalf("failed to read file: %s\n%s", fileInfo.Name(), err.Error())
 			}
-			sampleData := strings.Split(string(file), ",")
+			sampleData := strings.Split(string(file), resultSperator)
 			c := compiler.NewFromString(sampleData[0])
 			err = c.Compile()
 			if err != nil {
