@@ -39,7 +39,7 @@ var rootCmd = &cobra.Command{
 			if debugBool {
 				debugFolder := "debug/"
 				err := os.Mkdir(path.Clean(debugFolder), os.ModePerm)
-				if err != nil {
+				if err != nil && !os.IsExist(err) {
 					log.Fatal(err)
 				}
 				c.WriteJsonFile(debugFolder + "ast.json")

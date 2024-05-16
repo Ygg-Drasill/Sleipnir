@@ -25,6 +25,9 @@ func (g *Generator) genExpr(node *ast.Expression) string {
 	case "/":
 		g.write("i32.div_s\n")
 		break
+	case "%":
+		g.write("i32.rem_s\n")
+		break
 	default:
 		slog.Error("Failed to generate unknown operator")
 	}

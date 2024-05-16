@@ -1,0 +1,28 @@
+node Const {
+    out {
+        int x = 3;
+        int y = 2;
+    }
+}
+
+node Mod {
+    in {
+        int first;
+        int second;
+    }
+
+    out {
+        int result;
+    }
+
+    process {
+        out.result = in.first % in.second;
+    }
+}
+
+node Check : Print;
+
+Const.out.x -> Mod.in.first;
+Const.out.y -> Mod.in.second;
+Mod.out.result -> Check.in.text;
+expect:1
