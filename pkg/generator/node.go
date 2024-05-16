@@ -28,6 +28,8 @@ func (g *Generator) genNode(node *ast.Node) string {
 		g.write("(if (then nop) (else return))\n")
 		connectionsMemo[conn.OutJunction.NodeId] = true
 	}
+	g.write("i32.const 1")
+	g.write("(global.set $%s_processed)", g.currentNode.Id)
 
 	if len(node.TemplateId) > 0 {
 		template := standardTemplates.StandardTemplates[node.TemplateId]

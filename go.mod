@@ -3,6 +3,7 @@ module github.com/Ygg-Drasill/Sleipnir
 go 1.22
 
 require (
+	github.com/bytecodealliance/wasmtime-go v1.0.0
 	github.com/spf13/cobra v1.8.0
 	pgregory.net/rapid v1.1.0
 )

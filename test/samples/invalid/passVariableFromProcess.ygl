@@ -1,0 +1,13 @@
+node Node1 {
+process {
+    int x = 3;
+}
+}
+
+node Node2 {
+process {
+    int y;
+}
+}
+
+Node1.process.x -> Node2.process.y;

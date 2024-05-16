@@ -12,17 +12,11 @@ node Bar {
     }
 
     out {
-        int result;
+        int c;
+        out.c = in.a + in.b
     }
 
-    process {
-        out.result = in.a + in.b;
-    }
 }
-
-node Check : Print;
 
 Foo.out.x -> Bar.in.a;
 Foo.out.y -> Bar.in.b;
-Bar.out.result -> Check.in.text;
-expect:3
