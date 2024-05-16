@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/compiler"
+	"log"
 	"log/slog"
 	"os"
 	"path"
@@ -13,6 +14,7 @@ import (
 var (
 	versionBool   bool
 	compileString string
+	debugBool     bool
 )
 
 var rootCmd = &cobra.Command{
@@ -28,9 +30,21 @@ var rootCmd = &cobra.Command{
 		if compileString != "" {
 			compilePath := path.Clean(compileString)
 			c := compiler.NewFromFile(compilePath)
-			c.Compile()
-			c.WriteOutputToFile("o.wat")
+			err := c.Compile()
+			if err != nil {
+				log.Fatal(err)
+			}
+			c.ConvertWat2Wasm("o.wasm")
 			fmt.Println("Compilation done!", compilePath)
+			if debugBool {
+				debugFolder := "debug/"
+				err := os.Mkdir(path.Clean(debugFolder), os.ModePerm)
+				if err != nil {
+					log.Fatal(err)
+				}
+				c.WriteJsonFile(debugFolder + "ast.json")
+				c.WriteWatFile(debugFolder + "o.wat")
+			}
 			return
 		}
 
@@ -51,5 +65,7 @@ func Execute() {
 func init() {
 	rootCmd.Flags().BoolVarP(&versionBool, "version", "v", false, "shows current version")
 
-	rootCmd.Flags().StringVar(&compileString, "hammer-time", "", "Compile an ygl file to wasm")
+	rootCmd.Flags().StringVarP(&compileString, "compile", "c", "", "Compile an ygl file to wasm")
+
+	rootCmd.Flags().BoolVarP(&debugBool, "debug", "d", false, "Has to be run with hammer-time\nEnable debug mode.\nWrite JSON and WAT file.")
 }

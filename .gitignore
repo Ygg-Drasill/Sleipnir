@@ -116,8 +116,7 @@ fabric.properties
 #gocc
 pkg/gocc
 
-#misc
-AST_out.json
-
-# code generated wat file
-*.wat
+#debug
+debug
+o.*
+ast.json

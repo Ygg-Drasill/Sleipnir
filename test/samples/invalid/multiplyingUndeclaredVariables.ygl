@@ -1,0 +1,9 @@
+node Foo {
+    out {
+        int result;
+    }
+
+    process {
+        out.result = a * b;
+    }
+}

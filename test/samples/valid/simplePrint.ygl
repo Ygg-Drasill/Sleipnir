@@ -1,0 +1,10 @@
+node Foo {
+    out {
+        int a = 42;
+    }
+}
+
+node Print0 : Print;
+Foo.out.a -> Print0.in.text;
+
+expect:42

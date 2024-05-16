@@ -1,0 +1,13 @@
+node Node1 {
+out {
+    int x = 3;
+}
+}
+
+node Node2 {
+out {
+    int y;
+}
+}
+
+Node1.out.x -> Node2.out.y;

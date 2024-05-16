@@ -1,0 +1,5 @@
+Foo {
+    out {
+        int bar = 0
+    }
+}

@@ -13,7 +13,7 @@ import (
 )
 
 func TestNodeVar(t *testing.T) {
-	formatFile, err := os.ReadFile("./samples/format/nodeVar.ygl")
+	formatFile, err := os.ReadFile("samples/format/nodeVar.ygl")
 	format := string(formatFile)
 
 	if err != nil {

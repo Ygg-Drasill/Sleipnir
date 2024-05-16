@@ -1,0 +1,10 @@
+node Foo {
+    {
+        int bar = 0
+    }
+
+   process {
+        bar = bar + 1
+    }
+}
+

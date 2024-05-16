@@ -1,6 +1,6 @@
 node Foo {
     out {
-        int x = 1;
+        int x = 5;
         int y = 2;
     }
 }
@@ -12,13 +12,17 @@ node Bar {
     }
 
     out {
-        int c;
+        int result;
     }
 
     process {
-        out.c = in.a +++ in.b;
+        out.result = in.a * in.b;
     }
 }
 
+node Check : Print;
+
 Foo.out.x -> Bar.in.a;
 Foo.out.y -> Bar.in.b;
+Bar.out.result -> Check.in.text;
+expect:10
