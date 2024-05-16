@@ -123,6 +123,7 @@ Stmt
     : DeclarationStmt   << $0, nil >>
     | AssignStmt        << $0, nil >>
     | ControlStmt       << $0, nil >>
+    | exit stmtEnd      << $0, nil >>
     ;
 
 StmtLst

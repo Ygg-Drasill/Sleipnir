@@ -81,13 +81,19 @@ func (g *Generator) genProgram(node *ast.Program) string {
 func (g *Generator) genStmt(node *ast.Statement) string {
 	if ifStatement, ok := (*node).(ast.IfStatement); ok {
 		g.genIfStatement(&ifStatement)
+		return ""
 	}
 	if assStmt, ok := (*node).(ast.AssignmentStatement); ok {
 		g.gen(&assStmt)
-
+		return ""
 	}
 	if decStmt, ok := (*node).(ast.Declaration); ok {
 		g.genDeclaration(&decStmt)
+		return ""
+	}
+	if isExitStmt(node) {
+		g.genExitStmt()
+		return ""
 	}
 	return ""
 }
