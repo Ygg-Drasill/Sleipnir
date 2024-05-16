@@ -30,5 +30,5 @@ jobs:
       uses: robherley/go-test-action@a612d1675dda7397d3bced585f8a2a3a8545455f # v0.4.1
       with:
         testArguments: ./...
-        omitPie: true
-        
+        omit: |
+          untested        
