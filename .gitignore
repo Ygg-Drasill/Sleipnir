@@ -120,3 +120,6 @@ pkg/gocc
 debug
 o.*
 ast.json
+
+#rapid test folder
+testdata
