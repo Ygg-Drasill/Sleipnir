@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"github.com/bytecodealliance/wasmtime-go/v20"
+	"github.com/bytecodealliance/wasmtime-go"
 	"log"
 	"os"
 

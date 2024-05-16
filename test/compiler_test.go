@@ -3,7 +3,7 @@ package test
 import (
 	"bytes"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/compiler"
-	"github.com/bytecodealliance/wasmtime-go/v20"
+	"github.com/bytecodealliance/wasmtime-go"
 	"log"
 	"os"
 	"strconv"
