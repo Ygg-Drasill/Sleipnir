@@ -86,13 +86,7 @@ func (compiler *Compiler) ConvertWat2Wasm(outputFilePath string) {
 		log.Fatal("failed to write to file: buffer is empty")
 	}
 
-	wasm, err := wasmtime.Wat2Wasm(`
-      (module
-        (import "" "hello" (func $hello))
-        (func (export "run")
-          (call $hello))
-      )
-    `)
+	wasm, err := wasmtime.Wat2Wasm(compiledYgl.String())
 	if err != nil {
 		log.Fatalf("failed to convert webassembly text into compiled webassembly: %s", err.Error())
 	}
