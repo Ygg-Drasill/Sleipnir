@@ -34,11 +34,12 @@ var rootCmd = &cobra.Command{
 				log.Fatal(err)
 			}
 			c.ConvertWat2Wasm("o.wasm")
+
 			fmt.Println("Compilation done!", compilePath)
 			if debugBool {
 				debugFolder := "debug/"
 				err := os.Mkdir(path.Clean(debugFolder), os.ModePerm)
-				if err != nil {
+				if err != nil && !os.IsExist(err) {
 					log.Fatal(err)
 				}
 				c.WriteJsonFile(debugFolder + "ast.json")
