@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/compiler"
 	"log"
-	"log/slog"
 	"os"
 	"path"
 
@@ -35,6 +34,7 @@ var rootCmd = &cobra.Command{
 				log.Fatal(err)
 			}
 			c.ConvertWat2Wasm("o.wasm")
+
 			fmt.Println("Compilation done!", compilePath)
 			if debugBool {
 				debugFolder := "debug/"
@@ -50,7 +50,7 @@ var rootCmd = &cobra.Command{
 
 		err := cmd.Help()
 		if err != nil {
-			slog.Error("Error displaying help:", err)
+			log.Fatal("Error displaying help:", err)
 		}
 	},
 }
