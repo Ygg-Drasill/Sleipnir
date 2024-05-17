@@ -146,6 +146,7 @@ LogicalExpr
 AritExpr
     : AritExpr plus Term    << ast.NewExpression($0, $1, $2) >>
     | AritExpr minus Term   << ast.NewExpression($0, $1, $2) >>
+    | AritExpr modulo Term  << ast.NewExpression($0, $1, $2) >>
     | Term                  << $0, nil >>
     ;
 

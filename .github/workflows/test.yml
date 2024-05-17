@@ -31,4 +31,4 @@ jobs:
       with:
         testArguments: ./...
         omit: |
-          untested
+          untested        

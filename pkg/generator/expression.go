@@ -10,6 +10,7 @@ func (g *Generator) genExpr(node *ast.Expression) string {
 	g.genExprOperand(&node.FirstOperand)
 	g.genExprOperand(&node.SecondOperand)
 
+
 	opToken := node.Operator.(*token.Token)
 	g.genInstruction(opToken)
 	return ""

@@ -22,6 +22,7 @@ var OperatorMap = map[string]string{
 	"-":  "minus",
 	"*":  "mul",
 	"/":  "div",
+	"%":  "modulo",
 	"==": "eq",
 	"<":  "lt",
 	">":  "gt",

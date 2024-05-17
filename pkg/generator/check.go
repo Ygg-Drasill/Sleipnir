@@ -21,7 +21,7 @@ func (g *Generator) isIdentifier(attr *ast.Attribute) (Identifier, bool) {
 			sourceJunction := g.outNodeVars[utils.JunctionKey(g.currentNode.Id, i.Id)]
 
 			if sourceJunction == nil {
-				log.Fatal("Reference to undeclared node variable", utils.JunctionKey(g.currentNode.Id, i.Id))
+				log.Fatal("Reference to undeclared node variable ", utils.JunctionKey(g.currentNode.Id, i.Id))
 				return nil, false
 			}
 
