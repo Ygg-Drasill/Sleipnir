@@ -1,12 +1,12 @@
 node Foo {
     out {
-        int a = 42;
+        int res = 0;
     }
+
     process {
-        if (2 > 1) {
-            out.a = 1;
-        } else {
-            exit;
-        }
+        out.res = 3 % 2;
     }
 }
+
+node Print0 : Print;
+Foo.out.res -> Print0.in.text;
