@@ -109,7 +109,7 @@ func TestCompileValidSourceCode(t *testing.T) {
 	}
 }
 
-func TestCompileInValidSourceCode(t *testing.T) {
+func TestCompileInvalidSourceCode(t *testing.T) {
 	sampleDirPath := invalidPath
 	sampleFiles := samplesInDir(sampleDirPath)
 	for _, fileInfo := range sampleFiles {
