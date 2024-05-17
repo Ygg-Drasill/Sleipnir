@@ -9,4 +9,5 @@ var reservedKeywords []string = []string{
 	"in",
 	"out",
 	"process",
+	"exit",
 }

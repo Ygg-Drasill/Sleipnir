@@ -3,31 +3,15 @@ package generator
 import (
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
-	"log/slog"
+	"log"
 )
 
 func (g *Generator) genExpr(node *ast.Expression) string {
 	g.genExprOperand(&node.FirstOperand)
 	g.genExprOperand(&node.SecondOperand)
 
-	exprOp := string(node.Operator.(*token.Token).Lit)
-
-	switch exprOp {
-	case "+":
-		g.write("i32.add\n")
-		break
-	case "-":
-		g.write("i32.sub\n")
-		break
-	case "*":
-		g.write("i32.mul\n")
-		break
-	case "/":
-		g.write("i32.div_s\n")
-		break
-	default:
-		slog.Error("Failed to generate unknown operator")
-	}
+	opToken := node.Operator.(*token.Token)
+	g.genInstruction(opToken)
 	return ""
 }
 
@@ -52,10 +36,45 @@ func (g *Generator) genValue(node *ast.Attribute) string {
 func (g *Generator) genVarUsage(node *Identifier) string {
 	identifier, ok := (*node).(Identifier)
 	if !ok {
-		slog.Error("Failed to generate identifier")
+		log.Fatalf("Failed to generate identifier")
 	}
 
-	label := identifier.getOperation()
+	label := identifier.toGetInstruction()
 	g.write("%s\n", label)
 	return ""
+}
+
+func (g *Generator) genInstruction(opToken *token.Token) {
+	exprOp := string(opToken.Lit)
+	switch exprOp {
+	case "+":
+		g.write("i32.add\n")
+		break
+	case "-":
+		g.write("i32.sub\n")
+		break
+	case "*":
+		g.write("i32.mul\n")
+		break
+	case "/":
+		g.write("i32.div_s\n")
+		break
+	case ">":
+		g.write("i32.gt_s\n")
+		break
+	case ">=":
+		g.write("i32.ge_s\n")
+		break
+	case "<":
+		g.write("i32.lt_s\n")
+		break
+	case "<=":
+		g.write("i32.le_s\n")
+		break
+	case "==":
+		g.write("i32.eq_s\n")
+		break
+	default:
+		log.Fatalf("%s: Failed to generate unknown operator %s", opToken.Pos.String(), exprOp)
+	}
 }

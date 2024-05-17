@@ -3,10 +3,15 @@ node Foo {
         int a = 42;
     }
     process {
-        if (2 > 1) {
+        if (1 > 2) {
             out.a = 1;
         } else {
-            exit;
+            out.a = 0;
         }
     }
 }
+
+node Check : Print;
+
+Foo.out.a -> Check.in.text;
+expect:0
