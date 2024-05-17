@@ -122,4 +122,4 @@ o.*
 ast.json
 
 #rapid test folder
-testdata
+*/testdata
