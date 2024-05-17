@@ -91,7 +91,7 @@ func (g *Generator) genStmt(node *ast.Statement) string {
 		g.genDeclaration(&decStmt)
 		return ""
 	}
-	if isExitStmt(node) {
+	if isExitStmt(*node) {
 		g.genExitStmt()
 		return ""
 	}
