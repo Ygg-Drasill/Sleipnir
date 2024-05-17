@@ -4,7 +4,6 @@ import (
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/gocc/token"
 	"log"
-	"log/slog"
 )
 
 func (g *Generator) genExpr(node *ast.Expression) string {
@@ -37,7 +36,7 @@ func (g *Generator) genValue(node *ast.Attribute) string {
 func (g *Generator) genVarUsage(node *Identifier) string {
 	identifier, ok := (*node).(Identifier)
 	if !ok {
-		slog.Error("Failed to generate identifier")
+		log.Fatalf("Failed to generate identifier")
 	}
 
 	label := identifier.toGetInstruction()
