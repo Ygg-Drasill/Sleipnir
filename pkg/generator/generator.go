@@ -24,10 +24,10 @@ func (g *Generator) gen(node ast.Attribute) string {
 		return g.genProgram(node)
 	case *ast.Node:
 		return g.genNode(node)
+	case *ast.AssignmentStatement:
+		return g.genAssignmentStmt(node)
 	case *ast.Statement:
 		return g.genStmt(node)
-	case *ast.AssignmentStatement:
-		return g.genAssStmt(node)
 	case *ast.Expression:
 		return g.genExpr(node)
 	case ast.Expression:
@@ -79,24 +79,36 @@ func (g *Generator) genProgram(node *ast.Program) string {
 }
 
 func (g *Generator) genStmt(node *ast.Statement) string {
+	if ifStatement, ok := (*node).(ast.IfStatement); ok {
+		g.genIfStatement(&ifStatement)
+		return ""
+	}
 	if assStmt, ok := (*node).(ast.AssignmentStatement); ok {
 		g.gen(&assStmt)
-
+		return ""
 	}
 	if decStmt, ok := (*node).(ast.Declaration); ok {
 		g.genDeclaration(&decStmt)
+		return ""
+	}
+	if isExitStmt(*node) {
+		g.genExitStmt()
+		return ""
 	}
 	return ""
 }
 
-func (g *Generator) genAssStmt(node *ast.AssignmentStatement) string {
+func (g *Generator) genAssignmentStmt(node *ast.AssignmentStatement) string {
 
-	if expr, ok := node.Expression.(ast.Expression); ok {
-		g.gen(&expr)
+	_, isExpression := node.Expression.(ast.Expression)
+	_, isLiteral := node.Expression.(int64)
+
+	if isExpression || isLiteral {
+		g.gen(node.Expression)
 	}
 
 	if identifier, ok := g.isIdentifier(&node.Expression); ok {
-		g.write("%s\n", identifier.getOperation())
+		g.write("%s\n", identifier.toGetInstruction())
 	}
 
 	var identifier Identifier
@@ -128,10 +140,10 @@ func (g *Generator) genDeclaration(node *ast.Declaration) string {
 
 func (g *Generator) genAssignment(identifier Identifier) string {
 	if nodeIdentifier, ok := identifier.(NodeInIdentifier); ok {
-		g.write("%s\n", nodeIdentifier.setOperation())
+		g.write("%s\n", nodeIdentifier.toSetInstruction())
 	}
 	if localIdentifier, ok := identifier.(LocalIdentifier); ok {
-		g.write("%s\n", localIdentifier.setOperation())
+		g.write("%s\n", localIdentifier.toSetInstruction())
 	}
 	return ""
 }

@@ -10,8 +10,8 @@ type IdentifierConstraint interface {
 }
 
 type Identifier interface {
-	getOperation() string
-	setOperation() string
+	toGetInstruction() string
+	toSetInstruction() string
 }
 
 type NodeInIdentifier struct {
@@ -29,26 +29,26 @@ type LocalIdentifier struct {
 	ast.LocalVar
 }
 
-func (identifier NodeInIdentifier) getOperation() string {
+func (identifier NodeInIdentifier) toGetInstruction() string {
 	return fmt.Sprintf("global.get $%s_%s", identifier.sourceJunction.NodeId, identifier.sourceJunction.VarId)
 }
 
-func (identifier NodeOutIdentifier) getOperation() string {
+func (identifier NodeOutIdentifier) toGetInstruction() string {
 	return fmt.Sprintf("global.get $%s_%s", identifier.nodeId, identifier.Id)
 }
 
-func (identifier LocalIdentifier) getOperation() string {
+func (identifier LocalIdentifier) toGetInstruction() string {
 	return fmt.Sprintf("local.get $%s", identifier.Id)
 }
 
-func (identifier NodeInIdentifier) setOperation() string {
+func (identifier NodeInIdentifier) toSetInstruction() string {
 	return fmt.Sprintf("global.set $%s_%s", identifier.nodeId, identifier.Id)
 }
 
-func (identifier NodeOutIdentifier) setOperation() string {
+func (identifier NodeOutIdentifier) toSetInstruction() string {
 	return fmt.Sprintf("global.set $%s_%s", identifier.nodeId, identifier.Id)
 }
 
-func (identifier LocalIdentifier) setOperation() string {
+func (identifier LocalIdentifier) toSetInstruction() string {
 	return fmt.Sprintf("local.set $%s", identifier.Id)
 }
