@@ -1,0 +1,69 @@
+node Start {
+    out {
+        int a = 3;
+        int b = 6;
+        int c = 9;
+        int d = 12;
+    }
+}
+
+node Multi {
+    in {
+        int a;
+        int b;
+    }
+
+    out {
+        int c;
+    }
+
+    process {
+        out.c = in.a * in.b;
+    }
+
+}
+
+node Plus {
+    in {
+        int a;
+        int b;
+    }
+
+    out{
+        int c;
+    }
+
+    process{
+        out.c = in.a + in.b;
+    }
+}
+
+node Sub {
+    in {
+        int a;
+        int b;
+    }
+
+    out {
+        int c;
+    }
+
+    process {
+        out.c = in.a - in.b;
+    }
+}
+
+node Check : Print;
+
+Start.out.a -> Multi.in.a;
+Start.out.b -> Multi.in.b;
+
+Multi.out.c -> Plus.in.a;
+Start.out.c -> Plus.in.b;
+
+Plus.out.c -> Sub.in.a;
+Start.out.d -> Sub.in.b;
+
+Sub.out.c -> Check.in.text;
+
+expect:15

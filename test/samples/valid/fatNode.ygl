@@ -1,0 +1,33 @@
+node Start {
+    out {
+        int a = 12;
+        int b = 7;
+        int c = 21;
+
+    }
+}
+
+node Fat {
+    in {
+        int a;
+        int b;
+        int c;
+    }
+
+    out {
+        int fatOut;
+    }
+
+    process {
+        int x = in.a + in.b + in.c;
+        int y = in.a - in.b;
+        out.fatOut = x - (y * 5);
+    }
+}
+
+node Result : Print;
+
+Start.out.a -> Fat.in.a; Start.out.b -> Fat.in.b; Start.out.c -> Fat.in.c;
+
+Fat.out.fatOut -> Result.in.text;
+expect:15

@@ -30,3 +30,4 @@ Start.out.b -> Pre.in.b;
 Start.out.c -> Pre.in.c;
 
 Pre.out.x -> Result.in.text;
+expect:30
