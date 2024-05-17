@@ -16,7 +16,7 @@ node Mod {
     }
 
     process {
-        out.result = in.first / in.second;
+        out.result = in.first % in.second;
     }
 }
 
