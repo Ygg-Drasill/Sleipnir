@@ -1,0 +1,70 @@
+node Start1 {
+    out {
+        int a = 3;
+        int b = 4;
+    }
+}
+
+node Start2 {
+    out {
+        int a = 5;
+        int b = 6;
+    }
+}
+
+node Addition {
+    in {
+        int a;
+        int b;
+    }
+    out {
+        int addOut;
+    }
+    process {
+        out.addOut = in.a + in.b;
+    }
+}
+
+node AdditionTwo {
+    in {
+        int a;
+        int b;
+    }
+    out {
+        int addOut;
+    }
+    process {
+        out.addOut = in.a + in.b;
+    }
+}
+
+
+node Addition3 {
+    in {
+        int a;
+        int b;
+    }
+    out {
+      int addOut;
+    }
+    process {
+        out.addOut = in.a + in.b;
+    }
+}
+
+
+
+
+node Result : Print;
+
+Start1.out.a -> Addition.in.a;
+Start1.out.b -> Addition.in.b;
+
+Start2.out.a -> AdditionTwo.in.a;
+Start2.out.b -> AdditionTwo.in.b;
+
+Addition.out.addOut -> Addition3.in.a;
+AdditionTwo.out.addOut -> Addition3.in.b;
+
+Addition3.out.addOut -> Result.in.text;
+expect:18

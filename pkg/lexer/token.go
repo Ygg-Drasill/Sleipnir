@@ -22,12 +22,14 @@ var OperatorMap = map[string]string{
 	"-":  "minus",
 	"*":  "mul",
 	"/":  "div",
+	"%":  "modulo",
 	"==": "eq",
 	"<":  "lt",
 	">":  "gt",
 	"!=": "neq",
 	"&&": "and",
 	"||": "or",
+	"!":  "not",
 }
 
 var PunctuationMap = map[string]string{

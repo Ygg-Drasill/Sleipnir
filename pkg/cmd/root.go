@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/compiler"
 	"log"
-	"log/slog"
 	"os"
 	"path"
 
@@ -35,11 +34,12 @@ var rootCmd = &cobra.Command{
 				log.Fatal(err)
 			}
 			c.ConvertWat2Wasm("o.wasm")
+
 			fmt.Println("Compilation done!", compilePath)
 			if debugBool {
 				debugFolder := "debug/"
 				err := os.Mkdir(path.Clean(debugFolder), os.ModePerm)
-				if err != nil {
+				if err != nil && !os.IsExist(err) {
 					log.Fatal(err)
 				}
 				c.WriteJsonFile(debugFolder + "ast.json")
@@ -50,7 +50,7 @@ var rootCmd = &cobra.Command{
 
 		err := cmd.Help()
 		if err != nil {
-			slog.Error("Error displaying help:", err)
+			log.Fatal("Error displaying help:", err)
 		}
 	},
 }

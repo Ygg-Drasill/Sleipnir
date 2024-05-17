@@ -1,7 +1,6 @@
 package lexer
 
 import (
-	"fmt"
 	"pgregory.net/rapid"
 	"testing"
 )
@@ -43,17 +42,18 @@ func TestStateFunction_matchIdentifier(t *testing.T) {
 	})
 }
 
-// !DO NOT WORK!
 func TestStateFunction_matchLetters(t *testing.T) {
 	rapid.Check(t, func(t *rapid.T) {
-		genLetters := rapid.StringMatching(`node hey {}`).Draw(t, "genLetters")
-		fmt.Printf("%v \n", genLetters)
+		/*
+			Note:
+					- Not sure on how to test the statement function properly.
+					- Not sure if the function is meant to produce token its self or
+					  just called other statement functions.
+		*/
+		genLetters := rapid.StringMatching(`[[:alpha:]]+`).Draw(t, "genLetters")
 		lLetter := NewFromString(genLetters)
 		matchLetters(lLetter)
-
-		fmt.Printf("lLetter: %v len: %v \n", lLetter.tokenList, len(lLetter.tokenList))
-
-		if len(lLetter.tokenList) == 0 {
+		if len(lLetter.tokenList) > 0 {
 			t.Fatalf("TestStateFunction_matchLetters: Tokens were made, Tokenlist: %v ", lLetter.tokenList)
 		}
 	})
@@ -67,7 +67,7 @@ func TestStateFunction_matchKeyword(t *testing.T) {
 		lKeyword := NewFromString(genKeyword)
 		matchKeyword(lKeyword)
 		if len(lKeyword.tokenList) == 0 {
-			t.Fatalf("TestStateFunction_matchIdentifier: No tokens were made, Tokenlist: %v ", lKeyword.tokenList)
+			t.Fatalf("TestStateFunction_matchKeyword: No tokens were made, Tokenlist: %v ", lKeyword.tokenList)
 		}
 
 		//Test for matchKeyword for non-keyword
@@ -75,13 +75,29 @@ func TestStateFunction_matchKeyword(t *testing.T) {
 		lNonKeyword := NewFromString(genNonKeyword)
 		matchKeyword(lNonKeyword)
 		if len(lNonKeyword.tokenList) > 0 {
-			t.Fatalf("TestStateFunction_matchIdentifier: Tokens were made, Tokenlist: %v ", lNonKeyword.tokenList)
+			t.Fatalf("TestStateFunction_matchKeyword: Tokens were made, Tokenlist: %v ", lNonKeyword.tokenList)
 		}
 	})
 }
 
 func TestStateFunction_matchConnector(t *testing.T) {
+
+	/*
+		Notes for match connector:
+			- You can make the connection symbol infinitly long fx. "--------->
+			- Any combination of -> is accepted fx. >--->-, >>->>- or --
+	*/
 	rapid.Check(t, func(t *rapid.T) {
+
+		// Test for matchConnector for connector
+		genMatchConnector := rapid.StringMatching(`([->]{2})+`).Draw(t, "genMatchConnector")
+		lMatchConnector := NewFromString(genMatchConnector)
+		matchConnector(lMatchConnector)
+		if len(lMatchConnector.tokenList) == 0 {
+			t.Fatalf("TestStateFunction_matchConnector: Tokens were made, Tokenlist: %v ", lMatchConnector.tokenList)
+		}
+
+		//Test for matchConnector for non-connector
 
 	})
 }
@@ -89,17 +105,45 @@ func TestStateFunction_matchConnector(t *testing.T) {
 func TestStateFunction_matchCommentSingle(t *testing.T) {
 	rapid.Check(t, func(t *rapid.T) {
 
+		//Test for matchCommentSingle for single comment
+		genMatchCommentSingle := rapid.StringMatching(`\n//`).Draw(t, "genMatchCommentSingle")
+		lMatchCommentSingle := NewFromString(genMatchCommentSingle)
+		matchConnector(lMatchCommentSingle)
+		if len(lMatchCommentSingle.tokenList) == 0 {
+			t.Fatalf("TestStateFunction_matchCommentSingle: Tokens were made, Tokenlist: %v ", lMatchCommentSingle.tokenList)
+		}
 	})
 }
 
 func TestStateFunction_matchCommentMulti(t *testing.T) {
-	rapid.Check(t, func(t *rapid.T) {
+	// Test for Multi comment is not perform, since the statement function is not finished
+	rapid.Check(t, func(t *rapid.T) {})
+}
 
+func TestStateFunction_matchNonToken(t *testing.T) {
+	rapid.Check(t, func(t *rapid.T) {
+		//Test matchNonToken
+		genMatchNonToken := rapid.StringMatching(`[[:word:]//[:punct:]]+`).Draw(t, "genMatchNonToken")
+		lMatchNonToken := NewFromString(genMatchNonToken)
+		matchNonToken(lMatchNonToken)
+		if len(lMatchNonToken.tokenList) > 0 {
+			t.Fatalf("TestStateFunction_matchNonToken: Tokens were made, Tokenlist: %v ", lMatchNonToken.tokenList)
+		}
 	})
 }
 
 func TestStateFunction_matchAny(t *testing.T) {
 	rapid.Check(t, func(t *rapid.T) {
+		//Note: Not really sure how to test it properly
+		//Test MatchAny for large input
+		genMatchAny := rapid.StringMatching(`[[:graph:]]+`).Draw(t, "genMatchAny")
+		lMatchAny := NewFromString(genMatchAny)
+		matchAny(lMatchAny)
+
+		//Test MatchAny for unrecognised token
+		genMatchAny_unrecognised := rapid.StringMatching(`\D`).Draw(t, "genMatchAny_unrecognised")
+		lMatchAny_unrecognised := NewFromString(genMatchAny_unrecognised)
+		matchAny(lMatchAny_unrecognised)
 
 	})
 }

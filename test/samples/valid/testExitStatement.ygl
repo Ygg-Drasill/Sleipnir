@@ -1,0 +1,15 @@
+node Foo {
+    out {
+        int a = 1;
+    }
+
+    process {
+        exit;
+        out.a = 0;
+    }
+}
+
+node Check : Print;
+
+Foo.out.a -> Check.in.text;
+expect:0

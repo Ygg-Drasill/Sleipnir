@@ -1,32 +1,33 @@
-node Start {
+node Foo {
     out {
-        int a = 2;
-        int b = 3;
-        int c = 4;
-
+        int x = 1;
+        int y = 2;
     }
 }
 
-node Pre {
+node Bar {
     in {
         int a;
         int b;
-        int c;
     }
 
     out {
-        int x;
+        int c;
     }
 
     process {
-        out.x = (in.a + in.b) * ((in.c - in.a) * in.b);
+        int j = 2 + 2;
+        out.c = in.a;
+        out.c = out.c + j;
     }
 }
 
-node Result : Print;
+node Add0 : Add;
 
-Start.out.a -> Pre.in.a;
-Start.out.b -> Pre.in.b;
-Start.out.c -> Pre.in.c;
+node Print0 : Print;
 
-Pre.out.x -> Result.in.text;
+Foo.out.x -> Bar.in.a;
+Foo.out.y -> Bar.in.b;
+Foo.out.x -> Add0.in.a;
+Bar.out.c -> Add0.in.b;
+Add0.out.result -> Print0.in.text;

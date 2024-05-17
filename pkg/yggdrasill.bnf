@@ -76,17 +76,6 @@ Identifier
 CompareOperator
     : eq | lt | gt | neq | and | or ;
 
-InfixOperator
-    : plus | minus | mul | div  /*arithmetic*/
-    | CompareOperator /*logic*/
-    ;
-
-
-Expression
-    : Expression InfixOperator Term
-    | Term
-    ;
-
 DeclarationStmt
     : Type varId stmtEnd                << ast.NewDeclaration($Context, $0, $1, nil) >>
     | Type varId Assignment stmtEnd     << ast.NewDeclaration($Context, $0, $1, $2) >>
@@ -111,7 +100,8 @@ ControlStmt
     ;
 
 IfStmt
-    : if lp Expr rp lcurly StmtLst rcurly else lcurly StmtLst rcurly  << ast.NewIfStatement($2, $5, $9) >>
+    : if lp LogicalExpr rp lcurly StmtLst rcurly else lcurly StmtLst rcurly  << ast.NewIfStatement($2, $5, $9) >>
+    | if lp LogicalExpr rp lcurly StmtLst rcurly                             << ast.NewIfStatement($2, $5, nil) >>
     ;
 
 WhileStmt
@@ -122,6 +112,7 @@ Stmt
     : DeclarationStmt   << $0, nil >>
     | AssignStmt        << $0, nil >>
     | ControlStmt       << $0, nil >>
+    | exit stmtEnd      << $0, nil >>
     ;
 
 StmtLst
@@ -137,12 +128,14 @@ Expr
     ;
 
 LogicalExpr
-    : NodeVar CompareOperator NodeVar    << ast.NewExpression($0, $1, $2) >>
+    : Factor CompareOperator LogicalExpr    << ast.NewExpression($0, $1, $2) >>
+    | Factor
     ;
 
 AritExpr
     : AritExpr plus Term    << ast.NewExpression($0, $1, $2) >>
     | AritExpr minus Term   << ast.NewExpression($0, $1, $2) >>
+    | AritExpr modulo Term  << ast.NewExpression($0, $1, $2) >>
     | Term                  << $0, nil >>
     ;
 
@@ -153,7 +146,14 @@ Term
     ;
 
 Factor
-    : lp Expression rp      << $1, nil >>
+    : lp AritExpr rp      << $1, nil >>
     | int64 	            << util.IntValue($0.(*token.Token).Lit) >>
     | Identifier            << $0, nil >>
+    ;
+
+LogicFactor
+    : lp LogicalExpr rp     << $1, nil >>
+    | not LogicFactor       << $1, nil >>
+    | Identifier            << $0, nil >>
+    | bool                  << $0, nil >>
     ;
