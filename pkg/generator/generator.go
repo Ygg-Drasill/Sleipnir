@@ -38,6 +38,8 @@ func (g *Generator) gen(node ast.Attribute) error {
 	return nil
 }
 
+var UnknownTemplateError = errors.New("unknown template")
+
 func (g *Generator) genProgram(node *ast.Program) error {
 	rootNodes := make([]ast.Node, 0)
 
@@ -56,11 +58,26 @@ func (g *Generator) genProgram(node *ast.Program) error {
 		}
 
 		if len(n.TemplateId) > 0 {
-			template := standardTemplates.StandardTemplates[n.TemplateId]
-			if template == nil {
-				return errors.New(fmt.Sprintf("template does not exist for %s\n", n.TemplateId))
+			standard := standardTemplates.StandardTemplates[n.TemplateId]
+			template := g.context.Templates[n.TemplateId]
+			if standard == nil && template == nil {
+				return errors.Join(UnknownTemplateError,
+					fmt.Errorf("template does not exist for %s\n", n.TemplateId),
+				)
 			}
-			for _, outId := range template.Outputs {
+
+			var outputs []string
+			if standard != nil {
+				outputs = standard.Outputs
+			}
+			if template != nil {
+				declarations := template.OutDeclarations
+				outputs = make([]string, len(declarations), len(declarations))
+				for i, decl := range declarations {
+					outputs[i] = decl.AssigneeId.(string)
+				}
+			}
+			for _, outId := range outputs {
 				nodeId := n.Id
 				g.write("(global $%s_%s (mut i32) (i32.const 0))\n", nodeId, outId)
 			}
@@ -110,7 +127,9 @@ func (g *Generator) genAssignmentStmt(node *ast.AssignmentStatement) error {
 		}
 	}
 
-	if identifier, ok := g.isIdentifier(&node.Expression); ok {
+	if identifier, err := g.isIdentifier(&node.Expression); err != nil {
+		return err
+	} else if identifier != nil {
 		g.write("%s\n", identifier.toGetInstruction())
 	}
 

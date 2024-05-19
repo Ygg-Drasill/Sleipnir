@@ -33,12 +33,18 @@ func NewNode(context, node, in, out, process Attribute, isTemplate bool) (Node, 
 	ctx := context.(ParseContext)
 	ctx.BabushkaPopScopeNode(nodeId)
 
-	return Node{
+	newNode := Node{
 		Id:              nodeId,
 		InDeclarations:  inDeclarations,
 		OutDeclarations: outDeclarations,
 		ProcStatements:  processStatements,
-	}, nil
+	}
+
+	if isTemplate {
+		ctx.Templates[nodeId] = &newNode
+	}
+
+	return newNode, nil
 }
 
 func NewScopeIn(context, declarationList Attribute) (Attribute, error) {

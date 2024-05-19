@@ -30,6 +30,7 @@ func newSymbolTable() symbolTable {
 
 func NewParseContext() ParseContext {
 	return ParseContext{
+		Templates:    make(map[string]*Node),
 		Nodes:        make(map[nodeKey]*NodeContext),
 		CurrentScope: newSymbolTable(),
 		CurrentNode:  newNodeContext(),
@@ -53,6 +54,7 @@ func copyNodeContext(src *NodeContext) *NodeContext {
 }
 
 type ParseContext struct {
+	Templates    map[string]*Node
 	Nodes        map[nodeKey]*NodeContext
 	CurrentNode  *NodeContext
 	CurrentScope symbolTable
