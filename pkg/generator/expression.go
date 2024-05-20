@@ -31,14 +31,19 @@ func (g *Generator) genExprOperand(node *ast.Attribute) {
 	}
 }
 
-func (g *Generator) genValue(node *ast.Attribute) string {
-	if identifier, ok := g.isIdentifier(node); ok {
+func (g *Generator) genValue(node *ast.Attribute) error {
+	identifier, err := g.isIdentifier(node)
+	if err != nil {
+		return err
+	}
+	if identifier != nil {
 		g.genVarUsage(&identifier)
+	} else {
+		if val, ok := (*node).(int64); ok {
+			err = g.genInt(val)
+		}
 	}
-	if val, ok := (*node).(int64); ok {
-		g.genInt(val)
-	}
-	return ""
+	return err
 }
 
 func (g *Generator) genVarUsage(node *Identifier) string {

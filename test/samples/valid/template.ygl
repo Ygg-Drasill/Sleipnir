@@ -1,0 +1,26 @@
+node Constants {
+    out {
+        int c = 1;
+    }
+}
+
+template Foo {
+    in {
+        int a;
+    }
+
+    out {
+        int b;
+    }
+
+    process {
+        out.b = in.a;
+    }
+}
+
+node Bar : Foo;
+node Check : Print;
+
+Constants.out.c -> Bar.in.a;
+Bar.out.b -> Check.in.text;
+expect:1

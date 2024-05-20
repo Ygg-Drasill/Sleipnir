@@ -1,12 +1,12 @@
 package generator
 
 import (
+	"fmt"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/ast"
 	"github.com/Ygg-Drasill/Sleipnir/pkg/generator/utils"
-	"log"
 )
 
-func (g *Generator) isIdentifier(attr *ast.Attribute) (Identifier, bool) {
+func (g *Generator) isIdentifier(attr *ast.Attribute) (Identifier, error) {
 	if i, ok := (*attr).(ast.NodeVar); ok {
 		var newIdentifier Identifier
 
@@ -21,8 +21,7 @@ func (g *Generator) isIdentifier(attr *ast.Attribute) (Identifier, bool) {
 			sourceJunction := g.outNodeVars[utils.JunctionKey(g.currentNode.Id, i.Id)]
 
 			if sourceJunction == nil {
-				log.Fatal("Reference to undeclared node variable ", utils.JunctionKey(g.currentNode.Id, i.Id))
-				return nil, false
+				return nil, fmt.Errorf("reference to undeclared node variable %s", utils.JunctionKey(g.currentNode.Id, i.Id))
 			}
 
 			newIdentifier = NodeInIdentifier{
@@ -31,15 +30,15 @@ func (g *Generator) isIdentifier(attr *ast.Attribute) (Identifier, bool) {
 				nodeId:         g.currentNode.Id,
 			}
 		}
-		return newIdentifier, true
+		return newIdentifier, nil
 	}
 
 	if i, ok := (*attr).(*ast.LocalVar); ok {
 		newIdentifier := LocalIdentifier{
 			*i,
 		}
-		return newIdentifier, true
+		return newIdentifier, nil
 	}
 
-	return nil, false
+	return nil, nil
 }

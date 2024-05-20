@@ -6,10 +6,26 @@ import (
 )
 
 func (g *Generator) genNode(node *ast.Node) error {
+	userTemplate := g.context.Templates[node.TemplateId]
+	standardTemplate := standardTemplates.StandardTemplates[node.TemplateId]
+	outDeclarations := node.OutDeclarations
+	process := node.ProcStatements
+	var err error
+
+	//don't generate template definition
+	if g.context.Templates[node.Id] != nil {
+		return nil
+	}
+
+	if userTemplate != nil {
+		outDeclarations = userTemplate.OutDeclarations
+		process = userTemplate.ProcStatements
+	}
+
 	g.currentNode = node
 	g.write("(func $%s\n", node.Id)
-	g.genNodeLocals(&node.ProcStatements)
-	g.genNodeGlobals(&node.OutDeclarations)
+	err = g.genNodeLocals(&process)
+	err = g.genNodeGlobals(&outDeclarations)
 
 	inputs := make([]ast.Connection, 0)
 	for _, conn := range g.syntaxTree.Connections {
@@ -24,21 +40,18 @@ func (g *Generator) genNode(node *ast.Node) error {
 		if connectionsMemo[conn.InJunction.NodeId] {
 			break
 		}
-		g.write("global.get $%s_processed\n", conn.OutJunction.NodeId)
-		g.write("(if (then nop) (else return))\n")
+		g.write("global.get $%s_processed (if (then nop) (else return))\n", conn.OutJunction.NodeId)
 		connectionsMemo[conn.OutJunction.NodeId] = true
 	}
 	g.write("i32.const 1\n")
 	g.write("(global.set $%s_processed)\n", g.currentNode.Id)
 
-	if len(node.TemplateId) > 0 {
-		template := standardTemplates.StandardTemplates[node.TemplateId]
-		if template != nil {
-			g.write("%s\n", template.FormatBody(*template, node.Id, g.outNodeVars))
-		}
+	//if template is standard
+	if standardTemplate != nil {
+		g.write("%s\n", standardTemplate.FormatBody(*standardTemplate, node.Id, g.outNodeVars))
 	}
 
-	for _, stmt := range node.ProcStatements {
+	for _, stmt := range process {
 		if err := g.gen(&stmt); err != nil {
 			return err
 		}
@@ -53,7 +66,7 @@ func (g *Generator) genNode(node *ast.Node) error {
 		}
 	}
 	g.write(")\n")
-	return nil
+	return err
 }
 
 func (g *Generator) genNodeLocals(statements *ast.StatementList) error {
@@ -88,5 +101,5 @@ func (g *Generator) isRoot(node *ast.Node) bool {
 			isRoot = false
 		}
 	}
-	return isRoot
+	return isRoot && g.context.Templates[node.Id] == nil
 }
