@@ -33,9 +33,7 @@ func TestStateFunction_matchIdentifier(t *testing.T) {
 		//Test for matchIdentifier
 		genIdentifier := rapid.StringMatching(`[[:alnum:]]+`).Draw(t, "genIdentifier")
 		lIdentifier := NewFromString(genIdentifier)
-		//fmt.Printf("Generated string: %v \n", genIdentifier)
 		matchIdentifier(lIdentifier)
-		//fmt.Printf("lIdentifier: %v len: %v \n", lIdentifier.tokenList, len(lIdentifier.tokenList))
 		if len(lIdentifier.tokenList) == 0 {
 			t.Fatalf("TestStateFunction_matchIdentifier: Tokens were made, Tokenlist: %v ", lIdentifier.tokenList)
 		}
@@ -44,24 +42,29 @@ func TestStateFunction_matchIdentifier(t *testing.T) {
 
 func TestStateFunction_matchLetters(t *testing.T) {
 	rapid.Check(t, func(t *rapid.T) {
-		/*
-			Note:
-					- Not sure on how to test the statement function properly.
-					- Not sure if the function is meant to produce token its self or
-					  just called other statement functions.
-		*/
+		// Test for letters using matchLetters
 		genLetters := rapid.StringMatching(`[[:alpha:]]+`).Draw(t, "genLetters")
 		lLetter := NewFromString(genLetters)
 		matchLetters(lLetter)
 		if len(lLetter.tokenList) > 0 {
 			t.Fatalf("TestStateFunction_matchLetters: Tokens were made, Tokenlist: %v ", lLetter.tokenList)
 		}
+		// Test for letters using matchLetters & matchIdentifier
+		matchIdentifier(lLetter)
+		if len(lLetter.tokenList) == 0 {
+			t.Fatalf("TestStateFunction_matchLetters_matchIdentifier: No tokens were made, Tokenlist: %v ", lLetter.tokenList)
+		}
+		// Test for letters using matchLetters & matchKeyword
+		matchKeyword(lLetter)
+		if len(lLetter.tokenList) == 0 {
+			t.Fatalf("TestStateFunction_matchLetters_matchKeyword: No tokens were made, Tokenlist: %v ", lLetter.tokenList)
+		}
+
 	})
 }
 
 func TestStateFunction_matchKeyword(t *testing.T) {
 	rapid.Check(t, func(t *rapid.T) {
-
 		//Test for matchKeyword for keywords
 		genKeyword := rapid.SampledFrom(reservedKeywords).Draw(t, "genKeyword")
 		lKeyword := NewFromString(genKeyword)
@@ -69,7 +72,6 @@ func TestStateFunction_matchKeyword(t *testing.T) {
 		if len(lKeyword.tokenList) == 0 {
 			t.Fatalf("TestStateFunction_matchKeyword: No tokens were made, Tokenlist: %v ", lKeyword.tokenList)
 		}
-
 		//Test for matchKeyword for non-keyword
 		genNonKeyword := rapid.StringMatching(`[[:alnum:]]+`).Draw(t, "genNonKeyword")
 		lNonKeyword := NewFromString(genNonKeyword)
@@ -81,14 +83,10 @@ func TestStateFunction_matchKeyword(t *testing.T) {
 }
 
 func TestStateFunction_matchConnector(t *testing.T) {
-
-	/*
-		Notes for match connector:
+	/*		Notes for match connector:
 			- You can make the connection symbol infinitly long fx. "--------->
-			- Any combination of -> is accepted fx. >--->-, >>->>- or --
-	*/
+			- Any combination of -> is accepted fx. >--->-, >>->>- or --    	*/
 	rapid.Check(t, func(t *rapid.T) {
-
 		// Test for matchConnector for connector
 		genMatchConnector := rapid.StringMatching(`([->]{2})+`).Draw(t, "genMatchConnector")
 		lMatchConnector := NewFromString(genMatchConnector)
@@ -96,15 +94,11 @@ func TestStateFunction_matchConnector(t *testing.T) {
 		if len(lMatchConnector.tokenList) == 0 {
 			t.Fatalf("TestStateFunction_matchConnector: Tokens were made, Tokenlist: %v ", lMatchConnector.tokenList)
 		}
-
-		//Test for matchConnector for non-connector
-
 	})
 }
 
 func TestStateFunction_matchCommentSingle(t *testing.T) {
 	rapid.Check(t, func(t *rapid.T) {
-
 		//Test for matchCommentSingle for single comment
 		genMatchCommentSingle := rapid.StringMatching(`\n//`).Draw(t, "genMatchCommentSingle")
 		lMatchCommentSingle := NewFromString(genMatchCommentSingle)
@@ -139,7 +133,6 @@ func TestStateFunction_matchAny(t *testing.T) {
 		genMatchAny := rapid.StringMatching(`[[:graph:]]+`).Draw(t, "genMatchAny")
 		lMatchAny := NewFromString(genMatchAny)
 		matchAny(lMatchAny)
-
 		//Test MatchAny for unrecognised token
 		genMatchAny_unrecognised := rapid.StringMatching(`\D`).Draw(t, "genMatchAny_unrecognised")
 		lMatchAny_unrecognised := NewFromString(genMatchAny_unrecognised)
