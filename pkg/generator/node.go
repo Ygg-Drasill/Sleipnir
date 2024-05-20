@@ -6,8 +6,8 @@ import (
 )
 
 func (g *Generator) genNode(node *ast.Node) error {
-	template := g.context.Templates[node.TemplateId]
-	standardTemplate := standardTemplates.StandardTemplates[node.Id]
+	userTemplate := g.context.Templates[node.TemplateId]
+	standardTemplate := standardTemplates.StandardTemplates[node.TemplateId]
 	outDeclarations := node.OutDeclarations
 	process := node.ProcStatements
 	var err error
@@ -17,9 +17,9 @@ func (g *Generator) genNode(node *ast.Node) error {
 		return nil
 	}
 
-	if template != nil {
-		outDeclarations = template.OutDeclarations
-		process = template.ProcStatements
+	if userTemplate != nil {
+		outDeclarations = userTemplate.OutDeclarations
+		process = userTemplate.ProcStatements
 	}
 
 	g.currentNode = node
@@ -48,10 +48,7 @@ func (g *Generator) genNode(node *ast.Node) error {
 
 	//if template is standard
 	if standardTemplate != nil {
-		template := standardTemplates.StandardTemplates[node.TemplateId]
-		if template != nil {
-			g.write("%s\n", template.FormatBody(*template, node.Id, g.outNodeVars))
-		}
+		g.write("%s\n", standardTemplate.FormatBody(*standardTemplate, node.Id, g.outNodeVars))
 	}
 
 	for _, stmt := range process {
