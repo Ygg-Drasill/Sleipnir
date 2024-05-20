@@ -5,7 +5,7 @@ import (
 	"github.com/Ygg-Drasill/Sleipnir/pkg/generator/standardTemplates"
 )
 
-func (g *Generator) genNode(node *ast.Node) string {
+func (g *Generator) genNode(node *ast.Node) error {
 	g.currentNode = node
 	g.write("(func $%s\n", node.Id)
 	g.genNodeLocals(&node.ProcStatements)
@@ -39,7 +39,9 @@ func (g *Generator) genNode(node *ast.Node) string {
 	}
 
 	for _, stmt := range node.ProcStatements {
-		g.gen(&stmt)
+		if err := g.gen(&stmt); err != nil {
+			return err
+		}
 	}
 
 	clear(connectionsMemo)
@@ -51,10 +53,10 @@ func (g *Generator) genNode(node *ast.Node) string {
 		}
 	}
 	g.write(")\n")
-	return ""
+	return nil
 }
 
-func (g *Generator) genNodeLocals(statements *ast.StatementList) string {
+func (g *Generator) genNodeLocals(statements *ast.StatementList) error {
 	for _, statement := range *statements {
 		dec, ok := statement.(ast.Declaration)
 		if !ok {
@@ -62,10 +64,11 @@ func (g *Generator) genNodeLocals(statements *ast.StatementList) string {
 		}
 		g.write("(local $%s i32)\n", dec.AssigneeId)
 	}
-	return ""
+	return nil
+
 }
 
-func (g *Generator) genNodeGlobals(decList *ast.DeclarationList) string {
+func (g *Generator) genNodeGlobals(decList *ast.DeclarationList) error {
 	for _, assignment := range *decList {
 		value := 0
 		if v, ok := assignment.Expression.(int64); assignment.Expression != nil && ok {
@@ -75,7 +78,7 @@ func (g *Generator) genNodeGlobals(decList *ast.DeclarationList) string {
 		g.write("(global.set $%s_%s (i32.const %d))\n", g.currentNode.Id, assignment.AssigneeId, value)
 	}
 
-	return ""
+	return nil
 }
 
 func (g *Generator) isRoot(node *ast.Node) bool {

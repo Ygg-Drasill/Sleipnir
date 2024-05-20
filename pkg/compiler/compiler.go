@@ -30,7 +30,10 @@ func (compiler *Compiler) Compile() error {
 	ctx := compiler.parser.Context.(ast.ParseContext)
 	gen := generator.New(&programNode, &ctx)
 	compiler.syntaxTree = &syntaxTree
-	compiler.outBuffer = gen.GenWrapper()
+	compiler.outBuffer, err = gen.GenWrapper()
+	if err != nil {
+		return err
+	}
 	return nil
 }
 

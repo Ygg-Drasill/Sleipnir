@@ -7,7 +7,7 @@ import (
 	"log"
 )
 
-func (g *Generator) genExpr(node *ast.Expression) string {
+func (g *Generator) genExpr(node *ast.Expression) error {
 	g.genExprOperand(&node.FirstOperand)
 	g.genExprOperand(&node.SecondOperand)
 	opToken := node.Operator.(*token.Token)
@@ -15,12 +15,12 @@ func (g *Generator) genExpr(node *ast.Expression) string {
 		err := handleZeroDivision(node)
 
 		if err != nil {
-			log.Fatal(errors.Join(errors.New(opToken.Pos.String()), err))
+			return errors.Join(errors.New(opToken.Pos.String()), err)
 		}
 	}
 
 	g.genInstruction(opToken)
-	return ""
+	return nil
 }
 
 func (g *Generator) genExprOperand(node *ast.Attribute) {
