@@ -44,7 +44,7 @@ ConnLst
     ;
 
 /* Node scope */
-Type : int | bool | string ;
+Type : int | bool ;
 
 NodeVar
     : in period varId     << ast.NewNodeVar($0, $2) >>
