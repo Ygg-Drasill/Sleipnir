@@ -37,11 +37,11 @@ func (g *Generator) genNode(node *ast.Node) error {
 
 	connectionsMemo := make(map[string]bool)
 	for _, conn := range inputs {
-		if connectionsMemo[conn.InJunction.NodeId] {
+		if connectionsMemo[conn.OutJunction.NodeId] {
 			break
 		}
 		connectionsMemo[conn.OutJunction.NodeId] = true
-		if conn.InJunction.NodeId == g.currentNode.Id {
+		if conn.OutJunction.NodeId == g.currentNode.Id {
 			break
 		}
 		g.write("global.get $%s_processed (if (then nop) (else return))\n", conn.OutJunction.NodeId)
