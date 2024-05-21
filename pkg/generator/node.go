@@ -40,8 +40,11 @@ func (g *Generator) genNode(node *ast.Node) error {
 		if connectionsMemo[conn.InJunction.NodeId] {
 			break
 		}
-		g.write("global.get $%s_processed (if (then nop) (else return))\n", conn.OutJunction.NodeId)
 		connectionsMemo[conn.OutJunction.NodeId] = true
+		if conn.InJunction.NodeId == g.currentNode.Id {
+			break
+		}
+		g.write("global.get $%s_processed (if (then nop) (else return))\n", conn.OutJunction.NodeId)
 	}
 	g.write("i32.const 1\n")
 	g.write("(global.set $%s_processed)\n", g.currentNode.Id)
@@ -86,9 +89,8 @@ func (g *Generator) genNodeGlobals(decList *ast.DeclarationList) error {
 		value := 0
 		if v, ok := assignment.Expression.(int64); assignment.Expression != nil && ok {
 			value = int(v)
+			g.write("(global.set $%s_%s (i32.const %d))\n", g.currentNode.Id, assignment.AssigneeId, value)
 		}
-
-		g.write("(global.set $%s_%s (i32.const %d))\n", g.currentNode.Id, assignment.AssigneeId, value)
 	}
 
 	return nil
