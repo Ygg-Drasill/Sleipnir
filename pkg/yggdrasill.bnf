@@ -25,12 +25,10 @@ Conn
 
 ConnOut
     : nodeId period out period varId          << ast.NewJunction($0, $4) >>
-    | nodeId period out                    << ast.NewJunction($0, "") >>
     ;
 
 ConnIn
     : nodeId period in period varId           << ast.NewJunction($0, $4) >>
-    | nodeId period in                     << ast.NewJunction($0, "") >>
     ;
 
 NodeLst
@@ -44,7 +42,7 @@ ConnLst
     ;
 
 /* Node scope */
-Type : int | bool | string ;
+Type : int | bool ;
 
 NodeVar
     : in period varId     << ast.NewNodeVar($0, $2) >>
@@ -62,7 +60,7 @@ NodeOut
     ;
 
 NodeProc
-    : process lcurly StmtLst rcurly << ast.NewScopeProc($Context, $2) >>
+    : process Block << ast.NewScopeProc($Context, $1) >>
     | process lcurly rcurly         << ast.NewScopeProc($Context, nil) >>
     | empty
     ;
@@ -100,12 +98,12 @@ ControlStmt
     ;
 
 IfStmt
-    : if lp LogicalExpr rp lcurly StmtLst rcurly else lcurly StmtLst rcurly  << ast.NewIfStatement($2, $5, $9) >>
-    | if lp LogicalExpr rp lcurly StmtLst rcurly                             << ast.NewIfStatement($2, $5, nil) >>
+    : if lp Expr rp Block else Block << ast.NewIfStatement($2, $4, $6) >>
+    | if lp Expr rp Block            << ast.NewIfStatement($2, $4, nil) >>
     ;
 
 WhileStmt
-    : while lp Expr rp lcurly StmtLst rcurly << ast.NewWhileStatement($2, $5) >>
+    : while lp Expr rp Block                << ast.NewWhileStatement($2, $4) >>
     ;
 
 Stmt
@@ -118,25 +116,20 @@ Stmt
 StmtLst
     : StmtLst Stmt  << ast.AppendStatement($0, $1) >>
     | Stmt          << ast.NewStatementList($0) >>
+    ;
+
+Block
+    : lcurly StmtLst rcurly << $1, nil >>
     | empty
     ;
 
 /* Expressions */
 Expr
-    : AritExpr              << $0, nil >>
-    | LogicalExpr           << $0, nil >>
-    ;
-
-LogicalExpr
-    : Factor CompareOperator LogicalExpr    << ast.NewExpression($0, $1, $2) >>
-    | Factor
-    ;
-
-AritExpr
-    : AritExpr plus Term    << ast.NewExpression($0, $1, $2) >>
-    | AritExpr minus Term   << ast.NewExpression($0, $1, $2) >>
-    | AritExpr modulo Term  << ast.NewExpression($0, $1, $2) >>
-    | Term                  << $0, nil >>
+    : Expr plus Term                << ast.NewExpression($0, $1, $2) >>
+    | Expr minus Term               << ast.NewExpression($0, $1, $2) >>
+    | Expr modulo Term              << ast.NewExpression($0, $1, $2) >>
+    | Term                          << $0, nil >>
+    | Expr CompareOperator Factor   << ast.NewExpression($0, $1, $2) >>
     ;
 
 Term
@@ -146,14 +139,8 @@ Term
     ;
 
 Factor
-    : lp AritExpr rp      << $1, nil >>
+    : lp Expr rp        << $1, nil >>
+    | Identifier            << $0, nil >>
+    | not Factor            << $1, nil >>
     | int64 	            << util.IntValue($0.(*token.Token).Lit) >>
-    | Identifier            << $0, nil >>
-    ;
-
-LogicFactor
-    : lp LogicalExpr rp     << $1, nil >>
-    | not LogicFactor       << $1, nil >>
-    | Identifier            << $0, nil >>
-    | bool                  << $0, nil >>
     ;
