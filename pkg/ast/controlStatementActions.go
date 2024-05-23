@@ -13,7 +13,7 @@ func NewIfStatement(condition, bodyBlock, elseBlock Attribute) (*IfStatement, er
 	conditionExpression = condition.(Expression)
 
 	op := string(conditionExpression.Operator.(*token.Token).Lit)
-	if op == "+" || op == "-" || op == "/" || op == "*" {
+	if op == "+" || op == "-" || op == "/" || op == "*" || op == "%" {
 		return nil, fmt.Errorf("if statement must contain condition")
 	}
 	if bodyBlock != nil {
