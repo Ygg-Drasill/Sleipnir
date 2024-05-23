@@ -94,16 +94,11 @@ AssignStmt
 
 ControlStmt
     : IfStmt        << $0, nil >>
-    | WhileStmt     << $0, nil >>
     ;
 
 IfStmt
     : if lp Expr rp Block else Block << ast.NewIfStatement($2, $4, $6) >>
     | if lp Expr rp Block            << ast.NewIfStatement($2, $4, nil) >>
-    ;
-
-WhileStmt
-    : while lp Expr rp Block                << ast.NewWhileStatement($2, $4) >>
     ;
 
 Stmt

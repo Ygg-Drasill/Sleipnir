@@ -29,12 +29,3 @@ func NewIfStatement(condition, bodyBlock, elseBlock Attribute) (*IfStatement, er
 		ElseStatements: elseStatementList,
 	}, nil
 }
-
-func NewWhileStatement(condition, bodyBlock Attribute) (WhileStatement, error) {
-	conditionExpression := condition.(Expression)
-	statementList := bodyBlock.(StatementList)
-	return WhileStatement{
-		Condition:      conditionExpression,
-		BodyStatements: statementList,
-	}, nil
-}
