@@ -1,0 +1,59 @@
+node Const {
+    out {
+        int start = 0;
+    }
+}
+
+node Foo {
+    in {
+        int start;
+        int x = 0;
+    }
+
+    out {
+        int done;
+        int i;
+    }
+
+    process {
+        if (out.done > 0) {
+            exit;
+        }
+        out.i = in.x + 1;
+        if (out.i > 9) {
+            out.done = 1;
+        }
+    }
+}
+
+node Bar {
+    in {
+        int done = 0;
+        int i;
+    }
+
+    out {
+        int result;
+    }
+
+    process {
+        if (in.done > 0) {
+            out.result = in.i;
+        } else {
+            exit;
+        }
+    }
+}
+
+node Check : Print;
+
+Const.out.start -> Foo.in.start;
+Foo.out.i -> Foo.in.x;
+
+Foo.out.done -> Bar.in.done;
+Foo.out.i -> Bar.in.i;
+
+Bar.out.result -> Check.in.text;
+
+//should count to 10
+expect:10
