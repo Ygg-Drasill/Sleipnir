@@ -100,8 +100,8 @@ func (g *Generator) genProgram(node *ast.Program) error {
 var UnknownStatementError = errors.New("unknown statement")
 
 func (g *Generator) genStmt(node *ast.Statement) error {
-	if ifStatement, ok := (*node).(ast.IfStatement); ok {
-		return g.genIfStatement(&ifStatement)
+	if ifStatement, ok := (*node).(*ast.IfStatement); ok {
+		return g.genIfStatement(ifStatement)
 	}
 	if assStmt, ok := (*node).(ast.AssignmentStatement); ok {
 		return g.gen(&assStmt)
