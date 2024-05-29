@@ -12,7 +12,7 @@ func (g *Generator) genExpr(node *ast.Expression) error {
 	g.genExprOperand(&node.SecondOperand)
 	opToken := node.Operator.(*token.Token)
 	tokenLit := string(opToken.Lit)
-	if tokenLit == "/" || tokenLit == "%" {
+	if tokenLit == "/" || tokenLit == "%"  {
 		err := handleZeroDivision(node)
 
 		if err != nil {
