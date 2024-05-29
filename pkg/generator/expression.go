@@ -11,7 +11,8 @@ func (g *Generator) genExpr(node *ast.Expression) error {
 	g.genExprOperand(&node.FirstOperand)
 	g.genExprOperand(&node.SecondOperand)
 	opToken := node.Operator.(*token.Token)
-	if string(opToken.Lit) == "/" {
+	tokenLit := string(opToken.Lit)
+	if tokenLit == "/" || tokenLit == "%"  {
 		err := handleZeroDivision(node)
 
 		if err != nil {
@@ -96,6 +97,7 @@ func (g *Generator) genInstruction(opToken *token.Token) {
 }
 
 var ZeroDivisionError = errors.New("zero division is not allowed")
+var ZeroModuloError = errors.New("zero modulo is not allowed")
 
 func handleZeroDivision(expr *ast.Expression) error {
 	opToken, isToken := expr.Operator.(*token.Token)
@@ -108,6 +110,9 @@ func handleZeroDivision(expr *ast.Expression) error {
 	}
 	if string(opToken.Lit) == "/" && secondOperand == 0 {
 		return ZeroDivisionError
+	}
+	if string(opToken.Lit) == "%" && secondOperand == 0 {
+		return ZeroModuloError
 	}
 	return nil
 }
