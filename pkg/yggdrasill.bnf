@@ -115,7 +115,7 @@ StmtLst
 
 Block
     : lcurly StmtLst rcurly << $1, nil >>
-    | empty
+    | lcurly empty rcurly
     ;
 
 /* Expressions */
