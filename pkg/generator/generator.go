@@ -54,7 +54,7 @@ func (g *Generator) genProgram(node *ast.Program) error {
 		for _, outDec := range n.OutDeclarations {
 			nodeId := n.Id
 			varId := outDec.AssigneeId
-			g.write("(global $%s_%s (mut i32) (i32.const 0))\n", nodeId, varId)
+			g.write("(global $%s_%s (mut i64) (i64.const 0))\n", nodeId, varId)
 		}
 
 		if len(n.TemplateId) > 0 {
@@ -79,11 +79,11 @@ func (g *Generator) genProgram(node *ast.Program) error {
 			}
 			for _, outId := range outputs {
 				nodeId := n.Id
-				g.write("(global $%s_%s (mut i32) (i32.const 0))\n", nodeId, outId)
+				g.write("(global $%s_%s (mut i64) (i64.const 0))\n", nodeId, outId)
 			}
 		}
 
-		g.write("(global $%s_processed (mut i32) (i32.const 0))\n", n.Id)
+		g.write("(global $%s_processed (mut i64) (i64.const 0))\n", n.Id)
 	}
 
 	for _, nodes := range node.Nodes {
@@ -175,7 +175,7 @@ func (g *Generator) genAssignment(identifier Identifier) error {
 }
 
 func (g *Generator) genInt(val int64) error {
-	g.write("i32.const %d\n", val)
+	g.write("i64.const %d\n", val)
 	return nil
 }
 

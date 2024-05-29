@@ -62,34 +62,34 @@ func (g *Generator) genInstruction(opToken *token.Token) {
 	exprOp := string(opToken.Lit)
 	switch exprOp {
 	case "+":
-		g.write("i32.add\n")
+		g.write("i64.add\n")
 		break
 	case "-":
-		g.write("i32.sub\n")
+		g.write("i64.sub\n")
 		break
 	case "*":
-		g.write("i32.mul\n")
+		g.write("i64.mul\n")
 		break
 	case "/":
-		g.write("i32.div_s\n")
+		g.write("i64.div_s\n")
 		break
 	case "%":
-		g.write("i32.rem_s\n")
+		g.write("i64.rem_s\n")
 		break
 	case ">":
-		g.write("i32.gt_s\n")
+		g.write("i64.gt_s\n")
 		break
 	case ">=":
-		g.write("i32.ge_s\n")
+		g.write("i64.ge_s\n")
 		break
 	case "<":
-		g.write("i32.lt_s\n")
+		g.write("i64.lt_s\n")
 		break
 	case "<=":
-		g.write("i32.le_s\n")
+		g.write("i64.le_s\n")
 		break
 	case "==":
-		g.write("i32.eq_s\n")
+		g.write("i64.eq_s\n")
 		break
 	default:
 		log.Fatalf("%s: Failed to generate unknown operator %s", opToken.Pos.String(), exprOp)
