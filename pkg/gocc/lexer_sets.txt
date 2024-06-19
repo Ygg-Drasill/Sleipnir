@@ -1,0 +1,24 @@
+Item sets:
+S0{
+	-> : • '-' '>'
+}
+Transitions:
+	['-','-'] -> S1
+Action: nil
+Symbols classes: {['-','-']}
+
+S1{
+	-> : '-' • '>'
+}
+Transitions:
+	['>','>'] -> S2
+Action: nil
+Symbols classes: {['>','>']}
+
+S2{
+	-> : '-' '>' •
+}
+Transitions:
+Action: Accept("->")
+Symbols classes: {}
+

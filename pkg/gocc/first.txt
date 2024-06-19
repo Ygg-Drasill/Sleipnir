@@ -1,0 +1,131 @@
+S': {
+	node
+	template
+}
+ProgramDeclarationList: {
+	node
+	template
+}
+Node: {
+	node
+	template
+}
+Conn: {
+	nodeId
+}
+ConnOut: {
+	nodeId
+}
+ConnIn: {
+	nodeId
+}
+NodeLst: {
+	node
+	template
+}
+ConnLst: {
+	empty
+	nodeId
+}
+Type: {
+	bool
+	int
+}
+NodeVar: {
+	in
+	out
+}
+NodeIn: {
+	empty
+	in
+}
+NodeOut: {
+	empty
+	out
+}
+NodeProc: {
+	empty
+	process
+}
+Identifier: {
+	in
+	out
+	varId
+}
+CompareOperator: {
+	and
+	eq
+	gt
+	lt
+	neq
+	or
+}
+DeclarationStmt: {
+	bool
+	int
+}
+DeclarationList: {
+	bool
+	empty
+	int
+}
+Assignment: {
+	assign
+}
+AssignStmt: {
+	in
+	out
+	varId
+}
+ControlStmt: {
+	if
+}
+IfStmt: {
+	if
+}
+Stmt: {
+	bool
+	exit
+	if
+	in
+	int
+	out
+	varId
+}
+StmtLst: {
+	bool
+	exit
+	if
+	in
+	int
+	out
+	varId
+}
+Block: {
+	empty
+	lcurly
+}
+Expr: {
+	in
+	int64
+	lp
+	not
+	out
+	varId
+}
+Term: {
+	in
+	int64
+	lp
+	not
+	out
+	varId
+}
+Factor: {
+	in
+	int64
+	lp
+	not
+	out
+	varId
+}
