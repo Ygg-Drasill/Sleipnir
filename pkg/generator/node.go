@@ -46,7 +46,7 @@ func (g *Generator) genNode(node *ast.Node) error {
 		}
 		g.write("global.get $%s_processed (if (then nop) (else return))\n", conn.OutJunction.NodeId)
 	}
-	g.write("i32.const 1\n")
+	g.write("i64.const 1\n")
 	g.write("(global.set $%s_processed)\n", g.currentNode.Id)
 
 	//if template is standard
@@ -78,7 +78,7 @@ func (g *Generator) genNodeLocals(statements *ast.StatementList) error {
 		if !ok {
 			continue
 		}
-		g.write("(local $%s i32)\n", dec.AssigneeId)
+		g.write("(local $%s i64)\n", dec.AssigneeId)
 	}
 	return nil
 
@@ -89,7 +89,7 @@ func (g *Generator) genNodeGlobals(decList *ast.DeclarationList) error {
 		value := 0
 		if v, ok := assignment.Expression.(int64); assignment.Expression != nil && ok {
 			value = int(v)
-			g.write("(global.set $%s_%s (i32.const %d))\n", g.currentNode.Id, assignment.AssigneeId, value)
+			g.write("(global.set $%s_%s (i64.const %d))\n", g.currentNode.Id, assignment.AssigneeId, value)
 		}
 	}
 

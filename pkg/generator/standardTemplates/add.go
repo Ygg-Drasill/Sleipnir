@@ -9,7 +9,7 @@ import (
 var Add standardTemplate = standardTemplate{
 	Body: `global.get $%s
 global.get $%s
-i32.add
+i64.add
 global.set $%s`,
 	Inputs:  []string{"a", "b"},
 	Outputs: []string{"result"},

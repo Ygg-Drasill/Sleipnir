@@ -1,5 +1,12 @@
 node Foo {
     out {
+        int x = 0;
+        int y = 2;
+    }
+}
+
+node Baz {
+    in {
         int x = 1;
         int y = 2;
     }
@@ -16,18 +23,9 @@ node Bar {
     }
 
     process {
-        int j = 2 + 2;
-        out.c = in.a;
-        out.c = out.c + j;
+        out.c = 5 % in.a;
     }
 }
 
-node Add0 : Add;
-
-node Print0 : Print;
-
 Foo.out.x -> Bar.in.a;
 Foo.out.y -> Bar.in.b;
-Foo.out.x -> Add0.in.a;
-Bar.out.c -> Add0.in.b;
-Add0.out.result -> Print0.in.text;
