@@ -44,7 +44,7 @@ func (g *Generator) genNode(node *ast.Node) error {
 		if conn.OutJunction.NodeId == g.currentNode.Id {
 			break
 		}
-		g.write("global.get $%s_processed (if (then nop) (else return))\n", conn.OutJunction.NodeId)
+		g.write("global.get $%s_processed\ni64.eqz\n(if (then nop) (else return))\n", conn.OutJunction.NodeId)
 	}
 	g.write("i64.const 1\n")
 	g.write("(global.set $%s_processed)\n", g.currentNode.Id)

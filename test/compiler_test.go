@@ -82,16 +82,16 @@ func TestCompileValidSourceCode(t *testing.T) {
 			}
 
 			var sampleDataValue int64
-			var want int32
+			var want int64
 			if len(sampleData) > 1 {
-				sampleDataValue, err = strconv.ParseInt(sampleData[1], 10, 32)
+				sampleDataValue, err = strconv.ParseInt(sampleData[1], 10, 64)
 				if err != nil {
 					t.Fatalf("failed to parse expected int: %s", err.Error())
 				}
-				want = int32(sampleDataValue)
+				want = sampleDataValue
 			}
 
-			logImport := wasmtime.WrapFunc(store, func(got int32) {
+			logImport := wasmtime.WrapFunc(store, func(got int64) {
 				if got != want {
 					t.Fatalf("resulting wasm was incorrect, got: %d but want: %d", got, want)
 				}
