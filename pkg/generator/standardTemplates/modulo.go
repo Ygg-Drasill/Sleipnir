@@ -6,7 +6,7 @@ import (
 	"github.com/Ygg-Drasill/Sleipnir/pkg/generator/utils"
 )
 
-var Mod standardTemplate = standardTemplate{
+var Modulo standardTemplate = standardTemplate{
 	Body: `global.get $%s
 global.get $%s
 i64.rem_s
