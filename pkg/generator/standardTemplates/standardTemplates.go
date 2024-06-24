@@ -17,10 +17,10 @@ type standardTemplate struct {
 var StandardTemplates = map[string]*standardTemplate{
 	"Print": &Print,
 	"Add":   &Add,
-	"Sub":   &Subtract,
-	"Mul":   &Multiply,
-	"Div":   &Divide,
-	"Mod":   &Modulo,
+	"Subtract":   &Subtract,
+	"Multiply":   &Multiply,
+	"Divide":   &Divide,
+	"Modulo":   &Modulo,
 	"Move":  &Move,
 }
 
