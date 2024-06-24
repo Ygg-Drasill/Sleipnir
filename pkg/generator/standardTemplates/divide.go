@@ -6,7 +6,7 @@ import (
 	"github.com/Ygg-Drasill/Sleipnir/pkg/generator/utils"
 )
 
-var Div standardTemplate = standardTemplate{
+var Divide standardTemplate = standardTemplate{
 	Body: `global.get $%s
 global.get $%s
 i64.div_s

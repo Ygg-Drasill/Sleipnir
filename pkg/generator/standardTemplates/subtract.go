@@ -6,7 +6,7 @@ import (
 	"github.com/Ygg-Drasill/Sleipnir/pkg/generator/utils"
 )
 
-var Sub standardTemplate = standardTemplate{
+var Subtract standardTemplate = standardTemplate{
 	Body: `global.get $%s
 global.get $%s
 i64.sub

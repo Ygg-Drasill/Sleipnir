@@ -6,7 +6,7 @@ import (
 	"github.com/Ygg-Drasill/Sleipnir/pkg/generator/utils"
 )
 
-var Mul standardTemplate = standardTemplate{
+var Multiply standardTemplate = standardTemplate{
 	Body: `global.get $%s
 global.get $%s
 i64.mul
