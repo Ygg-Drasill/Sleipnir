@@ -113,9 +113,6 @@ fabric.properties
 # Built Visual Studio Code Extensions
 *.vsix
 
-#gocc
-pkg/gocc
-
 #debug
 debug
 o.*

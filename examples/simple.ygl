@@ -1,31 +1,20 @@
 node Foo {
     out {
-        int x = 0;
-        int y = 2;
-    }
-}
-
-node Baz {
-    in {
-        int x = 1;
-        int y = 2;
+        int x = 5;
     }
 }
 
 node Bar {
-    in {
-        int a;
-        int b;
-    }
-
     out {
-        int c;
-    }
-
-    process {
-        out.c = 5 % in.a;
+        int y = 4;
     }
 }
 
-Foo.out.x -> Bar.in.a;
-Foo.out.y -> Bar.in.b;
+node Add1 : Mul;
+
+node Move1 : Move;
+
+Foo.out.x -> Add1.in.a;
+Bar.out.y -> Add1.in.b;
+
+Add1.out.result -> Move1.in.move;
