@@ -427,7 +427,7 @@ S37{
 	NodeProc : process •Block «rcurly»
 	NodeProc : process •lcurly rcurly «rcurly»
 	Block : •lcurly StmtLst rcurly «rcurly»
-	Block : empty• «rcurly»
+	Block : •lcurly empty rcurly «rcurly»
 }
 Transitions:
 	lcurly -> 47
@@ -539,6 +539,7 @@ Transitions:
 S47{
 	NodeProc : process lcurly •rcurly «rcurly»
 	Block : lcurly •StmtLst rcurly «rcurly»
+	Block : lcurly •empty rcurly «rcurly»
 	StmtLst : •StmtLst Stmt «rcurly»
 	StmtLst : •Stmt «rcurly»
 	StmtLst : •StmtLst Stmt «bool»
@@ -649,17 +650,18 @@ Transitions:
 	out -> 56
 	varId -> 57
 	in -> 58
-	Type -> 59
-	NodeVar -> 60
-	Identifier -> 61
-	DeclarationStmt -> 62
-	AssignStmt -> 63
-	ControlStmt -> 64
-	IfStmt -> 65
-	if -> 66
-	Stmt -> 67
-	exit -> 68
-	StmtLst -> 69
+	empty -> 59
+	Type -> 60
+	NodeVar -> 61
+	Identifier -> 62
+	DeclarationStmt -> 63
+	AssignStmt -> 64
+	ControlStmt -> 65
+	IfStmt -> 66
+	if -> 67
+	Stmt -> 68
+	exit -> 69
+	StmtLst -> 70
 
 
 S48{
@@ -673,7 +675,7 @@ S49{
 	NodeOut : out lcurly DeclarationList •rcurly «rcurly»
 }
 Transitions:
-	rcurly -> 70
+	rcurly -> 71
 
 
 S50{
@@ -686,9 +688,9 @@ S50{
 	Assignment : •assign Expr «stmtEnd»
 }
 Transitions:
-	stmtEnd -> 71
-	Assignment -> 72
-	assign -> 73
+	stmtEnd -> 72
+	Assignment -> 73
+	assign -> 74
 
 
 S51{
@@ -730,7 +732,7 @@ S56{
 	NodeVar : out •period varId «assign»
 }
 Transitions:
-	period -> 74
+	period -> 75
 
 
 S57{
@@ -743,10 +745,17 @@ S58{
 	NodeVar : in •period varId «assign»
 }
 Transitions:
-	period -> 75
+	period -> 76
 
 
 S59{
+	Block : lcurly empty •rcurly «rcurly»
+}
+Transitions:
+	rcurly -> 77
+
+
+S60{
 	DeclarationStmt : Type •varId stmtEnd «rcurly»
 	DeclarationStmt : Type •varId Assignment stmtEnd «rcurly»
 	DeclarationStmt : Type •varId stmtEnd «bool»
@@ -765,16 +774,16 @@ S59{
 	DeclarationStmt : Type •varId Assignment stmtEnd «varId»
 }
 Transitions:
-	varId -> 76
+	varId -> 78
 
 
-S60{
+S61{
 	Identifier : NodeVar• «assign»
 }
 Transitions:
 
 
-S61{
+S62{
 	AssignStmt : Identifier •Assignment stmtEnd «rcurly»
 	AssignStmt : Identifier •Assignment stmtEnd «bool»
 	AssignStmt : Identifier •Assignment stmtEnd «exit»
@@ -786,11 +795,11 @@ S61{
 	Assignment : •assign Expr «stmtEnd»
 }
 Transitions:
-	assign -> 73
-	Assignment -> 77
+	assign -> 74
+	Assignment -> 79
 
 
-S62{
+S63{
 	Stmt : DeclarationStmt• «rcurly»
 	Stmt : DeclarationStmt• «bool»
 	Stmt : DeclarationStmt• «exit»
@@ -803,7 +812,7 @@ S62{
 Transitions:
 
 
-S63{
+S64{
 	Stmt : AssignStmt• «rcurly»
 	Stmt : AssignStmt• «bool»
 	Stmt : AssignStmt• «exit»
@@ -816,7 +825,7 @@ S63{
 Transitions:
 
 
-S64{
+S65{
 	Stmt : ControlStmt• «rcurly»
 	Stmt : ControlStmt• «bool»
 	Stmt : ControlStmt• «exit»
@@ -829,7 +838,7 @@ S64{
 Transitions:
 
 
-S65{
+S66{
 	ControlStmt : IfStmt• «rcurly»
 	ControlStmt : IfStmt• «bool»
 	ControlStmt : IfStmt• «exit»
@@ -842,7 +851,7 @@ S65{
 Transitions:
 
 
-S66{
+S67{
 	IfStmt : if •lp Expr rp Block else Block «rcurly»
 	IfStmt : if •lp Expr rp Block «rcurly»
 	IfStmt : if •lp Expr rp Block else Block «bool»
@@ -861,10 +870,10 @@ S66{
 	IfStmt : if •lp Expr rp Block «varId»
 }
 Transitions:
-	lp -> 78
+	lp -> 80
 
 
-S67{
+S68{
 	StmtLst : Stmt• «rcurly»
 	StmtLst : Stmt• «bool»
 	StmtLst : Stmt• «exit»
@@ -877,7 +886,7 @@ S67{
 Transitions:
 
 
-S68{
+S69{
 	Stmt : exit •stmtEnd «rcurly»
 	Stmt : exit •stmtEnd «bool»
 	Stmt : exit •stmtEnd «exit»
@@ -888,10 +897,10 @@ S68{
 	Stmt : exit •stmtEnd «varId»
 }
 Transitions:
-	stmtEnd -> 79
+	stmtEnd -> 81
 
 
-S69{
+S70{
 	Block : lcurly StmtLst •rcurly «rcurly»
 	StmtLst : StmtLst •Stmt «rcurly»
 	StmtLst : StmtLst •Stmt «bool»
@@ -994,27 +1003,27 @@ Transitions:
 	out -> 56
 	varId -> 57
 	in -> 58
-	Type -> 59
-	NodeVar -> 60
-	Identifier -> 61
-	DeclarationStmt -> 62
-	AssignStmt -> 63
-	ControlStmt -> 64
-	IfStmt -> 65
-	if -> 66
-	exit -> 68
-	rcurly -> 80
-	Stmt -> 81
+	Type -> 60
+	NodeVar -> 61
+	Identifier -> 62
+	DeclarationStmt -> 63
+	AssignStmt -> 64
+	ControlStmt -> 65
+	IfStmt -> 66
+	if -> 67
+	exit -> 69
+	rcurly -> 82
+	Stmt -> 83
 
 
-S70{
+S71{
 	NodeOut : out lcurly DeclarationList rcurly• «process»
 	NodeOut : out lcurly DeclarationList rcurly• «rcurly»
 }
 Transitions:
 
 
-S71{
+S72{
 	DeclarationStmt : Type varId stmtEnd• «bool»
 	DeclarationStmt : Type varId stmtEnd• «int»
 	DeclarationStmt : Type varId stmtEnd• «rcurly»
@@ -1022,16 +1031,16 @@ S71{
 Transitions:
 
 
-S72{
+S73{
 	DeclarationStmt : Type varId Assignment •stmtEnd «bool»
 	DeclarationStmt : Type varId Assignment •stmtEnd «int»
 	DeclarationStmt : Type varId Assignment •stmtEnd «rcurly»
 }
 Transitions:
-	stmtEnd -> 82
+	stmtEnd -> 84
 
 
-S73{
+S74{
 	Assignment : assign •Expr «stmtEnd»
 	Expr : •Expr plus Term «stmtEnd»
 	Expr : •Expr minus Term «stmtEnd»
@@ -1217,34 +1226,40 @@ S73{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 83
-	varId -> 84
-	in -> 85
-	NodeVar -> 86
-	Identifier -> 87
-	Expr -> 88
-	lp -> 89
-	Term -> 90
-	Factor -> 91
-	not -> 92
-	int64 -> 93
-
-
-S74{
-	NodeVar : out period •varId «assign»
-}
-Transitions:
-	varId -> 94
+	out -> 85
+	varId -> 86
+	in -> 87
+	NodeVar -> 88
+	Identifier -> 89
+	Expr -> 90
+	lp -> 91
+	Term -> 92
+	Factor -> 93
+	not -> 94
+	int64 -> 95
 
 
 S75{
-	NodeVar : in period •varId «assign»
+	NodeVar : out period •varId «assign»
 }
 Transitions:
-	varId -> 95
+	varId -> 96
 
 
 S76{
+	NodeVar : in period •varId «assign»
+}
+Transitions:
+	varId -> 97
+
+
+S77{
+	Block : lcurly empty rcurly• «rcurly»
+}
+Transitions:
+
+
+S78{
 	DeclarationStmt : Type varId •stmtEnd «rcurly»
 	DeclarationStmt : Type varId •Assignment stmtEnd «rcurly»
 	DeclarationStmt : Type varId •stmtEnd «bool»
@@ -1264,12 +1279,12 @@ S76{
 	Assignment : •assign Expr «stmtEnd»
 }
 Transitions:
-	assign -> 73
-	stmtEnd -> 96
-	Assignment -> 97
+	assign -> 74
+	stmtEnd -> 98
+	Assignment -> 99
 
 
-S77{
+S79{
 	AssignStmt : Identifier Assignment •stmtEnd «rcurly»
 	AssignStmt : Identifier Assignment •stmtEnd «bool»
 	AssignStmt : Identifier Assignment •stmtEnd «exit»
@@ -1280,10 +1295,10 @@ S77{
 	AssignStmt : Identifier Assignment •stmtEnd «varId»
 }
 Transitions:
-	stmtEnd -> 98
+	stmtEnd -> 100
 
 
-S78{
+S80{
 	IfStmt : if lp •Expr rp Block else Block «rcurly»
 	IfStmt : if lp •Expr rp Block «rcurly»
 	IfStmt : if lp •Expr rp Block else Block «bool»
@@ -1484,20 +1499,20 @@ S78{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 99
-	varId -> 100
-	in -> 101
-	NodeVar -> 102
-	Identifier -> 103
-	Expr -> 104
-	lp -> 105
-	Term -> 106
-	Factor -> 107
-	not -> 108
-	int64 -> 109
+	out -> 101
+	varId -> 102
+	in -> 103
+	NodeVar -> 104
+	Identifier -> 105
+	Expr -> 106
+	lp -> 107
+	Term -> 108
+	Factor -> 109
+	not -> 110
+	int64 -> 111
 
 
-S79{
+S81{
 	Stmt : exit stmtEnd• «rcurly»
 	Stmt : exit stmtEnd• «bool»
 	Stmt : exit stmtEnd• «exit»
@@ -1510,13 +1525,13 @@ S79{
 Transitions:
 
 
-S80{
+S82{
 	Block : lcurly StmtLst rcurly• «rcurly»
 }
 Transitions:
 
 
-S81{
+S83{
 	StmtLst : StmtLst Stmt• «rcurly»
 	StmtLst : StmtLst Stmt• «bool»
 	StmtLst : StmtLst Stmt• «exit»
@@ -1529,7 +1544,7 @@ S81{
 Transitions:
 
 
-S82{
+S84{
 	DeclarationStmt : Type varId Assignment stmtEnd• «bool»
 	DeclarationStmt : Type varId Assignment stmtEnd• «int»
 	DeclarationStmt : Type varId Assignment stmtEnd• «rcurly»
@@ -1537,7 +1552,7 @@ S82{
 Transitions:
 
 
-S83{
+S85{
 	NodeVar : out •period varId «stmtEnd»
 	NodeVar : out •period varId «plus»
 	NodeVar : out •period varId «minus»
@@ -1552,10 +1567,10 @@ S83{
 	NodeVar : out •period varId «or»
 }
 Transitions:
-	period -> 110
+	period -> 112
 
 
-S84{
+S86{
 	Identifier : varId• «stmtEnd»
 	Identifier : varId• «plus»
 	Identifier : varId• «minus»
@@ -1572,7 +1587,7 @@ S84{
 Transitions:
 
 
-S85{
+S87{
 	NodeVar : in •period varId «stmtEnd»
 	NodeVar : in •period varId «plus»
 	NodeVar : in •period varId «minus»
@@ -1587,10 +1602,10 @@ S85{
 	NodeVar : in •period varId «or»
 }
 Transitions:
-	period -> 111
+	period -> 113
 
 
-S86{
+S88{
 	Identifier : NodeVar• «stmtEnd»
 	Identifier : NodeVar• «plus»
 	Identifier : NodeVar• «minus»
@@ -1607,7 +1622,7 @@ S86{
 Transitions:
 
 
-S87{
+S89{
 	Factor : Identifier• «stmtEnd»
 	Factor : Identifier• «plus»
 	Factor : Identifier• «minus»
@@ -1624,7 +1639,7 @@ S87{
 Transitions:
 
 
-S88{
+S90{
 	Assignment : assign Expr• «stmtEnd»
 	Expr : Expr •plus Term «stmtEnd»
 	Expr : Expr •minus Term «stmtEnd»
@@ -1704,19 +1719,19 @@ S88{
 	CompareOperator : •or «varId»
 }
 Transitions:
-	CompareOperator -> 112
-	eq -> 113
-	lt -> 114
-	gt -> 115
-	neq -> 116
-	and -> 117
-	or -> 118
-	plus -> 119
-	minus -> 120
-	modulo -> 121
+	CompareOperator -> 114
+	eq -> 115
+	lt -> 116
+	gt -> 117
+	neq -> 118
+	and -> 119
+	or -> 120
+	plus -> 121
+	minus -> 122
+	modulo -> 123
 
 
-S89{
+S91{
 	Factor : lp •Expr rp «stmtEnd»
 	Factor : lp •Expr rp «plus»
 	Factor : lp •Expr rp «minus»
@@ -1913,20 +1928,20 @@ S89{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 99
-	varId -> 100
-	in -> 101
-	NodeVar -> 102
-	Identifier -> 103
-	lp -> 105
-	Term -> 106
-	Factor -> 107
-	not -> 108
-	int64 -> 109
-	Expr -> 122
+	out -> 101
+	varId -> 102
+	in -> 103
+	NodeVar -> 104
+	Identifier -> 105
+	lp -> 107
+	Term -> 108
+	Factor -> 109
+	not -> 110
+	int64 -> 111
+	Expr -> 124
 
 
-S90{
+S92{
 	Expr : Term• «stmtEnd»
 	Expr : Term• «plus»
 	Expr : Term• «minus»
@@ -1963,11 +1978,11 @@ S90{
 	Term : Term •div Factor «or»
 }
 Transitions:
-	mul -> 123
-	div -> 124
+	mul -> 125
+	div -> 126
 
 
-S91{
+S93{
 	Term : Factor• «stmtEnd»
 	Term : Factor• «plus»
 	Term : Factor• «minus»
@@ -1984,7 +1999,7 @@ S91{
 Transitions:
 
 
-S92{
+S94{
 	Factor : not •Factor «stmtEnd»
 	Factor : not •Factor «plus»
 	Factor : not •Factor «minus»
@@ -2095,18 +2110,18 @@ S92{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 83
-	varId -> 84
-	in -> 85
-	NodeVar -> 86
-	Identifier -> 87
-	lp -> 89
-	not -> 92
-	int64 -> 93
-	Factor -> 125
+	out -> 85
+	varId -> 86
+	in -> 87
+	NodeVar -> 88
+	Identifier -> 89
+	lp -> 91
+	not -> 94
+	int64 -> 95
+	Factor -> 127
 
 
-S93{
+S95{
 	Factor : int64• «stmtEnd»
 	Factor : int64• «plus»
 	Factor : int64• «minus»
@@ -2123,19 +2138,19 @@ S93{
 Transitions:
 
 
-S94{
+S96{
 	NodeVar : out period varId• «assign»
 }
 Transitions:
 
 
-S95{
+S97{
 	NodeVar : in period varId• «assign»
 }
 Transitions:
 
 
-S96{
+S98{
 	DeclarationStmt : Type varId stmtEnd• «rcurly»
 	DeclarationStmt : Type varId stmtEnd• «bool»
 	DeclarationStmt : Type varId stmtEnd• «exit»
@@ -2148,7 +2163,7 @@ S96{
 Transitions:
 
 
-S97{
+S99{
 	DeclarationStmt : Type varId Assignment •stmtEnd «rcurly»
 	DeclarationStmt : Type varId Assignment •stmtEnd «bool»
 	DeclarationStmt : Type varId Assignment •stmtEnd «exit»
@@ -2159,10 +2174,10 @@ S97{
 	DeclarationStmt : Type varId Assignment •stmtEnd «varId»
 }
 Transitions:
-	stmtEnd -> 126
+	stmtEnd -> 128
 
 
-S98{
+S100{
 	AssignStmt : Identifier Assignment stmtEnd• «rcurly»
 	AssignStmt : Identifier Assignment stmtEnd• «bool»
 	AssignStmt : Identifier Assignment stmtEnd• «exit»
@@ -2175,7 +2190,7 @@ S98{
 Transitions:
 
 
-S99{
+S101{
 	NodeVar : out •period varId «rp»
 	NodeVar : out •period varId «plus»
 	NodeVar : out •period varId «minus»
@@ -2190,10 +2205,10 @@ S99{
 	NodeVar : out •period varId «or»
 }
 Transitions:
-	period -> 127
+	period -> 129
 
 
-S100{
+S102{
 	Identifier : varId• «rp»
 	Identifier : varId• «plus»
 	Identifier : varId• «minus»
@@ -2210,7 +2225,7 @@ S100{
 Transitions:
 
 
-S101{
+S103{
 	NodeVar : in •period varId «rp»
 	NodeVar : in •period varId «plus»
 	NodeVar : in •period varId «minus»
@@ -2225,10 +2240,10 @@ S101{
 	NodeVar : in •period varId «or»
 }
 Transitions:
-	period -> 128
+	period -> 130
 
 
-S102{
+S104{
 	Identifier : NodeVar• «rp»
 	Identifier : NodeVar• «plus»
 	Identifier : NodeVar• «minus»
@@ -2245,7 +2260,7 @@ S102{
 Transitions:
 
 
-S103{
+S105{
 	Factor : Identifier• «rp»
 	Factor : Identifier• «plus»
 	Factor : Identifier• «minus»
@@ -2262,7 +2277,7 @@ S103{
 Transitions:
 
 
-S104{
+S106{
 	IfStmt : if lp Expr •rp Block else Block «rcurly»
 	IfStmt : if lp Expr •rp Block «rcurly»
 	IfStmt : if lp Expr •rp Block else Block «bool»
@@ -2357,20 +2372,20 @@ S104{
 	CompareOperator : •or «varId»
 }
 Transitions:
-	eq -> 113
-	lt -> 114
-	gt -> 115
-	neq -> 116
-	and -> 117
-	or -> 118
-	CompareOperator -> 129
-	rp -> 130
-	plus -> 131
-	minus -> 132
-	modulo -> 133
+	eq -> 115
+	lt -> 116
+	gt -> 117
+	neq -> 118
+	and -> 119
+	or -> 120
+	CompareOperator -> 131
+	rp -> 132
+	plus -> 133
+	minus -> 134
+	modulo -> 135
 
 
-S105{
+S107{
 	Factor : lp •Expr rp «rp»
 	Factor : lp •Expr rp «plus»
 	Factor : lp •Expr rp «minus»
@@ -2567,20 +2582,20 @@ S105{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 99
-	varId -> 100
-	in -> 101
-	NodeVar -> 102
-	Identifier -> 103
-	lp -> 105
-	Term -> 106
-	Factor -> 107
-	not -> 108
-	int64 -> 109
-	Expr -> 134
+	out -> 101
+	varId -> 102
+	in -> 103
+	NodeVar -> 104
+	Identifier -> 105
+	lp -> 107
+	Term -> 108
+	Factor -> 109
+	not -> 110
+	int64 -> 111
+	Expr -> 136
 
 
-S106{
+S108{
 	Expr : Term• «rp»
 	Expr : Term• «plus»
 	Expr : Term• «minus»
@@ -2617,11 +2632,11 @@ S106{
 	Term : Term •div Factor «or»
 }
 Transitions:
-	mul -> 135
-	div -> 136
+	mul -> 137
+	div -> 138
 
 
-S107{
+S109{
 	Term : Factor• «rp»
 	Term : Factor• «plus»
 	Term : Factor• «minus»
@@ -2638,7 +2653,7 @@ S107{
 Transitions:
 
 
-S108{
+S110{
 	Factor : not •Factor «rp»
 	Factor : not •Factor «plus»
 	Factor : not •Factor «minus»
@@ -2749,18 +2764,18 @@ S108{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 99
-	varId -> 100
-	in -> 101
-	NodeVar -> 102
-	Identifier -> 103
-	lp -> 105
-	not -> 108
-	int64 -> 109
-	Factor -> 137
+	out -> 101
+	varId -> 102
+	in -> 103
+	NodeVar -> 104
+	Identifier -> 105
+	lp -> 107
+	not -> 110
+	int64 -> 111
+	Factor -> 139
 
 
-S109{
+S111{
 	Factor : int64• «rp»
 	Factor : int64• «plus»
 	Factor : int64• «minus»
@@ -2777,7 +2792,7 @@ S109{
 Transitions:
 
 
-S110{
+S112{
 	NodeVar : out period •varId «stmtEnd»
 	NodeVar : out period •varId «plus»
 	NodeVar : out period •varId «minus»
@@ -2792,10 +2807,10 @@ S110{
 	NodeVar : out period •varId «or»
 }
 Transitions:
-	varId -> 138
+	varId -> 140
 
 
-S111{
+S113{
 	NodeVar : in period •varId «stmtEnd»
 	NodeVar : in period •varId «plus»
 	NodeVar : in period •varId «minus»
@@ -2810,10 +2825,10 @@ S111{
 	NodeVar : in period •varId «or»
 }
 Transitions:
-	varId -> 139
+	varId -> 141
 
 
-S112{
+S114{
 	Expr : Expr CompareOperator •Factor «stmtEnd»
 	Expr : Expr CompareOperator •Factor «plus»
 	Expr : Expr CompareOperator •Factor «minus»
@@ -2906,18 +2921,18 @@ S112{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 140
-	varId -> 141
-	in -> 142
-	NodeVar -> 143
-	Identifier -> 144
-	lp -> 145
-	Factor -> 146
-	not -> 147
-	int64 -> 148
+	out -> 142
+	varId -> 143
+	in -> 144
+	NodeVar -> 145
+	Identifier -> 146
+	lp -> 147
+	Factor -> 148
+	not -> 149
+	int64 -> 150
 
 
-S113{
+S115{
 	CompareOperator : eq• «in»
 	CompareOperator : eq• «int64»
 	CompareOperator : eq• «lp»
@@ -2928,7 +2943,7 @@ S113{
 Transitions:
 
 
-S114{
+S116{
 	CompareOperator : lt• «in»
 	CompareOperator : lt• «int64»
 	CompareOperator : lt• «lp»
@@ -2939,7 +2954,7 @@ S114{
 Transitions:
 
 
-S115{
+S117{
 	CompareOperator : gt• «in»
 	CompareOperator : gt• «int64»
 	CompareOperator : gt• «lp»
@@ -2950,7 +2965,7 @@ S115{
 Transitions:
 
 
-S116{
+S118{
 	CompareOperator : neq• «in»
 	CompareOperator : neq• «int64»
 	CompareOperator : neq• «lp»
@@ -2961,7 +2976,7 @@ S116{
 Transitions:
 
 
-S117{
+S119{
 	CompareOperator : and• «in»
 	CompareOperator : and• «int64»
 	CompareOperator : and• «lp»
@@ -2972,7 +2987,7 @@ S117{
 Transitions:
 
 
-S118{
+S120{
 	CompareOperator : or• «in»
 	CompareOperator : or• «int64»
 	CompareOperator : or• «lp»
@@ -2983,7 +2998,7 @@ S118{
 Transitions:
 
 
-S119{
+S121{
 	Expr : Expr plus •Term «stmtEnd»
 	Expr : Expr plus •Term «plus»
 	Expr : Expr plus •Term «minus»
@@ -3128,19 +3143,19 @@ S119{
 	NodeVar : •out period varId «div»
 }
 Transitions:
-	out -> 83
-	varId -> 84
-	in -> 85
-	NodeVar -> 86
-	Identifier -> 87
-	lp -> 89
-	Factor -> 91
-	not -> 92
-	int64 -> 93
-	Term -> 149
+	out -> 85
+	varId -> 86
+	in -> 87
+	NodeVar -> 88
+	Identifier -> 89
+	lp -> 91
+	Factor -> 93
+	not -> 94
+	int64 -> 95
+	Term -> 151
 
 
-S120{
+S122{
 	Expr : Expr minus •Term «stmtEnd»
 	Expr : Expr minus •Term «plus»
 	Expr : Expr minus •Term «minus»
@@ -3285,19 +3300,19 @@ S120{
 	NodeVar : •out period varId «div»
 }
 Transitions:
-	out -> 83
-	varId -> 84
-	in -> 85
-	NodeVar -> 86
-	Identifier -> 87
-	lp -> 89
-	Factor -> 91
-	not -> 92
-	int64 -> 93
-	Term -> 150
+	out -> 85
+	varId -> 86
+	in -> 87
+	NodeVar -> 88
+	Identifier -> 89
+	lp -> 91
+	Factor -> 93
+	not -> 94
+	int64 -> 95
+	Term -> 152
 
 
-S121{
+S123{
 	Expr : Expr modulo •Term «stmtEnd»
 	Expr : Expr modulo •Term «plus»
 	Expr : Expr modulo •Term «minus»
@@ -3442,19 +3457,19 @@ S121{
 	NodeVar : •out period varId «div»
 }
 Transitions:
-	out -> 83
-	varId -> 84
-	in -> 85
-	NodeVar -> 86
-	Identifier -> 87
-	lp -> 89
-	Factor -> 91
-	not -> 92
-	int64 -> 93
-	Term -> 151
+	out -> 85
+	varId -> 86
+	in -> 87
+	NodeVar -> 88
+	Identifier -> 89
+	lp -> 91
+	Factor -> 93
+	not -> 94
+	int64 -> 95
+	Term -> 153
 
 
-S122{
+S124{
 	Factor : lp Expr •rp «stmtEnd»
 	Factor : lp Expr •rp «plus»
 	Factor : lp Expr •rp «minus»
@@ -3545,20 +3560,20 @@ S122{
 	CompareOperator : •or «varId»
 }
 Transitions:
-	eq -> 113
-	lt -> 114
-	gt -> 115
-	neq -> 116
-	and -> 117
-	or -> 118
-	CompareOperator -> 129
-	plus -> 131
-	minus -> 132
-	modulo -> 133
-	rp -> 152
+	eq -> 115
+	lt -> 116
+	gt -> 117
+	neq -> 118
+	and -> 119
+	or -> 120
+	CompareOperator -> 131
+	plus -> 133
+	minus -> 134
+	modulo -> 135
+	rp -> 154
 
 
-S123{
+S125{
 	Term : Term mul •Factor «stmtEnd»
 	Term : Term mul •Factor «plus»
 	Term : Term mul •Factor «minus»
@@ -3669,18 +3684,18 @@ S123{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 83
-	varId -> 84
-	in -> 85
-	NodeVar -> 86
-	Identifier -> 87
-	lp -> 89
-	not -> 92
-	int64 -> 93
-	Factor -> 153
+	out -> 85
+	varId -> 86
+	in -> 87
+	NodeVar -> 88
+	Identifier -> 89
+	lp -> 91
+	not -> 94
+	int64 -> 95
+	Factor -> 155
 
 
-S124{
+S126{
 	Term : Term div •Factor «stmtEnd»
 	Term : Term div •Factor «plus»
 	Term : Term div •Factor «minus»
@@ -3791,18 +3806,18 @@ S124{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 83
-	varId -> 84
-	in -> 85
-	NodeVar -> 86
-	Identifier -> 87
-	lp -> 89
-	not -> 92
-	int64 -> 93
-	Factor -> 154
+	out -> 85
+	varId -> 86
+	in -> 87
+	NodeVar -> 88
+	Identifier -> 89
+	lp -> 91
+	not -> 94
+	int64 -> 95
+	Factor -> 156
 
 
-S125{
+S127{
 	Factor : not Factor• «stmtEnd»
 	Factor : not Factor• «plus»
 	Factor : not Factor• «minus»
@@ -3819,7 +3834,7 @@ S125{
 Transitions:
 
 
-S126{
+S128{
 	DeclarationStmt : Type varId Assignment stmtEnd• «rcurly»
 	DeclarationStmt : Type varId Assignment stmtEnd• «bool»
 	DeclarationStmt : Type varId Assignment stmtEnd• «exit»
@@ -3832,7 +3847,7 @@ S126{
 Transitions:
 
 
-S127{
+S129{
 	NodeVar : out period •varId «rp»
 	NodeVar : out period •varId «plus»
 	NodeVar : out period •varId «minus»
@@ -3847,10 +3862,10 @@ S127{
 	NodeVar : out period •varId «or»
 }
 Transitions:
-	varId -> 155
+	varId -> 157
 
 
-S128{
+S130{
 	NodeVar : in period •varId «rp»
 	NodeVar : in period •varId «plus»
 	NodeVar : in period •varId «minus»
@@ -3865,10 +3880,10 @@ S128{
 	NodeVar : in period •varId «or»
 }
 Transitions:
-	varId -> 156
+	varId -> 158
 
 
-S129{
+S131{
 	Expr : Expr CompareOperator •Factor «rp»
 	Expr : Expr CompareOperator •Factor «plus»
 	Expr : Expr CompareOperator •Factor «minus»
@@ -3961,18 +3976,18 @@ S129{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 157
-	varId -> 158
-	in -> 159
-	NodeVar -> 160
-	Identifier -> 161
-	lp -> 162
-	Factor -> 163
-	not -> 164
-	int64 -> 165
+	out -> 159
+	varId -> 160
+	in -> 161
+	NodeVar -> 162
+	Identifier -> 163
+	lp -> 164
+	Factor -> 165
+	not -> 166
+	int64 -> 167
 
 
-S130{
+S132{
 	IfStmt : if lp Expr rp •Block else Block «rcurly»
 	IfStmt : if lp Expr rp •Block «rcurly»
 	IfStmt : if lp Expr rp •Block else Block «bool»
@@ -3990,30 +4005,30 @@ S130{
 	IfStmt : if lp Expr rp •Block else Block «varId»
 	IfStmt : if lp Expr rp •Block «varId»
 	Block : •lcurly StmtLst rcurly «else»
-	Block : empty• «else»
+	Block : •lcurly empty rcurly «else»
 	Block : •lcurly StmtLst rcurly «rcurly»
-	Block : empty• «rcurly»
+	Block : •lcurly empty rcurly «rcurly»
 	Block : •lcurly StmtLst rcurly «bool»
-	Block : empty• «bool»
+	Block : •lcurly empty rcurly «bool»
 	Block : •lcurly StmtLst rcurly «exit»
-	Block : empty• «exit»
+	Block : •lcurly empty rcurly «exit»
 	Block : •lcurly StmtLst rcurly «if»
-	Block : empty• «if»
+	Block : •lcurly empty rcurly «if»
 	Block : •lcurly StmtLst rcurly «in»
-	Block : empty• «in»
+	Block : •lcurly empty rcurly «in»
 	Block : •lcurly StmtLst rcurly «int»
-	Block : empty• «int»
+	Block : •lcurly empty rcurly «int»
 	Block : •lcurly StmtLst rcurly «out»
-	Block : empty• «out»
+	Block : •lcurly empty rcurly «out»
 	Block : •lcurly StmtLst rcurly «varId»
-	Block : empty• «varId»
+	Block : •lcurly empty rcurly «varId»
 }
 Transitions:
-	lcurly -> 166
-	Block -> 167
+	lcurly -> 168
+	Block -> 169
 
 
-S131{
+S133{
 	Expr : Expr plus •Term «rp»
 	Expr : Expr plus •Term «plus»
 	Expr : Expr plus •Term «minus»
@@ -4158,19 +4173,19 @@ S131{
 	NodeVar : •out period varId «div»
 }
 Transitions:
-	out -> 99
-	varId -> 100
-	in -> 101
-	NodeVar -> 102
-	Identifier -> 103
-	lp -> 105
-	Factor -> 107
-	not -> 108
-	int64 -> 109
-	Term -> 168
+	out -> 101
+	varId -> 102
+	in -> 103
+	NodeVar -> 104
+	Identifier -> 105
+	lp -> 107
+	Factor -> 109
+	not -> 110
+	int64 -> 111
+	Term -> 170
 
 
-S132{
+S134{
 	Expr : Expr minus •Term «rp»
 	Expr : Expr minus •Term «plus»
 	Expr : Expr minus •Term «minus»
@@ -4315,19 +4330,19 @@ S132{
 	NodeVar : •out period varId «div»
 }
 Transitions:
-	out -> 99
-	varId -> 100
-	in -> 101
-	NodeVar -> 102
-	Identifier -> 103
-	lp -> 105
-	Factor -> 107
-	not -> 108
-	int64 -> 109
-	Term -> 169
+	out -> 101
+	varId -> 102
+	in -> 103
+	NodeVar -> 104
+	Identifier -> 105
+	lp -> 107
+	Factor -> 109
+	not -> 110
+	int64 -> 111
+	Term -> 171
 
 
-S133{
+S135{
 	Expr : Expr modulo •Term «rp»
 	Expr : Expr modulo •Term «plus»
 	Expr : Expr modulo •Term «minus»
@@ -4472,19 +4487,19 @@ S133{
 	NodeVar : •out period varId «div»
 }
 Transitions:
-	out -> 99
-	varId -> 100
-	in -> 101
-	NodeVar -> 102
-	Identifier -> 103
-	lp -> 105
-	Factor -> 107
-	not -> 108
-	int64 -> 109
-	Term -> 170
+	out -> 101
+	varId -> 102
+	in -> 103
+	NodeVar -> 104
+	Identifier -> 105
+	lp -> 107
+	Factor -> 109
+	not -> 110
+	int64 -> 111
+	Term -> 172
 
 
-S134{
+S136{
 	Factor : lp Expr •rp «rp»
 	Factor : lp Expr •rp «plus»
 	Factor : lp Expr •rp «minus»
@@ -4575,20 +4590,20 @@ S134{
 	CompareOperator : •or «varId»
 }
 Transitions:
-	eq -> 113
-	lt -> 114
-	gt -> 115
-	neq -> 116
-	and -> 117
-	or -> 118
-	CompareOperator -> 129
-	plus -> 131
-	minus -> 132
-	modulo -> 133
-	rp -> 171
+	eq -> 115
+	lt -> 116
+	gt -> 117
+	neq -> 118
+	and -> 119
+	or -> 120
+	CompareOperator -> 131
+	plus -> 133
+	minus -> 134
+	modulo -> 135
+	rp -> 173
 
 
-S135{
+S137{
 	Term : Term mul •Factor «rp»
 	Term : Term mul •Factor «plus»
 	Term : Term mul •Factor «minus»
@@ -4699,18 +4714,18 @@ S135{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 99
-	varId -> 100
-	in -> 101
-	NodeVar -> 102
-	Identifier -> 103
-	lp -> 105
-	not -> 108
-	int64 -> 109
-	Factor -> 172
+	out -> 101
+	varId -> 102
+	in -> 103
+	NodeVar -> 104
+	Identifier -> 105
+	lp -> 107
+	not -> 110
+	int64 -> 111
+	Factor -> 174
 
 
-S136{
+S138{
 	Term : Term div •Factor «rp»
 	Term : Term div •Factor «plus»
 	Term : Term div •Factor «minus»
@@ -4821,18 +4836,18 @@ S136{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 99
-	varId -> 100
-	in -> 101
-	NodeVar -> 102
-	Identifier -> 103
-	lp -> 105
-	not -> 108
-	int64 -> 109
-	Factor -> 173
+	out -> 101
+	varId -> 102
+	in -> 103
+	NodeVar -> 104
+	Identifier -> 105
+	lp -> 107
+	not -> 110
+	int64 -> 111
+	Factor -> 175
 
 
-S137{
+S139{
 	Factor : not Factor• «rp»
 	Factor : not Factor• «plus»
 	Factor : not Factor• «minus»
@@ -4849,7 +4864,7 @@ S137{
 Transitions:
 
 
-S138{
+S140{
 	NodeVar : out period varId• «stmtEnd»
 	NodeVar : out period varId• «plus»
 	NodeVar : out period varId• «minus»
@@ -4866,7 +4881,7 @@ S138{
 Transitions:
 
 
-S139{
+S141{
 	NodeVar : in period varId• «stmtEnd»
 	NodeVar : in period varId• «plus»
 	NodeVar : in period varId• «minus»
@@ -4883,7 +4898,7 @@ S139{
 Transitions:
 
 
-S140{
+S142{
 	NodeVar : out •period varId «stmtEnd»
 	NodeVar : out •period varId «plus»
 	NodeVar : out •period varId «minus»
@@ -4896,10 +4911,10 @@ S140{
 	NodeVar : out •period varId «or»
 }
 Transitions:
-	period -> 174
+	period -> 176
 
 
-S141{
+S143{
 	Identifier : varId• «stmtEnd»
 	Identifier : varId• «plus»
 	Identifier : varId• «minus»
@@ -4914,7 +4929,7 @@ S141{
 Transitions:
 
 
-S142{
+S144{
 	NodeVar : in •period varId «stmtEnd»
 	NodeVar : in •period varId «plus»
 	NodeVar : in •period varId «minus»
@@ -4927,10 +4942,10 @@ S142{
 	NodeVar : in •period varId «or»
 }
 Transitions:
-	period -> 175
+	period -> 177
 
 
-S143{
+S145{
 	Identifier : NodeVar• «stmtEnd»
 	Identifier : NodeVar• «plus»
 	Identifier : NodeVar• «minus»
@@ -4945,7 +4960,7 @@ S143{
 Transitions:
 
 
-S144{
+S146{
 	Factor : Identifier• «stmtEnd»
 	Factor : Identifier• «plus»
 	Factor : Identifier• «minus»
@@ -4960,7 +4975,7 @@ S144{
 Transitions:
 
 
-S145{
+S147{
 	Factor : lp •Expr rp «stmtEnd»
 	Factor : lp •Expr rp «plus»
 	Factor : lp •Expr rp «minus»
@@ -5155,20 +5170,20 @@ S145{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 99
-	varId -> 100
-	in -> 101
-	NodeVar -> 102
-	Identifier -> 103
-	lp -> 105
-	Term -> 106
-	Factor -> 107
-	not -> 108
-	int64 -> 109
-	Expr -> 176
+	out -> 101
+	varId -> 102
+	in -> 103
+	NodeVar -> 104
+	Identifier -> 105
+	lp -> 107
+	Term -> 108
+	Factor -> 109
+	not -> 110
+	int64 -> 111
+	Expr -> 178
 
 
-S146{
+S148{
 	Expr : Expr CompareOperator Factor• «stmtEnd»
 	Expr : Expr CompareOperator Factor• «plus»
 	Expr : Expr CompareOperator Factor• «minus»
@@ -5183,7 +5198,7 @@ S146{
 Transitions:
 
 
-S147{
+S149{
 	Factor : not •Factor «stmtEnd»
 	Factor : not •Factor «plus»
 	Factor : not •Factor «minus»
@@ -5276,18 +5291,18 @@ S147{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 140
-	varId -> 141
-	in -> 142
-	NodeVar -> 143
-	Identifier -> 144
-	lp -> 145
-	not -> 147
-	int64 -> 148
-	Factor -> 177
+	out -> 142
+	varId -> 143
+	in -> 144
+	NodeVar -> 145
+	Identifier -> 146
+	lp -> 147
+	not -> 149
+	int64 -> 150
+	Factor -> 179
 
 
-S148{
+S150{
 	Factor : int64• «stmtEnd»
 	Factor : int64• «plus»
 	Factor : int64• «minus»
@@ -5302,7 +5317,7 @@ S148{
 Transitions:
 
 
-S149{
+S151{
 	Expr : Expr plus Term• «stmtEnd»
 	Expr : Expr plus Term• «plus»
 	Expr : Expr plus Term• «minus»
@@ -5339,11 +5354,11 @@ S149{
 	Term : Term •div Factor «div»
 }
 Transitions:
-	mul -> 123
-	div -> 124
+	mul -> 125
+	div -> 126
 
 
-S150{
+S152{
 	Expr : Expr minus Term• «stmtEnd»
 	Expr : Expr minus Term• «plus»
 	Expr : Expr minus Term• «minus»
@@ -5380,11 +5395,11 @@ S150{
 	Term : Term •div Factor «div»
 }
 Transitions:
-	mul -> 123
-	div -> 124
+	mul -> 125
+	div -> 126
 
 
-S151{
+S153{
 	Expr : Expr modulo Term• «stmtEnd»
 	Expr : Expr modulo Term• «plus»
 	Expr : Expr modulo Term• «minus»
@@ -5421,11 +5436,11 @@ S151{
 	Term : Term •div Factor «div»
 }
 Transitions:
-	mul -> 123
-	div -> 124
+	mul -> 125
+	div -> 126
 
 
-S152{
+S154{
 	Factor : lp Expr rp• «stmtEnd»
 	Factor : lp Expr rp• «plus»
 	Factor : lp Expr rp• «minus»
@@ -5442,7 +5457,7 @@ S152{
 Transitions:
 
 
-S153{
+S155{
 	Term : Term mul Factor• «stmtEnd»
 	Term : Term mul Factor• «plus»
 	Term : Term mul Factor• «minus»
@@ -5459,7 +5474,7 @@ S153{
 Transitions:
 
 
-S154{
+S156{
 	Term : Term div Factor• «stmtEnd»
 	Term : Term div Factor• «plus»
 	Term : Term div Factor• «minus»
@@ -5476,7 +5491,7 @@ S154{
 Transitions:
 
 
-S155{
+S157{
 	NodeVar : out period varId• «rp»
 	NodeVar : out period varId• «plus»
 	NodeVar : out period varId• «minus»
@@ -5493,7 +5508,7 @@ S155{
 Transitions:
 
 
-S156{
+S158{
 	NodeVar : in period varId• «rp»
 	NodeVar : in period varId• «plus»
 	NodeVar : in period varId• «minus»
@@ -5510,7 +5525,7 @@ S156{
 Transitions:
 
 
-S157{
+S159{
 	NodeVar : out •period varId «rp»
 	NodeVar : out •period varId «plus»
 	NodeVar : out •period varId «minus»
@@ -5523,10 +5538,10 @@ S157{
 	NodeVar : out •period varId «or»
 }
 Transitions:
-	period -> 178
+	period -> 180
 
 
-S158{
+S160{
 	Identifier : varId• «rp»
 	Identifier : varId• «plus»
 	Identifier : varId• «minus»
@@ -5541,7 +5556,7 @@ S158{
 Transitions:
 
 
-S159{
+S161{
 	NodeVar : in •period varId «rp»
 	NodeVar : in •period varId «plus»
 	NodeVar : in •period varId «minus»
@@ -5554,10 +5569,10 @@ S159{
 	NodeVar : in •period varId «or»
 }
 Transitions:
-	period -> 179
+	period -> 181
 
 
-S160{
+S162{
 	Identifier : NodeVar• «rp»
 	Identifier : NodeVar• «plus»
 	Identifier : NodeVar• «minus»
@@ -5572,7 +5587,7 @@ S160{
 Transitions:
 
 
-S161{
+S163{
 	Factor : Identifier• «rp»
 	Factor : Identifier• «plus»
 	Factor : Identifier• «minus»
@@ -5587,7 +5602,7 @@ S161{
 Transitions:
 
 
-S162{
+S164{
 	Factor : lp •Expr rp «rp»
 	Factor : lp •Expr rp «plus»
 	Factor : lp •Expr rp «minus»
@@ -5782,20 +5797,20 @@ S162{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 99
-	varId -> 100
-	in -> 101
-	NodeVar -> 102
-	Identifier -> 103
-	lp -> 105
-	Term -> 106
-	Factor -> 107
-	not -> 108
-	int64 -> 109
-	Expr -> 180
+	out -> 101
+	varId -> 102
+	in -> 103
+	NodeVar -> 104
+	Identifier -> 105
+	lp -> 107
+	Term -> 108
+	Factor -> 109
+	not -> 110
+	int64 -> 111
+	Expr -> 182
 
 
-S163{
+S165{
 	Expr : Expr CompareOperator Factor• «rp»
 	Expr : Expr CompareOperator Factor• «plus»
 	Expr : Expr CompareOperator Factor• «minus»
@@ -5810,7 +5825,7 @@ S163{
 Transitions:
 
 
-S164{
+S166{
 	Factor : not •Factor «rp»
 	Factor : not •Factor «plus»
 	Factor : not •Factor «minus»
@@ -5903,18 +5918,18 @@ S164{
 	NodeVar : •out period varId «or»
 }
 Transitions:
-	out -> 157
-	varId -> 158
-	in -> 159
-	NodeVar -> 160
-	Identifier -> 161
-	lp -> 162
-	not -> 164
-	int64 -> 165
-	Factor -> 181
+	out -> 159
+	varId -> 160
+	in -> 161
+	NodeVar -> 162
+	Identifier -> 163
+	lp -> 164
+	not -> 166
+	int64 -> 167
+	Factor -> 183
 
 
-S165{
+S167{
 	Factor : int64• «rp»
 	Factor : int64• «plus»
 	Factor : int64• «minus»
@@ -5929,16 +5944,25 @@ S165{
 Transitions:
 
 
-S166{
+S168{
 	Block : lcurly •StmtLst rcurly «else»
+	Block : lcurly •empty rcurly «else»
 	Block : lcurly •StmtLst rcurly «rcurly»
+	Block : lcurly •empty rcurly «rcurly»
 	Block : lcurly •StmtLst rcurly «bool»
+	Block : lcurly •empty rcurly «bool»
 	Block : lcurly •StmtLst rcurly «exit»
+	Block : lcurly •empty rcurly «exit»
 	Block : lcurly •StmtLst rcurly «if»
+	Block : lcurly •empty rcurly «if»
 	Block : lcurly •StmtLst rcurly «in»
+	Block : lcurly •empty rcurly «in»
 	Block : lcurly •StmtLst rcurly «int»
+	Block : lcurly •empty rcurly «int»
 	Block : lcurly •StmtLst rcurly «out»
+	Block : lcurly •empty rcurly «out»
 	Block : lcurly •StmtLst rcurly «varId»
+	Block : lcurly •empty rcurly «varId»
 	StmtLst : •StmtLst Stmt «rcurly»
 	StmtLst : •Stmt «rcurly»
 	StmtLst : •StmtLst Stmt «bool»
@@ -6048,20 +6072,21 @@ Transitions:
 	out -> 56
 	varId -> 57
 	in -> 58
-	Type -> 59
-	NodeVar -> 60
-	Identifier -> 61
-	DeclarationStmt -> 62
-	AssignStmt -> 63
-	ControlStmt -> 64
-	IfStmt -> 65
-	if -> 66
-	Stmt -> 67
-	exit -> 68
-	StmtLst -> 182
+	Type -> 60
+	NodeVar -> 61
+	Identifier -> 62
+	DeclarationStmt -> 63
+	AssignStmt -> 64
+	ControlStmt -> 65
+	IfStmt -> 66
+	if -> 67
+	Stmt -> 68
+	exit -> 69
+	empty -> 184
+	StmtLst -> 185
 
 
-S167{
+S169{
 	IfStmt : if lp Expr rp Block •else Block «rcurly»
 	IfStmt : if lp Expr rp Block• «rcurly»
 	IfStmt : if lp Expr rp Block •else Block «bool»
@@ -6080,10 +6105,10 @@ S167{
 	IfStmt : if lp Expr rp Block• «varId»
 }
 Transitions:
-	else -> 183
+	else -> 186
 
 
-S168{
+S170{
 	Expr : Expr plus Term• «rp»
 	Expr : Expr plus Term• «plus»
 	Expr : Expr plus Term• «minus»
@@ -6120,11 +6145,11 @@ S168{
 	Term : Term •div Factor «div»
 }
 Transitions:
-	mul -> 135
-	div -> 136
+	mul -> 137
+	div -> 138
 
 
-S169{
+S171{
 	Expr : Expr minus Term• «rp»
 	Expr : Expr minus Term• «plus»
 	Expr : Expr minus Term• «minus»
@@ -6161,11 +6186,11 @@ S169{
 	Term : Term •div Factor «div»
 }
 Transitions:
-	mul -> 135
-	div -> 136
+	mul -> 137
+	div -> 138
 
 
-S170{
+S172{
 	Expr : Expr modulo Term• «rp»
 	Expr : Expr modulo Term• «plus»
 	Expr : Expr modulo Term• «minus»
@@ -6202,11 +6227,11 @@ S170{
 	Term : Term •div Factor «div»
 }
 Transitions:
-	mul -> 135
-	div -> 136
+	mul -> 137
+	div -> 138
 
 
-S171{
+S173{
 	Factor : lp Expr rp• «rp»
 	Factor : lp Expr rp• «plus»
 	Factor : lp Expr rp• «minus»
@@ -6223,7 +6248,7 @@ S171{
 Transitions:
 
 
-S172{
+S174{
 	Term : Term mul Factor• «rp»
 	Term : Term mul Factor• «plus»
 	Term : Term mul Factor• «minus»
@@ -6240,7 +6265,7 @@ S172{
 Transitions:
 
 
-S173{
+S175{
 	Term : Term div Factor• «rp»
 	Term : Term div Factor• «plus»
 	Term : Term div Factor• «minus»
@@ -6257,7 +6282,7 @@ S173{
 Transitions:
 
 
-S174{
+S176{
 	NodeVar : out period •varId «stmtEnd»
 	NodeVar : out period •varId «plus»
 	NodeVar : out period •varId «minus»
@@ -6270,10 +6295,10 @@ S174{
 	NodeVar : out period •varId «or»
 }
 Transitions:
-	varId -> 184
+	varId -> 187
 
 
-S175{
+S177{
 	NodeVar : in period •varId «stmtEnd»
 	NodeVar : in period •varId «plus»
 	NodeVar : in period •varId «minus»
@@ -6286,10 +6311,10 @@ S175{
 	NodeVar : in period •varId «or»
 }
 Transitions:
-	varId -> 185
+	varId -> 188
 
 
-S176{
+S178{
 	Factor : lp Expr •rp «stmtEnd»
 	Factor : lp Expr •rp «plus»
 	Factor : lp Expr •rp «minus»
@@ -6378,20 +6403,20 @@ S176{
 	CompareOperator : •or «varId»
 }
 Transitions:
-	eq -> 113
-	lt -> 114
-	gt -> 115
-	neq -> 116
-	and -> 117
-	or -> 118
-	CompareOperator -> 129
-	plus -> 131
-	minus -> 132
-	modulo -> 133
-	rp -> 186
+	eq -> 115
+	lt -> 116
+	gt -> 117
+	neq -> 118
+	and -> 119
+	or -> 120
+	CompareOperator -> 131
+	plus -> 133
+	minus -> 134
+	modulo -> 135
+	rp -> 189
 
 
-S177{
+S179{
 	Factor : not Factor• «stmtEnd»
 	Factor : not Factor• «plus»
 	Factor : not Factor• «minus»
@@ -6406,7 +6431,7 @@ S177{
 Transitions:
 
 
-S178{
+S180{
 	NodeVar : out period •varId «rp»
 	NodeVar : out period •varId «plus»
 	NodeVar : out period •varId «minus»
@@ -6419,10 +6444,10 @@ S178{
 	NodeVar : out period •varId «or»
 }
 Transitions:
-	varId -> 187
+	varId -> 190
 
 
-S179{
+S181{
 	NodeVar : in period •varId «rp»
 	NodeVar : in period •varId «plus»
 	NodeVar : in period •varId «minus»
@@ -6435,10 +6460,10 @@ S179{
 	NodeVar : in period •varId «or»
 }
 Transitions:
-	varId -> 188
+	varId -> 191
 
 
-S180{
+S182{
 	Factor : lp Expr •rp «rp»
 	Factor : lp Expr •rp «plus»
 	Factor : lp Expr •rp «minus»
@@ -6527,20 +6552,20 @@ S180{
 	CompareOperator : •or «varId»
 }
 Transitions:
-	eq -> 113
-	lt -> 114
-	gt -> 115
-	neq -> 116
-	and -> 117
-	or -> 118
-	CompareOperator -> 129
-	plus -> 131
-	minus -> 132
-	modulo -> 133
-	rp -> 189
+	eq -> 115
+	lt -> 116
+	gt -> 117
+	neq -> 118
+	and -> 119
+	or -> 120
+	CompareOperator -> 131
+	plus -> 133
+	minus -> 134
+	modulo -> 135
+	rp -> 192
 
 
-S181{
+S183{
 	Factor : not Factor• «rp»
 	Factor : not Factor• «plus»
 	Factor : not Factor• «minus»
@@ -6555,7 +6580,22 @@ S181{
 Transitions:
 
 
-S182{
+S184{
+	Block : lcurly empty •rcurly «else»
+	Block : lcurly empty •rcurly «rcurly»
+	Block : lcurly empty •rcurly «bool»
+	Block : lcurly empty •rcurly «exit»
+	Block : lcurly empty •rcurly «if»
+	Block : lcurly empty •rcurly «in»
+	Block : lcurly empty •rcurly «int»
+	Block : lcurly empty •rcurly «out»
+	Block : lcurly empty •rcurly «varId»
+}
+Transitions:
+	rcurly -> 193
+
+
+S185{
 	Block : lcurly StmtLst •rcurly «else»
 	Block : lcurly StmtLst •rcurly «rcurly»
 	Block : lcurly StmtLst •rcurly «bool»
@@ -6666,20 +6706,20 @@ Transitions:
 	out -> 56
 	varId -> 57
 	in -> 58
-	Type -> 59
-	NodeVar -> 60
-	Identifier -> 61
-	DeclarationStmt -> 62
-	AssignStmt -> 63
-	ControlStmt -> 64
-	IfStmt -> 65
-	if -> 66
-	exit -> 68
-	Stmt -> 81
-	rcurly -> 190
+	Type -> 60
+	NodeVar -> 61
+	Identifier -> 62
+	DeclarationStmt -> 63
+	AssignStmt -> 64
+	ControlStmt -> 65
+	IfStmt -> 66
+	if -> 67
+	exit -> 69
+	Stmt -> 83
+	rcurly -> 194
 
 
-S183{
+S186{
 	IfStmt : if lp Expr rp Block else •Block «rcurly»
 	IfStmt : if lp Expr rp Block else •Block «bool»
 	IfStmt : if lp Expr rp Block else •Block «exit»
@@ -6689,28 +6729,28 @@ S183{
 	IfStmt : if lp Expr rp Block else •Block «out»
 	IfStmt : if lp Expr rp Block else •Block «varId»
 	Block : •lcurly StmtLst rcurly «rcurly»
-	Block : empty• «rcurly»
+	Block : •lcurly empty rcurly «rcurly»
 	Block : •lcurly StmtLst rcurly «bool»
-	Block : empty• «bool»
+	Block : •lcurly empty rcurly «bool»
 	Block : •lcurly StmtLst rcurly «exit»
-	Block : empty• «exit»
+	Block : •lcurly empty rcurly «exit»
 	Block : •lcurly StmtLst rcurly «if»
-	Block : empty• «if»
+	Block : •lcurly empty rcurly «if»
 	Block : •lcurly StmtLst rcurly «in»
-	Block : empty• «in»
+	Block : •lcurly empty rcurly «in»
 	Block : •lcurly StmtLst rcurly «int»
-	Block : empty• «int»
+	Block : •lcurly empty rcurly «int»
 	Block : •lcurly StmtLst rcurly «out»
-	Block : empty• «out»
+	Block : •lcurly empty rcurly «out»
 	Block : •lcurly StmtLst rcurly «varId»
-	Block : empty• «varId»
+	Block : •lcurly empty rcurly «varId»
 }
 Transitions:
-	lcurly -> 191
-	Block -> 192
+	lcurly -> 195
+	Block -> 196
 
 
-S184{
+S187{
 	NodeVar : out period varId• «stmtEnd»
 	NodeVar : out period varId• «plus»
 	NodeVar : out period varId• «minus»
@@ -6725,7 +6765,7 @@ S184{
 Transitions:
 
 
-S185{
+S188{
 	NodeVar : in period varId• «stmtEnd»
 	NodeVar : in period varId• «plus»
 	NodeVar : in period varId• «minus»
@@ -6740,7 +6780,7 @@ S185{
 Transitions:
 
 
-S186{
+S189{
 	Factor : lp Expr rp• «stmtEnd»
 	Factor : lp Expr rp• «plus»
 	Factor : lp Expr rp• «minus»
@@ -6755,7 +6795,7 @@ S186{
 Transitions:
 
 
-S187{
+S190{
 	NodeVar : out period varId• «rp»
 	NodeVar : out period varId• «plus»
 	NodeVar : out period varId• «minus»
@@ -6770,7 +6810,7 @@ S187{
 Transitions:
 
 
-S188{
+S191{
 	NodeVar : in period varId• «rp»
 	NodeVar : in period varId• «plus»
 	NodeVar : in period varId• «minus»
@@ -6785,7 +6825,7 @@ S188{
 Transitions:
 
 
-S189{
+S192{
 	Factor : lp Expr rp• «rp»
 	Factor : lp Expr rp• «plus»
 	Factor : lp Expr rp• «minus»
@@ -6800,7 +6840,21 @@ S189{
 Transitions:
 
 
-S190{
+S193{
+	Block : lcurly empty rcurly• «else»
+	Block : lcurly empty rcurly• «rcurly»
+	Block : lcurly empty rcurly• «bool»
+	Block : lcurly empty rcurly• «exit»
+	Block : lcurly empty rcurly• «if»
+	Block : lcurly empty rcurly• «in»
+	Block : lcurly empty rcurly• «int»
+	Block : lcurly empty rcurly• «out»
+	Block : lcurly empty rcurly• «varId»
+}
+Transitions:
+
+
+S194{
 	Block : lcurly StmtLst rcurly• «else»
 	Block : lcurly StmtLst rcurly• «rcurly»
 	Block : lcurly StmtLst rcurly• «bool»
@@ -6814,15 +6868,23 @@ S190{
 Transitions:
 
 
-S191{
+S195{
 	Block : lcurly •StmtLst rcurly «rcurly»
+	Block : lcurly •empty rcurly «rcurly»
 	Block : lcurly •StmtLst rcurly «bool»
+	Block : lcurly •empty rcurly «bool»
 	Block : lcurly •StmtLst rcurly «exit»
+	Block : lcurly •empty rcurly «exit»
 	Block : lcurly •StmtLst rcurly «if»
+	Block : lcurly •empty rcurly «if»
 	Block : lcurly •StmtLst rcurly «in»
+	Block : lcurly •empty rcurly «in»
 	Block : lcurly •StmtLst rcurly «int»
+	Block : lcurly •empty rcurly «int»
 	Block : lcurly •StmtLst rcurly «out»
+	Block : lcurly •empty rcurly «out»
 	Block : lcurly •StmtLst rcurly «varId»
+	Block : lcurly •empty rcurly «varId»
 	StmtLst : •StmtLst Stmt «rcurly»
 	StmtLst : •Stmt «rcurly»
 	StmtLst : •StmtLst Stmt «bool»
@@ -6932,20 +6994,21 @@ Transitions:
 	out -> 56
 	varId -> 57
 	in -> 58
-	Type -> 59
-	NodeVar -> 60
-	Identifier -> 61
-	DeclarationStmt -> 62
-	AssignStmt -> 63
-	ControlStmt -> 64
-	IfStmt -> 65
-	if -> 66
-	Stmt -> 67
-	exit -> 68
-	StmtLst -> 193
+	Type -> 60
+	NodeVar -> 61
+	Identifier -> 62
+	DeclarationStmt -> 63
+	AssignStmt -> 64
+	ControlStmt -> 65
+	IfStmt -> 66
+	if -> 67
+	Stmt -> 68
+	exit -> 69
+	empty -> 197
+	StmtLst -> 198
 
 
-S192{
+S196{
 	IfStmt : if lp Expr rp Block else Block• «rcurly»
 	IfStmt : if lp Expr rp Block else Block• «bool»
 	IfStmt : if lp Expr rp Block else Block• «exit»
@@ -6958,7 +7021,21 @@ S192{
 Transitions:
 
 
-S193{
+S197{
+	Block : lcurly empty •rcurly «rcurly»
+	Block : lcurly empty •rcurly «bool»
+	Block : lcurly empty •rcurly «exit»
+	Block : lcurly empty •rcurly «if»
+	Block : lcurly empty •rcurly «in»
+	Block : lcurly empty •rcurly «int»
+	Block : lcurly empty •rcurly «out»
+	Block : lcurly empty •rcurly «varId»
+}
+Transitions:
+	rcurly -> 199
+
+
+S198{
 	Block : lcurly StmtLst •rcurly «rcurly»
 	Block : lcurly StmtLst •rcurly «bool»
 	Block : lcurly StmtLst •rcurly «exit»
@@ -7068,20 +7145,33 @@ Transitions:
 	out -> 56
 	varId -> 57
 	in -> 58
-	Type -> 59
-	NodeVar -> 60
-	Identifier -> 61
-	DeclarationStmt -> 62
-	AssignStmt -> 63
-	ControlStmt -> 64
-	IfStmt -> 65
-	if -> 66
-	exit -> 68
-	Stmt -> 81
-	rcurly -> 194
+	Type -> 60
+	NodeVar -> 61
+	Identifier -> 62
+	DeclarationStmt -> 63
+	AssignStmt -> 64
+	ControlStmt -> 65
+	IfStmt -> 66
+	if -> 67
+	exit -> 69
+	Stmt -> 83
+	rcurly -> 200
 
 
-S194{
+S199{
+	Block : lcurly empty rcurly• «rcurly»
+	Block : lcurly empty rcurly• «bool»
+	Block : lcurly empty rcurly• «exit»
+	Block : lcurly empty rcurly• «if»
+	Block : lcurly empty rcurly• «in»
+	Block : lcurly empty rcurly• «int»
+	Block : lcurly empty rcurly• «out»
+	Block : lcurly empty rcurly• «varId»
+}
+Transitions:
+
+
+S200{
 	Block : lcurly StmtLst rcurly• «rcurly»
 	Block : lcurly StmtLst rcurly• «bool»
 	Block : lcurly StmtLst rcurly• «exit»

@@ -1,20 +1,11 @@
-node Foo {
+node Test {
     out {
-        int x = 5;
+        int res = 0;
+    }
+
+    process {
+        int a = 2;
+        int b = 3;
+        out.res = 2 + 3;
     }
 }
-
-node Bar {
-    out {
-        int y = 4;
-    }
-}
-
-node Add1 : Mul;
-
-node Move1 : Move;
-
-Foo.out.x -> Add1.in.a;
-Bar.out.y -> Add1.in.b;
-
-Add1.out.result -> Move1.in.move;

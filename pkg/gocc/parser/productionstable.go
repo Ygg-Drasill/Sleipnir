@@ -494,13 +494,13 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Block : empty	<<  >>`,
+		String: `Block : lcurly empty rcurly	<<  >>`,
 		Id:         "Block",
 		NTType:     23,
 		Index:      47,
-		NumSymbols: 0,
+		NumSymbols: 3,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return nil, nil
+			return X[0], nil
 		},
 	},
 	ProdTabEntry{
