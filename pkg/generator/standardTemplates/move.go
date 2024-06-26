@@ -7,12 +7,12 @@ import (
 )
 
 var Move standardTemplate = standardTemplate{
-	Body: `global.get $%s
+	Body: `%s
 i32.wrap_i64
 call $_move`,
 	Inputs: []string{"direction"},
 	FormatBody: func(t standardTemplate, nodeId string, nodeVarMap map[string]*ast.Junction) string {
 		direction := nodeVarMap[utils.JunctionKey(nodeId, t.Inputs[0])]
-		return fmt.Sprintf(t.Body, mapVarJunctionVariable(direction.NodeId, direction.VarId))
+		return fmt.Sprintf(t.Body, mapVarJunctionVariableGet(direction))
 	},
 }
