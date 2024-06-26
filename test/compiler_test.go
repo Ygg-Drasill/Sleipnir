@@ -99,11 +99,19 @@ func TestCompileValidSourceCode(t *testing.T) {
 
 			dummyImport := wasmtime.WrapFunc(store, func(got int32) { return })
 
+			var memory int32 = 0
+			setImport := wasmtime.WrapFunc(store, func(value int32) {
+				memory = value
+			})
+			getImport := wasmtime.WrapFunc(store, func() int32 {
+				return memory
+			})
+
 			instance, err = wasmtime.NewInstance(store, module, []wasmtime.AsExtern{
 				logImport,   // console.log
 				dummyImport, // screeps.move
-				dummyImport, // screeps.set
-				dummyImport, // screeps.get
+				setImport,   // screeps.set
+				getImport,   // screeps.get
 			})
 			if err != nil {
 				t.Fatalf("failed to create wasmtime instance: %s", err.Error())
