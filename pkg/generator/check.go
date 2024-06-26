@@ -33,12 +33,21 @@ func (g *Generator) isIdentifier(attr *ast.Attribute) (Identifier, error) {
 		return newIdentifier, nil
 	}
 
-	if i, ok := (*attr).(*ast.LocalVar); ok {
+	if localVar, ok := (*attr).(*ast.LocalVar); ok {
+
+		if !g.containsVar(localVar) {
+			return nil, fmt.Errorf("variable does not exist: %s, in node: %s", localVar.Id, g.currentNode.Id)
+		}
+
 		newIdentifier := LocalIdentifier{
-			*i,
+			*localVar,
 		}
 		return newIdentifier, nil
 	}
 
 	return nil, nil
+}
+
+func (g *Generator) containsVar(localVar *ast.LocalVar) bool {
+	return g.context.GetNodeContext(g.currentNode.Id).ProcVariables.Exists(localVar.Id)
 }

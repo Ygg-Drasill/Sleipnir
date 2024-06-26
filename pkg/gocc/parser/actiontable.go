@@ -1568,43 +1568,43 @@ var actionTab = actionTable{
 	actionRow{ // S37
 		canRecover: false,
 		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			shift(47),  // lcurly
-			reduce(47), // rcurly, reduce: Block
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			nil,        // period
-			nil,        // out
-			nil,        // varId
-			nil,        // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			nil,        // eq
-			nil,        // lt
-			nil,        // gt
-			nil,        // neq
-			nil,        // and
-			nil,        // or
-			nil,        // assign
-			nil,        // if
-			nil,        // lp
-			nil,        // rp
-			nil,        // else
-			nil,        // exit
-			nil,        // plus
-			nil,        // minus
-			nil,        // modulo
-			nil,        // mul
-			nil,        // div
-			nil,        // not
-			nil,        // int64
+			nil,       // INVALID
+			nil,       // ␚
+			nil,       // node
+			nil,       // nodeId
+			shift(47), // lcurly
+			nil,       // rcurly
+			nil,       // template
+			nil,       // colon
+			nil,       // stmtEnd
+			nil,       // ->
+			nil,       // period
+			nil,       // out
+			nil,       // varId
+			nil,       // in
+			nil,       // empty
+			nil,       // int
+			nil,       // bool
+			nil,       // process
+			nil,       // eq
+			nil,       // lt
+			nil,       // gt
+			nil,       // neq
+			nil,       // and
+			nil,       // or
+			nil,       // assign
+			nil,       // if
+			nil,       // lp
+			nil,       // rp
+			nil,       // else
+			nil,       // exit
+			nil,       // plus
+			nil,       // minus
+			nil,       // modulo
+			nil,       // mul
+			nil,       // div
+			nil,       // not
+			nil,       // int64
 		},
 	},
 	actionRow{ // S38
@@ -2002,7 +2002,7 @@ var actionTab = actionTable{
 			shift(56), // out
 			shift(57), // varId
 			shift(58), // in
-			nil,       // empty
+			shift(59), // empty
 			shift(40), // int
 			shift(41), // bool
 			nil,       // process
@@ -2013,11 +2013,11 @@ var actionTab = actionTable{
 			nil,       // and
 			nil,       // or
 			nil,       // assign
-			shift(66), // if
+			shift(67), // if
 			nil,       // lp
 			nil,       // rp
 			nil,       // else
-			shift(68), // exit
+			shift(69), // exit
 			nil,       // plus
 			nil,       // minus
 			nil,       // modulo
@@ -2077,7 +2077,7 @@ var actionTab = actionTable{
 			nil,       // node
 			nil,       // nodeId
 			nil,       // lcurly
-			shift(70), // rcurly
+			shift(71), // rcurly
 			nil,       // template
 			nil,       // colon
 			nil,       // stmtEnd
@@ -2122,7 +2122,7 @@ var actionTab = actionTable{
 			nil,       // rcurly
 			nil,       // template
 			nil,       // colon
-			shift(71), // stmtEnd
+			shift(72), // stmtEnd
 			nil,       // ->
 			nil,       // period
 			nil,       // out
@@ -2138,7 +2138,7 @@ var actionTab = actionTable{
 			nil,       // neq
 			nil,       // and
 			nil,       // or
-			shift(73), // assign
+			shift(74), // assign
 			nil,       // if
 			nil,       // lp
 			nil,       // rp
@@ -2376,7 +2376,7 @@ var actionTab = actionTable{
 			nil,       // colon
 			nil,       // stmtEnd
 			nil,       // ->
-			shift(74), // period
+			shift(75), // period
 			nil,       // out
 			nil,       // varId
 			nil,       // in
@@ -2460,7 +2460,7 @@ var actionTab = actionTable{
 			nil,       // colon
 			nil,       // stmtEnd
 			nil,       // ->
-			shift(75), // period
+			shift(76), // period
 			nil,       // out
 			nil,       // varId
 			nil,       // in
@@ -2497,14 +2497,14 @@ var actionTab = actionTable{
 			nil,       // node
 			nil,       // nodeId
 			nil,       // lcurly
-			nil,       // rcurly
+			shift(77), // rcurly
 			nil,       // template
 			nil,       // colon
 			nil,       // stmtEnd
 			nil,       // ->
 			nil,       // period
 			nil,       // out
-			shift(76), // varId
+			nil,       // varId
 			nil,       // in
 			nil,       // empty
 			nil,       // int
@@ -2532,6 +2532,48 @@ var actionTab = actionTable{
 		},
 	},
 	actionRow{ // S60
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,       // INVALID
+			nil,       // ␚
+			nil,       // node
+			nil,       // nodeId
+			nil,       // lcurly
+			nil,       // rcurly
+			nil,       // template
+			nil,       // colon
+			nil,       // stmtEnd
+			nil,       // ->
+			nil,       // period
+			nil,       // out
+			shift(78), // varId
+			nil,       // in
+			nil,       // empty
+			nil,       // int
+			nil,       // bool
+			nil,       // process
+			nil,       // eq
+			nil,       // lt
+			nil,       // gt
+			nil,       // neq
+			nil,       // and
+			nil,       // or
+			nil,       // assign
+			nil,       // if
+			nil,       // lp
+			nil,       // rp
+			nil,       // else
+			nil,       // exit
+			nil,       // plus
+			nil,       // minus
+			nil,       // modulo
+			nil,       // mul
+			nil,       // div
+			nil,       // not
+			nil,       // int64
+		},
+	},
+	actionRow{ // S61
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -2573,7 +2615,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S61
+	actionRow{ // S62
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,       // INVALID
@@ -2600,7 +2642,7 @@ var actionTab = actionTable{
 			nil,       // neq
 			nil,       // and
 			nil,       // or
-			shift(73), // assign
+			shift(74), // assign
 			nil,       // if
 			nil,       // lp
 			nil,       // rp
@@ -2615,7 +2657,7 @@ var actionTab = actionTable{
 			nil,       // int64
 		},
 	},
-	actionRow{ // S62
+	actionRow{ // S63
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -2657,7 +2699,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S63
+	actionRow{ // S64
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -2699,7 +2741,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S64
+	actionRow{ // S65
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -2741,7 +2783,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S65
+	actionRow{ // S66
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -2783,7 +2825,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S66
+	actionRow{ // S67
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,       // INVALID
@@ -2812,7 +2854,7 @@ var actionTab = actionTable{
 			nil,       // or
 			nil,       // assign
 			nil,       // if
-			shift(78), // lp
+			shift(80), // lp
 			nil,       // rp
 			nil,       // else
 			nil,       // exit
@@ -2825,7 +2867,7 @@ var actionTab = actionTable{
 			nil,       // int64
 		},
 	},
-	actionRow{ // S67
+	actionRow{ // S68
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -2867,7 +2909,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S68
+	actionRow{ // S69
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,       // INVALID
@@ -2878,7 +2920,7 @@ var actionTab = actionTable{
 			nil,       // rcurly
 			nil,       // template
 			nil,       // colon
-			shift(79), // stmtEnd
+			shift(81), // stmtEnd
 			nil,       // ->
 			nil,       // period
 			nil,       // out
@@ -2909,7 +2951,7 @@ var actionTab = actionTable{
 			nil,       // int64
 		},
 	},
-	actionRow{ // S69
+	actionRow{ // S70
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,       // INVALID
@@ -2917,7 +2959,7 @@ var actionTab = actionTable{
 			nil,       // node
 			nil,       // nodeId
 			nil,       // lcurly
-			shift(80), // rcurly
+			shift(82), // rcurly
 			nil,       // template
 			nil,       // colon
 			nil,       // stmtEnd
@@ -2937,11 +2979,11 @@ var actionTab = actionTable{
 			nil,       // and
 			nil,       // or
 			nil,       // assign
-			shift(66), // if
+			shift(67), // if
 			nil,       // lp
 			nil,       // rp
 			nil,       // else
-			shift(68), // exit
+			shift(69), // exit
 			nil,       // plus
 			nil,       // minus
 			nil,       // modulo
@@ -2951,7 +2993,7 @@ var actionTab = actionTable{
 			nil,       // int64
 		},
 	},
-	actionRow{ // S70
+	actionRow{ // S71
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -2993,7 +3035,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S71
+	actionRow{ // S72
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3035,7 +3077,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S72
+	actionRow{ // S73
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,       // INVALID
@@ -3046,7 +3088,7 @@ var actionTab = actionTable{
 			nil,       // rcurly
 			nil,       // template
 			nil,       // colon
-			shift(82), // stmtEnd
+			shift(84), // stmtEnd
 			nil,       // ->
 			nil,       // period
 			nil,       // out
@@ -3077,48 +3119,6 @@ var actionTab = actionTable{
 			nil,       // int64
 		},
 	},
-	actionRow{ // S73
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,       // INVALID
-			nil,       // ␚
-			nil,       // node
-			nil,       // nodeId
-			nil,       // lcurly
-			nil,       // rcurly
-			nil,       // template
-			nil,       // colon
-			nil,       // stmtEnd
-			nil,       // ->
-			nil,       // period
-			shift(83), // out
-			shift(84), // varId
-			shift(85), // in
-			nil,       // empty
-			nil,       // int
-			nil,       // bool
-			nil,       // process
-			nil,       // eq
-			nil,       // lt
-			nil,       // gt
-			nil,       // neq
-			nil,       // and
-			nil,       // or
-			nil,       // assign
-			nil,       // if
-			shift(89), // lp
-			nil,       // rp
-			nil,       // else
-			nil,       // exit
-			nil,       // plus
-			nil,       // minus
-			nil,       // modulo
-			nil,       // mul
-			nil,       // div
-			shift(92), // not
-			shift(93), // int64
-		},
-	},
 	actionRow{ // S74
 		canRecover: false,
 		actions: [numSymbols]action{
@@ -3133,9 +3133,9 @@ var actionTab = actionTable{
 			nil,       // stmtEnd
 			nil,       // ->
 			nil,       // period
-			nil,       // out
-			shift(94), // varId
-			nil,       // in
+			shift(85), // out
+			shift(86), // varId
+			shift(87), // in
 			nil,       // empty
 			nil,       // int
 			nil,       // bool
@@ -3148,7 +3148,7 @@ var actionTab = actionTable{
 			nil,       // or
 			nil,       // assign
 			nil,       // if
-			nil,       // lp
+			shift(91), // lp
 			nil,       // rp
 			nil,       // else
 			nil,       // exit
@@ -3157,8 +3157,8 @@ var actionTab = actionTable{
 			nil,       // modulo
 			nil,       // mul
 			nil,       // div
-			nil,       // not
-			nil,       // int64
+			shift(94), // not
+			shift(95), // int64
 		},
 	},
 	actionRow{ // S75
@@ -3176,7 +3176,7 @@ var actionTab = actionTable{
 			nil,       // ->
 			nil,       // period
 			nil,       // out
-			shift(95), // varId
+			shift(96), // varId
 			nil,       // in
 			nil,       // empty
 			nil,       // int
@@ -3214,53 +3214,11 @@ var actionTab = actionTable{
 			nil,       // rcurly
 			nil,       // template
 			nil,       // colon
-			shift(96), // stmtEnd
+			nil,       // stmtEnd
 			nil,       // ->
 			nil,       // period
 			nil,       // out
-			nil,       // varId
-			nil,       // in
-			nil,       // empty
-			nil,       // int
-			nil,       // bool
-			nil,       // process
-			nil,       // eq
-			nil,       // lt
-			nil,       // gt
-			nil,       // neq
-			nil,       // and
-			nil,       // or
-			shift(73), // assign
-			nil,       // if
-			nil,       // lp
-			nil,       // rp
-			nil,       // else
-			nil,       // exit
-			nil,       // plus
-			nil,       // minus
-			nil,       // modulo
-			nil,       // mul
-			nil,       // div
-			nil,       // not
-			nil,       // int64
-		},
-	},
-	actionRow{ // S77
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,       // INVALID
-			nil,       // ␚
-			nil,       // node
-			nil,       // nodeId
-			nil,       // lcurly
-			nil,       // rcurly
-			nil,       // template
-			nil,       // colon
-			shift(98), // stmtEnd
-			nil,       // ->
-			nil,       // period
-			nil,       // out
-			nil,       // varId
+			shift(97), // varId
 			nil,       // in
 			nil,       // empty
 			nil,       // int
@@ -3287,7 +3245,133 @@ var actionTab = actionTable{
 			nil,       // int64
 		},
 	},
+	actionRow{ // S77
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			reduce(47), // rcurly, reduce: Block
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			nil,        // out
+			nil,        // varId
+			nil,        // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			nil,        // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
 	actionRow{ // S78
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,       // INVALID
+			nil,       // ␚
+			nil,       // node
+			nil,       // nodeId
+			nil,       // lcurly
+			nil,       // rcurly
+			nil,       // template
+			nil,       // colon
+			shift(98), // stmtEnd
+			nil,       // ->
+			nil,       // period
+			nil,       // out
+			nil,       // varId
+			nil,       // in
+			nil,       // empty
+			nil,       // int
+			nil,       // bool
+			nil,       // process
+			nil,       // eq
+			nil,       // lt
+			nil,       // gt
+			nil,       // neq
+			nil,       // and
+			nil,       // or
+			shift(74), // assign
+			nil,       // if
+			nil,       // lp
+			nil,       // rp
+			nil,       // else
+			nil,       // exit
+			nil,       // plus
+			nil,       // minus
+			nil,       // modulo
+			nil,       // mul
+			nil,       // div
+			nil,       // not
+			nil,       // int64
+		},
+	},
+	actionRow{ // S79
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			shift(100), // stmtEnd
+			nil,        // ->
+			nil,        // period
+			nil,        // out
+			nil,        // varId
+			nil,        // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			nil,        // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S80
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3301,9 +3385,9 @@ var actionTab = actionTable{
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			shift(99),  // out
-			shift(100), // varId
-			shift(101), // in
+			shift(101), // out
+			shift(102), // varId
+			shift(103), // in
 			nil,        // empty
 			nil,        // int
 			nil,        // bool
@@ -3316,7 +3400,7 @@ var actionTab = actionTable{
 			nil,        // or
 			nil,        // assign
 			nil,        // if
-			shift(105), // lp
+			shift(107), // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
@@ -3325,11 +3409,11 @@ var actionTab = actionTable{
 			nil,        // modulo
 			nil,        // mul
 			nil,        // div
-			shift(108), // not
-			shift(109), // int64
+			shift(110), // not
+			shift(111), // int64
 		},
 	},
-	actionRow{ // S79
+	actionRow{ // S81
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3371,7 +3455,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S80
+	actionRow{ // S82
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3413,7 +3497,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S81
+	actionRow{ // S83
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3455,7 +3539,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S82
+	actionRow{ // S84
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3497,7 +3581,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S83
+	actionRow{ // S85
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3510,7 +3594,7 @@ var actionTab = actionTable{
 			nil,        // colon
 			nil,        // stmtEnd
 			nil,        // ->
-			shift(110), // period
+			shift(112), // period
 			nil,        // out
 			nil,        // varId
 			nil,        // in
@@ -3539,7 +3623,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S84
+	actionRow{ // S86
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3581,7 +3665,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S85
+	actionRow{ // S87
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3594,7 +3678,7 @@ var actionTab = actionTable{
 			nil,        // colon
 			nil,        // stmtEnd
 			nil,        // ->
-			shift(111), // period
+			shift(113), // period
 			nil,        // out
 			nil,        // varId
 			nil,        // in
@@ -3623,7 +3707,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S86
+	actionRow{ // S88
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3665,7 +3749,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S87
+	actionRow{ // S89
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3707,7 +3791,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S88
+	actionRow{ // S90
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3728,28 +3812,28 @@ var actionTab = actionTable{
 			nil,        // int
 			nil,        // bool
 			nil,        // process
-			shift(113), // eq
-			shift(114), // lt
-			shift(115), // gt
-			shift(116), // neq
-			shift(117), // and
-			shift(118), // or
+			shift(115), // eq
+			shift(116), // lt
+			shift(117), // gt
+			shift(118), // neq
+			shift(119), // and
+			shift(120), // or
 			nil,        // assign
 			nil,        // if
 			nil,        // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
-			shift(119), // plus
-			shift(120), // minus
-			shift(121), // modulo
+			shift(121), // plus
+			shift(122), // minus
+			shift(123), // modulo
 			nil,        // mul
 			nil,        // div
 			nil,        // not
 			nil,        // int64
 		},
 	},
-	actionRow{ // S89
+	actionRow{ // S91
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3763,9 +3847,9 @@ var actionTab = actionTable{
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			shift(99),  // out
-			shift(100), // varId
-			shift(101), // in
+			shift(101), // out
+			shift(102), // varId
+			shift(103), // in
 			nil,        // empty
 			nil,        // int
 			nil,        // bool
@@ -3778,7 +3862,7 @@ var actionTab = actionTable{
 			nil,        // or
 			nil,        // assign
 			nil,        // if
-			shift(105), // lp
+			shift(107), // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
@@ -3787,11 +3871,11 @@ var actionTab = actionTable{
 			nil,        // modulo
 			nil,        // mul
 			nil,        // div
-			shift(108), // not
-			shift(109), // int64
+			shift(110), // not
+			shift(111), // int64
 		},
 	},
-	actionRow{ // S90
+	actionRow{ // S92
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3827,13 +3911,13 @@ var actionTab = actionTable{
 			reduce(51), // plus, reduce: Expr
 			reduce(51), // minus, reduce: Expr
 			reduce(51), // modulo, reduce: Expr
-			shift(123), // mul
-			shift(124), // div
+			shift(125), // mul
+			shift(126), // div
 			nil,        // not
 			nil,        // int64
 		},
 	},
-	actionRow{ // S91
+	actionRow{ // S93
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3875,7 +3959,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S92
+	actionRow{ // S94
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,       // INVALID
@@ -3889,9 +3973,9 @@ var actionTab = actionTable{
 			nil,       // stmtEnd
 			nil,       // ->
 			nil,       // period
-			shift(83), // out
-			shift(84), // varId
-			shift(85), // in
+			shift(85), // out
+			shift(86), // varId
+			shift(87), // in
 			nil,       // empty
 			nil,       // int
 			nil,       // bool
@@ -3904,7 +3988,7 @@ var actionTab = actionTable{
 			nil,       // or
 			nil,       // assign
 			nil,       // if
-			shift(89), // lp
+			shift(91), // lp
 			nil,       // rp
 			nil,       // else
 			nil,       // exit
@@ -3913,11 +3997,11 @@ var actionTab = actionTable{
 			nil,       // modulo
 			nil,       // mul
 			nil,       // div
-			shift(92), // not
-			shift(93), // int64
+			shift(94), // not
+			shift(95), // int64
 		},
 	},
-	actionRow{ // S93
+	actionRow{ // S95
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -3959,7 +4043,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S94
+	actionRow{ // S96
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4001,7 +4085,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S95
+	actionRow{ // S97
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4043,7 +4127,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S96
+	actionRow{ // S98
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4085,7 +4169,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S97
+	actionRow{ // S99
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4096,7 +4180,7 @@ var actionTab = actionTable{
 			nil,        // rcurly
 			nil,        // template
 			nil,        // colon
-			shift(126), // stmtEnd
+			shift(128), // stmtEnd
 			nil,        // ->
 			nil,        // period
 			nil,        // out
@@ -4127,7 +4211,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S98
+	actionRow{ // S100
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4169,90 +4253,6 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S99
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			shift(127), // period
-			nil,        // out
-			nil,        // varId
-			nil,        // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			nil,        // eq
-			nil,        // lt
-			nil,        // gt
-			nil,        // neq
-			nil,        // and
-			nil,        // or
-			nil,        // assign
-			nil,        // if
-			nil,        // lp
-			nil,        // rp
-			nil,        // else
-			nil,        // exit
-			nil,        // plus
-			nil,        // minus
-			nil,        // modulo
-			nil,        // mul
-			nil,        // div
-			nil,        // not
-			nil,        // int64
-		},
-	},
-	actionRow{ // S100
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			nil,        // period
-			nil,        // out
-			nil,        // varId
-			nil,        // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			reduce(24), // eq, reduce: Identifier
-			reduce(24), // lt, reduce: Identifier
-			reduce(24), // gt, reduce: Identifier
-			reduce(24), // neq, reduce: Identifier
-			reduce(24), // and, reduce: Identifier
-			reduce(24), // or, reduce: Identifier
-			nil,        // assign
-			nil,        // if
-			nil,        // lp
-			reduce(24), // rp, reduce: Identifier
-			nil,        // else
-			nil,        // exit
-			reduce(24), // plus, reduce: Identifier
-			reduce(24), // minus, reduce: Identifier
-			reduce(24), // modulo, reduce: Identifier
-			reduce(24), // mul, reduce: Identifier
-			reduce(24), // div, reduce: Identifier
-			nil,        // not
-			nil,        // int64
-		},
-	},
 	actionRow{ // S101
 		canRecover: false,
 		actions: [numSymbols]action{
@@ -4266,7 +4266,7 @@ var actionTab = actionTable{
 			nil,        // colon
 			nil,        // stmtEnd
 			nil,        // ->
-			shift(128), // period
+			shift(129), // period
 			nil,        // out
 			nil,        // varId
 			nil,        // in
@@ -4316,6 +4316,90 @@ var actionTab = actionTable{
 			nil,        // int
 			nil,        // bool
 			nil,        // process
+			reduce(24), // eq, reduce: Identifier
+			reduce(24), // lt, reduce: Identifier
+			reduce(24), // gt, reduce: Identifier
+			reduce(24), // neq, reduce: Identifier
+			reduce(24), // and, reduce: Identifier
+			reduce(24), // or, reduce: Identifier
+			nil,        // assign
+			nil,        // if
+			nil,        // lp
+			reduce(24), // rp, reduce: Identifier
+			nil,        // else
+			nil,        // exit
+			reduce(24), // plus, reduce: Identifier
+			reduce(24), // minus, reduce: Identifier
+			reduce(24), // modulo, reduce: Identifier
+			reduce(24), // mul, reduce: Identifier
+			reduce(24), // div, reduce: Identifier
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S103
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			shift(130), // period
+			nil,        // out
+			nil,        // varId
+			nil,        // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			nil,        // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S104
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			nil,        // out
+			nil,        // varId
+			nil,        // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
 			reduce(23), // eq, reduce: Identifier
 			reduce(23), // lt, reduce: Identifier
 			reduce(23), // gt, reduce: Identifier
@@ -4337,7 +4421,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S103
+	actionRow{ // S105
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4379,7 +4463,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S104
+	actionRow{ // S106
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4400,28 +4484,28 @@ var actionTab = actionTable{
 			nil,        // int
 			nil,        // bool
 			nil,        // process
-			shift(113), // eq
-			shift(114), // lt
-			shift(115), // gt
-			shift(116), // neq
-			shift(117), // and
-			shift(118), // or
+			shift(115), // eq
+			shift(116), // lt
+			shift(117), // gt
+			shift(118), // neq
+			shift(119), // and
+			shift(120), // or
 			nil,        // assign
 			nil,        // if
 			nil,        // lp
-			shift(130), // rp
+			shift(132), // rp
 			nil,        // else
 			nil,        // exit
-			shift(131), // plus
-			shift(132), // minus
-			shift(133), // modulo
+			shift(133), // plus
+			shift(134), // minus
+			shift(135), // modulo
 			nil,        // mul
 			nil,        // div
 			nil,        // not
 			nil,        // int64
 		},
 	},
-	actionRow{ // S105
+	actionRow{ // S107
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4435,9 +4519,9 @@ var actionTab = actionTable{
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			shift(99),  // out
-			shift(100), // varId
-			shift(101), // in
+			shift(101), // out
+			shift(102), // varId
+			shift(103), // in
 			nil,        // empty
 			nil,        // int
 			nil,        // bool
@@ -4450,7 +4534,7 @@ var actionTab = actionTable{
 			nil,        // or
 			nil,        // assign
 			nil,        // if
-			shift(105), // lp
+			shift(107), // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
@@ -4459,11 +4543,11 @@ var actionTab = actionTable{
 			nil,        // modulo
 			nil,        // mul
 			nil,        // div
-			shift(108), // not
-			shift(109), // int64
+			shift(110), // not
+			shift(111), // int64
 		},
 	},
-	actionRow{ // S106
+	actionRow{ // S108
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4499,13 +4583,13 @@ var actionTab = actionTable{
 			reduce(51), // plus, reduce: Expr
 			reduce(51), // minus, reduce: Expr
 			reduce(51), // modulo, reduce: Expr
-			shift(135), // mul
-			shift(136), // div
+			shift(137), // mul
+			shift(138), // div
 			nil,        // not
 			nil,        // int64
 		},
 	},
-	actionRow{ // S107
+	actionRow{ // S109
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4547,7 +4631,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S108
+	actionRow{ // S110
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4561,9 +4645,9 @@ var actionTab = actionTable{
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			shift(99),  // out
-			shift(100), // varId
-			shift(101), // in
+			shift(101), // out
+			shift(102), // varId
+			shift(103), // in
 			nil,        // empty
 			nil,        // int
 			nil,        // bool
@@ -4576,7 +4660,7 @@ var actionTab = actionTable{
 			nil,        // or
 			nil,        // assign
 			nil,        // if
-			shift(105), // lp
+			shift(107), // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
@@ -4585,11 +4669,11 @@ var actionTab = actionTable{
 			nil,        // modulo
 			nil,        // mul
 			nil,        // div
-			shift(108), // not
-			shift(109), // int64
+			shift(110), // not
+			shift(111), // int64
 		},
 	},
-	actionRow{ // S109
+	actionRow{ // S111
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4631,90 +4715,6 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S110
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			nil,        // period
-			nil,        // out
-			shift(138), // varId
-			nil,        // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			nil,        // eq
-			nil,        // lt
-			nil,        // gt
-			nil,        // neq
-			nil,        // and
-			nil,        // or
-			nil,        // assign
-			nil,        // if
-			nil,        // lp
-			nil,        // rp
-			nil,        // else
-			nil,        // exit
-			nil,        // plus
-			nil,        // minus
-			nil,        // modulo
-			nil,        // mul
-			nil,        // div
-			nil,        // not
-			nil,        // int64
-		},
-	},
-	actionRow{ // S111
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			nil,        // period
-			nil,        // out
-			shift(139), // varId
-			nil,        // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			nil,        // eq
-			nil,        // lt
-			nil,        // gt
-			nil,        // neq
-			nil,        // and
-			nil,        // or
-			nil,        // assign
-			nil,        // if
-			nil,        // lp
-			nil,        // rp
-			nil,        // else
-			nil,        // exit
-			nil,        // plus
-			nil,        // minus
-			nil,        // modulo
-			nil,        // mul
-			nil,        // div
-			nil,        // not
-			nil,        // int64
-		},
-	},
 	actionRow{ // S112
 		canRecover: false,
 		actions: [numSymbols]action{
@@ -4729,9 +4729,9 @@ var actionTab = actionTable{
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			shift(140), // out
-			shift(141), // varId
-			shift(142), // in
+			nil,        // out
+			shift(140), // varId
+			nil,        // in
 			nil,        // empty
 			nil,        // int
 			nil,        // bool
@@ -4744,7 +4744,7 @@ var actionTab = actionTable{
 			nil,        // or
 			nil,        // assign
 			nil,        // if
-			shift(145), // lp
+			nil,        // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
@@ -4753,11 +4753,95 @@ var actionTab = actionTable{
 			nil,        // modulo
 			nil,        // mul
 			nil,        // div
-			shift(147), // not
-			shift(148), // int64
+			nil,        // not
+			nil,        // int64
 		},
 	},
 	actionRow{ // S113
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			nil,        // out
+			shift(141), // varId
+			nil,        // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			nil,        // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S114
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			shift(142), // out
+			shift(143), // varId
+			shift(144), // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			shift(147), // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			shift(149), // not
+			shift(150), // int64
+		},
+	},
+	actionRow{ // S115
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4799,7 +4883,7 @@ var actionTab = actionTable{
 			reduce(25), // int64, reduce: CompareOperator
 		},
 	},
-	actionRow{ // S114
+	actionRow{ // S116
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4841,7 +4925,7 @@ var actionTab = actionTable{
 			reduce(26), // int64, reduce: CompareOperator
 		},
 	},
-	actionRow{ // S115
+	actionRow{ // S117
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4883,7 +4967,7 @@ var actionTab = actionTable{
 			reduce(27), // int64, reduce: CompareOperator
 		},
 	},
-	actionRow{ // S116
+	actionRow{ // S118
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4925,7 +5009,7 @@ var actionTab = actionTable{
 			reduce(28), // int64, reduce: CompareOperator
 		},
 	},
-	actionRow{ // S117
+	actionRow{ // S119
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -4967,7 +5051,7 @@ var actionTab = actionTable{
 			reduce(29), // int64, reduce: CompareOperator
 		},
 	},
-	actionRow{ // S118
+	actionRow{ // S120
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -5009,90 +5093,6 @@ var actionTab = actionTable{
 			reduce(30), // int64, reduce: CompareOperator
 		},
 	},
-	actionRow{ // S119
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,       // INVALID
-			nil,       // ␚
-			nil,       // node
-			nil,       // nodeId
-			nil,       // lcurly
-			nil,       // rcurly
-			nil,       // template
-			nil,       // colon
-			nil,       // stmtEnd
-			nil,       // ->
-			nil,       // period
-			shift(83), // out
-			shift(84), // varId
-			shift(85), // in
-			nil,       // empty
-			nil,       // int
-			nil,       // bool
-			nil,       // process
-			nil,       // eq
-			nil,       // lt
-			nil,       // gt
-			nil,       // neq
-			nil,       // and
-			nil,       // or
-			nil,       // assign
-			nil,       // if
-			shift(89), // lp
-			nil,       // rp
-			nil,       // else
-			nil,       // exit
-			nil,       // plus
-			nil,       // minus
-			nil,       // modulo
-			nil,       // mul
-			nil,       // div
-			shift(92), // not
-			shift(93), // int64
-		},
-	},
-	actionRow{ // S120
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,       // INVALID
-			nil,       // ␚
-			nil,       // node
-			nil,       // nodeId
-			nil,       // lcurly
-			nil,       // rcurly
-			nil,       // template
-			nil,       // colon
-			nil,       // stmtEnd
-			nil,       // ->
-			nil,       // period
-			shift(83), // out
-			shift(84), // varId
-			shift(85), // in
-			nil,       // empty
-			nil,       // int
-			nil,       // bool
-			nil,       // process
-			nil,       // eq
-			nil,       // lt
-			nil,       // gt
-			nil,       // neq
-			nil,       // and
-			nil,       // or
-			nil,       // assign
-			nil,       // if
-			shift(89), // lp
-			nil,       // rp
-			nil,       // else
-			nil,       // exit
-			nil,       // plus
-			nil,       // minus
-			nil,       // modulo
-			nil,       // mul
-			nil,       // div
-			shift(92), // not
-			shift(93), // int64
-		},
-	},
 	actionRow{ // S121
 		canRecover: false,
 		actions: [numSymbols]action{
@@ -5107,9 +5107,9 @@ var actionTab = actionTable{
 			nil,       // stmtEnd
 			nil,       // ->
 			nil,       // period
-			shift(83), // out
-			shift(84), // varId
-			shift(85), // in
+			shift(85), // out
+			shift(86), // varId
+			shift(87), // in
 			nil,       // empty
 			nil,       // int
 			nil,       // bool
@@ -5122,7 +5122,7 @@ var actionTab = actionTable{
 			nil,       // or
 			nil,       // assign
 			nil,       // if
-			shift(89), // lp
+			shift(91), // lp
 			nil,       // rp
 			nil,       // else
 			nil,       // exit
@@ -5131,11 +5131,95 @@ var actionTab = actionTable{
 			nil,       // modulo
 			nil,       // mul
 			nil,       // div
-			shift(92), // not
-			shift(93), // int64
+			shift(94), // not
+			shift(95), // int64
 		},
 	},
 	actionRow{ // S122
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,       // INVALID
+			nil,       // ␚
+			nil,       // node
+			nil,       // nodeId
+			nil,       // lcurly
+			nil,       // rcurly
+			nil,       // template
+			nil,       // colon
+			nil,       // stmtEnd
+			nil,       // ->
+			nil,       // period
+			shift(85), // out
+			shift(86), // varId
+			shift(87), // in
+			nil,       // empty
+			nil,       // int
+			nil,       // bool
+			nil,       // process
+			nil,       // eq
+			nil,       // lt
+			nil,       // gt
+			nil,       // neq
+			nil,       // and
+			nil,       // or
+			nil,       // assign
+			nil,       // if
+			shift(91), // lp
+			nil,       // rp
+			nil,       // else
+			nil,       // exit
+			nil,       // plus
+			nil,       // minus
+			nil,       // modulo
+			nil,       // mul
+			nil,       // div
+			shift(94), // not
+			shift(95), // int64
+		},
+	},
+	actionRow{ // S123
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,       // INVALID
+			nil,       // ␚
+			nil,       // node
+			nil,       // nodeId
+			nil,       // lcurly
+			nil,       // rcurly
+			nil,       // template
+			nil,       // colon
+			nil,       // stmtEnd
+			nil,       // ->
+			nil,       // period
+			shift(85), // out
+			shift(86), // varId
+			shift(87), // in
+			nil,       // empty
+			nil,       // int
+			nil,       // bool
+			nil,       // process
+			nil,       // eq
+			nil,       // lt
+			nil,       // gt
+			nil,       // neq
+			nil,       // and
+			nil,       // or
+			nil,       // assign
+			nil,       // if
+			shift(91), // lp
+			nil,       // rp
+			nil,       // else
+			nil,       // exit
+			nil,       // plus
+			nil,       // minus
+			nil,       // modulo
+			nil,       // mul
+			nil,       // div
+			shift(94), // not
+			shift(95), // int64
+		},
+	},
+	actionRow{ // S124
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -5156,112 +5240,112 @@ var actionTab = actionTable{
 			nil,        // int
 			nil,        // bool
 			nil,        // process
-			shift(113), // eq
-			shift(114), // lt
-			shift(115), // gt
-			shift(116), // neq
-			shift(117), // and
-			shift(118), // or
+			shift(115), // eq
+			shift(116), // lt
+			shift(117), // gt
+			shift(118), // neq
+			shift(119), // and
+			shift(120), // or
 			nil,        // assign
 			nil,        // if
 			nil,        // lp
-			shift(152), // rp
+			shift(154), // rp
 			nil,        // else
 			nil,        // exit
-			shift(131), // plus
-			shift(132), // minus
-			shift(133), // modulo
+			shift(133), // plus
+			shift(134), // minus
+			shift(135), // modulo
 			nil,        // mul
 			nil,        // div
 			nil,        // not
 			nil,        // int64
 		},
 	},
-	actionRow{ // S123
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,       // INVALID
-			nil,       // ␚
-			nil,       // node
-			nil,       // nodeId
-			nil,       // lcurly
-			nil,       // rcurly
-			nil,       // template
-			nil,       // colon
-			nil,       // stmtEnd
-			nil,       // ->
-			nil,       // period
-			shift(83), // out
-			shift(84), // varId
-			shift(85), // in
-			nil,       // empty
-			nil,       // int
-			nil,       // bool
-			nil,       // process
-			nil,       // eq
-			nil,       // lt
-			nil,       // gt
-			nil,       // neq
-			nil,       // and
-			nil,       // or
-			nil,       // assign
-			nil,       // if
-			shift(89), // lp
-			nil,       // rp
-			nil,       // else
-			nil,       // exit
-			nil,       // plus
-			nil,       // minus
-			nil,       // modulo
-			nil,       // mul
-			nil,       // div
-			shift(92), // not
-			shift(93), // int64
-		},
-	},
-	actionRow{ // S124
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,       // INVALID
-			nil,       // ␚
-			nil,       // node
-			nil,       // nodeId
-			nil,       // lcurly
-			nil,       // rcurly
-			nil,       // template
-			nil,       // colon
-			nil,       // stmtEnd
-			nil,       // ->
-			nil,       // period
-			shift(83), // out
-			shift(84), // varId
-			shift(85), // in
-			nil,       // empty
-			nil,       // int
-			nil,       // bool
-			nil,       // process
-			nil,       // eq
-			nil,       // lt
-			nil,       // gt
-			nil,       // neq
-			nil,       // and
-			nil,       // or
-			nil,       // assign
-			nil,       // if
-			shift(89), // lp
-			nil,       // rp
-			nil,       // else
-			nil,       // exit
-			nil,       // plus
-			nil,       // minus
-			nil,       // modulo
-			nil,       // mul
-			nil,       // div
-			shift(92), // not
-			shift(93), // int64
-		},
-	},
 	actionRow{ // S125
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,       // INVALID
+			nil,       // ␚
+			nil,       // node
+			nil,       // nodeId
+			nil,       // lcurly
+			nil,       // rcurly
+			nil,       // template
+			nil,       // colon
+			nil,       // stmtEnd
+			nil,       // ->
+			nil,       // period
+			shift(85), // out
+			shift(86), // varId
+			shift(87), // in
+			nil,       // empty
+			nil,       // int
+			nil,       // bool
+			nil,       // process
+			nil,       // eq
+			nil,       // lt
+			nil,       // gt
+			nil,       // neq
+			nil,       // and
+			nil,       // or
+			nil,       // assign
+			nil,       // if
+			shift(91), // lp
+			nil,       // rp
+			nil,       // else
+			nil,       // exit
+			nil,       // plus
+			nil,       // minus
+			nil,       // modulo
+			nil,       // mul
+			nil,       // div
+			shift(94), // not
+			shift(95), // int64
+		},
+	},
+	actionRow{ // S126
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,       // INVALID
+			nil,       // ␚
+			nil,       // node
+			nil,       // nodeId
+			nil,       // lcurly
+			nil,       // rcurly
+			nil,       // template
+			nil,       // colon
+			nil,       // stmtEnd
+			nil,       // ->
+			nil,       // period
+			shift(85), // out
+			shift(86), // varId
+			shift(87), // in
+			nil,       // empty
+			nil,       // int
+			nil,       // bool
+			nil,       // process
+			nil,       // eq
+			nil,       // lt
+			nil,       // gt
+			nil,       // neq
+			nil,       // and
+			nil,       // or
+			nil,       // assign
+			nil,       // if
+			shift(91), // lp
+			nil,       // rp
+			nil,       // else
+			nil,       // exit
+			nil,       // plus
+			nil,       // minus
+			nil,       // modulo
+			nil,       // mul
+			nil,       // div
+			shift(94), // not
+			shift(95), // int64
+		},
+	},
+	actionRow{ // S127
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -5303,7 +5387,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S126
+	actionRow{ // S128
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -5345,90 +5429,6 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S127
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			nil,        // period
-			nil,        // out
-			shift(155), // varId
-			nil,        // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			nil,        // eq
-			nil,        // lt
-			nil,        // gt
-			nil,        // neq
-			nil,        // and
-			nil,        // or
-			nil,        // assign
-			nil,        // if
-			nil,        // lp
-			nil,        // rp
-			nil,        // else
-			nil,        // exit
-			nil,        // plus
-			nil,        // minus
-			nil,        // modulo
-			nil,        // mul
-			nil,        // div
-			nil,        // not
-			nil,        // int64
-		},
-	},
-	actionRow{ // S128
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			nil,        // period
-			nil,        // out
-			shift(156), // varId
-			nil,        // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			nil,        // eq
-			nil,        // lt
-			nil,        // gt
-			nil,        // neq
-			nil,        // and
-			nil,        // or
-			nil,        // assign
-			nil,        // if
-			nil,        // lp
-			nil,        // rp
-			nil,        // else
-			nil,        // exit
-			nil,        // plus
-			nil,        // minus
-			nil,        // modulo
-			nil,        // mul
-			nil,        // div
-			nil,        // not
-			nil,        // int64
-		},
-	},
 	actionRow{ // S129
 		canRecover: false,
 		actions: [numSymbols]action{
@@ -5443,9 +5443,9 @@ var actionTab = actionTable{
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			shift(157), // out
-			shift(158), // varId
-			shift(159), // in
+			nil,        // out
+			shift(157), // varId
+			nil,        // in
 			nil,        // empty
 			nil,        // int
 			nil,        // bool
@@ -5458,7 +5458,7 @@ var actionTab = actionTable{
 			nil,        // or
 			nil,        // assign
 			nil,        // if
-			shift(162), // lp
+			nil,        // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
@@ -5467,8 +5467,8 @@ var actionTab = actionTable{
 			nil,        // modulo
 			nil,        // mul
 			nil,        // div
-			shift(164), // not
-			shift(165), // int64
+			nil,        // not
+			nil,        // int64
 		},
 	},
 	actionRow{ // S130
@@ -5478,19 +5478,19 @@ var actionTab = actionTable{
 			nil,        // ␚
 			nil,        // node
 			nil,        // nodeId
-			shift(166), // lcurly
-			reduce(47), // rcurly, reduce: Block
+			nil,        // lcurly
+			nil,        // rcurly
 			nil,        // template
 			nil,        // colon
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			reduce(47), // out, reduce: Block
-			reduce(47), // varId, reduce: Block
-			reduce(47), // in, reduce: Block
+			nil,        // out
+			shift(158), // varId
+			nil,        // in
 			nil,        // empty
-			reduce(47), // int, reduce: Block
-			reduce(47), // bool, reduce: Block
+			nil,        // int
+			nil,        // bool
 			nil,        // process
 			nil,        // eq
 			nil,        // lt
@@ -5499,11 +5499,11 @@ var actionTab = actionTable{
 			nil,        // and
 			nil,        // or
 			nil,        // assign
-			reduce(47), // if, reduce: Block
+			nil,        // if
 			nil,        // lp
 			nil,        // rp
-			reduce(47), // else, reduce: Block
-			reduce(47), // exit, reduce: Block
+			nil,        // else
+			nil,        // exit
 			nil,        // plus
 			nil,        // minus
 			nil,        // modulo
@@ -5527,9 +5527,9 @@ var actionTab = actionTable{
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			shift(99),  // out
-			shift(100), // varId
-			shift(101), // in
+			shift(159), // out
+			shift(160), // varId
+			shift(161), // in
 			nil,        // empty
 			nil,        // int
 			nil,        // bool
@@ -5542,7 +5542,7 @@ var actionTab = actionTable{
 			nil,        // or
 			nil,        // assign
 			nil,        // if
-			shift(105), // lp
+			shift(164), // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
@@ -5551,8 +5551,8 @@ var actionTab = actionTable{
 			nil,        // modulo
 			nil,        // mul
 			nil,        // div
-			shift(108), // not
-			shift(109), // int64
+			shift(166), // not
+			shift(167), // int64
 		},
 	},
 	actionRow{ // S132
@@ -5562,16 +5562,16 @@ var actionTab = actionTable{
 			nil,        // ␚
 			nil,        // node
 			nil,        // nodeId
-			nil,        // lcurly
+			shift(168), // lcurly
 			nil,        // rcurly
 			nil,        // template
 			nil,        // colon
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			shift(99),  // out
-			shift(100), // varId
-			shift(101), // in
+			nil,        // out
+			nil,        // varId
+			nil,        // in
 			nil,        // empty
 			nil,        // int
 			nil,        // bool
@@ -5584,7 +5584,7 @@ var actionTab = actionTable{
 			nil,        // or
 			nil,        // assign
 			nil,        // if
-			shift(105), // lp
+			nil,        // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
@@ -5593,8 +5593,8 @@ var actionTab = actionTable{
 			nil,        // modulo
 			nil,        // mul
 			nil,        // div
-			shift(108), // not
-			shift(109), // int64
+			nil,        // not
+			nil,        // int64
 		},
 	},
 	actionRow{ // S133
@@ -5611,9 +5611,9 @@ var actionTab = actionTable{
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			shift(99),  // out
-			shift(100), // varId
-			shift(101), // in
+			shift(101), // out
+			shift(102), // varId
+			shift(103), // in
 			nil,        // empty
 			nil,        // int
 			nil,        // bool
@@ -5626,7 +5626,7 @@ var actionTab = actionTable{
 			nil,        // or
 			nil,        // assign
 			nil,        // if
-			shift(105), // lp
+			shift(107), // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
@@ -5635,11 +5635,95 @@ var actionTab = actionTable{
 			nil,        // modulo
 			nil,        // mul
 			nil,        // div
-			shift(108), // not
-			shift(109), // int64
+			shift(110), // not
+			shift(111), // int64
 		},
 	},
 	actionRow{ // S134
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			shift(101), // out
+			shift(102), // varId
+			shift(103), // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			shift(107), // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			shift(110), // not
+			shift(111), // int64
+		},
+	},
+	actionRow{ // S135
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			shift(101), // out
+			shift(102), // varId
+			shift(103), // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			shift(107), // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			shift(110), // not
+			shift(111), // int64
+		},
+	},
+	actionRow{ // S136
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -5660,112 +5744,112 @@ var actionTab = actionTable{
 			nil,        // int
 			nil,        // bool
 			nil,        // process
-			shift(113), // eq
-			shift(114), // lt
-			shift(115), // gt
-			shift(116), // neq
-			shift(117), // and
-			shift(118), // or
+			shift(115), // eq
+			shift(116), // lt
+			shift(117), // gt
+			shift(118), // neq
+			shift(119), // and
+			shift(120), // or
 			nil,        // assign
 			nil,        // if
 			nil,        // lp
-			shift(171), // rp
+			shift(173), // rp
 			nil,        // else
 			nil,        // exit
-			shift(131), // plus
-			shift(132), // minus
-			shift(133), // modulo
+			shift(133), // plus
+			shift(134), // minus
+			shift(135), // modulo
 			nil,        // mul
 			nil,        // div
 			nil,        // not
 			nil,        // int64
 		},
 	},
-	actionRow{ // S135
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			nil,        // period
-			shift(99),  // out
-			shift(100), // varId
-			shift(101), // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			nil,        // eq
-			nil,        // lt
-			nil,        // gt
-			nil,        // neq
-			nil,        // and
-			nil,        // or
-			nil,        // assign
-			nil,        // if
-			shift(105), // lp
-			nil,        // rp
-			nil,        // else
-			nil,        // exit
-			nil,        // plus
-			nil,        // minus
-			nil,        // modulo
-			nil,        // mul
-			nil,        // div
-			shift(108), // not
-			shift(109), // int64
-		},
-	},
-	actionRow{ // S136
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			nil,        // period
-			shift(99),  // out
-			shift(100), // varId
-			shift(101), // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			nil,        // eq
-			nil,        // lt
-			nil,        // gt
-			nil,        // neq
-			nil,        // and
-			nil,        // or
-			nil,        // assign
-			nil,        // if
-			shift(105), // lp
-			nil,        // rp
-			nil,        // else
-			nil,        // exit
-			nil,        // plus
-			nil,        // minus
-			nil,        // modulo
-			nil,        // mul
-			nil,        // div
-			shift(108), // not
-			shift(109), // int64
-		},
-	},
 	actionRow{ // S137
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			shift(101), // out
+			shift(102), // varId
+			shift(103), // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			shift(107), // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			shift(110), // not
+			shift(111), // int64
+		},
+	},
+	actionRow{ // S138
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			shift(101), // out
+			shift(102), // varId
+			shift(103), // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			shift(107), // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			shift(110), // not
+			shift(111), // int64
+		},
+	},
+	actionRow{ // S139
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -5807,7 +5891,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S138
+	actionRow{ // S140
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -5849,7 +5933,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S139
+	actionRow{ // S141
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -5891,7 +5975,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S140
+	actionRow{ // S142
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -5904,7 +5988,7 @@ var actionTab = actionTable{
 			nil,        // colon
 			nil,        // stmtEnd
 			nil,        // ->
-			shift(174), // period
+			shift(176), // period
 			nil,        // out
 			nil,        // varId
 			nil,        // in
@@ -5933,7 +6017,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S141
+	actionRow{ // S143
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -5975,7 +6059,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S142
+	actionRow{ // S144
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -5988,7 +6072,7 @@ var actionTab = actionTable{
 			nil,        // colon
 			nil,        // stmtEnd
 			nil,        // ->
-			shift(175), // period
+			shift(177), // period
 			nil,        // out
 			nil,        // varId
 			nil,        // in
@@ -6017,7 +6101,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S143
+	actionRow{ // S145
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6059,7 +6143,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S144
+	actionRow{ // S146
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6101,7 +6185,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S145
+	actionRow{ // S147
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6115,9 +6199,9 @@ var actionTab = actionTable{
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			shift(99),  // out
-			shift(100), // varId
-			shift(101), // in
+			shift(101), // out
+			shift(102), // varId
+			shift(103), // in
 			nil,        // empty
 			nil,        // int
 			nil,        // bool
@@ -6130,7 +6214,7 @@ var actionTab = actionTable{
 			nil,        // or
 			nil,        // assign
 			nil,        // if
-			shift(105), // lp
+			shift(107), // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
@@ -6139,11 +6223,11 @@ var actionTab = actionTable{
 			nil,        // modulo
 			nil,        // mul
 			nil,        // div
-			shift(108), // not
-			shift(109), // int64
+			shift(110), // not
+			shift(111), // int64
 		},
 	},
-	actionRow{ // S146
+	actionRow{ // S148
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6185,7 +6269,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S147
+	actionRow{ // S149
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6199,9 +6283,9 @@ var actionTab = actionTable{
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			shift(140), // out
-			shift(141), // varId
-			shift(142), // in
+			shift(142), // out
+			shift(143), // varId
+			shift(144), // in
 			nil,        // empty
 			nil,        // int
 			nil,        // bool
@@ -6214,7 +6298,7 @@ var actionTab = actionTable{
 			nil,        // or
 			nil,        // assign
 			nil,        // if
-			shift(145), // lp
+			shift(147), // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
@@ -6223,11 +6307,11 @@ var actionTab = actionTable{
 			nil,        // modulo
 			nil,        // mul
 			nil,        // div
-			shift(147), // not
-			shift(148), // int64
+			shift(149), // not
+			shift(150), // int64
 		},
 	},
-	actionRow{ // S148
+	actionRow{ // S150
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6269,7 +6353,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S149
+	actionRow{ // S151
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6305,13 +6389,13 @@ var actionTab = actionTable{
 			reduce(48), // plus, reduce: Expr
 			reduce(48), // minus, reduce: Expr
 			reduce(48), // modulo, reduce: Expr
-			shift(123), // mul
-			shift(124), // div
+			shift(125), // mul
+			shift(126), // div
 			nil,        // not
 			nil,        // int64
 		},
 	},
-	actionRow{ // S150
+	actionRow{ // S152
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6347,13 +6431,13 @@ var actionTab = actionTable{
 			reduce(49), // plus, reduce: Expr
 			reduce(49), // minus, reduce: Expr
 			reduce(49), // modulo, reduce: Expr
-			shift(123), // mul
-			shift(124), // div
+			shift(125), // mul
+			shift(126), // div
 			nil,        // not
 			nil,        // int64
 		},
 	},
-	actionRow{ // S151
+	actionRow{ // S153
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6389,13 +6473,13 @@ var actionTab = actionTable{
 			reduce(50), // plus, reduce: Expr
 			reduce(50), // minus, reduce: Expr
 			reduce(50), // modulo, reduce: Expr
-			shift(123), // mul
-			shift(124), // div
+			shift(125), // mul
+			shift(126), // div
 			nil,        // not
 			nil,        // int64
 		},
 	},
-	actionRow{ // S152
+	actionRow{ // S154
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6437,7 +6521,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S153
+	actionRow{ // S155
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6479,7 +6563,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S154
+	actionRow{ // S156
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6521,7 +6605,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S155
+	actionRow{ // S157
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6563,7 +6647,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S156
+	actionRow{ // S158
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6605,90 +6689,6 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S157
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			shift(178), // period
-			nil,        // out
-			nil,        // varId
-			nil,        // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			nil,        // eq
-			nil,        // lt
-			nil,        // gt
-			nil,        // neq
-			nil,        // and
-			nil,        // or
-			nil,        // assign
-			nil,        // if
-			nil,        // lp
-			nil,        // rp
-			nil,        // else
-			nil,        // exit
-			nil,        // plus
-			nil,        // minus
-			nil,        // modulo
-			nil,        // mul
-			nil,        // div
-			nil,        // not
-			nil,        // int64
-		},
-	},
-	actionRow{ // S158
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			nil,        // period
-			nil,        // out
-			nil,        // varId
-			nil,        // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			reduce(24), // eq, reduce: Identifier
-			reduce(24), // lt, reduce: Identifier
-			reduce(24), // gt, reduce: Identifier
-			reduce(24), // neq, reduce: Identifier
-			reduce(24), // and, reduce: Identifier
-			reduce(24), // or, reduce: Identifier
-			nil,        // assign
-			nil,        // if
-			nil,        // lp
-			reduce(24), // rp, reduce: Identifier
-			nil,        // else
-			nil,        // exit
-			reduce(24), // plus, reduce: Identifier
-			reduce(24), // minus, reduce: Identifier
-			reduce(24), // modulo, reduce: Identifier
-			nil,        // mul
-			nil,        // div
-			nil,        // not
-			nil,        // int64
-		},
-	},
 	actionRow{ // S159
 		canRecover: false,
 		actions: [numSymbols]action{
@@ -6702,7 +6702,7 @@ var actionTab = actionTable{
 			nil,        // colon
 			nil,        // stmtEnd
 			nil,        // ->
-			shift(179), // period
+			shift(180), // period
 			nil,        // out
 			nil,        // varId
 			nil,        // in
@@ -6752,6 +6752,90 @@ var actionTab = actionTable{
 			nil,        // int
 			nil,        // bool
 			nil,        // process
+			reduce(24), // eq, reduce: Identifier
+			reduce(24), // lt, reduce: Identifier
+			reduce(24), // gt, reduce: Identifier
+			reduce(24), // neq, reduce: Identifier
+			reduce(24), // and, reduce: Identifier
+			reduce(24), // or, reduce: Identifier
+			nil,        // assign
+			nil,        // if
+			nil,        // lp
+			reduce(24), // rp, reduce: Identifier
+			nil,        // else
+			nil,        // exit
+			reduce(24), // plus, reduce: Identifier
+			reduce(24), // minus, reduce: Identifier
+			reduce(24), // modulo, reduce: Identifier
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S161
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			shift(181), // period
+			nil,        // out
+			nil,        // varId
+			nil,        // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			nil,        // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S162
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			nil,        // out
+			nil,        // varId
+			nil,        // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
 			reduce(23), // eq, reduce: Identifier
 			reduce(23), // lt, reduce: Identifier
 			reduce(23), // gt, reduce: Identifier
@@ -6773,7 +6857,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S161
+	actionRow{ // S163
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6815,7 +6899,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S162
+	actionRow{ // S164
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6829,9 +6913,9 @@ var actionTab = actionTable{
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			shift(99),  // out
-			shift(100), // varId
-			shift(101), // in
+			shift(101), // out
+			shift(102), // varId
+			shift(103), // in
 			nil,        // empty
 			nil,        // int
 			nil,        // bool
@@ -6844,7 +6928,7 @@ var actionTab = actionTable{
 			nil,        // or
 			nil,        // assign
 			nil,        // if
-			shift(105), // lp
+			shift(107), // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
@@ -6853,11 +6937,11 @@ var actionTab = actionTable{
 			nil,        // modulo
 			nil,        // mul
 			nil,        // div
-			shift(108), // not
-			shift(109), // int64
+			shift(110), // not
+			shift(111), // int64
 		},
 	},
-	actionRow{ // S163
+	actionRow{ // S165
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6899,7 +6983,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S164
+	actionRow{ // S166
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6913,9 +6997,9 @@ var actionTab = actionTable{
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			shift(157), // out
-			shift(158), // varId
-			shift(159), // in
+			shift(159), // out
+			shift(160), // varId
+			shift(161), // in
 			nil,        // empty
 			nil,        // int
 			nil,        // bool
@@ -6928,7 +7012,7 @@ var actionTab = actionTable{
 			nil,        // or
 			nil,        // assign
 			nil,        // if
-			shift(162), // lp
+			shift(164), // lp
 			nil,        // rp
 			nil,        // else
 			nil,        // exit
@@ -6937,11 +7021,11 @@ var actionTab = actionTable{
 			nil,        // modulo
 			nil,        // mul
 			nil,        // div
-			shift(164), // not
-			shift(165), // int64
+			shift(166), // not
+			shift(167), // int64
 		},
 	},
-	actionRow{ // S165
+	actionRow{ // S167
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -6983,49 +7067,49 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S166
+	actionRow{ // S168
 		canRecover: false,
 		actions: [numSymbols]action{
-			nil,       // INVALID
-			nil,       // ␚
-			nil,       // node
-			nil,       // nodeId
-			nil,       // lcurly
-			nil,       // rcurly
-			nil,       // template
-			nil,       // colon
-			nil,       // stmtEnd
-			nil,       // ->
-			nil,       // period
-			shift(56), // out
-			shift(57), // varId
-			shift(58), // in
-			nil,       // empty
-			shift(40), // int
-			shift(41), // bool
-			nil,       // process
-			nil,       // eq
-			nil,       // lt
-			nil,       // gt
-			nil,       // neq
-			nil,       // and
-			nil,       // or
-			nil,       // assign
-			shift(66), // if
-			nil,       // lp
-			nil,       // rp
-			nil,       // else
-			shift(68), // exit
-			nil,       // plus
-			nil,       // minus
-			nil,       // modulo
-			nil,       // mul
-			nil,       // div
-			nil,       // not
-			nil,       // int64
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			shift(56),  // out
+			shift(57),  // varId
+			shift(58),  // in
+			shift(184), // empty
+			shift(40),  // int
+			shift(41),  // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			shift(67),  // if
+			nil,        // lp
+			nil,        // rp
+			nil,        // else
+			shift(69),  // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
 		},
 	},
-	actionRow{ // S167
+	actionRow{ // S169
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7056,7 +7140,7 @@ var actionTab = actionTable{
 			reduce(39), // if, reduce: IfStmt
 			nil,        // lp
 			nil,        // rp
-			shift(183), // else
+			shift(186), // else
 			reduce(39), // exit, reduce: IfStmt
 			nil,        // plus
 			nil,        // minus
@@ -7067,7 +7151,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S168
+	actionRow{ // S170
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7103,13 +7187,13 @@ var actionTab = actionTable{
 			reduce(48), // plus, reduce: Expr
 			reduce(48), // minus, reduce: Expr
 			reduce(48), // modulo, reduce: Expr
-			shift(135), // mul
-			shift(136), // div
+			shift(137), // mul
+			shift(138), // div
 			nil,        // not
 			nil,        // int64
 		},
 	},
-	actionRow{ // S169
+	actionRow{ // S171
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7145,13 +7229,13 @@ var actionTab = actionTable{
 			reduce(49), // plus, reduce: Expr
 			reduce(49), // minus, reduce: Expr
 			reduce(49), // modulo, reduce: Expr
-			shift(135), // mul
-			shift(136), // div
+			shift(137), // mul
+			shift(138), // div
 			nil,        // not
 			nil,        // int64
 		},
 	},
-	actionRow{ // S170
+	actionRow{ // S172
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7187,13 +7271,13 @@ var actionTab = actionTable{
 			reduce(50), // plus, reduce: Expr
 			reduce(50), // minus, reduce: Expr
 			reduce(50), // modulo, reduce: Expr
-			shift(135), // mul
-			shift(136), // div
+			shift(137), // mul
+			shift(138), // div
 			nil,        // not
 			nil,        // int64
 		},
 	},
-	actionRow{ // S171
+	actionRow{ // S173
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7235,7 +7319,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S172
+	actionRow{ // S174
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7277,7 +7361,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S173
+	actionRow{ // S175
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7319,175 +7403,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S174
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			nil,        // period
-			nil,        // out
-			shift(184), // varId
-			nil,        // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			nil,        // eq
-			nil,        // lt
-			nil,        // gt
-			nil,        // neq
-			nil,        // and
-			nil,        // or
-			nil,        // assign
-			nil,        // if
-			nil,        // lp
-			nil,        // rp
-			nil,        // else
-			nil,        // exit
-			nil,        // plus
-			nil,        // minus
-			nil,        // modulo
-			nil,        // mul
-			nil,        // div
-			nil,        // not
-			nil,        // int64
-		},
-	},
-	actionRow{ // S175
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			nil,        // period
-			nil,        // out
-			shift(185), // varId
-			nil,        // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			nil,        // eq
-			nil,        // lt
-			nil,        // gt
-			nil,        // neq
-			nil,        // and
-			nil,        // or
-			nil,        // assign
-			nil,        // if
-			nil,        // lp
-			nil,        // rp
-			nil,        // else
-			nil,        // exit
-			nil,        // plus
-			nil,        // minus
-			nil,        // modulo
-			nil,        // mul
-			nil,        // div
-			nil,        // not
-			nil,        // int64
-		},
-	},
 	actionRow{ // S176
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			nil,        // stmtEnd
-			nil,        // ->
-			nil,        // period
-			nil,        // out
-			nil,        // varId
-			nil,        // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			shift(113), // eq
-			shift(114), // lt
-			shift(115), // gt
-			shift(116), // neq
-			shift(117), // and
-			shift(118), // or
-			nil,        // assign
-			nil,        // if
-			nil,        // lp
-			shift(186), // rp
-			nil,        // else
-			nil,        // exit
-			shift(131), // plus
-			shift(132), // minus
-			shift(133), // modulo
-			nil,        // mul
-			nil,        // div
-			nil,        // not
-			nil,        // int64
-		},
-	},
-	actionRow{ // S177
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        // INVALID
-			nil,        // ␚
-			nil,        // node
-			nil,        // nodeId
-			nil,        // lcurly
-			nil,        // rcurly
-			nil,        // template
-			nil,        // colon
-			reduce(58), // stmtEnd, reduce: Factor
-			nil,        // ->
-			nil,        // period
-			nil,        // out
-			nil,        // varId
-			nil,        // in
-			nil,        // empty
-			nil,        // int
-			nil,        // bool
-			nil,        // process
-			reduce(58), // eq, reduce: Factor
-			reduce(58), // lt, reduce: Factor
-			reduce(58), // gt, reduce: Factor
-			reduce(58), // neq, reduce: Factor
-			reduce(58), // and, reduce: Factor
-			reduce(58), // or, reduce: Factor
-			nil,        // assign
-			nil,        // if
-			nil,        // lp
-			nil,        // rp
-			nil,        // else
-			nil,        // exit
-			reduce(58), // plus, reduce: Factor
-			reduce(58), // minus, reduce: Factor
-			reduce(58), // modulo, reduce: Factor
-			nil,        // mul
-			nil,        // div
-			nil,        // not
-			nil,        // int64
-		},
-	},
-	actionRow{ // S178
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7529,7 +7445,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S179
+	actionRow{ // S177
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7571,7 +7487,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S180
+	actionRow{ // S178
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7592,21 +7508,105 @@ var actionTab = actionTable{
 			nil,        // int
 			nil,        // bool
 			nil,        // process
-			shift(113), // eq
-			shift(114), // lt
-			shift(115), // gt
-			shift(116), // neq
-			shift(117), // and
-			shift(118), // or
+			shift(115), // eq
+			shift(116), // lt
+			shift(117), // gt
+			shift(118), // neq
+			shift(119), // and
+			shift(120), // or
 			nil,        // assign
 			nil,        // if
 			nil,        // lp
 			shift(189), // rp
 			nil,        // else
 			nil,        // exit
-			shift(131), // plus
-			shift(132), // minus
-			shift(133), // modulo
+			shift(133), // plus
+			shift(134), // minus
+			shift(135), // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S179
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			reduce(58), // stmtEnd, reduce: Factor
+			nil,        // ->
+			nil,        // period
+			nil,        // out
+			nil,        // varId
+			nil,        // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			reduce(58), // eq, reduce: Factor
+			reduce(58), // lt, reduce: Factor
+			reduce(58), // gt, reduce: Factor
+			reduce(58), // neq, reduce: Factor
+			reduce(58), // and, reduce: Factor
+			reduce(58), // or, reduce: Factor
+			nil,        // assign
+			nil,        // if
+			nil,        // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			reduce(58), // plus, reduce: Factor
+			reduce(58), // minus, reduce: Factor
+			reduce(58), // modulo, reduce: Factor
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S180
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			nil,        // out
+			shift(190), // varId
+			nil,        // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			nil,        // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
 			nil,        // mul
 			nil,        // div
 			nil,        // not
@@ -7614,6 +7614,90 @@ var actionTab = actionTable{
 		},
 	},
 	actionRow{ // S181
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			nil,        // out
+			shift(191), // varId
+			nil,        // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			nil,        // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S182
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			nil,        // out
+			nil,        // varId
+			nil,        // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			shift(115), // eq
+			shift(116), // lt
+			shift(117), // gt
+			shift(118), // neq
+			shift(119), // and
+			shift(120), // or
+			nil,        // assign
+			nil,        // if
+			nil,        // lp
+			shift(192), // rp
+			nil,        // else
+			nil,        // exit
+			shift(133), // plus
+			shift(134), // minus
+			shift(135), // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S183
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7655,7 +7739,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S182
+	actionRow{ // S184
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7663,7 +7747,49 @@ var actionTab = actionTable{
 			nil,        // node
 			nil,        // nodeId
 			nil,        // lcurly
-			shift(190), // rcurly
+			shift(193), // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			nil,        // out
+			nil,        // varId
+			nil,        // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			nil,        // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S185
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			shift(194), // rcurly
 			nil,        // template
 			nil,        // colon
 			nil,        // stmtEnd
@@ -7683,11 +7809,11 @@ var actionTab = actionTable{
 			nil,        // and
 			nil,        // or
 			nil,        // assign
-			shift(66),  // if
+			shift(67),  // if
 			nil,        // lp
 			nil,        // rp
 			nil,        // else
-			shift(68),  // exit
+			shift(69),  // exit
 			nil,        // plus
 			nil,        // minus
 			nil,        // modulo
@@ -7697,26 +7823,26 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S183
+	actionRow{ // S186
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
 			nil,        // ␚
 			nil,        // node
 			nil,        // nodeId
-			shift(191), // lcurly
-			reduce(47), // rcurly, reduce: Block
+			shift(195), // lcurly
+			nil,        // rcurly
 			nil,        // template
 			nil,        // colon
 			nil,        // stmtEnd
 			nil,        // ->
 			nil,        // period
-			reduce(47), // out, reduce: Block
-			reduce(47), // varId, reduce: Block
-			reduce(47), // in, reduce: Block
+			nil,        // out
+			nil,        // varId
+			nil,        // in
 			nil,        // empty
-			reduce(47), // int, reduce: Block
-			reduce(47), // bool, reduce: Block
+			nil,        // int
+			nil,        // bool
 			nil,        // process
 			nil,        // eq
 			nil,        // lt
@@ -7725,11 +7851,11 @@ var actionTab = actionTable{
 			nil,        // and
 			nil,        // or
 			nil,        // assign
-			reduce(47), // if, reduce: Block
+			nil,        // if
 			nil,        // lp
 			nil,        // rp
 			nil,        // else
-			reduce(47), // exit, reduce: Block
+			nil,        // exit
 			nil,        // plus
 			nil,        // minus
 			nil,        // modulo
@@ -7739,7 +7865,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S184
+	actionRow{ // S187
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7781,7 +7907,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S185
+	actionRow{ // S188
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7823,7 +7949,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S186
+	actionRow{ // S189
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7865,7 +7991,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S187
+	actionRow{ // S190
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7907,7 +8033,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S188
+	actionRow{ // S191
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7949,7 +8075,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S189
+	actionRow{ // S192
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -7991,7 +8117,49 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S190
+	actionRow{ // S193
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			reduce(47), // rcurly, reduce: Block
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			reduce(47), // out, reduce: Block
+			reduce(47), // varId, reduce: Block
+			reduce(47), // in, reduce: Block
+			nil,        // empty
+			reduce(47), // int, reduce: Block
+			reduce(47), // bool, reduce: Block
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			reduce(47), // if, reduce: Block
+			nil,        // lp
+			nil,        // rp
+			reduce(47), // else, reduce: Block
+			reduce(47), // exit, reduce: Block
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S194
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -8033,49 +8201,49 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S191
+	actionRow{ // S195
 		canRecover: false,
 		actions: [numSymbols]action{
-			nil,       // INVALID
-			nil,       // ␚
-			nil,       // node
-			nil,       // nodeId
-			nil,       // lcurly
-			nil,       // rcurly
-			nil,       // template
-			nil,       // colon
-			nil,       // stmtEnd
-			nil,       // ->
-			nil,       // period
-			shift(56), // out
-			shift(57), // varId
-			shift(58), // in
-			nil,       // empty
-			shift(40), // int
-			shift(41), // bool
-			nil,       // process
-			nil,       // eq
-			nil,       // lt
-			nil,       // gt
-			nil,       // neq
-			nil,       // and
-			nil,       // or
-			nil,       // assign
-			shift(66), // if
-			nil,       // lp
-			nil,       // rp
-			nil,       // else
-			shift(68), // exit
-			nil,       // plus
-			nil,       // minus
-			nil,       // modulo
-			nil,       // mul
-			nil,       // div
-			nil,       // not
-			nil,       // int64
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			nil,        // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			shift(56),  // out
+			shift(57),  // varId
+			shift(58),  // in
+			shift(197), // empty
+			shift(40),  // int
+			shift(41),  // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			shift(67),  // if
+			nil,        // lp
+			nil,        // rp
+			nil,        // else
+			shift(69),  // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
 		},
 	},
-	actionRow{ // S192
+	actionRow{ // S196
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -8117,7 +8285,7 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S193
+	actionRow{ // S197
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
@@ -8125,7 +8293,49 @@ var actionTab = actionTable{
 			nil,        // node
 			nil,        // nodeId
 			nil,        // lcurly
-			shift(194), // rcurly
+			shift(199), // rcurly
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			nil,        // out
+			nil,        // varId
+			nil,        // in
+			nil,        // empty
+			nil,        // int
+			nil,        // bool
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			nil,        // if
+			nil,        // lp
+			nil,        // rp
+			nil,        // else
+			nil,        // exit
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S198
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			shift(200), // rcurly
 			nil,        // template
 			nil,        // colon
 			nil,        // stmtEnd
@@ -8145,11 +8355,11 @@ var actionTab = actionTable{
 			nil,        // and
 			nil,        // or
 			nil,        // assign
-			shift(66),  // if
+			shift(67),  // if
 			nil,        // lp
 			nil,        // rp
 			nil,        // else
-			shift(68),  // exit
+			shift(69),  // exit
 			nil,        // plus
 			nil,        // minus
 			nil,        // modulo
@@ -8159,7 +8369,49 @@ var actionTab = actionTable{
 			nil,        // int64
 		},
 	},
-	actionRow{ // S194
+	actionRow{ // S199
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        // INVALID
+			nil,        // ␚
+			nil,        // node
+			nil,        // nodeId
+			nil,        // lcurly
+			reduce(47), // rcurly, reduce: Block
+			nil,        // template
+			nil,        // colon
+			nil,        // stmtEnd
+			nil,        // ->
+			nil,        // period
+			reduce(47), // out, reduce: Block
+			reduce(47), // varId, reduce: Block
+			reduce(47), // in, reduce: Block
+			nil,        // empty
+			reduce(47), // int, reduce: Block
+			reduce(47), // bool, reduce: Block
+			nil,        // process
+			nil,        // eq
+			nil,        // lt
+			nil,        // gt
+			nil,        // neq
+			nil,        // and
+			nil,        // or
+			nil,        // assign
+			reduce(47), // if, reduce: Block
+			nil,        // lp
+			nil,        // rp
+			nil,        // else
+			reduce(47), // exit, reduce: Block
+			nil,        // plus
+			nil,        // minus
+			nil,        // modulo
+			nil,        // mul
+			nil,        // div
+			nil,        // not
+			nil,        // int64
+		},
+	},
+	actionRow{ // S200
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        // INVALID
