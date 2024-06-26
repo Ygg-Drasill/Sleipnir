@@ -9,7 +9,7 @@ import (
 var Print standardTemplate = standardTemplate{
 	Body: `global.get $%s
 i32.wrap_i64
-call $log`,
+call $_log`,
 	Inputs: []string{"text"},
 	FormatBody: func(t standardTemplate, nodeId string, nodeVarMap map[string]*ast.Junction) string {
 		text := nodeVarMap[utils.JunctionKey(nodeId, t.Inputs[0])]

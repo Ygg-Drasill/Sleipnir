@@ -102,6 +102,8 @@ func TestCompileValidSourceCode(t *testing.T) {
 			instance, err = wasmtime.NewInstance(store, module, []wasmtime.AsExtern{
 				logImport,   // console.log
 				dummyImport, // screeps.move
+				dummyImport, // screeps.set
+				dummyImport, // screeps.get
 			})
 			if err != nil {
 				t.Fatalf("failed to create wasmtime instance: %s", err.Error())
