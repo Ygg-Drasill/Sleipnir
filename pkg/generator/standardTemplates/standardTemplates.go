@@ -26,6 +26,13 @@ var StandardTemplates = map[string]*standardTemplate{
 	"GetMemory": &GetMemory,
 }
 
-func mapVarJunctionVariable(nodeId, varId string) string {
-	return fmt.Sprintf("%s_%s", nodeId, varId)
+func mapVarJunctionVariableGet(junction *ast.Junction) string {
+	if junction == nil {
+		return "i64.const 0"
+	}
+	return fmt.Sprintf("global.get $%s_%s", junction.NodeId, junction.VarId)
+}
+
+func mapVarJunctionVariableSet(nodeId, varId string) string {
+	return fmt.Sprintf("global.set $%s_%s", nodeId, varId)
 }

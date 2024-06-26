@@ -7,19 +7,19 @@ import (
 )
 
 var Modulo standardTemplate = standardTemplate{
-	Body: `global.get $%s
-global.get $%s
+	Body: `%s
+%s
 i64.rem_s
-global.set $%s`,
+%s`,
 	Inputs:  []string{"a", "b"},
 	Outputs: []string{"result"},
 	FormatBody: func(t standardTemplate, nodeId string, varMap map[string]*ast.Junction) string {
 		a := varMap[utils.JunctionKey(nodeId, "a")]
 		b := varMap[utils.JunctionKey(nodeId, "b")]
 		return fmt.Sprintf(t.Body,
-			mapVarJunctionVariable(a.NodeId, a.VarId),
-			mapVarJunctionVariable(b.NodeId, b.VarId),
-			mapVarJunctionVariable(nodeId, t.Outputs[0]),
+			mapVarJunctionVariableGet(a),
+			mapVarJunctionVariableGet(b),
+			mapVarJunctionVariableSet(nodeId, t.Outputs[0]),
 		)
 	},
 }

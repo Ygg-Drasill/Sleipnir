@@ -7,12 +7,12 @@ import (
 )
 
 var Print standardTemplate = standardTemplate{
-	Body: `global.get $%s
+	Body: `%s
 i32.wrap_i64
 call $_log`,
 	Inputs: []string{"text"},
 	FormatBody: func(t standardTemplate, nodeId string, nodeVarMap map[string]*ast.Junction) string {
 		text := nodeVarMap[utils.JunctionKey(nodeId, t.Inputs[0])]
-		return fmt.Sprintf(t.Body, mapVarJunctionVariable(text.NodeId, text.VarId))
+		return fmt.Sprintf(t.Body, mapVarJunctionVariableGet(text))
 	},
 }
