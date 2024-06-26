@@ -8,11 +8,18 @@ import (
 )
 
 func (g *Generator) genExpr(node *ast.Expression) error {
-	g.genExprOperand(&node.FirstOperand)
-	g.genExprOperand(&node.SecondOperand)
+	var err error
+	err = g.genExprOperand(&node.FirstOperand)
+	if err != nil {
+		return err
+	}
+	err = g.genExprOperand(&node.SecondOperand)
+	if err != nil {
+		return err
+	}
 	opToken := node.Operator.(*token.Token)
 	tokenLit := string(opToken.Lit)
-	if tokenLit == "/" || tokenLit == "%"  {
+	if tokenLit == "/" || tokenLit == "%" {
 		err := handleZeroDivision(node)
 
 		if err != nil {
@@ -24,12 +31,18 @@ func (g *Generator) genExpr(node *ast.Expression) error {
 	return nil
 }
 
-func (g *Generator) genExprOperand(node *ast.Attribute) {
+func (g *Generator) genExprOperand(node *ast.Attribute) error {
+	var err error
 	if operand, ok := (*node).(ast.Expression); ok {
-		g.genExpr(&operand)
+		err = g.genExpr(&operand)
 	} else {
-		g.genValue(node)
+		err = g.genValue(node)
 	}
+
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func (g *Generator) genValue(node *ast.Attribute) error {

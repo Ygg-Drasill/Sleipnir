@@ -8,6 +8,10 @@ func (table *symbolTable) AddVariable(id string) {
 	(*table)[varKey(id)] = newVariable("int")
 }
 
+func (table *symbolTable) Exists(id string) bool {
+	return (*table)[varKey(id)] != nil
+}
+
 type NodeContext struct {
 	InVariables   symbolTable
 	OutVariables  symbolTable
@@ -58,6 +62,10 @@ type ParseContext struct {
 	Nodes        map[nodeKey]*NodeContext
 	CurrentNode  *NodeContext
 	CurrentScope symbolTable
+}
+
+func (ctx *ParseContext) GetNodeContext(id string) *NodeContext {
+	return ctx.Nodes[nodeKey(id)]
 }
 
 func (ctx *ParseContext) AddNodeContext(nodeName nodeKey, nodeContext *NodeContext) {

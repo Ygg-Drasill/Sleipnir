@@ -15,11 +15,6 @@ const commentSingle = "//"
 const commentMultiStart = "/*"
 const commentMultiEnd = "*/"
 
-func matchPreprocessor(lexer *Lexer) StateFunction {
-	//TODO: do preprocessing
-	return matchAny
-}
-
 func matchAny(lexer *Lexer) StateFunction {
 	currentRune := lexer.cursorNext()
 	if isLetter(currentRune) {
@@ -35,7 +30,6 @@ func matchAny(lexer *Lexer) StateFunction {
 		return matchConnector
 	}
 
-	//TODO: logical operator
 	if isOperator(currentRune) {
 		lexer.serveToken(TokenOperator)
 		return matchNonToken
@@ -46,7 +40,6 @@ func matchAny(lexer *Lexer) StateFunction {
 		return matchNonToken
 	}
 
-	//TODO: errorhandler
 	fmt.Printf("Unrecognised token %c\n", currentRune)
 	return nil
 }
