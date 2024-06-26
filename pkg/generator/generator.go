@@ -158,6 +158,10 @@ func (g *Generator) genDeclaration(node *ast.Declaration) error {
 		if err := g.gen(&expr); err != nil {
 			return err
 		}
+	} else if value, ok := node.Expression.(int64); ok {
+		if err := g.genInt(value); err != nil {
+			return err
+		}
 	}
 
 	g.write("local.set $%s\n", node.AssigneeId)

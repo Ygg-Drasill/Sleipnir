@@ -82,21 +82,37 @@ func TestCompileValidSourceCode(t *testing.T) {
 			}
 
 			var sampleDataValue int64
-			var want int64
+			var want int32
 			if len(sampleData) > 1 {
-				sampleDataValue, err = strconv.ParseInt(sampleData[1], 10, 64)
+				sampleDataValue, err = strconv.ParseInt(sampleData[1], 10, 32)
 				if err != nil {
 					t.Fatalf("failed to parse expected int: %s", err.Error())
 				}
-				want = sampleDataValue
+				want = int32(sampleDataValue)
 			}
 
-			logImport := wasmtime.WrapFunc(store, func(got int64) {
+			logImport := wasmtime.WrapFunc(store, func(got int32) {
 				if got != want {
 					t.Fatalf("resulting wasm was incorrect, got: %d but want: %d", got, want)
 				}
 			})
-			instance, err = wasmtime.NewInstance(store, module, []wasmtime.AsExtern{logImport})
+
+			dummyImport := wasmtime.WrapFunc(store, func(got int32) { return })
+
+			var memory int32 = 0
+			setImport := wasmtime.WrapFunc(store, func(value int32) {
+				memory = value
+			})
+			getImport := wasmtime.WrapFunc(store, func() int32 {
+				return memory
+			})
+
+			instance, err = wasmtime.NewInstance(store, module, []wasmtime.AsExtern{
+				logImport,   // console.log
+				dummyImport, // screeps.move
+				setImport,   // screeps.set
+				getImport,   // screeps.get
+			})
 			if err != nil {
 				t.Fatalf("failed to create wasmtime instance: %s", err.Error())
 			}

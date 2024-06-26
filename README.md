@@ -4,6 +4,14 @@
 
 The Sleipnir compiler compiles Yggdrasill code to WebAssembly or JavaScript
 
+# Installation
+Sleipnir CLI can be installed through go install.
+
+```
+go install github.com/Ygg-Drasill/Sleipnir/cmd/sleipnir@latest
+```
+
+
 # Testing
 The main integration test uses samples located inside `test/samples/valid` and `test/samples/valid`.
 All invalid samples are expected to produce an error when compiled, while valid samples are expected to compile without errors.

@@ -1382,21 +1382,21 @@ var gotoTab = gotoTable{
 		-1, // ConnIn
 		-1, // NodeLst
 		-1, // ConnLst
-		59, // Type
-		60, // NodeVar
+		60, // Type
+		61, // NodeVar
 		-1, // NodeIn
 		-1, // NodeOut
 		-1, // NodeProc
-		61, // Identifier
+		62, // Identifier
 		-1, // CompareOperator
-		62, // DeclarationStmt
+		63, // DeclarationStmt
 		-1, // DeclarationList
 		-1, // Assignment
-		63, // AssignStmt
-		64, // ControlStmt
-		65, // IfStmt
-		67, // Stmt
-		69, // StmtLst
+		64, // AssignStmt
+		65, // ControlStmt
+		66, // IfStmt
+		68, // Stmt
+		70, // StmtLst
 		-1, // Block
 		-1, // Expr
 		-1, // Term
@@ -1478,7 +1478,7 @@ var gotoTab = gotoTable{
 		-1, // CompareOperator
 		-1, // DeclarationStmt
 		-1, // DeclarationList
-		72, // Assignment
+		73, // Assignment
 		-1, // AssignStmt
 		-1, // ControlStmt
 		-1, // IfStmt
@@ -1797,7 +1797,7 @@ var gotoTab = gotoTable{
 		-1, // CompareOperator
 		-1, // DeclarationStmt
 		-1, // DeclarationList
-		77, // Assignment
+		-1, // Assignment
 		-1, // AssignStmt
 		-1, // ControlStmt
 		-1, // IfStmt
@@ -1826,7 +1826,7 @@ var gotoTab = gotoTable{
 		-1, // CompareOperator
 		-1, // DeclarationStmt
 		-1, // DeclarationList
-		-1, // Assignment
+		79, // Assignment
 		-1, // AssignStmt
 		-1, // ControlStmt
 		-1, // IfStmt
@@ -2020,20 +2020,20 @@ var gotoTab = gotoTable{
 		-1, // ConnIn
 		-1, // NodeLst
 		-1, // ConnLst
-		59, // Type
-		60, // NodeVar
+		-1, // Type
+		-1, // NodeVar
 		-1, // NodeIn
 		-1, // NodeOut
 		-1, // NodeProc
-		61, // Identifier
+		-1, // Identifier
 		-1, // CompareOperator
-		62, // DeclarationStmt
+		-1, // DeclarationStmt
 		-1, // DeclarationList
 		-1, // Assignment
-		63, // AssignStmt
-		64, // ControlStmt
-		65, // IfStmt
-		81, // Stmt
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
 		-1, // StmtLst
 		-1, // Block
 		-1, // Expr
@@ -2049,20 +2049,20 @@ var gotoTab = gotoTable{
 		-1, // ConnIn
 		-1, // NodeLst
 		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
+		60, // Type
+		61, // NodeVar
 		-1, // NodeIn
 		-1, // NodeOut
 		-1, // NodeProc
-		-1, // Identifier
+		62, // Identifier
 		-1, // CompareOperator
-		-1, // DeclarationStmt
+		63, // DeclarationStmt
 		-1, // DeclarationList
 		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
+		64, // AssignStmt
+		65, // ControlStmt
+		66, // IfStmt
+		83, // Stmt
 		-1, // StmtLst
 		-1, // Block
 		-1, // Expr
@@ -2137,35 +2137,6 @@ var gotoTab = gotoTable{
 		-1, // NodeLst
 		-1, // ConnLst
 		-1, // Type
-		86, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		87, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		88, // Expr
-		90, // Term
-		91, // Factor
-	},
-	gotoRow{ // S74
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
 		-1, // NodeVar
 		-1, // NodeIn
 		-1, // NodeOut
@@ -2184,6 +2155,35 @@ var gotoTab = gotoTable{
 		-1, // Expr
 		-1, // Term
 		-1, // Factor
+	},
+	gotoRow{ // S74
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		88, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		89, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		90, // Expr
+		92, // Term
+		93, // Factor
 	},
 	gotoRow{ // S75
 		-1, // S'
@@ -2232,7 +2232,7 @@ var gotoTab = gotoTable{
 		-1, // CompareOperator
 		-1, // DeclarationStmt
 		-1, // DeclarationList
-		97, // Assignment
+		-1, // Assignment
 		-1, // AssignStmt
 		-1, // ControlStmt
 		-1, // IfStmt
@@ -2273,33 +2273,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S78
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		102, // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		103, // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		104, // Expr
-		106, // Term
-		107, // Factor
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		99, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
 	},
 	gotoRow{ // S79
 		-1, // S'
@@ -2331,33 +2331,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S80
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		104, // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		105, // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		106, // Expr
+		108, // Term
+		109, // Factor
 	},
 	gotoRow{ // S81
 		-1, // S'
@@ -2563,6 +2563,64 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S88
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
+	},
+	gotoRow{ // S89
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
+	},
+	gotoRow{ // S90
 		-1,  // S'
 		-1,  // ProgramDeclarationList
 		-1,  // Node
@@ -2577,7 +2635,7 @@ var gotoTab = gotoTable{
 		-1,  // NodeOut
 		-1,  // NodeProc
 		-1,  // Identifier
-		112, // CompareOperator
+		114, // CompareOperator
 		-1,  // DeclarationStmt
 		-1,  // DeclarationList
 		-1,  // Assignment
@@ -2591,7 +2649,7 @@ var gotoTab = gotoTable{
 		-1,  // Term
 		-1,  // Factor
 	},
-	gotoRow{ // S89
+	gotoRow{ // S91
 		-1,  // S'
 		-1,  // ProgramDeclarationList
 		-1,  // Node
@@ -2601,11 +2659,11 @@ var gotoTab = gotoTable{
 		-1,  // NodeLst
 		-1,  // ConnLst
 		-1,  // Type
-		102, // NodeVar
+		104, // NodeVar
 		-1,  // NodeIn
 		-1,  // NodeOut
 		-1,  // NodeProc
-		103, // Identifier
+		105, // Identifier
 		-1,  // CompareOperator
 		-1,  // DeclarationStmt
 		-1,  // DeclarationList
@@ -2616,96 +2674,38 @@ var gotoTab = gotoTable{
 		-1,  // Stmt
 		-1,  // StmtLst
 		-1,  // Block
-		122, // Expr
-		106, // Term
-		107, // Factor
-	},
-	gotoRow{ // S90
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
-	},
-	gotoRow{ // S91
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		124, // Expr
+		108, // Term
+		109, // Factor
 	},
 	gotoRow{ // S92
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		86,  // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		87,  // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		-1,  // Term
-		125, // Factor
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
 	},
 	gotoRow{ // S93
 		-1, // S'
@@ -2737,33 +2737,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S94
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		88,  // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		89,  // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		-1,  // Term
+		127, // Factor
 	},
 	gotoRow{ // S95
 		-1, // S'
@@ -3027,6 +3027,64 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S104
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
+	},
+	gotoRow{ // S105
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
+	},
+	gotoRow{ // S106
 		-1,  // S'
 		-1,  // ProgramDeclarationList
 		-1,  // Node
@@ -3041,7 +3099,7 @@ var gotoTab = gotoTable{
 		-1,  // NodeOut
 		-1,  // NodeProc
 		-1,  // Identifier
-		129, // CompareOperator
+		131, // CompareOperator
 		-1,  // DeclarationStmt
 		-1,  // DeclarationList
 		-1,  // Assignment
@@ -3055,7 +3113,7 @@ var gotoTab = gotoTable{
 		-1,  // Term
 		-1,  // Factor
 	},
-	gotoRow{ // S105
+	gotoRow{ // S107
 		-1,  // S'
 		-1,  // ProgramDeclarationList
 		-1,  // Node
@@ -3065,11 +3123,11 @@ var gotoTab = gotoTable{
 		-1,  // NodeLst
 		-1,  // ConnLst
 		-1,  // Type
-		102, // NodeVar
+		104, // NodeVar
 		-1,  // NodeIn
 		-1,  // NodeOut
 		-1,  // NodeProc
-		103, // Identifier
+		105, // Identifier
 		-1,  // CompareOperator
 		-1,  // DeclarationStmt
 		-1,  // DeclarationList
@@ -3080,96 +3138,38 @@ var gotoTab = gotoTable{
 		-1,  // Stmt
 		-1,  // StmtLst
 		-1,  // Block
-		134, // Expr
-		106, // Term
-		107, // Factor
-	},
-	gotoRow{ // S106
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
-	},
-	gotoRow{ // S107
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		136, // Expr
+		108, // Term
+		109, // Factor
 	},
 	gotoRow{ // S108
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		102, // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		103, // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		-1,  // Term
-		137, // Factor
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
 	},
 	gotoRow{ // S109
 		-1, // S'
@@ -3201,33 +3201,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S110
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		104, // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		105, // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		-1,  // Term
+		139, // Factor
 	},
 	gotoRow{ // S111
 		-1, // S'
@@ -3259,33 +3259,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S112
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		143, // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		144, // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		-1,  // Term
-		146, // Factor
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
 	},
 	gotoRow{ // S113
 		-1, // S'
@@ -3317,33 +3317,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S114
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		145, // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		146, // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		-1,  // Term
+		148, // Factor
 	},
 	gotoRow{ // S115
 		-1, // S'
@@ -3462,62 +3462,62 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S119
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		86,  // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		87,  // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		149, // Term
-		91,  // Factor
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
 	},
 	gotoRow{ // S120
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		86,  // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		87,  // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		150, // Term
-		91,  // Factor
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
 	},
 	gotoRow{ // S121
 		-1,  // S'
@@ -3529,11 +3529,11 @@ var gotoTab = gotoTable{
 		-1,  // NodeLst
 		-1,  // ConnLst
 		-1,  // Type
-		86,  // NodeVar
+		88,  // NodeVar
 		-1,  // NodeIn
 		-1,  // NodeOut
 		-1,  // NodeProc
-		87,  // Identifier
+		89,  // Identifier
 		-1,  // CompareOperator
 		-1,  // DeclarationStmt
 		-1,  // DeclarationList
@@ -3546,9 +3546,67 @@ var gotoTab = gotoTable{
 		-1,  // Block
 		-1,  // Expr
 		151, // Term
-		91,  // Factor
+		93,  // Factor
 	},
 	gotoRow{ // S122
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		88,  // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		89,  // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		152, // Term
+		93,  // Factor
+	},
+	gotoRow{ // S123
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		88,  // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		89,  // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		153, // Term
+		93,  // Factor
+	},
+	gotoRow{ // S124
 		-1,  // S'
 		-1,  // ProgramDeclarationList
 		-1,  // Node
@@ -3563,7 +3621,7 @@ var gotoTab = gotoTable{
 		-1,  // NodeOut
 		-1,  // NodeProc
 		-1,  // Identifier
-		129, // CompareOperator
+		131, // CompareOperator
 		-1,  // DeclarationStmt
 		-1,  // DeclarationList
 		-1,  // Assignment
@@ -3577,121 +3635,63 @@ var gotoTab = gotoTable{
 		-1,  // Term
 		-1,  // Factor
 	},
-	gotoRow{ // S123
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		86,  // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		87,  // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		-1,  // Term
-		153, // Factor
-	},
-	gotoRow{ // S124
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		86,  // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		87,  // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		-1,  // Term
-		154, // Factor
-	},
 	gotoRow{ // S125
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		88,  // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		89,  // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		-1,  // Term
+		155, // Factor
 	},
 	gotoRow{ // S126
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		88,  // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		89,  // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		-1,  // Term
+		156, // Factor
 	},
 	gotoRow{ // S127
 		-1, // S'
@@ -3752,6 +3752,64 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S129
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
+	},
+	gotoRow{ // S130
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
+	},
+	gotoRow{ // S131
 		-1,  // S'
 		-1,  // ProgramDeclarationList
 		-1,  // Node
@@ -3761,11 +3819,11 @@ var gotoTab = gotoTable{
 		-1,  // NodeLst
 		-1,  // ConnLst
 		-1,  // Type
-		160, // NodeVar
+		162, // NodeVar
 		-1,  // NodeIn
 		-1,  // NodeOut
 		-1,  // NodeProc
-		161, // Identifier
+		163, // Identifier
 		-1,  // CompareOperator
 		-1,  // DeclarationStmt
 		-1,  // DeclarationList
@@ -3778,9 +3836,9 @@ var gotoTab = gotoTable{
 		-1,  // Block
 		-1,  // Expr
 		-1,  // Term
-		163, // Factor
+		165, // Factor
 	},
-	gotoRow{ // S130
+	gotoRow{ // S132
 		-1,  // S'
 		-1,  // ProgramDeclarationList
 		-1,  // Node
@@ -3804,68 +3862,10 @@ var gotoTab = gotoTable{
 		-1,  // IfStmt
 		-1,  // Stmt
 		-1,  // StmtLst
-		167, // Block
+		169, // Block
 		-1,  // Expr
 		-1,  // Term
 		-1,  // Factor
-	},
-	gotoRow{ // S131
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		102, // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		103, // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		168, // Term
-		107, // Factor
-	},
-	gotoRow{ // S132
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		102, // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		103, // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		169, // Term
-		107, // Factor
 	},
 	gotoRow{ // S133
 		-1,  // S'
@@ -3877,11 +3877,11 @@ var gotoTab = gotoTable{
 		-1,  // NodeLst
 		-1,  // ConnLst
 		-1,  // Type
-		102, // NodeVar
+		104, // NodeVar
 		-1,  // NodeIn
 		-1,  // NodeOut
 		-1,  // NodeProc
-		103, // Identifier
+		105, // Identifier
 		-1,  // CompareOperator
 		-1,  // DeclarationStmt
 		-1,  // DeclarationList
@@ -3894,9 +3894,67 @@ var gotoTab = gotoTable{
 		-1,  // Block
 		-1,  // Expr
 		170, // Term
-		107, // Factor
+		109, // Factor
 	},
 	gotoRow{ // S134
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		104, // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		105, // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		171, // Term
+		109, // Factor
+	},
+	gotoRow{ // S135
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		104, // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		105, // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		172, // Term
+		109, // Factor
+	},
+	gotoRow{ // S136
 		-1,  // S'
 		-1,  // ProgramDeclarationList
 		-1,  // Node
@@ -3911,7 +3969,7 @@ var gotoTab = gotoTable{
 		-1,  // NodeOut
 		-1,  // NodeProc
 		-1,  // Identifier
-		129, // CompareOperator
+		131, // CompareOperator
 		-1,  // DeclarationStmt
 		-1,  // DeclarationList
 		-1,  // Assignment
@@ -3925,121 +3983,63 @@ var gotoTab = gotoTable{
 		-1,  // Term
 		-1,  // Factor
 	},
-	gotoRow{ // S135
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		102, // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		103, // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		-1,  // Term
-		172, // Factor
-	},
-	gotoRow{ // S136
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		102, // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		103, // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		-1,  // Term
-		173, // Factor
-	},
 	gotoRow{ // S137
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		104, // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		105, // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		-1,  // Term
+		174, // Factor
 	},
 	gotoRow{ // S138
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		104, // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		105, // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		-1,  // Term
+		175, // Factor
 	},
 	gotoRow{ // S139
 		-1, // S'
@@ -4216,33 +4216,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S145
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		102, // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		103, // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		176, // Expr
-		106, // Term
-		107, // Factor
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
 	},
 	gotoRow{ // S146
 		-1, // S'
@@ -4283,11 +4283,11 @@ var gotoTab = gotoTable{
 		-1,  // NodeLst
 		-1,  // ConnLst
 		-1,  // Type
-		143, // NodeVar
+		104, // NodeVar
 		-1,  // NodeIn
 		-1,  // NodeOut
 		-1,  // NodeProc
-		144, // Identifier
+		105, // Identifier
 		-1,  // CompareOperator
 		-1,  // DeclarationStmt
 		-1,  // DeclarationList
@@ -4298,9 +4298,9 @@ var gotoTab = gotoTable{
 		-1,  // Stmt
 		-1,  // StmtLst
 		-1,  // Block
-		-1,  // Expr
-		-1,  // Term
-		177, // Factor
+		178, // Expr
+		108, // Term
+		109, // Factor
 	},
 	gotoRow{ // S148
 		-1, // S'
@@ -4332,33 +4332,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S149
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		145, // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		146, // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		-1,  // Term
+		179, // Factor
 	},
 	gotoRow{ // S150
 		-1, // S'
@@ -4709,33 +4709,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S162
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		102, // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		103, // Identifier
-		-1,  // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		180, // Expr
-		106, // Term
-		107, // Factor
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
 	},
 	gotoRow{ // S163
 		-1, // S'
@@ -4776,11 +4776,11 @@ var gotoTab = gotoTable{
 		-1,  // NodeLst
 		-1,  // ConnLst
 		-1,  // Type
-		160, // NodeVar
+		104, // NodeVar
 		-1,  // NodeIn
 		-1,  // NodeOut
 		-1,  // NodeProc
-		161, // Identifier
+		105, // Identifier
 		-1,  // CompareOperator
 		-1,  // DeclarationStmt
 		-1,  // DeclarationList
@@ -4791,9 +4791,9 @@ var gotoTab = gotoTable{
 		-1,  // Stmt
 		-1,  // StmtLst
 		-1,  // Block
-		-1,  // Expr
-		-1,  // Term
-		181, // Factor
+		182, // Expr
+		108, // Term
+		109, // Factor
 	},
 	gotoRow{ // S165
 		-1, // S'
@@ -4833,25 +4833,25 @@ var gotoTab = gotoTable{
 		-1,  // ConnIn
 		-1,  // NodeLst
 		-1,  // ConnLst
-		59,  // Type
-		60,  // NodeVar
+		-1,  // Type
+		162, // NodeVar
 		-1,  // NodeIn
 		-1,  // NodeOut
 		-1,  // NodeProc
-		61,  // Identifier
+		163, // Identifier
 		-1,  // CompareOperator
-		62,  // DeclarationStmt
+		-1,  // DeclarationStmt
 		-1,  // DeclarationList
 		-1,  // Assignment
-		63,  // AssignStmt
-		64,  // ControlStmt
-		65,  // IfStmt
-		67,  // Stmt
-		182, // StmtLst
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
 		-1,  // Block
 		-1,  // Expr
 		-1,  // Term
-		-1,  // Factor
+		183, // Factor
 	},
 	gotoRow{ // S167
 		-1, // S'
@@ -4883,33 +4883,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S168
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		60,  // Type
+		61,  // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		62,  // Identifier
+		-1,  // CompareOperator
+		63,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		64,  // AssignStmt
+		65,  // ControlStmt
+		66,  // IfStmt
+		68,  // Stmt
+		185, // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		-1,  // Term
+		-1,  // Factor
 	},
 	gotoRow{ // S169
 		-1, // S'
@@ -5115,33 +5115,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S176
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		-1,  // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		-1,  // Identifier
-		129, // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		-1,  // Term
-		-1,  // Factor
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
 	},
 	gotoRow{ // S177
 		-1, // S'
@@ -5173,33 +5173,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S178
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		-1,  // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		-1,  // Identifier
+		131, // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		-1,  // Term
+		-1,  // Factor
 	},
 	gotoRow{ // S179
 		-1, // S'
@@ -5231,33 +5231,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S180
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		-1,  // Type
-		-1,  // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		-1,  // Identifier
-		129, // CompareOperator
-		-1,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		-1,  // AssignStmt
-		-1,  // ControlStmt
-		-1,  // IfStmt
-		-1,  // Stmt
-		-1,  // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		-1,  // Term
-		-1,  // Factor
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
 	},
 	gotoRow{ // S181
 		-1, // S'
@@ -5289,35 +5289,6 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S182
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		59, // Type
-		60, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		61, // Identifier
-		-1, // CompareOperator
-		62, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		63, // AssignStmt
-		64, // ControlStmt
-		65, // IfStmt
-		81, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
-	},
-	gotoRow{ // S183
 		-1,  // S'
 		-1,  // ProgramDeclarationList
 		-1,  // Node
@@ -5332,7 +5303,7 @@ var gotoTab = gotoTable{
 		-1,  // NodeOut
 		-1,  // NodeProc
 		-1,  // Identifier
-		-1,  // CompareOperator
+		131, // CompareOperator
 		-1,  // DeclarationStmt
 		-1,  // DeclarationList
 		-1,  // Assignment
@@ -5341,10 +5312,39 @@ var gotoTab = gotoTable{
 		-1,  // IfStmt
 		-1,  // Stmt
 		-1,  // StmtLst
-		192, // Block
+		-1,  // Block
 		-1,  // Expr
 		-1,  // Term
 		-1,  // Factor
+	},
+	gotoRow{ // S183
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
 	},
 	gotoRow{ // S184
 		-1, // S'
@@ -5384,20 +5384,20 @@ var gotoTab = gotoTable{
 		-1, // ConnIn
 		-1, // NodeLst
 		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
+		60, // Type
+		61, // NodeVar
 		-1, // NodeIn
 		-1, // NodeOut
 		-1, // NodeProc
-		-1, // Identifier
+		62, // Identifier
 		-1, // CompareOperator
-		-1, // DeclarationStmt
+		63, // DeclarationStmt
 		-1, // DeclarationList
 		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
+		64, // AssignStmt
+		65, // ControlStmt
+		66, // IfStmt
+		83, // Stmt
 		-1, // StmtLst
 		-1, // Block
 		-1, // Expr
@@ -5405,33 +5405,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S186
-		-1, // S'
-		-1, // ProgramDeclarationList
-		-1, // Node
-		-1, // Conn
-		-1, // ConnOut
-		-1, // ConnIn
-		-1, // NodeLst
-		-1, // ConnLst
-		-1, // Type
-		-1, // NodeVar
-		-1, // NodeIn
-		-1, // NodeOut
-		-1, // NodeProc
-		-1, // Identifier
-		-1, // CompareOperator
-		-1, // DeclarationStmt
-		-1, // DeclarationList
-		-1, // Assignment
-		-1, // AssignStmt
-		-1, // ControlStmt
-		-1, // IfStmt
-		-1, // Stmt
-		-1, // StmtLst
-		-1, // Block
-		-1, // Expr
-		-1, // Term
-		-1, // Factor
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		-1,  // Type
+		-1,  // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		-1,  // Identifier
+		-1,  // CompareOperator
+		-1,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		-1,  // AssignStmt
+		-1,  // ControlStmt
+		-1,  // IfStmt
+		-1,  // Stmt
+		-1,  // StmtLst
+		196, // Block
+		-1,  // Expr
+		-1,  // Term
+		-1,  // Factor
 	},
 	gotoRow{ // S187
 		-1, // S'
@@ -5550,33 +5550,33 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S191
-		-1,  // S'
-		-1,  // ProgramDeclarationList
-		-1,  // Node
-		-1,  // Conn
-		-1,  // ConnOut
-		-1,  // ConnIn
-		-1,  // NodeLst
-		-1,  // ConnLst
-		59,  // Type
-		60,  // NodeVar
-		-1,  // NodeIn
-		-1,  // NodeOut
-		-1,  // NodeProc
-		61,  // Identifier
-		-1,  // CompareOperator
-		62,  // DeclarationStmt
-		-1,  // DeclarationList
-		-1,  // Assignment
-		63,  // AssignStmt
-		64,  // ControlStmt
-		65,  // IfStmt
-		67,  // Stmt
-		193, // StmtLst
-		-1,  // Block
-		-1,  // Expr
-		-1,  // Term
-		-1,  // Factor
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
 	},
 	gotoRow{ // S192
 		-1, // S'
@@ -5616,20 +5616,20 @@ var gotoTab = gotoTable{
 		-1, // ConnIn
 		-1, // NodeLst
 		-1, // ConnLst
-		59, // Type
-		60, // NodeVar
+		-1, // Type
+		-1, // NodeVar
 		-1, // NodeIn
 		-1, // NodeOut
 		-1, // NodeProc
-		61, // Identifier
+		-1, // Identifier
 		-1, // CompareOperator
-		62, // DeclarationStmt
+		-1, // DeclarationStmt
 		-1, // DeclarationList
 		-1, // Assignment
-		63, // AssignStmt
-		64, // ControlStmt
-		65, // IfStmt
-		81, // Stmt
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
 		-1, // StmtLst
 		-1, // Block
 		-1, // Expr
@@ -5637,6 +5637,180 @@ var gotoTab = gotoTable{
 		-1, // Factor
 	},
 	gotoRow{ // S194
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
+	},
+	gotoRow{ // S195
+		-1,  // S'
+		-1,  // ProgramDeclarationList
+		-1,  // Node
+		-1,  // Conn
+		-1,  // ConnOut
+		-1,  // ConnIn
+		-1,  // NodeLst
+		-1,  // ConnLst
+		60,  // Type
+		61,  // NodeVar
+		-1,  // NodeIn
+		-1,  // NodeOut
+		-1,  // NodeProc
+		62,  // Identifier
+		-1,  // CompareOperator
+		63,  // DeclarationStmt
+		-1,  // DeclarationList
+		-1,  // Assignment
+		64,  // AssignStmt
+		65,  // ControlStmt
+		66,  // IfStmt
+		68,  // Stmt
+		198, // StmtLst
+		-1,  // Block
+		-1,  // Expr
+		-1,  // Term
+		-1,  // Factor
+	},
+	gotoRow{ // S196
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
+	},
+	gotoRow{ // S197
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
+	},
+	gotoRow{ // S198
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		60, // Type
+		61, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		62, // Identifier
+		-1, // CompareOperator
+		63, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		64, // AssignStmt
+		65, // ControlStmt
+		66, // IfStmt
+		83, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
+	},
+	gotoRow{ // S199
+		-1, // S'
+		-1, // ProgramDeclarationList
+		-1, // Node
+		-1, // Conn
+		-1, // ConnOut
+		-1, // ConnIn
+		-1, // NodeLst
+		-1, // ConnLst
+		-1, // Type
+		-1, // NodeVar
+		-1, // NodeIn
+		-1, // NodeOut
+		-1, // NodeProc
+		-1, // Identifier
+		-1, // CompareOperator
+		-1, // DeclarationStmt
+		-1, // DeclarationList
+		-1, // Assignment
+		-1, // AssignStmt
+		-1, // ControlStmt
+		-1, // IfStmt
+		-1, // Stmt
+		-1, // StmtLst
+		-1, // Block
+		-1, // Expr
+		-1, // Term
+		-1, // Factor
+	},
+	gotoRow{ // S200
 		-1, // S'
 		-1, // ProgramDeclarationList
 		-1, // Node
