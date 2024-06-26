@@ -25,9 +25,24 @@ func runBinary(binary []byte) (any, error) {
 		fmt.Println("print: ", value)
 	})
 
+	var memory int32 = 0
+
+	setImport := wasmtime.WrapFunc(store, func(value int32) {
+		memory = value
+	})
+
+	getImport := wasmtime.WrapFunc(store, func() int32 {
+		return memory
+	})
+
 	dummyImport := wasmtime.WrapFunc(store, func(value int32) { return })
 
-	instance, err = wasmtime.NewInstance(store, module, []wasmtime.AsExtern{logImport, dummyImport})
+	instance, err = wasmtime.NewInstance(store, module, []wasmtime.AsExtern{
+		logImport,   // console.log
+		dummyImport, // screeps.move
+		setImport,   // screeps.set
+		getImport,   // screeps.get
+	})
 
 	if err != nil {
 		log.Fatalf("failed to create wasmtime instance: %s", err.Error())

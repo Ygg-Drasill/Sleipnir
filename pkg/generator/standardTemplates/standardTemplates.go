@@ -15,13 +15,15 @@ type standardTemplate struct {
 }
 
 var StandardTemplates = map[string]*standardTemplate{
-	"Print": &Print,
-	"Add":   &Add,
-	"Subtract":   &Subtract,
-	"Multiply":   &Multiply,
-	"Divide":   &Divide,
-	"Modulo":   &Modulo,
-	"Move":  &Move,
+	"Print":     &Print,
+	"Add":       &Add,
+	"Subtract":  &Subtract,
+	"Multiply":  &Multiply,
+	"Divide":    &Divide,
+	"Modulo":    &Modulo,
+	"Move":      &Move,
+	"SetMemory": &SetMemory,
+	"GetMemory": &GetMemory,
 }
 
 func mapVarJunctionVariable(nodeId, varId string) string {
